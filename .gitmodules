@@ -1,0 +1,3 @@
+[submodule "hdl_ad7511_fork"]
+	path = hdl_ad7511_fork
+	url = git@github.com:mcoughli/hdl_ad7511_fork.git
