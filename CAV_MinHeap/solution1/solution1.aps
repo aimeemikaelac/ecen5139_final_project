@@ -5,7 +5,9 @@
     <clockList>
         <clock name="default" period="10"/>
     </clockList>
-    <config/>
+    <config>
+        <schedule model="runQueue"/>
+    </config>
     <UIConfigurations>
         <UIAutosynConf boardInfo="ZedBoard Zynq Evaluation and Development Kit (xc7z020clg484-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynq/zynq</Platform>
@@ -39,7 +41,7 @@
         </UIAutoSimConf>
     </UIConfigurations>
     <ExportDesign askAgain="true" evaluate="false" formatName="ip_catalog" rtl="verilog">
-        <Format formatName="ip_catalog"/>
+        <Format formatName="ip_catalog" description="" vendor="" library="" version="1.0" display_name="" taxonomy=""/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>
         <Format formatName="syn_dcp"/>

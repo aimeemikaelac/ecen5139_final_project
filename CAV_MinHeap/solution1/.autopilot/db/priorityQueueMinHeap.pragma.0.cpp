@@ -44456,8 +44456,10 @@ using namespace std;
 //QueueData min(QueueData first, QueueData second);
 //QueueData max(QueueData first, QueueData second);
 bool comparitor(QueueData first, QueueData second);
-void push(vector<QueueData> &queueData, QueueData item);
-void pop(vector<QueueData> &queueData, QueueData *itemOut);
+int push(QueueData *queueDataHeap, int size, QueueData item);
+int pop(QueueData *queueDataHeap, int size, QueueData *itemOut);
+void min_heapify(QueueData *a,int i,int n);
+void build_minheap(QueueData *a, int n);
 bool runTest();
 
 int random_priorities[] = { 325, 437, 294,197, 295, 178, 325, 500, 207, 384, 16, 21, 95, 491, 360, 22, 10, 263, 311, 410, 381,
@@ -44491,38 +44493,38 @@ bool runQueue(){
 bool runTest(){
  int i;
  bool result = true;
- int dequeuedItems[2000];
- for(i=0; i<2000; i++){
+ int dequeuedItems[200];
+ for(i=0; i<200; i++){
   QueueData current, temp;
-  current.data = 2000 - i-1;
+  current.data = 200 - i-1;
   current.priority = i;
   queue(true, current, &temp);
  }
- for(i=0; i<2000; i++){
+ for(i=0; i<200; i++){
   QueueData temp, out;
   queue(false, temp, &out);
-  if(out.priority != i || out.data != 2000 -i-1){
+  if(out.priority != i || out.data != 200 -i-1){
    result = false;
   }
 //		cout << "Dequeued: "<<out.priority<<", "<<out.data<<", i: "<<i<<", STORAGE_SIZE - i: "<<STORAGE_SIZE-i-1<<endl;
  }
- for(i=0; i<2000; i++){
+ for(i=0; i<200; i++){
   QueueData current, temp;
-  current.data = 2000 - i-1;
+  current.data = 200 - i-1;
   current.priority = random_priorities[i%200];
   queue(true, current, &temp);
  }
- for(i=0; i<2000; i++){
+ for(i=0; i<200; i++){
   dequeuedItems[i] = -1;
  }
  int last = 0;
- for(i=0; i<2000; i++){
+ for(i=0; i<200; i++){
   QueueData temp, out;
   queue(false, temp, &out);
   if(out.priority < last){
    result = false;
   }
-  if(out.data >= 2000 || dequeuedItems[out.data] > 0){
+  if(out.data >= 200 || dequeuedItems[out.data] > 0){
    result = false;
   }
 //		cout << "Dequeued: "<<out.priority<<", "<<out.data<<", i: "<<i<<", STORAGE_SIZE - i: "<<STORAGE_SIZE-i-1<<endl;
@@ -44535,46 +44537,84 @@ bool runTest(){
 
 void queue(bool isPush, QueueData inData, QueueData *outData){
  //backing array for queue. is twice the size of the max queue size
- static vector<QueueData> queueData;
+ static QueueData queueDataHeap[200 +1];
+ static int size = 0;
  //for API, push if push == TRUE, else pop
  //return the pushed element for push, or an empty element if the queue is full
  if(isPush){
-  if(queueData.size() == 2000){
+  if(size == 200){
    outData->data = -1;
    outData->priority = numeric_limits<int>::max();
   } else{
-   push(queueData, inData);
+   size = push(queueDataHeap, size, inData);
    *outData = inData;
 //			cout << "Queue state: "<<endl;
 //			int i;
-//			for(i=0; i<size; i++){
-//				cout << queueData[i].priority << ","<<queueData[i].data<<endl;
+//			for(i=0; i<size+1; i++){
+//				cout << queueDataHeap[i].priority << ","<<queueDataHeap[i].data<<endl;
 //			}
 //			cout << endl;
   }
  } else{
-  if(queueData.size() == 0){
+  if(size == 0){
    outData->data = -1;
    outData->priority = numeric_limits<int>::max();
   } else{
-   pop(queueData, outData);
+//			cout << "Queue state: size: "<<size<<endl;
+//			int i;
+//			for(i=0; i<size+1; i++){
+//				cout << queueDataHeap[i].priority << ","<<queueDataHeap[i].data<<endl;
+//			}
+//			cout << endl;
+   size = pop(queueDataHeap, size, outData);
   }
  }
 }
 
 //check if the queue is full before calling this function
-void push(vector<QueueData> &queueData, QueueData item){
- queueData.push_back(item);
- push_heap(queueData.begin(), queueData.end(), comparitor);
+int push(QueueData *queueDataHeap, int size, QueueData item){
+ queueDataHeap[size+1] = item;
+ build_minheap(queueDataHeap, size + 1);
+ return size + 1;
 }
 
 //check that the queue is not empty before call
-void pop(vector<QueueData> &queueData, QueueData *itemOut){
- pop_heap(queueData.begin(), queueData.end(), comparitor);
- QueueData current = queueData.back();
- queueData.pop_back();
- itemOut->data = current.data;
- itemOut->priority = current.priority;
+int pop(QueueData *queueDataHeap, int size, QueueData *itemOut){
+ *itemOut = queueDataHeap[1];
+ queueDataHeap[1] = queueDataHeap[size];
+ build_minheap(queueDataHeap, size -1);
+ return size-1;
+}
+
+void min_heapify(QueueData *a,int i,int n)
+{
+    int j;
+    QueueData temp;
+    temp = a[i];
+    j = 2 * i;
+    while (j <= n)
+    {
+        if (j < n && a[j+1].priority < a[j].priority)
+            j = j + 1;
+        if (temp.priority < a[j].priority)
+            break;
+        else if (temp.priority >= a[j].priority)
+        {
+            a[j/2] = a[j];
+            j = 2 * j;
+        }
+    }
+    a[j/2] = temp;
+    return;
+}
+
+void build_minheap(QueueData *a, int n)
+{
+    int i;
+    for(i = n/2; i >= 1; i--)
+    {
+        min_heapify(a,i,n);
+    }
 }
 
 //QueueData min(QueueData first, QueueData second){

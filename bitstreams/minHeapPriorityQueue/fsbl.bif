@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+	[bootloader]/home/michael/ecen5139_final_project/hdl_ad7511_fork/projects/adv7511/zed/adv7511_zed.sdk/fsbl/Debug/fsbl.elf
+	/home/michael/ecen5139_final_project/hdl_ad7511_fork/projects/adv7511/zed/adv7511_zed.sdk/system_top_hw_platform_0/system_top.bit
+	/Xilinx/xilinx_bootfiles/u-boot.elf
+}

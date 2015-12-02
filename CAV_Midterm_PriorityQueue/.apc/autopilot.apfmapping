@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="priorityQueueMidterm.cpp" path="/home/michael/Documents/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.cpp"/>
-    <originFiles name="priorityQueueMidterm.h" path="/home/michael/Documents/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.h"/>
+    <originFiles name="priorityQueueMidterm.h" path="/home/michael/ecen5139_final_project/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.h"/>
+    <originFiles name="priorityQueueMidterm.cpp" path="/home/michael/ecen5139_final_project/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.cpp"/>
   </source>
   <testbench>
-    <originFiles name="priorityQueueMidterm_testbench.cpp" path="/home/michael/Documents/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm_testbench.cpp"/>
+    <originFiles name="priorityQueueMidterm_testbench.cpp" path="/home/michael/ecen5139_final_project/CAV_Midterm_PriorityQueue/source/priorityQueueMidterm_testbench.cpp"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

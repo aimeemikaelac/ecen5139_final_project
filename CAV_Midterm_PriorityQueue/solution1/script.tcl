@@ -5,8 +5,8 @@
 ############################################################
 open_project CAV_Midterm_PriorityQueue
 set_top runQueue
-add_files CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.cpp
 add_files CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.h
+add_files CAV_Midterm_PriorityQueue/source/priorityQueueMidterm.cpp
 add_files -tb CAV_Midterm_PriorityQueue/source/priorityQueueMidterm_testbench.cpp
 open_solution "solution1"
 set_part {xc7z020clg484-1}

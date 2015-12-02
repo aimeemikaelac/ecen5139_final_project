@@ -1,6 +1,6 @@
 #include <limits>
 
-#define STORAGE_SIZE 200
+#define STORAGE_SIZE 2000
 
 typedef struct QueueData{
 	int priority;

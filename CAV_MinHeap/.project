@@ -90,42 +90,42 @@
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>/home/michael/Documents/CAV_MinHeap/.apc/.tb</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/.apc/.tb</location>
 		</link>
 		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>/home/michael/Documents/CAV_MinHeap/solution1/.tcls</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/priorityQueueMinHeap.cpp</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap.cpp</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/source/priorityQueueMinHeap.cpp</location>
 		</link>
 		<link>
 			<name>source/priorityQueueMinHeap.h</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap.h</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/source/priorityQueueMinHeap.h</location>
 		</link>
 		<link>
 			<name>testbench/priorityQueueMinHeap_testbench.cpp</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap_testbench.cpp</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/source/priorityQueueMinHeap_testbench.cpp</location>
 		</link>
 		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/solution1/solution1.directive</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/solution1/solution1.directive</location>
 		</link>
 		<link>
 			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/solution1/directives.tcl</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/solution1/directives.tcl</location>
 		</link>
 		<link>
 			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>/home/michael/Documents/CAV_MinHeap/solution1/script.tcl</location>
+			<location>/home/michael/ecen5139_final_project/CAV_MinHeap/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

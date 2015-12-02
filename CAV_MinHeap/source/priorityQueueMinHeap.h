@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 
-#define STORAGE_SIZE 2000
+#define STORAGE_SIZE 200
 
 typedef struct QueueData{
 	int priority;
