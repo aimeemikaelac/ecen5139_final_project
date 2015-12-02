@@ -1,0 +1,27 @@
+Enqueued item priority: 5, data: 0
+Enqueued item priority: 8, data: 1
+Enqueued item priority: 3, data: 2
+Enqueued item priority: 6, data: 3
+Enqueued item priority: 1, data: 4
+Enqueued item priority: 7, data: 5
+Enqueued item priority: 3, data: 6
+Enqueued item priority: 7, data: 7
+Enqueued item priority: 2, data: 8
+Enqueued item priority: 7, data: 9
+Enqueued item priority: 8, data: 10
+Enqueued item priority: 3, data: 11
+
+Dequeued item priority: 1, data: 4
+Dequeued item priority: 2, data: 8
+Dequeued item priority: 3, data: 6
+Dequeued item priority: 3, data: 2
+Dequeued item priority: 3, data: 11
+Dequeued item priority: 5, data: 0
+Dequeued item priority: 6, data: 3
+Dequeued item priority: 7, data: 5
+Dequeued item priority: 7, data: 9
+Dequeued item priority: 7, data: 7
+Dequeued item priority: 8, data: 10
+Dequeued item priority: 8, data: 1
+Running test
+Elapsed time for test: 36

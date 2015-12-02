@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog>
+        <logs message="@E [HLS-70] Synthesizability check failed." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.849-0700"/>
+        <logs message="@E [SYNCHK-71] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/ext/new_allocator.h:98: function 'operator delete(void*)' has no function body." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.824-0700"/>
+        <logs message="@E [SYNCHK-71] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/stl_heap.h:183: function 'comparitor(QueueData, QueueData)' has no function body." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.816-0700"/>
+        <logs message="@E [SYNCHK-43] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/vector.tcc:371: use or assignment of a non-static pointer '__new_start' (this pointer may refer to different memory locations)." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.806-0700"/>
+        <logs message="@E [SYNCHK-71] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/ext/new_allocator.h:92: function 'operator new(unsigned long)' has no function body." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.799-0700"/>
+        <logs message="@E [SYNCHK-71] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/ext/new_allocator.h:90: function 'std::__throw_bad_alloc()' has no function body." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.793-0700"/>
+        <logs message="@E [SYNCHK-22] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/stl_algobase.h:561: memory copy is not supported unless used on bus interface possible cause(s): non-static/non-constant local array with initialization)." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.788-0700"/>
+        <logs message="@E [SYNCHK-42] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/stl_vector.h:828: pointer comparison is not supported." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.782-0700"/>
+        <logs message="@E [SYNCHK-11] CAV_MinHeap/source/priorityQueueMinHeap.cpp:94: Variable 'item' has an unsynthesizable type 'pointer' (possible cause(s): structure variable cannot be decomposed due to unsupported type conversion or memory copy operation)." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.776-0700"/>
+        <logs message="@E [SYNCHK-41] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/stl_vector.h:571: unsupported pointer reinterpretation from type 'pointer' to type 'long int' on variable 'queueData'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.771-0700"/>
+        <logs message="@E [SYNCHK-11] /Xilinx/Vivado_HLS/2014.1/lnx64/tools/gcc/lib/gcc/x86_64-unknown-linux-gnu/4.6.3/../../../../include/c++/4.6.3/bits/stl_vector.h:571: Constant 'queueData' has an unsynthesizable type '%&quot;class.std::vector.4.9.15&quot; = type { %&quot;struct.std::_Vector_b...' (possible cause(s): pointer to pointer or global pointer)." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T12:44:52.762-0700"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:38:47.833-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:38:47.817-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:37:39.125-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:37:39.104-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:36:34.887-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:36:34.869-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:35:37.597-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:35:37.571-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:35:25.621-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:35:25.608-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:34:13.079-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:34:13.065-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:33:10.551-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:33:10.534-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:32:53.520-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:32:53.511-0700"/>
+        <logs message="@E [SIM-1] 'csim_design' failed: nonzero return value.&#xA;4&#xA;    while executing&#xA;&quot;csim_design -quiet&quot;&#xA;    (file &quot;/home/michael/Documents/CAV_MinHeap/solution1/csim.tcl&quot; line 8)" projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:30:13.459-0700"/>
+        <logs message="@E Simulation failed: Function 'main' returns nonzero value '255'." projectName="CAV_MinHeap" solutionName="solution1" date="2015-12-01T13:30:13.444-0700"/>
+      </csimLog>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>

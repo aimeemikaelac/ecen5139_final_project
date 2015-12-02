@@ -1,0 +1,228 @@
+
+
+================================================================
+== Vivado HLS Report for 'queue'
+================================================================
+* Date:           Mon Nov 30 20:00:14 2015
+
+* Version:        2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)
+* Project:        CAV_Midterm_PriorityQueue
+* Solution:       solution1
+* Product family: zynq zynq_fpv6 
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  10.00|      8.68|        1.25|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|Expression       |        -|      -|       -|      -|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|      -|       -|      -|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|      -|
+|Register         |        -|      -|       -|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      0|       0|      0|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      0|       0|      0|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 2
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+* FSM state operations: 
+
+ <State 1>: 4.17ns
+ST_1: inData_data_read [1/1] 1.01ns
+:0  %inData_data_read = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %inData_data)
+
+ST_1: inData_priority_read [1/1] 1.01ns
+:1  %inData_priority_read = call i9 @_ssdm_op_Read.ap_auto.i9(i9 %inData_priority)
+
+ST_1: isPush_read [1/1] 1.01ns
+:2  %isPush_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %isPush)
+
+ST_1: inData_data_cast [1/1] 0.00ns
+:3  %inData_data_cast = zext i8 %inData_data_read to i32
+
+ST_1: inData_priority_cast [1/1] 0.00ns
+:4  %inData_priority_cast = zext i9 %inData_priority_read to i32
+
+ST_1: size_load [1/1] 0.00ns
+:5  %size_load = load i32* @size, align 4
+
+ST_1: stg_9 [1/1] 0.00ns
+:6  br i1 %isPush_read, label %1, label %3
+
+ST_1: tmp_s [1/1] 2.52ns
+:0  %tmp_s = icmp eq i32 %size_load, 0
+
+ST_1: stg_11 [1/1] 1.66ns
+:1  br i1 %tmp_s, label %5, label %4
+
+ST_1: pop_ret [2/2] 1.57ns
+:0  %pop_ret = call fastcc { i32, i32, i32 } @pop(i32 %size_load)
+
+ST_1: tmp [1/1] 2.52ns
+:0  %tmp = icmp eq i32 %size_load, 200
+
+ST_1: stg_14 [1/1] 1.66ns
+:1  br i1 %tmp, label %5, label %2
+
+ST_1: tmp_1 [2/2] 1.57ns
+:0  %tmp_1 = call fastcc i32 @push([400 x i32]* @queueData_priority, [400 x i32]* @queueData_data, i32 %size_load, i9 %inData_priority_read, i8 %inData_data_read, [400 x i32]* @tempData_priority, [400 x i32]* @tempData_data)
+
+
+ <State 2>: 5.59ns
+ST_2: pop_ret [1/2] 2.44ns
+:0  %pop_ret = call fastcc { i32, i32, i32 } @pop(i32 %size_load)
+
+ST_2: tmp_2 [1/1] 0.00ns
+:1  %tmp_2 = extractvalue { i32, i32, i32 } %pop_ret, 0
+
+ST_2: outData_priority_ret [1/1] 0.00ns
+:2  %outData_priority_ret = extractvalue { i32, i32, i32 } %pop_ret, 1
+
+ST_2: outData_data_ret [1/1] 0.00ns
+:3  %outData_data_ret = extractvalue { i32, i32, i32 } %pop_ret, 2
+
+ST_2: stg_20 [1/1] 1.57ns
+:4  store i32 %tmp_2, i32* @size, align 4
+
+ST_2: stg_21 [1/1] 1.66ns
+:5  br label %5
+
+ST_2: tmp_1 [1/2] 4.01ns
+:0  %tmp_1 = call fastcc i32 @push([400 x i32]* @queueData_priority, [400 x i32]* @queueData_data, i32 %size_load, i9 %inData_priority_read, i8 %inData_data_read, [400 x i32]* @tempData_priority, [400 x i32]* @tempData_data)
+
+ST_2: stg_23 [1/1] 1.57ns
+:1  store i32 %tmp_1, i32* @size, align 4
+
+ST_2: stg_24 [1/1] 1.66ns
+:2  br label %5
+
+ST_2: outData_priority_2 [1/1] 0.00ns
+:0  %outData_priority_2 = phi i32 [ %inData_priority_cast, %2 ], [ %outData_priority_ret, %4 ], [ 2147483647, %1 ], [ 2147483647, %3 ]
+
+ST_2: outData_data_2 [1/1] 0.00ns
+:1  %outData_data_2 = phi i32 [ %inData_data_cast, %2 ], [ %outData_data_ret, %4 ], [ -1, %1 ], [ -1, %3 ]
+
+ST_2: mrv [1/1] 0.00ns
+:2  %mrv = insertvalue { i32, i32 } undef, i32 %outData_priority_2, 0
+
+ST_2: mrv_1 [1/1] 0.00ns
+:3  %mrv_1 = insertvalue { i32, i32 } %mrv, i32 %outData_data_2, 1
+
+ST_2: stg_29 [1/1] 0.00ns
+:4  ret { i32, i32 } %mrv_1
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

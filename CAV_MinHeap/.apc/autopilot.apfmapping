@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="priorityQueueMinHeap.cpp" path="/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap.cpp"/>
+    <originFiles name="priorityQueueMinHeap.h" path="/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap.h"/>
+  </source>
+  <testbench>
+    <originFiles name="priorityQueueMinHeap_testbench.cpp" path="/home/michael/Documents/CAV_MinHeap/source/priorityQueueMinHeap_testbench.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -1,0 +1,12 @@
+verilog xil_defaultlib "max.v"
+verilog xil_defaultlib "runTest_random_priorities.v"
+verilog xil_defaultlib "min.v"
+verilog xil_defaultlib "runQueue.v"
+verilog xil_defaultlib "runQueue.autotb.v"
+verilog xil_defaultlib "runTest_dequeuedItems.v"
+verilog xil_defaultlib "pop.v"
+verilog xil_defaultlib "push.v"
+verilog xil_defaultlib "queue_queueData_priority.v"
+verilog xil_defaultlib "runTest.v"
+verilog xil_defaultlib "queue.v"
+

@@ -1,0 +1,4 @@
+Running: xsim.dir/runQueue/xsimk -maxdeltaid 10000 -noieeewarnings -simmode gui -wdb runQueue.wdb -simrunnum 0 -socket 47353
+Design successfully loaded
+Design Loading Memory Usage: 105960 KB (Peak: 115888 KB)
+Design Loading CPU Usage: 20 ms

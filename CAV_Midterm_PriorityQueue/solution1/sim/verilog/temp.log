@@ -1,0 +1,65 @@
+Vivado Simulator 2014.1
+Copyright 1986-1999, 2001-2014 Xilinx, Inc. All Rights Reserved.
+Running: /Xilinx/Vivado/2014.1/bin/unwrapped/lnx64.o/xelab xil_defaultlib.apatb_runQueue_top -prj runQueue.prj --lib ieee_proposed=./ieee_proposed -s runQueue 
+Multi-threading is on. Using 2 slave threads.
+Determining compilation order of HDL files.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by Xilinx, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running fuse with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+INFO: [VRFC 10-165] Analyzing Verilog file "max.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module max
+INFO: [VRFC 10-165] Analyzing Verilog file "runTest_random_priorities.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module runTest_random_priorities_rom
+INFO: [VRFC 10-311] analyzing module runTest_random_priorities
+INFO: [VRFC 10-165] Analyzing Verilog file "min.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module min
+INFO: [VRFC 10-165] Analyzing Verilog file "runQueue.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module runQueue
+INFO: [VRFC 10-165] Analyzing Verilog file "runQueue.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_runQueue_top
+INFO: [VRFC 10-165] Analyzing Verilog file "runTest_dequeuedItems.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module runTest_dequeuedItems_ram
+INFO: [VRFC 10-311] analyzing module runTest_dequeuedItems
+INFO: [VRFC 10-165] Analyzing Verilog file "pop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module pop
+INFO: [VRFC 10-165] Analyzing Verilog file "push.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module push
+INFO: [VRFC 10-165] Analyzing Verilog file "queue_queueData_priority.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module queue_queueData_priority_ram
+INFO: [VRFC 10-311] analyzing module queue_queueData_priority
+INFO: [VRFC 10-165] Analyzing Verilog file "runTest.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module runTest
+INFO: [VRFC 10-165] Analyzing Verilog file "queue.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module queue
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.runTest_random_priorities_rom
+Compiling module xil_defaultlib.runTest_random_priorities(DataWi...
+Compiling module xil_defaultlib.runTest_dequeuedItems_ram
+Compiling module xil_defaultlib.runTest_dequeuedItems(DataWidth=...
+Compiling module xil_defaultlib.queue_queueData_priority_ram
+Compiling module xil_defaultlib.queue_queueData_priority(DataWid...
+Compiling module xil_defaultlib.min
+Compiling module xil_defaultlib.max
+Compiling module xil_defaultlib.push
+Compiling module xil_defaultlib.pop
+Compiling module xil_defaultlib.queue
+Compiling module xil_defaultlib.runTest
+Compiling module xil_defaultlib.runQueue
+Compiling module xil_defaultlib.apatb_runQueue_top
+Waiting for 9 sub-compilation(s) to finish...
+Built simulation snapshot runQueue
+
+****** xsim v2014.1 (64-bit)
+  **** SW Build 881834 on Fri Apr  4 14:00:25 MDT 2014
+  **** IP Build 877625 on Fri Mar 28 16:29:15 MDT 2014
+    ** Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
+
+source xsim.dir/runQueue/xsim_script.tcl
+# xsim {runQueue} -maxdeltaid 10000 -tclbatch {runQueue.tcl} -noieeewarnings
+Vivado Simulator 2014.1
+Time resolution is 1 ps
+source runQueue.tcl
+## run all
