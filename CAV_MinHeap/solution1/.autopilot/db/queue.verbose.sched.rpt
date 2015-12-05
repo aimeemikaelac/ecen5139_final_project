@@ -1,0 +1,410 @@
+
+
+================================================================
+== Vivado HLS Report for 'queue'
+================================================================
+* Date:           Tue Dec  1 22:55:27 2015
+
+* Version:        2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)
+* Project:        CAV_MinHeap
+* Solution:       solution1
+* Product family: zynq zynq_fpv6 
+* Target device:  xc7z020clg484-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +---------+-------+----------+------------+
+    |  Clock  | Target| Estimated| Uncertainty|
+    +---------+-------+----------+------------+
+    |default  |  10.00|      8.64|        1.25|
+    +---------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         ?|          -|          -|     ?|    no    |
+        |- Loop 2  |    ?|    ?|         ?|          -|          -|     ?|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|Expression       |        -|      -|       -|      -|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        -|      -|       -|      -|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|      -|
+|Register         |        -|      -|       -|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      0|       0|      0|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      0|       0|      0|
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
+N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 7
+* Pipeline: 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / (!isPush_read & !tmp_s)
+	7  / (!isPush_read & tmp_s) | (isPush_read & tmp)
+	5  / (isPush_read & !tmp)
+2 --> 
+	3  / true
+3 --> 
+	4  / (tmp_i_i1)
+	7  / (!tmp_i_i1)
+4 --> 
+	3  / true
+5 --> 
+	6  / (tmp_i_i)
+	7  / (!tmp_i_i)
+6 --> 
+	5  / true
+7 --> 
+* FSM state operations: 
+
+ <State 1>: 6.75ns
+ST_1: inData_data_read [1/1] 1.01ns
+:0  %inData_data_read = call i8 @_ssdm_op_Read.ap_auto.i8(i8 %inData_data)
+
+ST_1: inData_priority_read [1/1] 1.01ns
+:1  %inData_priority_read = call i9 @_ssdm_op_Read.ap_auto.i9(i9 %inData_priority)
+
+ST_1: isPush_read [1/1] 1.01ns
+:2  %isPush_read = call i1 @_ssdm_op_Read.ap_auto.i1(i1 %isPush)
+
+ST_1: inData_data_cast [1/1] 0.00ns
+:3  %inData_data_cast = zext i8 %inData_data_read to i32
+
+ST_1: inData_priority_cast [1/1] 0.00ns
+:4  %inData_priority_cast = zext i9 %inData_priority_read to i32
+
+ST_1: size_load [1/1] 0.00ns
+:5  %size_load = load i32* @size, align 4
+
+ST_1: stg_14 [1/1] 0.00ns
+:6  br i1 %isPush_read, label %1, label %5
+
+ST_1: tmp_s [1/1] 2.52ns
+:0  %tmp_s = icmp eq i32 %size_load, 0
+
+ST_1: stg_16 [1/1] 1.66ns
+:1  br i1 %tmp_s, label %9, label %6
+
+ST_1: queueDataHeap_priority_load [2/2] 2.39ns
+:0  %queueDataHeap_priority_load = load i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_priority, i64 0, i64 1), align 4
+
+ST_1: queueDataHeap_data_load [2/2] 2.39ns
+:1  %queueDataHeap_data_load = load i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_data, i64 0, i64 1), align 4
+
+ST_1: tmp_i1 [1/1] 0.00ns
+:2  %tmp_i1 = sext i32 %size_load to i64
+
+ST_1: queueDataHeap_priority_addr_1 [1/1] 0.00ns
+:3  %queueDataHeap_priority_addr_1 = getelementptr [201 x i32]* @queueDataHeap_priority, i64 0, i64 %tmp_i1
+
+ST_1: queueDataHeap_priority_load_1 [2/2] 2.39ns
+:4  %queueDataHeap_priority_load_1 = load i32* %queueDataHeap_priority_addr_1, align 4
+
+ST_1: queueDataHeap_data_addr_1 [1/1] 0.00ns
+:6  %queueDataHeap_data_addr_1 = getelementptr [201 x i32]* @queueDataHeap_data, i64 0, i64 %tmp_i1
+
+ST_1: queueDataHeap_data_load_1 [2/2] 2.39ns
+:7  %queueDataHeap_data_load_1 = load i32* %queueDataHeap_data_addr_1, align 4
+
+ST_1: tmp [1/1] 2.52ns
+:0  %tmp = icmp eq i32 %size_load, 200
+
+ST_1: stg_25 [1/1] 1.66ns
+:1  br i1 %tmp, label %9, label %2
+
+ST_1: n_assign [1/1] 2.44ns
+:0  %n_assign = add nsw i32 %size_load, 1
+
+ST_1: tmp_i [1/1] 0.00ns
+:1  %tmp_i = sext i32 %n_assign to i64
+
+ST_1: queueDataHeap_priority_addr [1/1] 0.00ns
+:2  %queueDataHeap_priority_addr = getelementptr [201 x i32]* @queueDataHeap_priority, i64 0, i64 %tmp_i
+
+ST_1: stg_29 [1/1] 2.39ns
+:3  store i32 %inData_priority_cast, i32* %queueDataHeap_priority_addr, align 4
+
+ST_1: queueDataHeap_data_addr [1/1] 0.00ns
+:4  %queueDataHeap_data_addr = getelementptr [201 x i32]* @queueDataHeap_data, i64 0, i64 %tmp_i
+
+ST_1: stg_31 [1/1] 2.39ns
+:5  store i32 %inData_data_cast, i32* %queueDataHeap_data_addr, align 4
+
+ST_1: tmp_19 [1/1] 0.00ns
+:6  %tmp_19 = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %n_assign, i32 31)
+
+ST_1: p_neg_i_i_cast [1/1] 0.00ns
+:7  %p_neg_i_i_cast = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %size_load, i32 1, i32 31)
+
+ST_1: p_lshr_i_i [1/1] 1.37ns
+:8  %p_lshr_i_i = xor i31 %p_neg_i_i_cast, -1
+
+ST_1: p_lshr_i_i_cast [1/1] 0.00ns
+:9  %p_lshr_i_i_cast = zext i31 %p_lshr_i_i to i32
+
+ST_1: p_neg_t_i_i [1/1] 2.44ns
+:10  %p_neg_t_i_i = sub i32 0, %p_lshr_i_i_cast
+
+ST_1: p_lshr_f_i_i [1/1] 0.00ns
+:11  %p_lshr_f_i_i = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %n_assign, i32 1, i32 31)
+
+ST_1: tmp_16 [1/1] 0.00ns
+:12  %tmp_16 = zext i31 %p_lshr_f_i_i to i32
+
+ST_1: i [1/1] 1.37ns
+:13  %i = select i1 %tmp_19, i32 %p_neg_t_i_i, i32 %tmp_16
+
+ST_1: stg_40 [1/1] 1.57ns
+:14  br label %3
+
+
+ <State 2>: 7.83ns
+ST_2: queueDataHeap_priority_load [1/2] 2.39ns
+:0  %queueDataHeap_priority_load = load i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_priority, i64 0, i64 1), align 4
+
+ST_2: queueDataHeap_data_load [1/2] 2.39ns
+:1  %queueDataHeap_data_load = load i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_data, i64 0, i64 1), align 4
+
+ST_2: queueDataHeap_priority_load_1 [1/2] 2.39ns
+:4  %queueDataHeap_priority_load_1 = load i32* %queueDataHeap_priority_addr_1, align 4
+
+ST_2: stg_44 [1/1] 2.39ns
+:5  store i32 %queueDataHeap_priority_load_1, i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_priority, i64 0, i64 1), align 4
+
+ST_2: queueDataHeap_data_load_1 [1/2] 2.39ns
+:7  %queueDataHeap_data_load_1 = load i32* %queueDataHeap_data_addr_1, align 4
+
+ST_2: stg_46 [1/1] 2.39ns
+:8  store i32 %queueDataHeap_data_load_1, i32* getelementptr inbounds ([201 x i32]* @queueDataHeap_data, i64 0, i64 1), align 4
+
+ST_2: n_assign_1 [1/1] 2.44ns
+:9  %n_assign_1 = add nsw i32 %size_load, -1
+
+ST_2: tmp_20 [1/1] 0.00ns
+:10  %tmp_20 = call i1 @_ssdm_op_BitSelect.i1.i32.i32(i32 %n_assign_1, i32 31)
+
+ST_2: p_neg_i_i7 [1/1] 2.44ns
+:11  %p_neg_i_i7 = sub i32 1, %size_load
+
+ST_2: p_lshr_i_i8 [1/1] 0.00ns
+:12  %p_lshr_i_i8 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %p_neg_i_i7, i32 1, i32 31)
+
+ST_2: tmp_17 [1/1] 0.00ns
+:13  %tmp_17 = zext i31 %p_lshr_i_i8 to i32
+
+ST_2: p_neg_t_i_i9 [1/1] 2.44ns
+:14  %p_neg_t_i_i9 = sub i32 0, %tmp_17
+
+ST_2: p_lshr_f_i_i1 [1/1] 0.00ns
+:15  %p_lshr_f_i_i1 = call i31 @_ssdm_op_PartSelect.i31.i32.i32.i32(i32 %n_assign_1, i32 1, i32 31)
+
+ST_2: tmp_18 [1/1] 0.00ns
+:16  %tmp_18 = zext i31 %p_lshr_f_i_i1 to i32
+
+ST_2: i_9 [1/1] 1.37ns
+:17  %i_9 = select i1 %tmp_20, i32 %p_neg_t_i_i9, i32 %tmp_18
+
+ST_2: stg_56 [1/1] 1.57ns
+:18  br label %7
+
+
+ <State 3>: 2.52ns
+ST_3: i9_i_i1 [1/1] 0.00ns
+:0  %i9_i_i1 = phi i32 [ %i_9, %6 ], [ %i_11_cast, %8 ]
+
+ST_3: tmp_i_i1 [1/1] 2.52ns
+:1  %tmp_i_i1 = icmp sgt i32 %i9_i_i1, 0
+
+ST_3: stg_59 [1/1] 0.00ns
+:2  br i1 %tmp_i_i1, label %8, label %pop.exit
+
+ST_3: stg_60 [2/2] 0.86ns
+:0  call fastcc void @min_heapify([201 x i32]* @queueDataHeap_priority, [201 x i32]* @queueDataHeap_data, i32 %i9_i_i1, i32 %n_assign_1)
+
+ST_3: tmp_22 [1/1] 0.00ns
+:1  %tmp_22 = trunc i32 %i9_i_i1 to i31
+
+ST_3: i_11 [1/1] 2.44ns
+:2  %i_11 = add i31 %tmp_22, -1
+
+ST_3: i_11_cast [1/1] 0.00ns
+:3  %i_11_cast = zext i31 %i_11 to i32
+
+ST_3: stg_64 [1/1] 1.57ns
+pop.exit:0  store i32 %n_assign_1, i32* @size, align 4
+
+ST_3: stg_65 [1/1] 1.66ns
+pop.exit:1  br label %9
+
+
+ <State 4>: 0.00ns
+ST_4: stg_66 [1/2] 0.00ns
+:0  call fastcc void @min_heapify([201 x i32]* @queueDataHeap_priority, [201 x i32]* @queueDataHeap_data, i32 %i9_i_i1, i32 %n_assign_1)
+
+ST_4: stg_67 [1/1] 0.00ns
+:4  br label %7
+
+
+ <State 5>: 2.52ns
+ST_5: i9_i_i [1/1] 0.00ns
+:0  %i9_i_i = phi i32 [ %i, %2 ], [ %i_10_cast, %4 ]
+
+ST_5: tmp_i_i [1/1] 2.52ns
+:1  %tmp_i_i = icmp sgt i32 %i9_i_i, 0
+
+ST_5: stg_70 [1/1] 0.00ns
+:2  br i1 %tmp_i_i, label %4, label %push.exit
+
+ST_5: stg_71 [2/2] 0.86ns
+:0  call fastcc void @min_heapify([201 x i32]* @queueDataHeap_priority, [201 x i32]* @queueDataHeap_data, i32 %i9_i_i, i32 %n_assign)
+
+ST_5: tmp_21 [1/1] 0.00ns
+:1  %tmp_21 = trunc i32 %i9_i_i to i31
+
+ST_5: i_10 [1/1] 2.44ns
+:2  %i_10 = add i31 %tmp_21, -1
+
+ST_5: i_10_cast [1/1] 0.00ns
+:3  %i_10_cast = zext i31 %i_10 to i32
+
+ST_5: stg_75 [1/1] 1.57ns
+push.exit:0  store i32 %n_assign, i32* @size, align 4
+
+ST_5: stg_76 [1/1] 1.66ns
+push.exit:1  br label %9
+
+
+ <State 6>: 0.00ns
+ST_6: stg_77 [1/2] 0.00ns
+:0  call fastcc void @min_heapify([201 x i32]* @queueDataHeap_priority, [201 x i32]* @queueDataHeap_data, i32 %i9_i_i, i32 %n_assign)
+
+ST_6: stg_78 [1/1] 0.00ns
+:4  br label %3
+
+
+ <State 7>: 0.00ns
+ST_7: outData_priority_2 [1/1] 0.00ns
+:0  %outData_priority_2 = phi i32 [ %inData_priority_cast, %push.exit ], [ %queueDataHeap_priority_load, %pop.exit ], [ 2147483647, %1 ], [ 2147483647, %5 ]
+
+ST_7: outData_data_2 [1/1] 0.00ns
+:1  %outData_data_2 = phi i32 [ %inData_data_cast, %push.exit ], [ %queueDataHeap_data_load, %pop.exit ], [ -1, %1 ], [ -1, %5 ]
+
+ST_7: mrv [1/1] 0.00ns
+:2  %mrv = insertvalue { i32, i32 } undef, i32 %outData_priority_2, 0
+
+ST_7: mrv_1 [1/1] 0.00ns
+:3  %mrv_1 = insertvalue { i32, i32 } %mrv, i32 %outData_data_2, 1
+
+ST_7: stg_83 [1/1] 0.00ns
+:4  ret { i32, i32 } %mrv_1
+
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
