@@ -49,18 +49,18 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 
 	int i, j, last =0;
 	bool result = true;
-	for(j=0; j<10000; j++){
-//	for(j=0; j<1; j++){
+//	for(j=0; j<10000; j++){
+	for(j=0; j<1; j++){
 //		result &= runTest();
 		i=0;
-		while(!full){
+		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(i);
 			*cmdOut = 0;
 			i++;
 		}
 		i=0;
-		while(!empty){
+		while(empty == 0){
 			*cmdOut = 2;
 			if((uint_4)priorityIn != i){
 				result = false;
@@ -69,13 +69,13 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 			i++;
 		}
 		i=0;
-		while(!full){
+		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(random_priorities[i]);
 			*cmdOut = 0;
 			i++;
 		}
-		while(!empty){
+		while(empty == 0){
 			*cmdOut = 2;
 			if(last > (uint_4)priorityIn){
 				result = false;

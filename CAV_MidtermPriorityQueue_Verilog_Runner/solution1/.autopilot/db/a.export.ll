@@ -40,12 +40,10 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   br label %.loopexit
 
 .loopexit:                                        ; preds = %.preheader, %0
-  %j = phi i14 [ 0, %0 ], [ %j_1, %.preheader ]
+  %j = phi i1 [ false, %0 ], [ true, %.preheader ]
   %result = phi i1 [ true, %0 ], [ %result_3, %.preheader ]
-  %exitcond = icmp eq i14 %j, -6384
-  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10000, i64 10000, i64 10000)
-  %j_1 = add i14 %j, 1
-  br i1 %exitcond, label %5, label %.preheader124
+  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1)
+  br i1 %j, label %5, label %.preheader124
 
 .preheader124:                                    ; preds = %.loopexit, %1
   %val_assign = phi i32 [ %i, %1 ], [ 0, %.loopexit ]

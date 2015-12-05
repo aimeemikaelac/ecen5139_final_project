@@ -82,14 +82,14 @@ define zeroext i1 @runQueue(%struct.ap_uint.3* %priorityOut, %struct.ap_uint.3* 
   call void (...)* @_ssdm_op_SpecWire(%struct.ap_uint.3* %priorityOut, i8* getelementptr inbounds ([8 x i8]* @.str, i64 0, i64 0), i32 0, i32 0, i32 0, i32 0, i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0)) nounwind, !dbg !2096 ; [debug line = 44:1]
   call void (...)* @_ssdm_op_SpecWire(i32 0, i8* getelementptr inbounds ([11 x i8]* @.str2, i64 0, i64 0), i32 0, i32 0, i32 0, i32 0, i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0)) nounwind, !dbg !2097 ; [debug line = 46:1]
   call void (...)* @_ssdm_op_SpecResource(i32 0, i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([10 x i8]* @.str3, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0), i8* getelementptr inbounds ([1 x i8]* @.str1, i64 0, i64 0)) nounwind, !dbg !2098 ; [debug line = 48:1]
-  br label %1, !dbg !2099                         ; [debug line = 52:6]
+  br label %1, !dbg !2099                         ; [debug line = 53:6]
 
 ; <label>:1                                       ; preds = %6, %0
   %j = phi i32 [ 0, %0 ], [ %j.1, %6 ]            ; [#uses=2 type=i32]
   %last = phi i32 [ 0, %0 ], [ %last.1.lcssa, %6 ] ; [#uses=1 type=i32]
   %result = phi i1 [ true, %0 ], [ %result.3.lcssa, %6 ] ; [#uses=2 type=i1]
-  %exitcond = icmp eq i32 %j, 10000, !dbg !2099   ; [#uses=1 type=i1] [debug line = 52:6]
-  br i1 %exitcond, label %7, label %.preheader124.preheader, !dbg !2099 ; [debug line = 52:6]
+  %exitcond = icmp eq i32 %j, 1, !dbg !2099       ; [#uses=1 type=i1] [debug line = 53:6]
+  br i1 %exitcond, label %7, label %.preheader124.preheader, !dbg !2099 ; [debug line = 53:6]
 
 .preheader124.preheader:                          ; preds = %1
   br label %.preheader124, !dbg !2101             ; [debug line = 56:3]
@@ -242,9 +242,9 @@ define zeroext i1 @runQueue(%struct.ap_uint.3* %priorityOut, %struct.ap_uint.3* 
 ; <label>:6                                       ; preds = %.preheader
   %result.3.lcssa = phi i1 [ %result.3, %.preheader ] ; [#uses=1 type=i1]
   %last.1.lcssa = phi i32 [ %last.1, %.preheader ] ; [#uses=1 type=i32]
-  %j.1 = add nsw i32 %j, 1, !dbg !2200            ; [#uses=1 type=i32] [debug line = 52:20]
-  call void @llvm.dbg.value(metadata !{i32 %j.1}, i64 0, metadata !2201), !dbg !2200 ; [debug line = 52:20] [debug variable = j]
-  br label %1, !dbg !2200                         ; [debug line = 52:20]
+  %j.1 = add nsw i32 %j, 1, !dbg !2200            ; [#uses=1 type=i32] [debug line = 53:16]
+  call void @llvm.dbg.value(metadata !{i32 %j.1}, i64 0, metadata !2201), !dbg !2200 ; [debug line = 53:16] [debug variable = j]
+  br label %1, !dbg !2200                         ; [debug line = 53:16]
 
 ; <label>:7                                       ; preds = %1
   %result.0.lcssa = phi i1 [ %result, %1 ]        ; [#uses=1 type=i1]
@@ -2394,16 +2394,16 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !2096 = metadata !{i32 44, i32 1, metadata !2067, null}
 !2097 = metadata !{i32 46, i32 1, metadata !2067, null}
 !2098 = metadata !{i32 48, i32 1, metadata !2067, null}
-!2099 = metadata !{i32 52, i32 6, metadata !2100, null}
-!2100 = metadata !{i32 786443, metadata !2067, i32 52, i32 2, metadata !840, i32 1} ; [ DW_TAG_lexical_block ]
+!2099 = metadata !{i32 53, i32 6, metadata !2100, null}
+!2100 = metadata !{i32 786443, metadata !2067, i32 53, i32 2, metadata !840, i32 1} ; [ DW_TAG_lexical_block ]
 !2101 = metadata !{i32 56, i32 3, metadata !2102, null}
-!2102 = metadata !{i32 786443, metadata !2100, i32 52, i32 24, metadata !840, i32 2} ; [ DW_TAG_lexical_block ]
+!2102 = metadata !{i32 786443, metadata !2100, i32 53, i32 20, metadata !840, i32 2} ; [ DW_TAG_lexical_block ]
 !2103 = metadata !{i32 63, i32 3, metadata !2102, null}
 !2104 = metadata !{i32 786689, metadata !1929, metadata !"this", metadata !847, i32 16777433, metadata !2105, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
 !2105 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !1447} ; [ DW_TAG_pointer_type ]
 !2106 = metadata !{i32 217, i32 49, metadata !1929, metadata !2107}
 !2107 = metadata !{i32 57, i32 4, metadata !2108, null}
-!2108 = metadata !{i32 786443, metadata !2102, i32 56, i32 15, metadata !840, i32 3} ; [ DW_TAG_lexical_block ]
+!2108 = metadata !{i32 786443, metadata !2102, i32 56, i32 19, metadata !840, i32 3} ; [ DW_TAG_lexical_block ]
 !2109 = metadata !{i32 218, i32 10, metadata !2110, metadata !2107}
 !2110 = metadata !{i32 786443, metadata !1929, i32 217, i32 97, metadata !847, i32 23} ; [ DW_TAG_lexical_block ]
 !2111 = metadata !{i32 786689, metadata !1923, metadata !"val", metadata !847, i32 33554636, metadata !56, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -2428,7 +2428,7 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !2130 = metadata !{i32 72, i32 3, metadata !2102, null}
 !2131 = metadata !{i32 217, i32 49, metadata !1929, metadata !2132}
 !2132 = metadata !{i32 64, i32 4, metadata !2133, null}
-!2133 = metadata !{i32 786443, metadata !2102, i32 63, i32 16, metadata !840, i32 4} ; [ DW_TAG_lexical_block ]
+!2133 = metadata !{i32 786443, metadata !2102, i32 63, i32 20, metadata !840, i32 4} ; [ DW_TAG_lexical_block ]
 !2134 = metadata !{i32 218, i32 10, metadata !2110, metadata !2132}
 !2135 = metadata !{i32 786689, metadata !1918, metadata !"op", metadata !847, i32 33554577, metadata !1082, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !2136 = metadata !{i32 145, i32 83, metadata !1918, metadata !2137}
@@ -2457,7 +2457,7 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !2159 = metadata !{i32 78, i32 3, metadata !2102, null}
 !2160 = metadata !{i32 217, i32 49, metadata !1929, metadata !2161}
 !2161 = metadata !{i32 73, i32 4, metadata !2162, null}
-!2162 = metadata !{i32 786443, metadata !2102, i32 72, i32 15, metadata !840, i32 6} ; [ DW_TAG_lexical_block ]
+!2162 = metadata !{i32 786443, metadata !2102, i32 72, i32 19, metadata !840, i32 6} ; [ DW_TAG_lexical_block ]
 !2163 = metadata !{i32 218, i32 10, metadata !2110, metadata !2161}
 !2164 = metadata !{i32 74, i32 4, metadata !2162, null}
 !2165 = metadata !{i32 204, i32 55, metadata !1923, metadata !2164}
@@ -2473,7 +2473,7 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !2175 = metadata !{i32 77, i32 3, metadata !2162, null}
 !2176 = metadata !{i32 217, i32 49, metadata !1929, metadata !2177}
 !2177 = metadata !{i32 79, i32 4, metadata !2178, null}
-!2178 = metadata !{i32 786443, metadata !2102, i32 78, i32 16, metadata !840, i32 7} ; [ DW_TAG_lexical_block ]
+!2178 = metadata !{i32 786443, metadata !2102, i32 78, i32 20, metadata !840, i32 7} ; [ DW_TAG_lexical_block ]
 !2179 = metadata !{i32 218, i32 10, metadata !2110, metadata !2177}
 !2180 = metadata !{i32 80, i32 4, metadata !2178, null}
 !2181 = metadata !{i32 145, i32 83, metadata !1918, metadata !2182}
@@ -2495,6 +2495,6 @@ declare i32 @_ssdm_op_SpecRegionEnd.restore(...)
 !2197 = metadata !{i32 786443, metadata !1458, i32 1558, i32 62, metadata !829, i32 9} ; [ DW_TAG_lexical_block ]
 !2198 = metadata !{i32 786688, metadata !2067, metadata !"last", metadata !840, i32 50, metadata !56, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !2199 = metadata !{i32 85, i32 3, metadata !2178, null}
-!2200 = metadata !{i32 52, i32 20, metadata !2100, null}
+!2200 = metadata !{i32 53, i32 16, metadata !2100, null}
 !2201 = metadata !{i32 786688, metadata !2067, metadata !"j", metadata !840, i32 50, metadata !56, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !2202 = metadata !{i32 89, i32 2, metadata !2067, null}

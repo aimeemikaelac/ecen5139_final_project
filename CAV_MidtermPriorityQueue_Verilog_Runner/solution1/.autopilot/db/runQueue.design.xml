@@ -25,7 +25,7 @@
 <SummaryOfLoopLatency>
 <Loop1>
 <Name>Loop 1</Name>
-<TripCount>10000</TripCount>
+<TripCount>1</TripCount>
 <Latency>undef</Latency>
 <IterationLatency>undef</IterationLatency>
 <PipelineDepth>undef</PipelineDepth>
@@ -63,8 +63,8 @@
 <AreaEstimates>
 <Resources>
 <BRAM_18K>1</BRAM_18K>
-<FF>245</FF>
-<LUT>337</LUT>
+<FF>218</FF>
+<LUT>292</LUT>
 <DSP48E>0</DSP48E>
 <SLICE>0</SLICE>
 </Resources>

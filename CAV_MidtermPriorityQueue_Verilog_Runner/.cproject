@@ -25,6 +25,7 @@
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.855080836" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.1569664896" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1331028706" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/michael/ecen5139_final_project"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/lnx64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include/ap_sysc"/>
@@ -42,6 +43,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.exe.debug.option.optimization.level.1905767129" name="Optimization Level" superClass="gnu.c.compiler.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.409853680" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.709327916" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/michael/ecen5139_final_project"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/lnx64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include/ap_sysc"/>
@@ -109,6 +111,7 @@
 								<option id="gnu.cpp.compiler.exe.release.option.optimization.level.1015438417" name="Optimization Level" superClass="gnu.cpp.compiler.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.release.option.debugging.level.1700002281" name="Debug Level" superClass="gnu.cpp.compiler.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.692027975" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/michael/ecen5139_final_project"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/lnx64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include/ap_sysc"/>
@@ -121,6 +124,7 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.exe.release.option.optimization.level.656190122" name="Optimization Level" superClass="gnu.c.compiler.exe.release.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.1407323490" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.402881135" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/michael/ecen5139_final_project"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/lnx64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="/Xilinx/Vivado_HLS/2014.1/include/ap_sysc"/>

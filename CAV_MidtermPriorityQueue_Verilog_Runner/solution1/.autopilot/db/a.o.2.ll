@@ -61,15 +61,14 @@ define i1 @runQueue(i4* %priorityOut.V, i4 %priorityIn.V, i2* %cmdOut.V, i1 zero
   call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut.V, [8 x i8]* @.str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1) nounwind, !dbg !1612 ; [debug line = 44:1]
   call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @.str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1) nounwind, !dbg !1613 ; [debug line = 46:1]
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @.str1, [10 x i8]* @.str3, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1), !dbg !1614 ; [debug line = 48:1]
-  br label %1, !dbg !1615                         ; [debug line = 52:6]
+  br label %1, !dbg !1615                         ; [debug line = 53:6]
 
 ; <label>:1                                       ; preds = %7, %0
-  %j = phi i14 [ 0, %0 ], [ %j.1, %7 ]            ; [#uses=2 type=i14]
+  %j = phi i1 [ false, %0 ], [ %j.1, %7 ]         ; [#uses=2 type=i1]
   %last = phi i32 [ 0, %0 ], [ %last.1.lcssa, %7 ] ; [#uses=1 type=i32]
   %result = phi i1 [ true, %0 ], [ %result.3.lcssa, %7 ] ; [#uses=2 type=i1]
-  %exitcond = icmp eq i14 %j, -6384, !dbg !1615   ; [#uses=1 type=i1] [debug line = 52:6]
-  %2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10000, i64 10000, i64 10000) ; [#uses=0 type=i32]
-  br i1 %exitcond, label %8, label %.preheader124, !dbg !1615 ; [debug line = 52:6]
+  %2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1) ; [#uses=0 type=i32]
+  br i1 %j, label %8, label %.preheader124, !dbg !1615 ; [debug line = 53:6]
 
 .preheader124:                                    ; preds = %3, %1
   %val.assign = phi i32 [ %i, %3 ], [ 0, %1 ]     ; [#uses=2 type=i32]
@@ -212,9 +211,9 @@ define i1 @runQueue(i4* %priorityOut.V, i4 %priorityIn.V, i2* %cmdOut.V, i1 zero
 ; <label>:7                                       ; preds = %.preheader
   %result.3.lcssa = phi i1 [ %result.3, %.preheader ] ; [#uses=1 type=i1]
   %last.1.lcssa = phi i32 [ %last.1, %.preheader ] ; [#uses=1 type=i32]
-  %j.1 = add i14 %j, 1, !dbg !2178                ; [#uses=1 type=i14] [debug line = 52:20]
-  call void @llvm.dbg.value(metadata !{i14 %j.1}, i64 0, metadata !2179), !dbg !2178 ; [debug line = 52:20] [debug variable = j]
-  br label %1, !dbg !2178                         ; [debug line = 52:20]
+  %j.1 = xor i1 %j, true, !dbg !2178              ; [#uses=1 type=i1] [debug line = 53:16]
+  call void @llvm.dbg.value(metadata !{i1 %j.1}, i64 0, metadata !2179), !dbg !2178 ; [debug line = 53:16] [debug variable = j]
+  br label %1, !dbg !2178                         ; [debug line = 53:16]
 
 ; <label>:8                                       ; preds = %1
   %result.lcssa = phi i1 [ %result, %1 ]          ; [#uses=1 type=i1]
@@ -1860,17 +1859,17 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !1612 = metadata !{i32 44, i32 1, metadata !1588, null}
 !1613 = metadata !{i32 46, i32 1, metadata !1588, null}
 !1614 = metadata !{i32 48, i32 1, metadata !1588, null}
-!1615 = metadata !{i32 52, i32 6, metadata !1616, null}
-!1616 = metadata !{i32 786443, metadata !1588, i32 52, i32 2, metadata !11, i32 1} ; [ DW_TAG_lexical_block ]
+!1615 = metadata !{i32 53, i32 6, metadata !1616, null}
+!1616 = metadata !{i32 786443, metadata !1588, i32 53, i32 2, metadata !11, i32 1} ; [ DW_TAG_lexical_block ]
 !1617 = metadata !{i32 56, i32 3, metadata !1618, null}
-!1618 = metadata !{i32 786443, metadata !1616, i32 52, i32 24, metadata !11, i32 2} ; [ DW_TAG_lexical_block ]
+!1618 = metadata !{i32 786443, metadata !1616, i32 53, i32 20, metadata !11, i32 2} ; [ DW_TAG_lexical_block ]
 !1619 = metadata !{i32 790531, metadata !1620, metadata !"ssdm_int<2 + 1024 * 0, false>.V", null, i32 217, metadata !1565, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !1620 = metadata !{i32 786689, metadata !1621, metadata !"this", metadata !936, i32 16777433, metadata !1622, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
 !1621 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi2EEaSERKS0_", metadata !936, i32 217, metadata !1541, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !1540, metadata !81, i32 217} ; [ DW_TAG_subprogram ]
 !1622 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !1544} ; [ DW_TAG_pointer_type ]
 !1623 = metadata !{i32 217, i32 49, metadata !1621, metadata !1624}
 !1624 = metadata !{i32 57, i32 4, metadata !1625, null}
-!1625 = metadata !{i32 786443, metadata !1618, i32 56, i32 15, metadata !11, i32 3} ; [ DW_TAG_lexical_block ]
+!1625 = metadata !{i32 786443, metadata !1618, i32 56, i32 19, metadata !11, i32 3} ; [ DW_TAG_lexical_block ]
 !1626 = metadata !{i32 218, i32 10, metadata !1627, metadata !1624}
 !1627 = metadata !{i32 786443, metadata !1621, i32 217, i32 97, metadata !936, i32 23} ; [ DW_TAG_lexical_block ]
 !1628 = metadata !{i32 786689, metadata !1629, metadata !"val", metadata !936, i32 33554636, metadata !13, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -1900,7 +1899,7 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !1652 = metadata !{i32 72, i32 3, metadata !1618, null}
 !1653 = metadata !{i32 217, i32 49, metadata !1621, metadata !1654}
 !1654 = metadata !{i32 64, i32 4, metadata !1655, null}
-!1655 = metadata !{i32 786443, metadata !1618, i32 63, i32 16, metadata !11, i32 4} ; [ DW_TAG_lexical_block ]
+!1655 = metadata !{i32 786443, metadata !1618, i32 63, i32 20, metadata !11, i32 4} ; [ DW_TAG_lexical_block ]
 !1656 = metadata !{i32 218, i32 10, metadata !1627, metadata !1654}
 !1657 = metadata !{i32 790533, metadata !1658, metadata !"op.V", null, i32 145, metadata !1660, i32 0, i32 0} ; [ DW_TAG_arg_variable_field_ro ]
 !1658 = metadata !{i32 786689, metadata !1659, metadata !"op", metadata !936, i32 33554577, metadata !1179, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -2388,7 +2387,7 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !2140 = metadata !{i32 70, i32 3, metadata !1655, null}
 !2141 = metadata !{i32 217, i32 49, metadata !1621, metadata !2142}
 !2142 = metadata !{i32 73, i32 4, metadata !2143, null}
-!2143 = metadata !{i32 786443, metadata !1618, i32 72, i32 15, metadata !11, i32 6} ; [ DW_TAG_lexical_block ]
+!2143 = metadata !{i32 786443, metadata !1618, i32 72, i32 19, metadata !11, i32 6} ; [ DW_TAG_lexical_block ]
 !2144 = metadata !{i32 218, i32 10, metadata !1627, metadata !2142}
 !2145 = metadata !{i32 74, i32 4, metadata !2143, null}
 !2146 = metadata !{i32 204, i32 55, metadata !1629, metadata !2145}
@@ -2405,7 +2404,7 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !2157 = metadata !{i32 78, i32 3, metadata !1618, null}
 !2158 = metadata !{i32 217, i32 49, metadata !1621, metadata !2159}
 !2159 = metadata !{i32 79, i32 4, metadata !2160, null}
-!2160 = metadata !{i32 786443, metadata !1618, i32 78, i32 16, metadata !11, i32 7} ; [ DW_TAG_lexical_block ]
+!2160 = metadata !{i32 786443, metadata !1618, i32 78, i32 20, metadata !11, i32 7} ; [ DW_TAG_lexical_block ]
 !2161 = metadata !{i32 218, i32 10, metadata !1627, metadata !2159}
 !2162 = metadata !{i32 145, i32 83, metadata !1659, metadata !2163}
 !2163 = metadata !{i32 80, i32 14, metadata !2160, null}
@@ -2423,6 +2422,6 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !2175 = metadata !{i32 786478, i32 0, null, metadata !"to_int", metadata !"to_int", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE6to_intEv", metadata !940, i32 1558, metadata !1062, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !1061, metadata !81, i32 1558} ; [ DW_TAG_subprogram ]
 !2176 = metadata !{i32 786688, metadata !1588, metadata !"last", metadata !11, i32 50, metadata !13, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !2177 = metadata !{i32 85, i32 3, metadata !2160, null}
-!2178 = metadata !{i32 52, i32 20, metadata !1616, null}
+!2178 = metadata !{i32 53, i32 16, metadata !1616, null}
 !2179 = metadata !{i32 786688, metadata !1588, metadata !"j", metadata !11, i32 50, metadata !13, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !2180 = metadata !{i32 89, i32 2, metadata !1588, null}

@@ -8,5 +8,5 @@
   <xd:arg xd:name="empty" xd:originalName="empty" xd:direction="in" xd:interfaceRef="empty" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:arg xd:name="full" xd:originalName="full" xd:direction="in" xd:interfaceRef="full" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="337" xd:FF="245" xd:BRAM="1" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="292" xd:FF="218" xd:BRAM="1" xd:DSP="0"/>
 </xd:acceleratorMap>
