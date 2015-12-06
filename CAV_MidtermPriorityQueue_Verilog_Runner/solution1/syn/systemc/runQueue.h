@@ -22,8 +22,8 @@ struct runQueue : public sc_module {
     sc_out< sc_logic > ap_done;
     sc_out< sc_logic > ap_idle;
     sc_out< sc_logic > ap_ready;
-    sc_out< sc_lv<4> > priorityOut_V;
-    sc_in< sc_lv<4> > priorityIn_V;
+    sc_out< sc_lv<8> > priorityOut_V;
+    sc_in< sc_lv<8> > priorityIn_V;
     sc_out< sc_lv<2> > cmdOut_V;
     sc_in< sc_logic > empty;
     sc_in< sc_logic > full;
@@ -75,11 +75,11 @@ struct runQueue : public sc_module {
     sc_signal< sc_lv<2> > cmdOut_V_preg;
     sc_signal< sc_lv<32> > currentIteration_preg;
     sc_signal< sc_lv<32> > total_preg;
-    sc_signal< sc_lv<4> > tmp_1_fu_249_p1;
-    sc_signal< sc_lv<4> > priorityOut_V_preg;
+    sc_signal< sc_lv<8> > tmp_2_fu_249_p1;
+    sc_signal< sc_lv<8> > priorityOut_V_preg;
     sc_signal< sc_logic > fullOut_preg;
-    sc_signal< sc_lv<32> > tmp_5_fu_274_p1;
-    sc_signal< sc_lv<1> > tmp_6_fu_278_p2;
+    sc_signal< sc_lv<32> > tmp_4_fu_274_p1;
+    sc_signal< sc_lv<1> > tmp_5_fu_278_p2;
     sc_signal< sc_lv<32> > result_1_fu_284_p2;
     sc_signal< sc_lv<3> > ap_NS_fsm;
     static const sc_logic ap_const_logic_1;
@@ -97,7 +97,7 @@ struct runQueue : public sc_module {
     static const sc_lv<2> ap_const_lv2_1;
     static const sc_lv<2> ap_const_lv2_2;
     static const sc_lv<1> ap_const_lv1_1;
-    static const sc_lv<4> ap_const_lv4_0;
+    static const sc_lv<8> ap_const_lv8_0;
     static const sc_lv<32> ap_const_lv32_1;
     // Thread declarations
     void thread_ap_clk_no_reset_();
@@ -124,9 +124,9 @@ struct runQueue : public sc_module {
     void thread_priorityOut_V();
     void thread_result_1_fu_284_p2();
     void thread_result_1_s_fu_290_p3();
-    void thread_tmp_1_fu_249_p1();
-    void thread_tmp_5_fu_274_p1();
-    void thread_tmp_6_fu_278_p2();
+    void thread_tmp_2_fu_249_p1();
+    void thread_tmp_4_fu_274_p1();
+    void thread_tmp_5_fu_278_p2();
     void thread_tmp_fu_229_p2();
     void thread_total();
     void thread_ap_NS_fsm();

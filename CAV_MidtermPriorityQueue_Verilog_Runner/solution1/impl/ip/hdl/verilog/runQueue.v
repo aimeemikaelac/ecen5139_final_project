@@ -46,7 +46,7 @@ parameter    ap_const_lv2_0 = 2'b00;
 parameter    ap_const_lv2_1 = 2'b1;
 parameter    ap_const_lv2_2 = 2'b10;
 parameter    ap_const_lv1_1 = 1'b1;
-parameter    ap_const_lv4_0 = 4'b0000;
+parameter    ap_const_lv8_0 = 8'b00000000;
 parameter    ap_const_lv32_1 = 32'b1;
 parameter    ap_true = 1'b1;
 
@@ -56,8 +56,8 @@ input   ap_start;
 output   ap_done;
 output   ap_idle;
 output   ap_ready;
-output  [3:0] priorityOut_V;
-input  [3:0] priorityIn_V;
+output  [7:0] priorityOut_V;
+input  [7:0] priorityIn_V;
 output  [1:0] cmdOut_V;
 input   empty;
 input   full;
@@ -73,7 +73,7 @@ output  [31:0] ap_return;
 reg ap_done;
 reg ap_idle;
 reg ap_ready;
-reg[3:0] priorityOut_V;
+reg[7:0] priorityOut_V;
 reg[1:0] cmdOut_V;
 reg fullOut;
 reg finished_ap_vld;
@@ -107,11 +107,11 @@ wire   [0:0] grp_read_fu_154_p2;
 reg   [1:0] cmdOut_V_preg = 2'b00;
 reg   [31:0] currentIteration_preg = 32'b00000000000000000000000000000000;
 reg   [31:0] total_preg = 32'b00000000000000000000000000000000;
-wire   [3:0] tmp_1_fu_249_p1;
-reg   [3:0] priorityOut_V_preg = 4'b0000;
+wire   [7:0] tmp_2_fu_249_p1;
+reg   [7:0] priorityOut_V_preg = 8'b00000000;
 reg    fullOut_preg = 1'b0;
-wire   [31:0] tmp_5_fu_274_p1;
-wire   [0:0] tmp_6_fu_278_p2;
+wire   [31:0] tmp_4_fu_274_p1;
+wire   [0:0] tmp_5_fu_278_p2;
 wire   [31:0] result_1_fu_284_p2;
 reg   [2:0] ap_NS_fsm;
 
@@ -198,10 +198,10 @@ end
 always @ (posedge ap_clk)
 begin : ap_ret_priorityOut_V_preg
     if (ap_rst == 1'b1) begin
-        priorityOut_V_preg <= ap_const_lv4_0;
+        priorityOut_V_preg <= ap_const_lv8_0;
     end else begin
         if (((ap_ST_st4_fsm_3 == ap_CS_fsm) & (ap_const_lv1_0 == localFull_load_load_fu_240_p1))) begin
-            priorityOut_V_preg <= tmp_1_fu_249_p1;
+            priorityOut_V_preg <= tmp_2_fu_249_p1;
         end
     end
 end
@@ -395,10 +395,10 @@ begin
 end
 
 /// priorityOut_V assign process. ///
-always @ (ap_CS_fsm or localFull_load_load_fu_240_p1 or tmp_1_fu_249_p1 or priorityOut_V_preg)
+always @ (ap_CS_fsm or localFull_load_load_fu_240_p1 or tmp_2_fu_249_p1 or priorityOut_V_preg)
 begin
     if (((ap_ST_st4_fsm_3 == ap_CS_fsm) & (ap_const_lv1_0 == localFull_load_load_fu_240_p1))) begin
-        priorityOut_V = tmp_1_fu_249_p1;
+        priorityOut_V = tmp_2_fu_249_p1;
     end else begin
         priorityOut_V = priorityOut_V_preg;
     end
@@ -467,10 +467,10 @@ assign j_1_fu_234_p2 = (j_reg_167 + ap_const_lv32_1);
 assign localEmpty_load_load_fu_265_p1 = localEmpty_fu_92;
 assign localFull_load_load_fu_240_p1 = localFull_fu_88;
 assign result_1_fu_284_p2 = (result_fu_80 + ap_const_lv32_1);
-assign result_1_s_fu_290_p3 = ((tmp_6_fu_278_p2)? result_fu_80: result_1_fu_284_p2);
-assign tmp_1_fu_249_p1 = val_assign_reg_179[3:0];
-assign tmp_5_fu_274_p1 = $unsigned(priorityIn_V);
-assign tmp_6_fu_278_p2 = (tmp_5_fu_274_p1 == op2_assign_reg_190? 1'b1: 1'b0);
+assign result_1_s_fu_290_p3 = ((tmp_5_fu_278_p2)? result_fu_80: result_1_fu_284_p2);
+assign tmp_2_fu_249_p1 = val_assign_reg_179[7:0];
+assign tmp_4_fu_274_p1 = $unsigned(priorityIn_V);
+assign tmp_5_fu_278_p2 = (tmp_4_fu_274_p1 == op2_assign_reg_190? 1'b1: 1'b0);
 assign tmp_fu_229_p2 = ($signed(j_reg_167) < $signed(iterations_in_sig)? 1'b1: 1'b0);
 
 

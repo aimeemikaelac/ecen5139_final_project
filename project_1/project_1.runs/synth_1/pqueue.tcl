@@ -10,6 +10,7 @@ set_property target_language Verilog [current_project]
 set_property board_part em.avnet.com:zed:part0:1.0 [current_project]
 set_param project.compositeFile.enableAutoGeneration 0
 set_property default_lib xil_defaultlib [current_project]
+set_property ip_repo_paths /home/michael/ecen5139_final_project/project_1/project_1.srcs [current_fileset]
 read_verilog -library xil_defaultlib -sv /home/michael/ecen5139_final_project/project_1/project_1.srcs/sources_1/imports/CAV_Midterm_PriorityQueue/gpqueue.sv
 read_xdc /home/michael/ecen5139_final_project/project_1/project_1.srcs/constrs_1/imports/verilog/runQueue.xdc
 set_property used_in_implementation false [get_files /home/michael/ecen5139_final_project/project_1/project_1.srcs/constrs_1/imports/verilog/runQueue.xdc]

@@ -16,7 +16,7 @@
 //void build_minheap(QueueData *a, int n);
 //bool runTest();
 
-typedef ap_uint<4> uint_4;
+typedef ap_uint<8> uint_8;
 typedef ap_uint<2> cmd;
 
 int random_priorities[] = { 325, 437, 294,197, 295,	178, 325, 500, 207, 384, 16, 21, 95, 491, 360, 22, 10, 263, 311, 410, 381,
@@ -32,7 +32,7 @@ int random_priorities[] = { 325, 437, 294,197, 295,	178, 325, 500, 207, 384, 16,
 };
 
 //top function. runs the test in the FPGA and time from the CPU
-int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
+int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile cmd *cmdOut,
 		volatile bool *empty, volatile bool *full, volatile bool *fullOut,
 		int iterations, bool *finished, int *currentIteration, int *total){
 #pragma HLS INTERFACE ap_none port=total
@@ -69,7 +69,8 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 
 #pragma HLS RESOURCE variable=return core=AXI4LiteS
 
-	int i, j, last =0, count = 0;
+	unsigned i;
+	int j, last =0, count = 0;
 	int result = 0;
 	volatile bool localFull, localEmpty;
 	P1:{
@@ -88,7 +89,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 			*cmdOut = 1;
 			while(localFull == false){
 				ap_wait();
-				*priorityOut = uint_4(i);
+				*priorityOut = uint_8(i);
 				*fullOut = *full;
 	//			*cmdOut = 0;
 				i++;
@@ -103,7 +104,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 			*cmdOut = 2;
 			while(localEmpty == false){
 				ap_wait();
-				if((uint_4)*priorityIn != i){
+				if((uint_8)*priorityIn != i){
 					result++;
 				}
 	//			*cmdOut = 0;

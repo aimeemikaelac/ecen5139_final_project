@@ -28,7 +28,7 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>8</bitwidth>
 				</Value>
 				<direction>1</direction>
 				<if_type>0</if_type>
@@ -56,7 +56,7 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>8</bitwidth>
 				</Value>
 				<direction>0</direction>
 				<if_type>0</if_type>
@@ -438,7 +438,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>78</lineNumber>
+						<lineNumber>79</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -453,7 +453,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>78</second>
+										<second>79</second>
 									</item>
 								</second>
 							</item>
@@ -537,7 +537,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>79</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -552,7 +552,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>79</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -608,7 +608,7 @@
 						<name>tmp</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>79</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -623,7 +623,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>79</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -650,7 +650,7 @@
 						<name>j_1</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>79</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -665,7 +665,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>79</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -689,49 +689,6 @@
 					<Obj>
 						<type>0</type>
 						<id>50</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>79</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>79</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>145</item>
-					<item>146</item>
-					<item>147</item>
-				</oprand_edges>
-				<opcode>br</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_24">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>52</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -764,21 +721,21 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>149</item>
-					<item>150</item>
-					<item>151</item>
+					<item>145</item>
+					<item>146</item>
+					<item>147</item>
 				</oprand_edges>
-				<opcode>write</opcode>
+				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_25">
+			<item class_id_reference="9" object_id="_24">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>54</id>
-						<name>localFull_1</name>
+						<id>52</id>
+						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>85</lineNumber>
+						<lineNumber>81</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -793,7 +750,50 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>85</second>
+										<second>81</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>149</item>
+					<item>150</item>
+					<item>151</item>
+				</oprand_edges>
+				<opcode>write</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_25">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>54</id>
+						<name>localFull_1</name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>86</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>86</second>
 									</item>
 								</second>
 							</item>
@@ -817,48 +817,6 @@
 					<Obj>
 						<type>0</type>
 						<id>55</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>85</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>85</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>155</item>
-					<item>156</item>
-				</oprand_edges>
-				<opcode>store</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_27">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>56</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -889,20 +847,18 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>4</count>
+					<count>2</count>
 					<item_version>0</item_version>
-					<item>157</item>
-					<item>158</item>
-					<item>159</item>
-					<item>507</item>
+					<item>155</item>
+					<item>156</item>
 				</oprand_edges>
-				<opcode>write</opcode>
+				<opcode>store</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_28">
+			<item class_id_reference="9" object_id="_27">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>57</id>
+						<id>56</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -933,21 +889,20 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>5</count>
+					<count>4</count>
 					<item_version>0</item_version>
-					<item>161</item>
-					<item>162</item>
-					<item>478</item>
-					<item>479</item>
-					<item>480</item>
+					<item>157</item>
+					<item>158</item>
+					<item>159</item>
+					<item>507</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>write</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_29">
+			<item class_id_reference="9" object_id="_28">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>58</id>
+						<id>57</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -978,22 +933,21 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>6</count>
+					<count>5</count>
 					<item_version>0</item_version>
-					<item>163</item>
-					<item>164</item>
-					<item>166</item>
-					<item>481</item>
-					<item>502</item>
-					<item>508</item>
+					<item>161</item>
+					<item>162</item>
+					<item>478</item>
+					<item>479</item>
+					<item>480</item>
 				</oprand_edges>
-				<opcode>write</opcode>
+				<opcode>wait</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_30">
+			<item class_id_reference="9" object_id="_29">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>59</id>
+						<id>58</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1013,6 +967,52 @@
 											<second>runQueue</second>
 										</first>
 										<second>89</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>6</count>
+					<item_version>0</item_version>
+					<item>163</item>
+					<item>164</item>
+					<item>166</item>
+					<item>481</item>
+					<item>502</item>
+					<item>508</item>
+				</oprand_edges>
+				<opcode>write</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_30">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>59</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>90</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>90</second>
 									</item>
 								</second>
 							</item>
@@ -1068,7 +1068,7 @@
 						<name>localFull_load</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>89</lineNumber>
+						<lineNumber>90</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1083,7 +1083,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>89</second>
+										<second>90</second>
 									</item>
 								</second>
 							</item>
@@ -1110,7 +1110,7 @@
 						<name>i</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>94</lineNumber>
+						<lineNumber>95</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1125,7 +1125,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>94</second>
+										<second>95</second>
 									</item>
 								</second>
 							</item>
@@ -1149,91 +1149,6 @@
 					<Obj>
 						<type>0</type>
 						<id>64</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>89</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>89</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>175</item>
-					<item>176</item>
-					<item>177</item>
-				</oprand_edges>
-				<opcode>br</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_35">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>66</id>
-						<name>count_load_1</name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>96</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>96</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>178</item>
-					<item>513</item>
-				</oprand_edges>
-				<opcode>load</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_36">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>67</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1266,18 +1181,60 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>179</item>
-					<item>180</item>
-					<item>499</item>
+					<item>175</item>
+					<item>176</item>
+					<item>177</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_37">
+			<item class_id_reference="9" object_id="_35">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>68</id>
-						<name>tmp_1</name>
+						<id>66</id>
+						<name>count_load_1</name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>97</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>97</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>178</item>
+					<item>513</item>
+				</oprand_edges>
+				<opcode>load</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_36">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>67</id>
+						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
 						<lineNumber>91</lineNumber>
@@ -1304,7 +1261,50 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>179</item>
+					<item>180</item>
+					<item>499</item>
+				</oprand_edges>
+				<opcode>wait</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_37">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>68</id>
+						<name>tmp_2</name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>92</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>92</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>8</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>1</count>
@@ -1321,7 +1321,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>91</lineNumber>
+						<lineNumber>92</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1336,7 +1336,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>91</second>
+										<second>92</second>
 									</item>
 								</second>
 							</item>
@@ -1365,7 +1365,7 @@
 						<name>full_read</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>92</lineNumber>
+						<lineNumber>93</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1380,7 +1380,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>92</second>
+										<second>93</second>
 									</item>
 								</second>
 							</item>
@@ -1409,7 +1409,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>92</lineNumber>
+						<lineNumber>93</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1424,7 +1424,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>92</second>
+										<second>93</second>
 									</item>
 								</second>
 							</item>
@@ -1453,7 +1453,7 @@
 						<name>localFull_2</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>95</lineNumber>
+						<lineNumber>96</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1468,7 +1468,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>95</second>
+										<second>96</second>
 									</item>
 								</second>
 							</item>
@@ -1498,7 +1498,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>95</lineNumber>
+						<lineNumber>96</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1513,7 +1513,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>95</second>
+										<second>96</second>
 									</item>
 								</second>
 							</item>
@@ -1543,7 +1543,7 @@
 						<name>count_1</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>96</lineNumber>
+						<lineNumber>97</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1558,7 +1558,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>96</second>
+										<second>97</second>
 									</item>
 								</second>
 							</item>
@@ -1582,50 +1582,6 @@
 					<Obj>
 						<type>0</type>
 						<id>76</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>96</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>96</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>4</count>
-					<item_version>0</item_version>
-					<item>198</item>
-					<item>199</item>
-					<item>504</item>
-					<item>514</item>
-				</oprand_edges>
-				<opcode>store</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_45">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>77</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1656,17 +1612,20 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>1</count>
+					<count>4</count>
 					<item_version>0</item_version>
-					<item>200</item>
+					<item>198</item>
+					<item>199</item>
+					<item>504</item>
+					<item>514</item>
 				</oprand_edges>
-				<opcode>br</opcode>
+				<opcode>store</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_46">
+			<item class_id_reference="9" object_id="_45">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>79</id>
+						<id>77</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1697,19 +1656,17 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>3</count>
+					<count>1</count>
 					<item_version>0</item_version>
-					<item>201</item>
-					<item>202</item>
-					<item>498</item>
+					<item>200</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_47">
+			<item class_id_reference="9" object_id="_46">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>80</id>
+						<id>79</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1729,6 +1686,49 @@
 											<second>runQueue</second>
 										</first>
 										<second>99</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>201</item>
+					<item>202</item>
+					<item>498</item>
+				</oprand_edges>
+				<opcode>wait</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_47">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>80</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>100</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>100</second>
 									</item>
 								</second>
 							</item>
@@ -1760,7 +1760,7 @@
 						<name>localEmpty_1</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>101</lineNumber>
+						<lineNumber>102</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1775,7 +1775,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>101</second>
+										<second>102</second>
 									</item>
 								</second>
 							</item>
@@ -1800,49 +1800,6 @@
 					<Obj>
 						<type>0</type>
 						<id>82</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>101</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>101</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>208</item>
-					<item>209</item>
-					<item>490</item>
-				</oprand_edges>
-				<opcode>store</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_50">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>83</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1873,21 +1830,19 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>5</count>
+					<count>3</count>
 					<item_version>0</item_version>
-					<item>210</item>
-					<item>211</item>
-					<item>487</item>
-					<item>491</item>
-					<item>492</item>
+					<item>208</item>
+					<item>209</item>
+					<item>490</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>store</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_51">
+			<item class_id_reference="9" object_id="_50">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>84</id>
+						<id>83</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -1907,6 +1862,51 @@
 											<second>runQueue</second>
 										</first>
 										<second>103</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>5</count>
+					<item_version>0</item_version>
+					<item>210</item>
+					<item>211</item>
+					<item>487</item>
+					<item>491</item>
+					<item>492</item>
+				</oprand_edges>
+				<opcode>wait</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_51">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>84</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>104</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>104</second>
 									</item>
 								</second>
 							</item>
@@ -1939,7 +1939,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>104</lineNumber>
+						<lineNumber>105</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -1954,7 +1954,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>104</second>
+										<second>105</second>
 									</item>
 								</second>
 							</item>
@@ -2010,7 +2010,7 @@
 						<name>localEmpty_load</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>104</lineNumber>
+						<lineNumber>105</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2025,7 +2025,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>104</second>
+										<second>105</second>
 									</item>
 								</second>
 							</item>
@@ -2052,7 +2052,7 @@
 						<name>i_1</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>110</lineNumber>
+						<lineNumber>111</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2067,7 +2067,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>110</second>
+										<second>111</second>
 									</item>
 								</second>
 							</item>
@@ -2091,91 +2091,6 @@
 					<Obj>
 						<type>0</type>
 						<id>90</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>104</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>104</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>224</item>
-					<item>225</item>
-					<item>226</item>
-				</oprand_edges>
-				<opcode>br</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_57">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>92</id>
-						<name>result_load_1</name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>107</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>107</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>32</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>2</count>
-					<item_version>0</item_version>
-					<item>227</item>
-					<item>516</item>
-				</oprand_edges>
-				<opcode>load</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_58">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>93</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -2208,18 +2123,60 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>228</item>
-					<item>229</item>
-					<item>501</item>
+					<item>224</item>
+					<item>225</item>
+					<item>226</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_59">
+			<item class_id_reference="9" object_id="_57">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>94</id>
-						<name>priorityIn_V_read</name>
+						<id>92</id>
+						<name>result_load_1</name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>108</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>108</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>32</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>2</count>
+					<item_version>0</item_version>
+					<item>227</item>
+					<item>516</item>
+				</oprand_edges>
+				<opcode>load</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_58">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>93</id>
+						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
 						<lineNumber>106</lineNumber>
@@ -2246,7 +2203,50 @@
 						<rtlName></rtlName>
 						<coreName></coreName>
 					</Obj>
-					<bitwidth>4</bitwidth>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>228</item>
+					<item>229</item>
+					<item>501</item>
+				</oprand_edges>
+				<opcode>wait</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_59">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>94</id>
+						<name>priorityIn_V_read</name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>107</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>107</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>8</bitwidth>
 				</Value>
 				<oprand_edges>
 					<count>3</count>
@@ -2262,10 +2262,10 @@
 					<Obj>
 						<type>0</type>
 						<id>95</id>
-						<name>tmp_5</name>
+						<name>tmp_4</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>106</lineNumber>
+						<lineNumber>107</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2280,7 +2280,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>106</second>
+										<second>107</second>
 									</item>
 								</second>
 							</item>
@@ -2303,10 +2303,10 @@
 					<Obj>
 						<type>0</type>
 						<id>96</id>
-						<name>tmp_6</name>
+						<name>tmp_5</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>106</lineNumber>
+						<lineNumber>107</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2321,7 +2321,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>106</second>
+										<second>107</second>
 									</item>
 								</second>
 							</item>
@@ -2348,7 +2348,7 @@
 						<name>result_1</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>107</lineNumber>
+						<lineNumber>108</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2363,7 +2363,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>107</second>
+										<second>108</second>
 									</item>
 								</second>
 							</item>
@@ -2390,7 +2390,7 @@
 						<name>result_1_s</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>106</lineNumber>
+						<lineNumber>107</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2405,7 +2405,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>106</second>
+										<second>107</second>
 									</item>
 								</second>
 							</item>
@@ -2433,7 +2433,7 @@
 						<name>localEmpty_2</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>111</lineNumber>
+						<lineNumber>112</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2448,7 +2448,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>111</second>
+										<second>112</second>
 									</item>
 								</second>
 							</item>
@@ -2474,95 +2474,6 @@
 					<Obj>
 						<type>0</type>
 						<id>100</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>111</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>111</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>5</count>
-					<item_version>0</item_version>
-					<item>243</item>
-					<item>244</item>
-					<item>496</item>
-					<item>533</item>
-					<item>534</item>
-				</oprand_edges>
-				<opcode>store</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_66">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>101</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>106</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>106</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>4</count>
-					<item_version>0</item_version>
-					<item>245</item>
-					<item>246</item>
-					<item>506</item>
-					<item>517</item>
-				</oprand_edges>
-				<opcode>store</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_67">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>102</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -2593,17 +2504,65 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>1</count>
+					<count>5</count>
 					<item_version>0</item_version>
-					<item>247</item>
+					<item>243</item>
+					<item>244</item>
+					<item>496</item>
+					<item>533</item>
+					<item>534</item>
 				</oprand_edges>
-				<opcode>br</opcode>
+				<opcode>store</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_68">
+			<item class_id_reference="9" object_id="_66">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>104</id>
+						<id>101</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>107</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>107</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>4</count>
+					<item_version>0</item_version>
+					<item>245</item>
+					<item>246</item>
+					<item>506</item>
+					<item>517</item>
+				</oprand_edges>
+				<opcode>store</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_67">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>102</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -2634,19 +2593,17 @@
 					<bitwidth>0</bitwidth>
 				</Value>
 				<oprand_edges>
-					<count>3</count>
+					<count>1</count>
 					<item_version>0</item_version>
-					<item>248</item>
-					<item>249</item>
-					<item>500</item>
+					<item>247</item>
 				</oprand_edges>
-				<opcode>wait</opcode>
+				<opcode>br</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_69">
+			<item class_id_reference="9" object_id="_68">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>105</id>
+						<id>104</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -2666,6 +2623,49 @@
 											<second>runQueue</second>
 										</first>
 										<second>114</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>248</item>
+					<item>249</item>
+					<item>500</item>
+				</oprand_edges>
+				<opcode>wait</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_69">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>105</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>115</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>115</second>
 									</item>
 								</second>
 							</item>
@@ -2699,7 +2699,7 @@
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>79</lineNumber>
+						<lineNumber>80</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2714,7 +2714,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>79</second>
+										<second>80</second>
 									</item>
 								</second>
 							</item>
@@ -2740,7 +2740,7 @@
 						<name>result_load</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>147</lineNumber>
+						<lineNumber>148</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2755,7 +2755,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>147</second>
+										<second>148</second>
 									</item>
 								</second>
 							</item>
@@ -2782,7 +2782,7 @@
 						<name>count_load</name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>144</lineNumber>
+						<lineNumber>145</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2797,7 +2797,7 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>144</second>
+										<second>145</second>
 									</item>
 								</second>
 							</item>
@@ -2821,49 +2821,6 @@
 					<Obj>
 						<type>0</type>
 						<id>111</id>
-						<name></name>
-						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
-						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>144</lineNumber>
-						<contextFuncName>runQueue</contextFuncName>
-						<inlineStackInfo>
-							<count>1</count>
-							<item_version>0</item_version>
-							<item>
-								<first>/home/michael/ecen5139_final_project</first>
-								<second>
-									<count>1</count>
-									<item_version>0</item_version>
-									<item>
-										<first>
-											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
-											<second>runQueue</second>
-										</first>
-										<second>144</second>
-									</item>
-								</second>
-							</item>
-						</inlineStackInfo>
-						<originalName></originalName>
-						<rtlName></rtlName>
-						<coreName></coreName>
-					</Obj>
-					<bitwidth>0</bitwidth>
-				</Value>
-				<oprand_edges>
-					<count>3</count>
-					<item_version>0</item_version>
-					<item>256</item>
-					<item>257</item>
-					<item>258</item>
-				</oprand_edges>
-				<opcode>write</opcode>
-			</item>
-			<item class_id_reference="9" object_id="_74">
-				<Value>
-					<Obj>
-						<type>0</type>
-						<id>113</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
@@ -2896,21 +2853,21 @@
 				<oprand_edges>
 					<count>3</count>
 					<item_version>0</item_version>
-					<item>260</item>
-					<item>261</item>
-					<item>263</item>
+					<item>256</item>
+					<item>257</item>
+					<item>258</item>
 				</oprand_edges>
 				<opcode>write</opcode>
 			</item>
-			<item class_id_reference="9" object_id="_75">
+			<item class_id_reference="9" object_id="_74">
 				<Value>
 					<Obj>
 						<type>0</type>
-						<id>115</id>
+						<id>113</id>
 						<name></name>
 						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
 						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
-						<lineNumber>147</lineNumber>
+						<lineNumber>146</lineNumber>
 						<contextFuncName>runQueue</contextFuncName>
 						<inlineStackInfo>
 							<count>1</count>
@@ -2925,7 +2882,50 @@
 											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
 											<second>runQueue</second>
 										</first>
-										<second>147</second>
+										<second>146</second>
+									</item>
+								</second>
+							</item>
+						</inlineStackInfo>
+						<originalName></originalName>
+						<rtlName></rtlName>
+						<coreName></coreName>
+					</Obj>
+					<bitwidth>0</bitwidth>
+				</Value>
+				<oprand_edges>
+					<count>3</count>
+					<item_version>0</item_version>
+					<item>260</item>
+					<item>261</item>
+					<item>263</item>
+				</oprand_edges>
+				<opcode>write</opcode>
+			</item>
+			<item class_id_reference="9" object_id="_75">
+				<Value>
+					<Obj>
+						<type>0</type>
+						<id>115</id>
+						<name></name>
+						<fileName>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</fileName>
+						<fileDirectory>/home/michael/ecen5139_final_project</fileDirectory>
+						<lineNumber>148</lineNumber>
+						<contextFuncName>runQueue</contextFuncName>
+						<inlineStackInfo>
+							<count>1</count>
+							<item_version>0</item_version>
+							<item>
+								<first>/home/michael/ecen5139_final_project</first>
+								<second>
+									<count>1</count>
+									<item_version>0</item_version>
+									<item>
+										<first>
+											<first>CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp</first>
+											<second>runQueue</second>
+										</first>
+										<second>148</second>
 									</item>
 								</second>
 							</item>
@@ -6376,7 +6376,7 @@
 			</second>
 		</item>
 		<item>
-			<first>tmp_1_fu_249</first>
+			<first>tmp_2_fu_249</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -6384,7 +6384,7 @@
 			</second>
 		</item>
 		<item>
-			<first>tmp_5_fu_274</first>
+			<first>tmp_4_fu_274</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>
@@ -6392,7 +6392,7 @@
 			</second>
 		</item>
 		<item>
-			<first>tmp_6_fu_278</first>
+			<first>tmp_5_fu_278</first>
 			<second>
 				<count>1</count>
 				<item_version>0</item_version>

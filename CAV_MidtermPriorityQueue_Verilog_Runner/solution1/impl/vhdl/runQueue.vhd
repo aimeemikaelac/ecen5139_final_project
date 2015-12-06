@@ -17,8 +17,8 @@ port (
     ap_done : OUT STD_LOGIC;
     ap_idle : OUT STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
-    priorityOut_V : OUT STD_LOGIC_VECTOR (3 downto 0);
-    priorityIn_V : IN STD_LOGIC_VECTOR (3 downto 0);
+    priorityOut_V : OUT STD_LOGIC_VECTOR (7 downto 0);
+    priorityIn_V : IN STD_LOGIC_VECTOR (7 downto 0);
     cmdOut_V : OUT STD_LOGIC_VECTOR (1 downto 0);
     empty : IN STD_LOGIC;
     full : IN STD_LOGIC;
@@ -52,7 +52,7 @@ architecture behav of runQueue is
     constant ap_const_lv2_1 : STD_LOGIC_VECTOR (1 downto 0) := "01";
     constant ap_const_lv2_2 : STD_LOGIC_VECTOR (1 downto 0) := "10";
     constant ap_const_lv1_1 : STD_LOGIC_VECTOR (0 downto 0) := "1";
-    constant ap_const_lv4_0 : STD_LOGIC_VECTOR (3 downto 0) := "0000";
+    constant ap_const_lv8_0 : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
     constant ap_const_lv32_1 : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000001";
 
     signal ap_CS_fsm : STD_LOGIC_VECTOR (2 downto 0) := "000";
@@ -83,11 +83,11 @@ architecture behav of runQueue is
     signal cmdOut_V_preg : STD_LOGIC_VECTOR (1 downto 0) := "00";
     signal currentIteration_preg : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
     signal total_preg : STD_LOGIC_VECTOR (31 downto 0) := "00000000000000000000000000000000";
-    signal tmp_1_fu_249_p1 : STD_LOGIC_VECTOR (3 downto 0);
-    signal priorityOut_V_preg : STD_LOGIC_VECTOR (3 downto 0) := "0000";
+    signal tmp_2_fu_249_p1 : STD_LOGIC_VECTOR (7 downto 0);
+    signal priorityOut_V_preg : STD_LOGIC_VECTOR (7 downto 0) := "00000000";
     signal fullOut_preg : STD_LOGIC := '0';
-    signal tmp_5_fu_274_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal tmp_6_fu_278_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal tmp_4_fu_274_p1 : STD_LOGIC_VECTOR (31 downto 0);
+    signal tmp_5_fu_278_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal result_1_fu_284_p2 : STD_LOGIC_VECTOR (31 downto 0);
     signal ap_NS_fsm : STD_LOGIC_VECTOR (2 downto 0);
 
@@ -196,10 +196,10 @@ begin
     begin
         if (ap_clk'event and ap_clk =  '1') then
             if (ap_rst = '1') then
-                priorityOut_V_preg <= ap_const_lv4_0;
+                priorityOut_V_preg <= ap_const_lv8_0;
             else
                 if (((ap_ST_st4_fsm_3 = ap_CS_fsm) and (ap_const_lv1_0 = localFull_load_load_fu_240_p1))) then 
-                    priorityOut_V_preg <= tmp_1_fu_249_p1;
+                    priorityOut_V_preg <= tmp_2_fu_249_p1;
                 end if; 
             end if;
         end if;
@@ -481,10 +481,10 @@ begin
     localFull_load_load_fu_240_p1 <= localFull_fu_88;
 
     -- priorityOut_V assign process. --
-    priorityOut_V_assign_proc : process(ap_CS_fsm, localFull_load_load_fu_240_p1, tmp_1_fu_249_p1, priorityOut_V_preg)
+    priorityOut_V_assign_proc : process(ap_CS_fsm, localFull_load_load_fu_240_p1, tmp_2_fu_249_p1, priorityOut_V_preg)
     begin
         if (((ap_ST_st4_fsm_3 = ap_CS_fsm) and (ap_const_lv1_0 = localFull_load_load_fu_240_p1))) then 
-            priorityOut_V <= tmp_1_fu_249_p1;
+            priorityOut_V <= tmp_2_fu_249_p1;
         else 
             priorityOut_V <= priorityOut_V_preg;
         end if; 
@@ -492,11 +492,11 @@ begin
 
     result_1_fu_284_p2 <= std_logic_vector(unsigned(result_fu_80) + unsigned(ap_const_lv32_1));
     result_1_s_fu_290_p3 <= 
-        result_fu_80 when (tmp_6_fu_278_p2(0) = '1') else 
+        result_fu_80 when (tmp_5_fu_278_p2(0) = '1') else 
         result_1_fu_284_p2;
-    tmp_1_fu_249_p1 <= val_assign_reg_179(4 - 1 downto 0);
-    tmp_5_fu_274_p1 <= std_logic_vector(resize(unsigned(priorityIn_V),32));
-    tmp_6_fu_278_p2 <= "1" when (tmp_5_fu_274_p1 = op2_assign_reg_190) else "0";
+    tmp_2_fu_249_p1 <= val_assign_reg_179(8 - 1 downto 0);
+    tmp_4_fu_274_p1 <= std_logic_vector(resize(unsigned(priorityIn_V),32));
+    tmp_5_fu_278_p2 <= "1" when (tmp_4_fu_274_p1 = op2_assign_reg_190) else "0";
     tmp_fu_229_p2 <= "1" when (signed(j_reg_167) < signed(iterations_in_sig)) else "0";
 
     -- total assign process. --

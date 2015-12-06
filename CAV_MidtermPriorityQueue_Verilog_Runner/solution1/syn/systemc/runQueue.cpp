@@ -27,7 +27,7 @@ const sc_lv<2> runQueue::ap_const_lv2_0 = "00";
 const sc_lv<2> runQueue::ap_const_lv2_1 = "1";
 const sc_lv<2> runQueue::ap_const_lv2_2 = "10";
 const sc_lv<1> runQueue::ap_const_lv1_1 = "1";
-const sc_lv<4> runQueue::ap_const_lv4_0 = "0000";
+const sc_lv<8> runQueue::ap_const_lv8_0 = "00000000";
 const sc_lv<32> runQueue::ap_const_lv32_1 = "1";
 
 runQueue::runQueue(sc_module_name name) : sc_module(name), mVcdFile(0) {
@@ -129,7 +129,7 @@ runQueue::runQueue(sc_module_name name) : sc_module(name), mVcdFile(0) {
     SC_METHOD(thread_priorityOut_V);
     sensitive << ( ap_CS_fsm );
     sensitive << ( localFull_load_load_fu_240_p1 );
-    sensitive << ( tmp_1_fu_249_p1 );
+    sensitive << ( tmp_2_fu_249_p1 );
     sensitive << ( priorityOut_V_preg );
 
     SC_METHOD(thread_result_1_fu_284_p2);
@@ -137,20 +137,20 @@ runQueue::runQueue(sc_module_name name) : sc_module(name), mVcdFile(0) {
 
     SC_METHOD(thread_result_1_s_fu_290_p3);
     sensitive << ( result_fu_80 );
-    sensitive << ( tmp_6_fu_278_p2 );
+    sensitive << ( tmp_5_fu_278_p2 );
     sensitive << ( result_1_fu_284_p2 );
 
-    SC_METHOD(thread_tmp_1_fu_249_p1);
+    SC_METHOD(thread_tmp_2_fu_249_p1);
     sensitive << ( val_assign_reg_179 );
 
-    SC_METHOD(thread_tmp_5_fu_274_p1);
+    SC_METHOD(thread_tmp_4_fu_274_p1);
     sensitive << ( priorityIn_V );
 
-    SC_METHOD(thread_tmp_6_fu_278_p2);
+    SC_METHOD(thread_tmp_5_fu_278_p2);
     sensitive << ( ap_CS_fsm );
     sensitive << ( localEmpty_load_load_fu_265_p1 );
     sensitive << ( op2_assign_reg_190 );
-    sensitive << ( tmp_5_fu_274_p1 );
+    sensitive << ( tmp_4_fu_274_p1 );
 
     SC_METHOD(thread_tmp_fu_229_p2);
     sensitive << ( ap_CS_fsm );
@@ -179,7 +179,7 @@ runQueue::runQueue(sc_module_name name) : sc_module(name), mVcdFile(0) {
     cmdOut_V_preg = "00";
     currentIteration_preg = "00000000000000000000000000000000";
     total_preg = "00000000000000000000000000000000";
-    priorityOut_V_preg = "0000";
+    priorityOut_V_preg = "00000000";
     fullOut_preg = SC_LOGIC_0;
     static int apTFileNum = 0;
     stringstream apTFilenSS;
@@ -238,11 +238,11 @@ runQueue::runQueue(sc_module_name name) : sc_module(name), mVcdFile(0) {
     sc_trace(mVcdFile, cmdOut_V_preg, "cmdOut_V_preg");
     sc_trace(mVcdFile, currentIteration_preg, "currentIteration_preg");
     sc_trace(mVcdFile, total_preg, "total_preg");
-    sc_trace(mVcdFile, tmp_1_fu_249_p1, "tmp_1_fu_249_p1");
+    sc_trace(mVcdFile, tmp_2_fu_249_p1, "tmp_2_fu_249_p1");
     sc_trace(mVcdFile, priorityOut_V_preg, "priorityOut_V_preg");
     sc_trace(mVcdFile, fullOut_preg, "fullOut_preg");
-    sc_trace(mVcdFile, tmp_5_fu_274_p1, "tmp_5_fu_274_p1");
-    sc_trace(mVcdFile, tmp_6_fu_278_p2, "tmp_6_fu_278_p2");
+    sc_trace(mVcdFile, tmp_4_fu_274_p1, "tmp_4_fu_274_p1");
+    sc_trace(mVcdFile, tmp_5_fu_278_p2, "tmp_5_fu_278_p2");
     sc_trace(mVcdFile, result_1_fu_284_p2, "result_1_fu_284_p2");
     sc_trace(mVcdFile, ap_NS_fsm, "ap_NS_fsm");
 #endif
@@ -341,11 +341,11 @@ void runQueue::thread_ap_clk_no_reset_() {
         op2_assign_reg_190 = ap_const_lv32_0;
     }
     if ( ap_rst.read() == ap_const_logic_1) {
-        priorityOut_V_preg = ap_const_lv4_0;
+        priorityOut_V_preg = ap_const_lv8_0;
     } else {
         if ((esl_seteq<1,3,3>(ap_ST_st4_fsm_3, ap_CS_fsm.read()) && 
              esl_seteq<1,1,1>(ap_const_lv1_0, localFull_load_load_fu_240_p1.read()))) {
-            priorityOut_V_preg = tmp_1_fu_249_p1.read();
+            priorityOut_V_preg = tmp_2_fu_249_p1.read();
         }
     }
     if ((esl_seteq<1,3,3>(ap_ST_st7_fsm_6, ap_CS_fsm.read()) && 
@@ -521,7 +521,7 @@ void runQueue::thread_localFull_load_load_fu_240_p1() {
 void runQueue::thread_priorityOut_V() {
     if ((esl_seteq<1,3,3>(ap_ST_st4_fsm_3, ap_CS_fsm.read()) && 
          esl_seteq<1,1,1>(ap_const_lv1_0, localFull_load_load_fu_240_p1.read()))) {
-        priorityOut_V = tmp_1_fu_249_p1.read();
+        priorityOut_V = tmp_2_fu_249_p1.read();
     } else {
         priorityOut_V = priorityOut_V_preg.read();
     }
@@ -532,19 +532,19 @@ void runQueue::thread_result_1_fu_284_p2() {
 }
 
 void runQueue::thread_result_1_s_fu_290_p3() {
-    result_1_s_fu_290_p3 = (!tmp_6_fu_278_p2.read()[0].is_01())? sc_lv<32>(): ((tmp_6_fu_278_p2.read()[0].to_bool())? result_fu_80.read(): result_1_fu_284_p2.read());
+    result_1_s_fu_290_p3 = (!tmp_5_fu_278_p2.read()[0].is_01())? sc_lv<32>(): ((tmp_5_fu_278_p2.read()[0].to_bool())? result_fu_80.read(): result_1_fu_284_p2.read());
 }
 
-void runQueue::thread_tmp_1_fu_249_p1() {
-    tmp_1_fu_249_p1 = val_assign_reg_179.read().range(4-1, 0);
+void runQueue::thread_tmp_2_fu_249_p1() {
+    tmp_2_fu_249_p1 = val_assign_reg_179.read().range(8-1, 0);
 }
 
-void runQueue::thread_tmp_5_fu_274_p1() {
-    tmp_5_fu_274_p1 = esl_zext<32,4>(priorityIn_V.read());
+void runQueue::thread_tmp_4_fu_274_p1() {
+    tmp_4_fu_274_p1 = esl_zext<32,8>(priorityIn_V.read());
 }
 
-void runQueue::thread_tmp_6_fu_278_p2() {
-    tmp_6_fu_278_p2 = (!tmp_5_fu_274_p1.read().is_01() || !op2_assign_reg_190.read().is_01())? sc_lv<1>(): sc_lv<1>(tmp_5_fu_274_p1.read() == op2_assign_reg_190.read());
+void runQueue::thread_tmp_5_fu_278_p2() {
+    tmp_5_fu_278_p2 = (!tmp_4_fu_274_p1.read().is_01() || !op2_assign_reg_190.read().is_01())? sc_lv<1>(): sc_lv<1>(tmp_4_fu_274_p1.read() == op2_assign_reg_190.read());
 }
 
 void runQueue::thread_tmp_fu_229_p2() {

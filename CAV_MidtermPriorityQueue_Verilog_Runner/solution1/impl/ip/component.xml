@@ -370,7 +370,7 @@
 					<spirit:direction>out</spirit:direction>
 					<spirit:vector>
 						<spirit:left spirit:format="long"
-								spirit:resolve="immediate">3</spirit:left>
+								spirit:resolve="immediate">7</spirit:left>
 						<spirit:right spirit:format="long"
 								spirit:resolve="immediate">0</spirit:right>
 					</spirit:vector>
@@ -389,7 +389,7 @@
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
 						<spirit:left spirit:format="long"
-								spirit:resolve="immediate">3</spirit:left>
+								spirit:resolve="immediate">7</spirit:left>
 						<spirit:right spirit:format="long"
 								spirit:resolve="immediate">0</spirit:right>
 					</spirit:vector>
@@ -900,8 +900,8 @@
 				<xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>Runqueue</xilinx:displayName>
-			<xilinx:coreRevision>1512060200</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2015-12-06T09:00:25Z</xilinx:coreCreationDateTime>
+			<xilinx:coreRevision>1512060232</xilinx:coreRevision>
+			<xilinx:coreCreationDateTime>2015-12-06T09:32:24Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2014.1</xilinx:xilinxVersion>

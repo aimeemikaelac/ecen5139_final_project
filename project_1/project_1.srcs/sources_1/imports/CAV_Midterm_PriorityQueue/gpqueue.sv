@@ -110,7 +110,7 @@ module testbench;
 
 endmodule // testbench
 
-module pqueue #(parameter N = 4, parameter MSB = $clog2(N)-1)
+module pqueue #(parameter N = 200, parameter MSB = $clog2(N)-1)
     (input clock, input [1:0] cmd, input [MSB:0] in, output [MSB:0] out,
      output full, output empty);
 

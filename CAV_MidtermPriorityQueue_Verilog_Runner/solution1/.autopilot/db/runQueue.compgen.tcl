@@ -140,7 +140,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_priorityOut_V \
     op interface \
-    ports { priorityOut_V { O 4 vector } } \
+    ports { priorityOut_V { O 8 vector } } \
 } "
 }
 
@@ -155,7 +155,7 @@ eval "cg_default_interface_gen_dc { \
     sync_rst true \
     corename dc_priorityIn_V \
     op interface \
-    ports { priorityIn_V { I 4 vector } } \
+    ports { priorityIn_V { I 8 vector } } \
 } "
 }
 

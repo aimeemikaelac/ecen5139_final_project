@@ -61,8 +61,8 @@ input aresetn ;
 
 input aclk ;
 
-output [4 - 1:0] priorityOut_V ;
-input [4 - 1:0] priorityIn_V ;
+output [8 - 1:0] priorityOut_V ;
+input [8 - 1:0] priorityIn_V ;
 output [2 - 1:0] cmdOut_V ;
 input empty ;
 input full ;
