@@ -39817,7 +39817,7 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_cmdOut
 };
 };
 # 35 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
-bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
+int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
   volatile bool *empty, volatile bool *full, volatile bool *fullOut,
   int iterations, bool *finished, int *currentIteration){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
 //#pragma HLS RESOURCE variable=currentIteration core=AXI4LiteS
@@ -39851,7 +39851,7 @@ _ssdm_op_SpecWire(0, "ap_ctrl_hs", 0, 0, 0, 0, "", "", "");
 _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
 
  int i, j, last =0;
- bool result = true;
+ int result = 0;
  volatile bool localFull, localEmpty;
  P1:{_ssdm_RegionBegin("P1");
 _ssdm_op_SpecProtocol(1, "");
@@ -39890,7 +39890,7 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
    while(localEmpty == false){
     _ssdm_op_Wait(1);
     if((uint_4)*priorityIn != i){
-     result = false;
+     result++;
     }
  //			*cmdOut = 0;
     i++;

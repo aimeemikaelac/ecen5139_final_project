@@ -6,7 +6,7 @@ set pipeline_type none
 set FunctionProtocol ap_ctrl_hs
 set isOneStateSeq 0
 set C_modelName runQueue
-set C_modelType { int 1 }
+set C_modelType { int 32 }
 set C_modelArgList { 
 	{ priorityOut_V int 4 regular {pointer 1 volatile }  }
 	{ priorityIn_V int 4 regular {pointer 0 volatile }  }
@@ -28,7 +28,7 @@ set C_modelArgMapList {[
  	{ "Name" : "iterations", "interface" : "wire", "bitwidth" : 32,"bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "iterations","cData": "int","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "finished", "interface" : "wire", "bitwidth" : 1,"bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "finished","cData": "bool","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "Name" : "currentIteration", "interface" : "wire", "bitwidth" : 32,"bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "currentIteration","cData": "int","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
- 	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 1,"bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "return","cData": "bool","cArray": [{"low" : 0,"up" : 1,"step" : 0}]}]}]} ]}
+ 	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 32,"bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "return","cData": "int","cArray": [{"low" : 0,"up" : 1,"step" : 0}]}]}]} ]}
 # RTL Port declarations: 
 set portNum 18
 set portList { 
@@ -49,7 +49,7 @@ set portList {
 	{ finished sc_out sc_logic 1 signal 7 } 
 	{ finished_ap_vld sc_out sc_logic 1 outvld 7 } 
 	{ currentIteration sc_out sc_lv 32 signal 8 } 
-	{ ap_return sc_out sc_lv 1 signal -1 } 
+	{ ap_return sc_out sc_lv 32 signal -1 } 
 }
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
@@ -69,7 +69,7 @@ set NewPortList {[
  	{ "name": "finished", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "finished", "role": "default" }} , 
  	{ "name": "finished_ap_vld", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "outvld", "bundle":{"name": "finished", "role": "ap_vld" }} , 
  	{ "name": "currentIteration", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "currentIteration", "role": "default" }} , 
- 	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
+ 	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 set Spec2ImplPortList { 
 	priorityOut_V { ap_none {  { priorityOut_V out_data 1 4 } } }
 	priorityIn_V { ap_none {  { priorityIn_V in_data 0 4 } } }

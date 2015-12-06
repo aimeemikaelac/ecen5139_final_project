@@ -15,7 +15,7 @@ target triple = "x86_64-unknown-linux-gnu"
 @str = internal constant [9 x i8] c"runQueue\00"  ; [#uses=1 type=[9 x i8]*]
 
 ; [#uses=0]
-define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration) {
+define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration) {
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut_V), !map !14
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityIn_V), !map !18
   call void (...)* @_ssdm_op_SpecBitsMap(i2* %cmdOut_V), !map !22
@@ -25,7 +25,7 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void (...)* @_ssdm_op_SpecBitsMap(i32 %iterations), !map !38
   call void (...)* @_ssdm_op_SpecBitsMap(i1* %finished), !map !44
   call void (...)* @_ssdm_op_SpecBitsMap(i32* %currentIteration), !map !48
-  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !52
+  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !52
   call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
   %iterations_read = call i32 @_ssdm_op_Read.ap_vld.i32(i32 %iterations) ; [#uses=2 type=i32]
   call void @llvm.dbg.value(metadata !{i32 %iterations_read}, i64 0, metadata !58), !dbg !700 ; [debug line = 37:7] [debug variable = iterations]
@@ -42,9 +42,9 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void @llvm.dbg.value(metadata !{i32 %iterations_read}, i64 0, metadata !58), !dbg !700 ; [debug line = 37:7] [debug variable = iterations]
   %localFull = alloca i1, align 1                 ; [#uses=5 type=i1*]
   %localEmpty = alloca i1, align 1                ; [#uses=4 type=i1*]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !701), !dbg !710 ; [debug line = 35:32] [debug variable = priorityOut.V]
-  call void @llvm.dbg.value(metadata !{i4* %priorityIn_V}, i64 0, metadata !711), !dbg !713 ; [debug line = 35:62] [debug variable = priorityIn.V]
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !714), !dbg !723 ; [debug line = 35:88] [debug variable = cmdOut.V]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !701), !dbg !710 ; [debug line = 35:31] [debug variable = priorityOut.V]
+  call void @llvm.dbg.value(metadata !{i4* %priorityIn_V}, i64 0, metadata !711), !dbg !713 ; [debug line = 35:61] [debug variable = priorityIn.V]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !714), !dbg !723 ; [debug line = 35:87] [debug variable = cmdOut.V]
   call void @llvm.dbg.value(metadata !{i1* %empty}, i64 0, metadata !724), !dbg !725 ; [debug line = 36:18] [debug variable = empty]
   call void @llvm.dbg.value(metadata !{i1* %full}, i64 0, metadata !726), !dbg !727 ; [debug line = 36:40] [debug variable = full]
   call void @llvm.dbg.value(metadata !{i1* %fullOut}, i64 0, metadata !728), !dbg !729 ; [debug line = 36:61] [debug variable = fullOut]
@@ -82,17 +82,17 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !780), !dbg !784 ; [debug line = 217:49@74:2] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !786 ; [debug line = 218:10@74:2]
   %tmp = icmp sgt i32 %iterations_read, 0, !dbg !788 ; [#uses=1 type=i1] [debug line = 75:7]
-  br i1 %tmp, label %1, label %.loopexit38, !dbg !788 ; [debug line = 75:7]
+  br i1 %tmp, label %1, label %.loopexit39, !dbg !788 ; [debug line = 75:7]
 
 ; <label>:1                                       ; preds = %0
-  %result_reg2mem_0 = alloca i1, align 1          ; [#uses=5 type=i1*]
+  %result_reg2mem_0 = alloca i32, align 4         ; [#uses=5 type=i32*]
   call void @_ssdm_op_Write.ap_none.i32P(i32* %currentIteration, i32 0), !dbg !790 ; [debug line = 76:4]
   call void (...)* @_ssdm_op_SpecIFCore(i32* %currentIteration, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !792 ; [debug line = 77:1]
   %full_read = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full), !dbg !793 ; [#uses=1 type=i1] [debug line = 81:4]
   store volatile i1 %full_read, i1* %localFull, align 1, !dbg !793 ; [debug line = 81:4]
   call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !780), !dbg !794 ; [debug line = 217:49@82:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !796 ; [debug line = 218:10@82:4]
-  store i1 true, i1* %result_reg2mem_0, align 1
+  store i32 0, i32* %result_reg2mem_0, align 4
   br label %3
 
 ; <label>:2                                       ; preds = %4
@@ -111,11 +111,11 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !800 ; [debug line = 218:10@84:4]
   call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !801), !dbg !802 ; [debug line = 85:4] [debug variable = localFull]
   %localFull_load = load volatile i1* %localFull, align 1, !dbg !802 ; [#uses=1 type=i1] [debug line = 85:4]
-  br i1 %localFull_load, label %.loopexit37, label %.preheader36, !dbg !802 ; [debug line = 85:4]
+  br i1 %localFull_load, label %.loopexit38, label %.preheader37, !dbg !802 ; [debug line = 85:4]
 
-.preheader36:                                     ; preds = %.preheader36, %3
-  %val_assign_reg2mem = phi i32 [ %i_reg2mem, %.preheader36 ], [ 0, %3 ] ; [#uses=1 type=i32]
-  %i_reg2mem = phi i32 [ %i, %.preheader36 ], [ 1, %3 ] ; [#uses=2 type=i32]
+.preheader37:                                     ; preds = %.preheader37, %3
+  %val_assign_reg2mem = phi i32 [ %i_reg2mem, %.preheader37 ], [ 0, %3 ] ; [#uses=1 type=i32]
+  %i_reg2mem = phi i32 [ %i, %.preheader37 ], [ 1, %3 ] ; [#uses=2 type=i32]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !803 ; [debug line = 86:5]
   %tmp_1 = trunc i32 %val_assign_reg2mem to i4, !dbg !805 ; [#uses=1 type=i4] [debug line = 204:62@204:77@87:5]
   call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !811), !dbg !815 ; [debug line = 217:49@87:5] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
@@ -129,9 +129,9 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !801), !dbg !802 ; [debug line = 85:4] [debug variable = localFull]
   %localFull_load_1 = load volatile i1* %localFull, align 1, !dbg !802 ; [#uses=1 type=i1] [debug line = 85:4]
   %i = add nsw i32 %i_reg2mem, 1, !dbg !821       ; [#uses=1 type=i32] [debug line = 90:5]
-  br i1 %localFull_load_1, label %.loopexit37, label %.preheader36, !dbg !802 ; [debug line = 85:4]
+  br i1 %localFull_load_1, label %.loopexit38, label %.preheader37, !dbg !802 ; [debug line = 85:4]
 
-.loopexit37:                                      ; preds = %.preheader36, %3
+.loopexit38:                                      ; preds = %.preheader37, %3
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !822 ; [debug line = 93:4]
   call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !780), !dbg !823 ; [debug line = 217:49@94:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !825 ; [debug line = 218:10@94:4]
@@ -146,47 +146,49 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   br i1 %localEmpty_load, label %4, label %.preheader, !dbg !832 ; [debug line = 99:4]
 
 .pre:                                             ; preds = %.preheader
-  store i1 %result_1_s, i1* %result_reg2mem_0, align 1
+  store i32 %result_1_s, i32* %result_reg2mem_0, align 4
   br label %.preheader
 
-.preheader:                                       ; preds = %.pre, %.loopexit37
-  %op2_assign_reg2mem = phi i32 [ %i_1_reg2mem, %.pre ], [ 0, %.loopexit37 ] ; [#uses=1 type=i32]
-  %i_1_reg2mem = phi i32 [ %i_s, %.pre ], [ 1, %.loopexit37 ] ; [#uses=2 type=i32]
-  %result_reg2mem_0_load_1 = load i1* %result_reg2mem_0, align 1, !dbg !833 ; [#uses=1 type=i1] [debug line = 101:8]
+.preheader:                                       ; preds = %.pre, %.loopexit38
+  %op2_assign_reg2mem = phi i32 [ %i_1_reg2mem, %.pre ], [ 0, %.loopexit38 ] ; [#uses=1 type=i32]
+  %i_1_reg2mem = phi i32 [ %i_s, %.pre ], [ 1, %.loopexit38 ] ; [#uses=2 type=i32]
+  %result_reg2mem_0_load_1 = load i32* %result_reg2mem_0, align 4, !dbg !833 ; [#uses=2 type=i32] [debug line = 101:8]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !835 ; [debug line = 100:5]
   call void @llvm.dbg.value(metadata !{i4* %priorityIn_V}, i64 0, metadata !836), !dbg !840 ; [debug line = 145:83@101:8] [debug variable = op.V]
   call void @llvm.dbg.value(metadata !{i4* %priorityIn_V}, i64 0, metadata !841), !dbg !844 ; [debug line = 145:83@145:105@101:8] [debug variable = op.V]
   %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V), !dbg !846 ; [#uses=1 type=i4] [debug line = 145:89@145:105@101:8]
   %tmp_4 = zext i4 %priorityIn_V_read to i32, !dbg !848 ; [#uses=1 type=i32] [debug line = 1874:9@3359:0@101:8]
   %tmp_5 = icmp eq i32 %tmp_4, %op2_assign_reg2mem, !dbg !848 ; [#uses=1 type=i1] [debug line = 1874:9@3359:0@101:8]
-  %result_1_s = and i1 %tmp_5, %result_reg2mem_0_load_1, !dbg !833 ; [#uses=2 type=i1] [debug line = 101:8]
-  %localEmpty_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty), !dbg !1307 ; [#uses=1 type=i1] [debug line = 106:5]
-  call void @llvm.dbg.value(metadata !{i1 %localEmpty_2}, i64 0, metadata !827), !dbg !1307 ; [debug line = 106:5] [debug variable = localEmpty]
-  store volatile i1 %localEmpty_2, i1* %localEmpty, align 1, !dbg !1307 ; [debug line = 106:5]
+  %result = add nsw i32 %result_reg2mem_0_load_1, 1, !dbg !1307 ; [#uses=1 type=i32] [debug line = 102:6]
+  call void @llvm.dbg.value(metadata !{i32 %result}, i64 0, metadata !1309), !dbg !1307 ; [debug line = 102:6] [debug variable = result]
+  %result_1_s = select i1 %tmp_5, i32 %result_reg2mem_0_load_1, i32 %result, !dbg !833 ; [#uses=2 type=i32] [debug line = 101:8]
+  %localEmpty_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty), !dbg !1310 ; [#uses=1 type=i1] [debug line = 106:5]
+  call void @llvm.dbg.value(metadata !{i1 %localEmpty_2}, i64 0, metadata !827), !dbg !1310 ; [debug line = 106:5] [debug variable = localEmpty]
+  store volatile i1 %localEmpty_2, i1* %localEmpty, align 1, !dbg !1310 ; [debug line = 106:5]
   call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !827), !dbg !832 ; [debug line = 99:4] [debug variable = localEmpty]
   %localEmpty_load_1 = load volatile i1* %localEmpty, align 1, !dbg !832 ; [#uses=1 type=i1] [debug line = 99:4]
-  %i_s = add nsw i32 %i_1_reg2mem, 1, !dbg !1308  ; [#uses=1 type=i32] [debug line = 105:5]
+  %i_s = add nsw i32 %i_1_reg2mem, 1, !dbg !1311  ; [#uses=1 type=i32] [debug line = 105:5]
   br i1 %localEmpty_load_1, label %.loopexit, label %.pre, !dbg !832 ; [debug line = 99:4]
 
 .loopexit:                                        ; preds = %.preheader
-  store i1 %result_1_s, i1* %result_reg2mem_0, align 1
+  store i32 %result_1_s, i32* %result_reg2mem_0, align 4
   br label %4
 
-; <label>:4                                       ; preds = %.loopexit, %.loopexit37
-  %result_reg2mem_0_load = load i1* %result_reg2mem_0, align 1 ; [#uses=1 type=i1]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1309 ; [debug line = 108:4]
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !780), !dbg !1310 ; [debug line = 217:49@109:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1312 ; [debug line = 218:10@109:4]
+; <label>:4                                       ; preds = %.loopexit, %.loopexit38
+  %result_reg2mem_0_load = load i32* %result_reg2mem_0, align 4 ; [#uses=1 type=i32]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1312 ; [debug line = 108:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !780), !dbg !1313 ; [debug line = 217:49@109:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1315 ; [debug line = 218:10@109:4]
   %tmp6 = icmp slt i32 %j_1_reg2mem, %iterations_read, !dbg !788 ; [#uses=1 type=i1] [debug line = 75:7]
-  %j_s = add nsw i32 %j_1_reg2mem, 1, !dbg !1313  ; [#uses=1 type=i32] [debug line = 75:26]
-  br i1 %tmp6, label %2, label %.loopexit38, !dbg !788 ; [debug line = 75:7]
+  %j_s = add nsw i32 %j_1_reg2mem, 1, !dbg !1316  ; [#uses=1 type=i32] [debug line = 75:26]
+  br i1 %tmp6, label %2, label %.loopexit39, !dbg !788 ; [debug line = 75:7]
 
-.loopexit38:                                      ; preds = %4, %0
-  %result_reg2mem_1 = phi i1 [ true, %0 ], [ %result_reg2mem_0_load, %4 ] ; [#uses=1 type=i1]
-  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str6, i32 %tmp_2), !dbg !1314 ; [#uses=0 type=i32] [debug line = 138:2]
-  call void @_ssdm_op_Write.ap_ovld.i1P(i1* %finished, i1 true), !dbg !1315 ; [debug line = 139:2]
-  call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1316 ; [debug line = 140:1]
-  ret i1 %result_reg2mem_1, !dbg !1317            ; [debug line = 141:2]
+.loopexit39:                                      ; preds = %4, %0
+  %result_reg2mem_1 = phi i32 [ 0, %0 ], [ %result_reg2mem_0_load, %4 ] ; [#uses=1 type=i32]
+  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str6, i32 %tmp_2), !dbg !1317 ; [#uses=0 type=i32] [debug line = 138:2]
+  call void @_ssdm_op_Write.ap_ovld.i1P(i1* %finished, i1 true), !dbg !1318 ; [debug line = 139:2]
+  call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1319 ; [debug line = 140:1]
+  ret i32 %result_reg2mem_1, !dbg !1320           ; [debug line = 141:2]
 }
 
 ; [#uses=10]
@@ -207,7 +209,7 @@ entry:
   ret void
 }
 
-; [#uses=52]
+; [#uses=53]
 declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
 ; [#uses=1]
@@ -356,17 +358,17 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !50 = metadata !{metadata !51}
 !51 = metadata !{metadata !"currentIteration", metadata !12, metadata !"int"}
 !52 = metadata !{metadata !53}
-!53 = metadata !{i32 0, i32 0, metadata !54}
+!53 = metadata !{i32 0, i32 31, metadata !54}
 !54 = metadata !{metadata !55}
-!55 = metadata !{metadata !"return", metadata !56, metadata !"bool"}
+!55 = metadata !{metadata !"return", metadata !56, metadata !"int"}
 !56 = metadata !{metadata !57}
 !57 = metadata !{i32 0, i32 1, i32 0}
-!58 = metadata !{i32 786689, metadata !59, metadata !"iterations", metadata !60, i32 117440549, metadata !88, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
+!58 = metadata !{i32 786689, metadata !59, metadata !"iterations", metadata !60, i32 117440549, metadata !63, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !59 = metadata !{i32 786478, i32 0, metadata !60, metadata !"runQueue", metadata !"runQueue", metadata !"_Z8runQueuePV7ap_uintILi4EES2_PVS_ILi2EEPVbS7_S7_iPbPi", metadata !60, i32 35, metadata !61, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !84, i32 37} ; [ DW_TAG_subprogram ]
 !60 = metadata !{i32 786473, metadata !"CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp", metadata !"/home/michael/ecen5139_final_project", null} ; [ DW_TAG_file_type ]
 !61 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !62, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!62 = metadata !{metadata !63, metadata !64, metadata !64, metadata !386, metadata !696, metadata !696, metadata !696, metadata !88, metadata !698, metadata !699}
-!63 = metadata !{i32 786468, null, metadata !"bool", null, i32 0, i64 8, i64 8, i64 0, i32 0, i32 2} ; [ DW_TAG_base_type ]
+!62 = metadata !{metadata !63, metadata !64, metadata !64, metadata !386, metadata !696, metadata !696, metadata !696, metadata !63, metadata !698, metadata !699}
+!63 = metadata !{i32 786468, null, metadata !"int", null, i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ]
 !64 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !65} ; [ DW_TAG_pointer_type ]
 !65 = metadata !{i32 786485, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !66} ; [ DW_TAG_volatile_type ]
 !66 = metadata !{i32 786454, null, metadata !"uint_4", metadata !60, i32 19, i64 0, i64 0, i64 0, i32 0, metadata !67} ; [ DW_TAG_typedef ]
@@ -389,10 +391,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !83 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !75} ; [ DW_TAG_pointer_type ]
 !84 = metadata !{metadata !85}
 !85 = metadata !{i32 786468}                      ; [ DW_TAG_base_type ]
-!86 = metadata !{metadata !87, metadata !89}
-!87 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !88, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
-!88 = metadata !{i32 786468, null, metadata !"int", null, i32 0, i64 32, i64 32, i64 0, i32 0, i32 5} ; [ DW_TAG_base_type ]
-!89 = metadata !{i32 786480, null, metadata !"_AP_S", metadata !63, i64 0, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!86 = metadata !{metadata !87, metadata !88}
+!87 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !63, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!88 = metadata !{i32 786480, null, metadata !"_AP_S", metadata !89, i64 0, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!89 = metadata !{i32 786468, null, metadata !"bool", null, i32 0, i64 8, i64 8, i64 0, i32 0, i32 2} ; [ DW_TAG_base_type ]
 !90 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1340, metadata !91, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1340} ; [ DW_TAG_subprogram ]
 !91 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !92, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !92 = metadata !{null, metadata !93}
@@ -402,12 +404,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !96 = metadata !{null, metadata !93, metadata !97}
 !97 = metadata !{i32 786448, null, null, null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !71} ; [ DW_TAG_reference_type ]
 !98 = metadata !{metadata !99, metadata !100}
-!99 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !88, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
-!100 = metadata !{i32 786480, null, metadata !"_AP_S2", metadata !63, i64 0, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!99 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !63, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!100 = metadata !{i32 786480, null, metadata !"_AP_S2", metadata !89, i64 0, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !101 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base<4, false>", metadata !"ap_int_base<4, false>", metadata !"", metadata !72, i32 1355, metadata !95, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, metadata !98, i32 0, metadata !84, i32 1355} ; [ DW_TAG_subprogram ]
 !102 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1362, metadata !103, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1362} ; [ DW_TAG_subprogram ]
 !103 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !104, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!104 = metadata !{null, metadata !93, metadata !63}
+!104 = metadata !{null, metadata !93, metadata !89}
 !105 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1363, metadata !106, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1363} ; [ DW_TAG_subprogram ]
 !106 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !107, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !107 = metadata !{null, metadata !93, metadata !108}
@@ -426,7 +428,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !120 = metadata !{i32 786468, null, metadata !"unsigned short", null, i32 0, i64 16, i64 16, i64 0, i32 0, i32 7} ; [ DW_TAG_base_type ]
 !121 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1367, metadata !122, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1367} ; [ DW_TAG_subprogram ]
 !122 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !123, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!123 = metadata !{null, metadata !93, metadata !88}
+!123 = metadata !{null, metadata !93, metadata !63}
 !124 = metadata !{i32 786478, i32 0, metadata !71, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1368, metadata !125, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1368} ; [ DW_TAG_subprogram ]
 !125 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !126, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !126 = metadata !{null, metadata !93, metadata !127}
@@ -499,15 +501,15 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !193 = metadata !{i32 786454, metadata !194, metadata !"Type", metadata !72, i32 1292, i64 0, i64 0, i64 0, i32 0, metadata !144} ; [ DW_TAG_typedef ]
 !194 = metadata !{i32 786434, null, metadata !"retval<false>", metadata !72, i32 1291, i64 8, i64 8, i32 0, i32 0, null, metadata !195, i32 0, null, metadata !196} ; [ DW_TAG_class_type ]
 !195 = metadata !{i32 0}
-!196 = metadata !{metadata !89}
+!196 = metadata !{metadata !88}
 !197 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !198} ; [ DW_TAG_pointer_type ]
 !198 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !71} ; [ DW_TAG_const_type ]
 !199 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE7to_boolEv", metadata !72, i32 1557, metadata !200, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1557} ; [ DW_TAG_subprogram ]
 !200 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !201, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!201 = metadata !{metadata !63, metadata !197}
+!201 = metadata !{metadata !89, metadata !197}
 !202 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_int", metadata !"to_int", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE6to_intEv", metadata !72, i32 1558, metadata !203, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1558} ; [ DW_TAG_subprogram ]
 !203 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !204, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!204 = metadata !{metadata !88, metadata !197}
+!204 = metadata !{metadata !63, metadata !197}
 !205 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_uint", metadata !"to_uint", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE7to_uintEv", metadata !72, i32 1559, metadata !206, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1559} ; [ DW_TAG_subprogram ]
 !206 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !207, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !207 = metadata !{metadata !127, metadata !197}
@@ -529,7 +531,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !223 = metadata !{i32 786478, i32 0, metadata !71, metadata !"length", metadata !"length", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE6lengthEv", metadata !72, i32 1577, metadata !203, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1577} ; [ DW_TAG_subprogram ]
 !224 = metadata !{i32 786478, i32 0, metadata !71, metadata !"length", metadata !"length", metadata !"_ZNVK11ap_int_baseILi4ELb0ELb1EE6lengthEv", metadata !72, i32 1578, metadata !225, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1578} ; [ DW_TAG_subprogram ]
 !225 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !226, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!226 = metadata !{metadata !88, metadata !227}
+!226 = metadata !{metadata !63, metadata !227}
 !227 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !228} ; [ DW_TAG_pointer_type ]
 !228 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !167} ; [ DW_TAG_const_type ]
 !229 = metadata !{i32 786478, i32 0, metadata !71, metadata !"reverse", metadata !"reverse", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE7reverseEv", metadata !72, i32 1583, metadata !230, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1583} ; [ DW_TAG_subprogram ]
@@ -542,11 +544,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !236 = metadata !{i32 786478, i32 0, metadata !71, metadata !"invert", metadata !"invert", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE6invertEi", metadata !72, i32 1613, metadata !122, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1613} ; [ DW_TAG_subprogram ]
 !237 = metadata !{i32 786478, i32 0, metadata !71, metadata !"test", metadata !"test", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE4testEi", metadata !72, i32 1621, metadata !238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1621} ; [ DW_TAG_subprogram ]
 !238 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !239, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!239 = metadata !{metadata !63, metadata !197, metadata !88}
+!239 = metadata !{metadata !89, metadata !197, metadata !63}
 !240 = metadata !{i32 786478, i32 0, metadata !71, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE3setEi", metadata !72, i32 1627, metadata !122, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1627} ; [ DW_TAG_subprogram ]
 !241 = metadata !{i32 786478, i32 0, metadata !71, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE3setEib", metadata !72, i32 1633, metadata !242, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1633} ; [ DW_TAG_subprogram ]
 !242 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !243, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!243 = metadata !{null, metadata !93, metadata !88, metadata !63}
+!243 = metadata !{null, metadata !93, metadata !63, metadata !89}
 !244 = metadata !{i32 786478, i32 0, metadata !71, metadata !"lrotate", metadata !"lrotate", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE7lrotateEi", metadata !72, i32 1640, metadata !122, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1640} ; [ DW_TAG_subprogram ]
 !245 = metadata !{i32 786478, i32 0, metadata !71, metadata !"rrotate", metadata !"rrotate", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE7rrotateEi", metadata !72, i32 1649, metadata !122, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1649} ; [ DW_TAG_subprogram ]
 !246 = metadata !{i32 786478, i32 0, metadata !71, metadata !"set_bit", metadata !"set_bit", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE7set_bitEib", metadata !72, i32 1657, metadata !242, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1657} ; [ DW_TAG_subprogram ]
@@ -554,12 +556,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !248 = metadata !{i32 786478, i32 0, metadata !71, metadata !"b_not", metadata !"b_not", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE5b_notEv", metadata !72, i32 1667, metadata !91, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1667} ; [ DW_TAG_subprogram ]
 !249 = metadata !{i32 786478, i32 0, metadata !71, metadata !"countLeadingZeros", metadata !"countLeadingZeros", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE17countLeadingZerosEv", metadata !72, i32 1674, metadata !250, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1674} ; [ DW_TAG_subprogram ]
 !250 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !251, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!251 = metadata !{metadata !88, metadata !93}
+!251 = metadata !{metadata !63, metadata !93}
 !252 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEppEv", metadata !72, i32 1731, metadata !230, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1731} ; [ DW_TAG_subprogram ]
 !253 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEmmEv", metadata !72, i32 1735, metadata !230, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1735} ; [ DW_TAG_subprogram ]
 !254 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEppEi", metadata !72, i32 1743, metadata !255, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1743} ; [ DW_TAG_subprogram ]
 !255 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !256, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!256 = metadata !{metadata !198, metadata !93, metadata !88}
+!256 = metadata !{metadata !198, metadata !93, metadata !63}
 !257 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEmmEi", metadata !72, i32 1748, metadata !255, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1748} ; [ DW_TAG_subprogram ]
 !258 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator+", metadata !"operator+", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EEpsEv", metadata !72, i32 1757, metadata !259, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1757} ; [ DW_TAG_subprogram ]
 !259 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !260, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
@@ -571,23 +573,23 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !265 = metadata !{i32 786434, null, metadata !"ap_int_base<5, true, true>", metadata !72, i32 605, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !266 = metadata !{i32 786478, i32 0, metadata !71, metadata !"range", metadata !"range", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE5rangeEii", metadata !72, i32 1898, metadata !267, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1898} ; [ DW_TAG_subprogram ]
 !267 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !268, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!268 = metadata !{metadata !269, metadata !93, metadata !88, metadata !88}
+!268 = metadata !{metadata !269, metadata !93, metadata !63, metadata !63}
 !269 = metadata !{i32 786434, null, metadata !"ap_range_ref<4, false>", metadata !72, i32 878, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !270 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator()", metadata !"operator()", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEclEii", metadata !72, i32 1904, metadata !267, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1904} ; [ DW_TAG_subprogram ]
 !271 = metadata !{i32 786478, i32 0, metadata !71, metadata !"range", metadata !"range", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE5rangeEii", metadata !72, i32 1910, metadata !272, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1910} ; [ DW_TAG_subprogram ]
 !272 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !273, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!273 = metadata !{metadata !269, metadata !197, metadata !88, metadata !88}
+!273 = metadata !{metadata !269, metadata !197, metadata !63, metadata !63}
 !274 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator()", metadata !"operator()", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EEclEii", metadata !72, i32 1916, metadata !272, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1916} ; [ DW_TAG_subprogram ]
 !275 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator[]", metadata !"operator[]", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EEixEi", metadata !72, i32 1935, metadata !276, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1935} ; [ DW_TAG_subprogram ]
 !276 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !277, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!277 = metadata !{metadata !278, metadata !93, metadata !88}
+!277 = metadata !{metadata !278, metadata !93, metadata !63}
 !278 = metadata !{i32 786434, null, metadata !"ap_bit_ref<4, false>", metadata !72, i32 1124, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !279 = metadata !{i32 786478, i32 0, metadata !71, metadata !"operator[]", metadata !"operator[]", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EEixEi", metadata !72, i32 1949, metadata !238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1949} ; [ DW_TAG_subprogram ]
 !280 = metadata !{i32 786478, i32 0, metadata !71, metadata !"bit", metadata !"bit", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE3bitEi", metadata !72, i32 1963, metadata !276, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1963} ; [ DW_TAG_subprogram ]
 !281 = metadata !{i32 786478, i32 0, metadata !71, metadata !"bit", metadata !"bit", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE3bitEi", metadata !72, i32 1977, metadata !238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1977} ; [ DW_TAG_subprogram ]
 !282 = metadata !{i32 786478, i32 0, metadata !71, metadata !"and_reduce", metadata !"and_reduce", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE10and_reduceEv", metadata !72, i32 2157, metadata !283, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2157} ; [ DW_TAG_subprogram ]
 !283 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !284, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!284 = metadata !{metadata !63, metadata !93}
+!284 = metadata !{metadata !89, metadata !93}
 !285 = metadata !{i32 786478, i32 0, metadata !71, metadata !"nand_reduce", metadata !"nand_reduce", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE11nand_reduceEv", metadata !72, i32 2160, metadata !283, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2160} ; [ DW_TAG_subprogram ]
 !286 = metadata !{i32 786478, i32 0, metadata !71, metadata !"or_reduce", metadata !"or_reduce", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE9or_reduceEv", metadata !72, i32 2163, metadata !283, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2163} ; [ DW_TAG_subprogram ]
 !287 = metadata !{i32 786478, i32 0, metadata !71, metadata !"nor_reduce", metadata !"nor_reduce", metadata !"_ZN11ap_int_baseILi4ELb0ELb1EE10nor_reduceEv", metadata !72, i32 2166, metadata !283, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2166} ; [ DW_TAG_subprogram ]
@@ -601,7 +603,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !295 = metadata !{i32 786478, i32 0, metadata !71, metadata !"xnor_reduce", metadata !"xnor_reduce", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE11xnor_reduceEv", metadata !72, i32 2191, metadata !200, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2191} ; [ DW_TAG_subprogram ]
 !296 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE9to_stringEPci8BaseModeb", metadata !72, i32 2198, metadata !297, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2198} ; [ DW_TAG_subprogram ]
 !297 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !298, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!298 = metadata !{null, metadata !197, metadata !299, metadata !88, metadata !300, metadata !63}
+!298 = metadata !{null, metadata !197, metadata !299, metadata !63, metadata !300, metadata !89}
 !299 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !159} ; [ DW_TAG_pointer_type ]
 !300 = metadata !{i32 786436, null, metadata !"BaseMode", metadata !72, i32 557, i64 5, i64 8, i32 0, i32 0, null, metadata !301, i32 0, i32 0} ; [ DW_TAG_enumeration_type ]
 !301 = metadata !{metadata !302, metadata !303, metadata !304, metadata !305}
@@ -611,12 +613,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !305 = metadata !{i32 786472, metadata !"SC_HEX", i64 16} ; [ DW_TAG_enumerator ]
 !306 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE9to_stringE8BaseModeb", metadata !72, i32 2225, metadata !307, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2225} ; [ DW_TAG_subprogram ]
 !307 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !308, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!308 = metadata !{metadata !299, metadata !197, metadata !300, metadata !63}
+!308 = metadata !{metadata !299, metadata !197, metadata !300, metadata !89}
 !309 = metadata !{i32 786478, i32 0, metadata !71, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EE9to_stringEab", metadata !72, i32 2229, metadata !310, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2229} ; [ DW_TAG_subprogram ]
 !310 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !311, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!311 = metadata !{metadata !299, metadata !197, metadata !108, metadata !63}
-!312 = metadata !{metadata !313, metadata !89}
-!313 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !88, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!311 = metadata !{metadata !299, metadata !197, metadata !108, metadata !89}
+!312 = metadata !{metadata !313, metadata !88}
+!313 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !63, i64 4, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !314 = metadata !{i32 786478, i32 0, metadata !67, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 137, metadata !315, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 137} ; [ DW_TAG_subprogram ]
 !315 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !316, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !316 = metadata !{null, metadata !317}
@@ -632,7 +634,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !326 = metadata !{null, metadata !317, metadata !97}
 !327 = metadata !{i32 786478, i32 0, metadata !67, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 199, metadata !328, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 199} ; [ DW_TAG_subprogram ]
 !328 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !329, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!329 = metadata !{null, metadata !317, metadata !63}
+!329 = metadata !{null, metadata !317, metadata !89}
 !330 = metadata !{i32 786478, i32 0, metadata !67, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 200, metadata !331, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 200} ; [ DW_TAG_subprogram ]
 !331 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !332, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !332 = metadata !{null, metadata !317, metadata !108}
@@ -647,7 +649,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !341 = metadata !{null, metadata !317, metadata !120}
 !342 = metadata !{i32 786478, i32 0, metadata !67, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 204, metadata !343, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 204} ; [ DW_TAG_subprogram ]
 !343 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !344, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!344 = metadata !{null, metadata !317, metadata !88}
+!344 = metadata !{null, metadata !317, metadata !63}
 !345 = metadata !{i32 786478, i32 0, metadata !67, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 205, metadata !346, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 205} ; [ DW_TAG_subprogram ]
 !346 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !347, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !347 = metadata !{null, metadata !317, metadata !127}
@@ -706,8 +708,8 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !400 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !401, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !401 = metadata !{null, metadata !402}
 !402 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !395} ; [ DW_TAG_pointer_type ]
-!403 = metadata !{metadata !404, metadata !89}
-!404 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !88, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!403 = metadata !{metadata !404, metadata !88}
+!404 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !63, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !405 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1340, metadata !406, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1340} ; [ DW_TAG_subprogram ]
 !406 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !407, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !407 = metadata !{null, metadata !408}
@@ -717,11 +719,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !411 = metadata !{null, metadata !408, metadata !412}
 !412 = metadata !{i32 786448, null, null, null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !392} ; [ DW_TAG_reference_type ]
 !413 = metadata !{metadata !414, metadata !100}
-!414 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !88, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!414 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !63, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !415 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base<2, false>", metadata !"ap_int_base<2, false>", metadata !"", metadata !72, i32 1355, metadata !410, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, metadata !413, i32 0, metadata !84, i32 1355} ; [ DW_TAG_subprogram ]
 !416 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1362, metadata !417, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1362} ; [ DW_TAG_subprogram ]
 !417 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !418, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!418 = metadata !{null, metadata !408, metadata !63}
+!418 = metadata !{null, metadata !408, metadata !89}
 !419 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1363, metadata !420, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1363} ; [ DW_TAG_subprogram ]
 !420 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !421, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !421 = metadata !{null, metadata !408, metadata !108}
@@ -736,7 +738,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !430 = metadata !{null, metadata !408, metadata !120}
 !431 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1367, metadata !432, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1367} ; [ DW_TAG_subprogram ]
 !432 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !433, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!433 = metadata !{null, metadata !408, metadata !88}
+!433 = metadata !{null, metadata !408, metadata !63}
 !434 = metadata !{i32 786478, i32 0, metadata !392, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1368, metadata !435, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1368} ; [ DW_TAG_subprogram ]
 !435 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !436, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !436 = metadata !{null, metadata !408, metadata !127}
@@ -798,10 +800,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !492 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !392} ; [ DW_TAG_const_type ]
 !493 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE7to_boolEv", metadata !72, i32 1557, metadata !494, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1557} ; [ DW_TAG_subprogram ]
 !494 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !495, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!495 = metadata !{metadata !63, metadata !491}
+!495 = metadata !{metadata !89, metadata !491}
 !496 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_int", metadata !"to_int", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE6to_intEv", metadata !72, i32 1558, metadata !497, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1558} ; [ DW_TAG_subprogram ]
 !497 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !498, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!498 = metadata !{metadata !88, metadata !491}
+!498 = metadata !{metadata !63, metadata !491}
 !499 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_uint", metadata !"to_uint", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE7to_uintEv", metadata !72, i32 1559, metadata !500, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1559} ; [ DW_TAG_subprogram ]
 !500 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !501, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !501 = metadata !{metadata !127, metadata !491}
@@ -823,7 +825,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !517 = metadata !{i32 786478, i32 0, metadata !392, metadata !"length", metadata !"length", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE6lengthEv", metadata !72, i32 1577, metadata !497, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1577} ; [ DW_TAG_subprogram ]
 !518 = metadata !{i32 786478, i32 0, metadata !392, metadata !"length", metadata !"length", metadata !"_ZNVK11ap_int_baseILi2ELb0ELb1EE6lengthEv", metadata !72, i32 1578, metadata !519, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1578} ; [ DW_TAG_subprogram ]
 !519 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !520, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!520 = metadata !{metadata !88, metadata !521}
+!520 = metadata !{metadata !63, metadata !521}
 !521 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !522} ; [ DW_TAG_pointer_type ]
 !522 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !465} ; [ DW_TAG_const_type ]
 !523 = metadata !{i32 786478, i32 0, metadata !392, metadata !"reverse", metadata !"reverse", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE7reverseEv", metadata !72, i32 1583, metadata !524, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1583} ; [ DW_TAG_subprogram ]
@@ -836,11 +838,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !530 = metadata !{i32 786478, i32 0, metadata !392, metadata !"invert", metadata !"invert", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE6invertEi", metadata !72, i32 1613, metadata !432, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1613} ; [ DW_TAG_subprogram ]
 !531 = metadata !{i32 786478, i32 0, metadata !392, metadata !"test", metadata !"test", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE4testEi", metadata !72, i32 1621, metadata !532, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1621} ; [ DW_TAG_subprogram ]
 !532 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !533, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!533 = metadata !{metadata !63, metadata !491, metadata !88}
+!533 = metadata !{metadata !89, metadata !491, metadata !63}
 !534 = metadata !{i32 786478, i32 0, metadata !392, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE3setEi", metadata !72, i32 1627, metadata !432, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1627} ; [ DW_TAG_subprogram ]
 !535 = metadata !{i32 786478, i32 0, metadata !392, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE3setEib", metadata !72, i32 1633, metadata !536, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1633} ; [ DW_TAG_subprogram ]
 !536 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !537, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!537 = metadata !{null, metadata !408, metadata !88, metadata !63}
+!537 = metadata !{null, metadata !408, metadata !63, metadata !89}
 !538 = metadata !{i32 786478, i32 0, metadata !392, metadata !"lrotate", metadata !"lrotate", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE7lrotateEi", metadata !72, i32 1640, metadata !432, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1640} ; [ DW_TAG_subprogram ]
 !539 = metadata !{i32 786478, i32 0, metadata !392, metadata !"rrotate", metadata !"rrotate", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE7rrotateEi", metadata !72, i32 1649, metadata !432, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1649} ; [ DW_TAG_subprogram ]
 !540 = metadata !{i32 786478, i32 0, metadata !392, metadata !"set_bit", metadata !"set_bit", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE7set_bitEib", metadata !72, i32 1657, metadata !536, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1657} ; [ DW_TAG_subprogram ]
@@ -848,12 +850,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !542 = metadata !{i32 786478, i32 0, metadata !392, metadata !"b_not", metadata !"b_not", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE5b_notEv", metadata !72, i32 1667, metadata !406, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1667} ; [ DW_TAG_subprogram ]
 !543 = metadata !{i32 786478, i32 0, metadata !392, metadata !"countLeadingZeros", metadata !"countLeadingZeros", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE17countLeadingZerosEv", metadata !72, i32 1674, metadata !544, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1674} ; [ DW_TAG_subprogram ]
 !544 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !545, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!545 = metadata !{metadata !88, metadata !408}
+!545 = metadata !{metadata !63, metadata !408}
 !546 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEppEv", metadata !72, i32 1731, metadata !524, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1731} ; [ DW_TAG_subprogram ]
 !547 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEmmEv", metadata !72, i32 1735, metadata !524, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1735} ; [ DW_TAG_subprogram ]
 !548 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEppEi", metadata !72, i32 1743, metadata !549, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1743} ; [ DW_TAG_subprogram ]
 !549 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !550, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!550 = metadata !{metadata !492, metadata !408, metadata !88}
+!550 = metadata !{metadata !492, metadata !408, metadata !63}
 !551 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEmmEi", metadata !72, i32 1748, metadata !549, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1748} ; [ DW_TAG_subprogram ]
 !552 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator+", metadata !"operator+", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EEpsEv", metadata !72, i32 1757, metadata !553, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1757} ; [ DW_TAG_subprogram ]
 !553 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !554, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
@@ -865,20 +867,20 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !559 = metadata !{i32 786434, null, metadata !"ap_int_base<3, true, true>", metadata !72, i32 605, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !560 = metadata !{i32 786478, i32 0, metadata !392, metadata !"range", metadata !"range", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE5rangeEii", metadata !72, i32 1898, metadata !561, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1898} ; [ DW_TAG_subprogram ]
 !561 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !562, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!562 = metadata !{metadata !563, metadata !408, metadata !88, metadata !88}
+!562 = metadata !{metadata !563, metadata !408, metadata !63, metadata !63}
 !563 = metadata !{i32 786434, null, metadata !"ap_range_ref<2, false>", metadata !72, i32 878, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !564 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator()", metadata !"operator()", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEclEii", metadata !72, i32 1904, metadata !561, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1904} ; [ DW_TAG_subprogram ]
 !565 = metadata !{i32 786478, i32 0, metadata !392, metadata !"range", metadata !"range", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE5rangeEii", metadata !72, i32 1910, metadata !566, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1910} ; [ DW_TAG_subprogram ]
 !566 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !567, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!567 = metadata !{metadata !563, metadata !491, metadata !88, metadata !88}
+!567 = metadata !{metadata !563, metadata !491, metadata !63, metadata !63}
 !568 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator()", metadata !"operator()", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EEclEii", metadata !72, i32 1916, metadata !566, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1916} ; [ DW_TAG_subprogram ]
 !569 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator[]", metadata !"operator[]", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EEixEi", metadata !72, i32 1935, metadata !570, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1935} ; [ DW_TAG_subprogram ]
 !570 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !571, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!571 = metadata !{metadata !572, metadata !408, metadata !88}
+!571 = metadata !{metadata !572, metadata !408, metadata !63}
 !572 = metadata !{i32 786434, null, metadata !"ap_bit_ref<2, false>", metadata !72, i32 1124, i64 128, i64 64, i32 0, i32 0, null, metadata !573, i32 0, null, metadata !605} ; [ DW_TAG_class_type ]
 !573 = metadata !{metadata !574, metadata !575, metadata !576, metadata !581, metadata !585, metadata !590, metadata !591, metadata !594, metadata !597, metadata !598, metadata !601, metadata !602}
 !574 = metadata !{i32 786445, metadata !572, metadata !"d_bv", metadata !72, i32 1125, i64 64, i64 64, i64 0, i32 0, metadata !412} ; [ DW_TAG_member ]
-!575 = metadata !{i32 786445, metadata !572, metadata !"d_index", metadata !72, i32 1126, i64 32, i64 32, i64 64, i32 0, metadata !88} ; [ DW_TAG_member ]
+!575 = metadata !{i32 786445, metadata !572, metadata !"d_index", metadata !72, i32 1126, i64 32, i64 32, i64 64, i32 0, metadata !63} ; [ DW_TAG_member ]
 !576 = metadata !{i32 786478, i32 0, metadata !572, metadata !"ap_bit_ref", metadata !"ap_bit_ref", metadata !"", metadata !72, i32 1129, metadata !577, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1129} ; [ DW_TAG_subprogram ]
 !577 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !578, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !578 = metadata !{null, metadata !579, metadata !580}
@@ -886,11 +888,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !580 = metadata !{i32 786448, null, null, null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !572} ; [ DW_TAG_reference_type ]
 !581 = metadata !{i32 786478, i32 0, metadata !572, metadata !"ap_bit_ref", metadata !"ap_bit_ref", metadata !"", metadata !72, i32 1132, metadata !582, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1132} ; [ DW_TAG_subprogram ]
 !582 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !583, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!583 = metadata !{null, metadata !579, metadata !584, metadata !88}
+!583 = metadata !{null, metadata !579, metadata !584, metadata !63}
 !584 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !392} ; [ DW_TAG_pointer_type ]
 !585 = metadata !{i32 786478, i32 0, metadata !572, metadata !"operator _Bool", metadata !"operator _Bool", metadata !"_ZNK10ap_bit_refILi2ELb0EEcvbEv", metadata !72, i32 1134, metadata !586, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1134} ; [ DW_TAG_subprogram ]
 !586 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !587, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!587 = metadata !{metadata !63, metadata !588}
+!587 = metadata !{metadata !89, metadata !588}
 !588 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !589} ; [ DW_TAG_pointer_type ]
 !589 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !572} ; [ DW_TAG_const_type ]
 !590 = metadata !{i32 786478, i32 0, metadata !572, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK10ap_bit_refILi2ELb0EE7to_boolEv", metadata !72, i32 1135, metadata !586, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1135} ; [ DW_TAG_subprogram ]
@@ -903,19 +905,19 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !597 = metadata !{i32 786478, i32 0, metadata !572, metadata !"get", metadata !"get", metadata !"_ZNK10ap_bit_refILi2ELb0EE3getEv", metadata !72, i32 1265, metadata !586, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1265} ; [ DW_TAG_subprogram ]
 !598 = metadata !{i32 786478, i32 0, metadata !572, metadata !"get", metadata !"get", metadata !"_ZN10ap_bit_refILi2ELb0EE3getEv", metadata !72, i32 1269, metadata !599, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1269} ; [ DW_TAG_subprogram ]
 !599 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !600, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!600 = metadata !{metadata !63, metadata !579}
+!600 = metadata !{metadata !89, metadata !579}
 !601 = metadata !{i32 786478, i32 0, metadata !572, metadata !"operator~", metadata !"operator~", metadata !"_ZNK10ap_bit_refILi2ELb0EEcoEv", metadata !72, i32 1278, metadata !586, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1278} ; [ DW_TAG_subprogram ]
 !602 = metadata !{i32 786478, i32 0, metadata !572, metadata !"length", metadata !"length", metadata !"_ZNK10ap_bit_refILi2ELb0EE6lengthEv", metadata !72, i32 1283, metadata !603, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1283} ; [ DW_TAG_subprogram ]
 !603 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !604, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!604 = metadata !{metadata !88, metadata !588}
-!605 = metadata !{metadata !606, metadata !89}
-!606 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !88, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!604 = metadata !{metadata !63, metadata !588}
+!605 = metadata !{metadata !606, metadata !88}
+!606 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !63, i64 2, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !607 = metadata !{i32 786478, i32 0, metadata !392, metadata !"operator[]", metadata !"operator[]", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EEixEi", metadata !72, i32 1949, metadata !532, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1949} ; [ DW_TAG_subprogram ]
 !608 = metadata !{i32 786478, i32 0, metadata !392, metadata !"bit", metadata !"bit", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE3bitEi", metadata !72, i32 1963, metadata !570, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1963} ; [ DW_TAG_subprogram ]
 !609 = metadata !{i32 786478, i32 0, metadata !392, metadata !"bit", metadata !"bit", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE3bitEi", metadata !72, i32 1977, metadata !532, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1977} ; [ DW_TAG_subprogram ]
 !610 = metadata !{i32 786478, i32 0, metadata !392, metadata !"and_reduce", metadata !"and_reduce", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE10and_reduceEv", metadata !72, i32 2157, metadata !611, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2157} ; [ DW_TAG_subprogram ]
 !611 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !612, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!612 = metadata !{metadata !63, metadata !408}
+!612 = metadata !{metadata !89, metadata !408}
 !613 = metadata !{i32 786478, i32 0, metadata !392, metadata !"nand_reduce", metadata !"nand_reduce", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE11nand_reduceEv", metadata !72, i32 2160, metadata !611, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2160} ; [ DW_TAG_subprogram ]
 !614 = metadata !{i32 786478, i32 0, metadata !392, metadata !"or_reduce", metadata !"or_reduce", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE9or_reduceEv", metadata !72, i32 2163, metadata !611, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2163} ; [ DW_TAG_subprogram ]
 !615 = metadata !{i32 786478, i32 0, metadata !392, metadata !"nor_reduce", metadata !"nor_reduce", metadata !"_ZN11ap_int_baseILi2ELb0ELb1EE10nor_reduceEv", metadata !72, i32 2166, metadata !611, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2166} ; [ DW_TAG_subprogram ]
@@ -929,20 +931,20 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !623 = metadata !{i32 786478, i32 0, metadata !392, metadata !"xnor_reduce", metadata !"xnor_reduce", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE11xnor_reduceEv", metadata !72, i32 2191, metadata !494, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2191} ; [ DW_TAG_subprogram ]
 !624 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE9to_stringEPci8BaseModeb", metadata !72, i32 2198, metadata !625, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2198} ; [ DW_TAG_subprogram ]
 !625 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !626, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!626 = metadata !{null, metadata !491, metadata !299, metadata !88, metadata !300, metadata !63}
+!626 = metadata !{null, metadata !491, metadata !299, metadata !63, metadata !300, metadata !89}
 !627 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE9to_stringE8BaseModeb", metadata !72, i32 2225, metadata !628, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2225} ; [ DW_TAG_subprogram ]
 !628 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !629, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!629 = metadata !{metadata !299, metadata !491, metadata !300, metadata !63}
+!629 = metadata !{metadata !299, metadata !491, metadata !300, metadata !89}
 !630 = metadata !{i32 786478, i32 0, metadata !392, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi2ELb0ELb1EE9to_stringEab", metadata !72, i32 2229, metadata !631, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2229} ; [ DW_TAG_subprogram ]
 !631 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !632, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!632 = metadata !{metadata !299, metadata !491, metadata !108, metadata !63}
+!632 = metadata !{metadata !299, metadata !491, metadata !108, metadata !89}
 !633 = metadata !{i32 786478, i32 0, metadata !389, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 137, metadata !634, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 137} ; [ DW_TAG_subprogram ]
 !634 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !635, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !635 = metadata !{null, metadata !636}
 !636 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !389} ; [ DW_TAG_pointer_type ]
 !637 = metadata !{i32 786478, i32 0, metadata !389, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 199, metadata !638, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 199} ; [ DW_TAG_subprogram ]
 !638 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !639, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!639 = metadata !{null, metadata !636, metadata !63}
+!639 = metadata !{null, metadata !636, metadata !89}
 !640 = metadata !{i32 786478, i32 0, metadata !389, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 200, metadata !641, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 200} ; [ DW_TAG_subprogram ]
 !641 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !642, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !642 = metadata !{null, metadata !636, metadata !108}
@@ -957,7 +959,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !651 = metadata !{null, metadata !636, metadata !120}
 !652 = metadata !{i32 786478, i32 0, metadata !389, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 204, metadata !653, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 204} ; [ DW_TAG_subprogram ]
 !653 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !654, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!654 = metadata !{null, metadata !636, metadata !88}
+!654 = metadata !{null, metadata !636, metadata !63}
 !655 = metadata !{i32 786478, i32 0, metadata !389, metadata !"ap_uint", metadata !"ap_uint", metadata !"", metadata !68, i32 205, metadata !656, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 205} ; [ DW_TAG_subprogram ]
 !656 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !657, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !657 = metadata !{null, metadata !636, metadata !127}
@@ -1000,9 +1002,9 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !694 = metadata !{i32 786474, metadata !389, null, metadata !68, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !384} ; [ DW_TAG_friend ]
 !695 = metadata !{metadata !606}
 !696 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !697} ; [ DW_TAG_pointer_type ]
-!697 = metadata !{i32 786485, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !63} ; [ DW_TAG_volatile_type ]
-!698 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !63} ; [ DW_TAG_pointer_type ]
-!699 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !88} ; [ DW_TAG_pointer_type ]
+!697 = metadata !{i32 786485, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !89} ; [ DW_TAG_volatile_type ]
+!698 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !89} ; [ DW_TAG_pointer_type ]
+!699 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !63} ; [ DW_TAG_pointer_type ]
 !700 = metadata !{i32 37, i32 7, metadata !59, null}
 !701 = metadata !{i32 790531, metadata !702, metadata !"priorityOut.V", null, i32 35, metadata !703, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !702 = metadata !{i32 786689, metadata !59, metadata !"priorityOut", metadata !60, i32 16777251, metadata !64, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -1013,10 +1015,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !707 = metadata !{metadata !708}
 !708 = metadata !{i32 786438, null, metadata !"ssdm_int<4 + 1024 * 0, false>", metadata !76, i32 6, i64 4, i64 8, i32 0, i32 0, null, metadata !709, i32 0, null, metadata !86} ; [ DW_TAG_class_field_type ]
 !709 = metadata !{metadata !78}
-!710 = metadata !{i32 35, i32 32, metadata !59, null}
+!710 = metadata !{i32 35, i32 31, metadata !59, null}
 !711 = metadata !{i32 790531, metadata !712, metadata !"priorityIn.V", null, i32 35, metadata !703, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !712 = metadata !{i32 786689, metadata !59, metadata !"priorityIn", metadata !60, i32 33554467, metadata !64, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
-!713 = metadata !{i32 35, i32 62, metadata !59, null}
+!713 = metadata !{i32 35, i32 61, metadata !59, null}
 !714 = metadata !{i32 790531, metadata !715, metadata !"cmdOut.V", null, i32 35, metadata !716, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !715 = metadata !{i32 786689, metadata !59, metadata !"cmdOut", metadata !60, i32 50331683, metadata !386, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !716 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !717} ; [ DW_TAG_pointer_type ]
@@ -1026,7 +1028,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !720 = metadata !{metadata !721}
 !721 = metadata !{i32 786438, null, metadata !"ssdm_int<2 + 1024 * 0, false>", metadata !76, i32 4, i64 2, i64 8, i32 0, i32 0, null, metadata !722, i32 0, null, metadata !403} ; [ DW_TAG_class_field_type ]
 !722 = metadata !{metadata !397}
-!723 = metadata !{i32 35, i32 88, metadata !59, null}
+!723 = metadata !{i32 35, i32 87, metadata !59, null}
 !724 = metadata !{i32 786689, metadata !59, metadata !"empty", metadata !60, i32 67108900, metadata !696, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !725 = metadata !{i32 36, i32 18, metadata !59, null}
 !726 = metadata !{i32 786689, metadata !59, metadata !"full", metadata !60, i32 83886116, metadata !696, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -1155,7 +1157,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !849 = metadata !{i32 786443, metadata !850, i32 1873, i32 107, metadata !72, i32 10} ; [ DW_TAG_lexical_block ]
 !850 = metadata !{i32 786478, i32 0, null, metadata !"operator!=<32, true>", metadata !"operator!=<32, true>", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EEneILi32ELb1EEEbRKS_IXT_EXT0_EXleT_Li64EEE", metadata !72, i32 1873, metadata !851, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !875, null, metadata !84, i32 1873} ; [ DW_TAG_subprogram ]
 !851 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !852, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!852 = metadata !{metadata !63, metadata !197, metadata !853}
+!852 = metadata !{metadata !89, metadata !197, metadata !853}
 !853 = metadata !{i32 786448, null, null, null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !854} ; [ DW_TAG_reference_type ]
 !854 = metadata !{i32 786434, null, metadata !"ap_int_base<32, true, true>", metadata !72, i32 1302, i64 32, i64 32, i32 0, i32 0, null, metadata !855, i32 0, null, metadata !1300} ; [ DW_TAG_class_type ]
 !855 = metadata !{metadata !856, metadata !868, metadata !872, metadata !878, metadata !879, metadata !882, metadata !885, metadata !888, metadata !891, metadata !894, metadata !897, metadata !900, metadata !903, metadata !906, metadata !909, metadata !912, metadata !915, metadata !918, metadata !921, metadata !924, metadata !929, metadata !932, metadata !933, metadata !934, metadata !937, metadata !938, metadata !941, metadata !944, metadata !947, metadata !950, metadata !959, metadata !962, metadata !965, metadata !968, metadata !971, metadata !974, metadata !977, metadata !980, metadata !983, metadata !984, metadata !989, metadata !992, metadata !993, metadata !994, metadata !995, metadata !996, metadata !997, metadata !1000, metadata !1001, metadata !1004, metadata !1005, metadata !1006, metadata !1007, metadata !1008, metadata !1009, metadata !1012, metadata !1013, metadata !1014, metadata !1017, metadata !1018, metadata !1021, metadata !1022, metadata !1260, metadata !1264, metadata !1265, metadata !1268, metadata !1269, metadata !1273, metadata !1274, metadata !1275, metadata !1276, metadata !1279, metadata !1280, metadata !1281, metadata !1282, metadata !1283, metadata !1284, metadata !1285, metadata !1286, metadata !1287, metadata !1288, metadata !1289, metadata !1290, metadata !1293, metadata !1296, metadata !1299}
@@ -1169,8 +1171,8 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !863 = metadata !{null, metadata !864}
 !864 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !857} ; [ DW_TAG_pointer_type ]
 !865 = metadata !{metadata !866, metadata !867}
-!866 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !88, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
-!867 = metadata !{i32 786480, null, metadata !"_AP_S", metadata !63, i64 1, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!866 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !63, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!867 = metadata !{i32 786480, null, metadata !"_AP_S", metadata !89, i64 1, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !868 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1340, metadata !869, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1340} ; [ DW_TAG_subprogram ]
 !869 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !870, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !870 = metadata !{null, metadata !871}
@@ -1179,12 +1181,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !873 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !874, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !874 = metadata !{null, metadata !871, metadata !853}
 !875 = metadata !{metadata !876, metadata !877}
-!876 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !88, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
-!877 = metadata !{i32 786480, null, metadata !"_AP_S2", metadata !63, i64 1, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!876 = metadata !{i32 786480, null, metadata !"_AP_W2", metadata !63, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!877 = metadata !{i32 786480, null, metadata !"_AP_S2", metadata !89, i64 1, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !878 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base<32, true>", metadata !"ap_int_base<32, true>", metadata !"", metadata !72, i32 1355, metadata !873, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, metadata !875, i32 0, metadata !84, i32 1355} ; [ DW_TAG_subprogram ]
 !879 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1362, metadata !880, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1362} ; [ DW_TAG_subprogram ]
 !880 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !881, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!881 = metadata !{null, metadata !871, metadata !63}
+!881 = metadata !{null, metadata !871, metadata !89}
 !882 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1363, metadata !883, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1363} ; [ DW_TAG_subprogram ]
 !883 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !884, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !884 = metadata !{null, metadata !871, metadata !108}
@@ -1199,7 +1201,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !893 = metadata !{null, metadata !871, metadata !120}
 !894 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1367, metadata !895, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1367} ; [ DW_TAG_subprogram ]
 !895 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !896, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!896 = metadata !{null, metadata !871, metadata !88}
+!896 = metadata !{null, metadata !871, metadata !63}
 !897 = metadata !{i32 786478, i32 0, metadata !854, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1368, metadata !898, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1368} ; [ DW_TAG_subprogram ]
 !898 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !899, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !899 = metadata !{null, metadata !871, metadata !127}
@@ -1264,10 +1266,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !958 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !854} ; [ DW_TAG_const_type ]
 !959 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE7to_boolEv", metadata !72, i32 1557, metadata !960, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1557} ; [ DW_TAG_subprogram ]
 !960 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !961, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!961 = metadata !{metadata !63, metadata !957}
+!961 = metadata !{metadata !89, metadata !957}
 !962 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_int", metadata !"to_int", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE6to_intEv", metadata !72, i32 1558, metadata !963, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1558} ; [ DW_TAG_subprogram ]
 !963 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !964, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!964 = metadata !{metadata !88, metadata !957}
+!964 = metadata !{metadata !63, metadata !957}
 !965 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_uint", metadata !"to_uint", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE7to_uintEv", metadata !72, i32 1559, metadata !966, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1559} ; [ DW_TAG_subprogram ]
 !966 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !967, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !967 = metadata !{metadata !127, metadata !957}
@@ -1289,7 +1291,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !983 = metadata !{i32 786478, i32 0, metadata !854, metadata !"length", metadata !"length", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE6lengthEv", metadata !72, i32 1577, metadata !963, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1577} ; [ DW_TAG_subprogram ]
 !984 = metadata !{i32 786478, i32 0, metadata !854, metadata !"length", metadata !"length", metadata !"_ZNVK11ap_int_baseILi32ELb1ELb1EE6lengthEv", metadata !72, i32 1578, metadata !985, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1578} ; [ DW_TAG_subprogram ]
 !985 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !986, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!986 = metadata !{metadata !88, metadata !987}
+!986 = metadata !{metadata !63, metadata !987}
 !987 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !988} ; [ DW_TAG_pointer_type ]
 !988 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !928} ; [ DW_TAG_const_type ]
 !989 = metadata !{i32 786478, i32 0, metadata !854, metadata !"reverse", metadata !"reverse", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE7reverseEv", metadata !72, i32 1583, metadata !990, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1583} ; [ DW_TAG_subprogram ]
@@ -1302,11 +1304,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !996 = metadata !{i32 786478, i32 0, metadata !854, metadata !"invert", metadata !"invert", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE6invertEi", metadata !72, i32 1613, metadata !895, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1613} ; [ DW_TAG_subprogram ]
 !997 = metadata !{i32 786478, i32 0, metadata !854, metadata !"test", metadata !"test", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE4testEi", metadata !72, i32 1621, metadata !998, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1621} ; [ DW_TAG_subprogram ]
 !998 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !999, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!999 = metadata !{metadata !63, metadata !957, metadata !88}
+!999 = metadata !{metadata !89, metadata !957, metadata !63}
 !1000 = metadata !{i32 786478, i32 0, metadata !854, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE3setEi", metadata !72, i32 1627, metadata !895, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1627} ; [ DW_TAG_subprogram ]
 !1001 = metadata !{i32 786478, i32 0, metadata !854, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE3setEib", metadata !72, i32 1633, metadata !1002, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1633} ; [ DW_TAG_subprogram ]
 !1002 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1003, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1003 = metadata !{null, metadata !871, metadata !88, metadata !63}
+!1003 = metadata !{null, metadata !871, metadata !63, metadata !89}
 !1004 = metadata !{i32 786478, i32 0, metadata !854, metadata !"lrotate", metadata !"lrotate", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE7lrotateEi", metadata !72, i32 1640, metadata !895, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1640} ; [ DW_TAG_subprogram ]
 !1005 = metadata !{i32 786478, i32 0, metadata !854, metadata !"rrotate", metadata !"rrotate", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE7rrotateEi", metadata !72, i32 1649, metadata !895, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1649} ; [ DW_TAG_subprogram ]
 !1006 = metadata !{i32 786478, i32 0, metadata !854, metadata !"set_bit", metadata !"set_bit", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE7set_bitEib", metadata !72, i32 1657, metadata !1002, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1657} ; [ DW_TAG_subprogram ]
@@ -1314,12 +1316,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1008 = metadata !{i32 786478, i32 0, metadata !854, metadata !"b_not", metadata !"b_not", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE5b_notEv", metadata !72, i32 1667, metadata !869, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1667} ; [ DW_TAG_subprogram ]
 !1009 = metadata !{i32 786478, i32 0, metadata !854, metadata !"countLeadingZeros", metadata !"countLeadingZeros", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE17countLeadingZerosEv", metadata !72, i32 1674, metadata !1010, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1674} ; [ DW_TAG_subprogram ]
 !1010 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1011, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1011 = metadata !{metadata !88, metadata !871}
+!1011 = metadata !{metadata !63, metadata !871}
 !1012 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEppEv", metadata !72, i32 1731, metadata !990, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1731} ; [ DW_TAG_subprogram ]
 !1013 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEmmEv", metadata !72, i32 1735, metadata !990, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1735} ; [ DW_TAG_subprogram ]
 !1014 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEppEi", metadata !72, i32 1743, metadata !1015, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1743} ; [ DW_TAG_subprogram ]
 !1015 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1016, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1016 = metadata !{metadata !958, metadata !871, metadata !88}
+!1016 = metadata !{metadata !958, metadata !871, metadata !63}
 !1017 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEmmEi", metadata !72, i32 1748, metadata !1015, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1748} ; [ DW_TAG_subprogram ]
 !1018 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator+", metadata !"operator+", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EEpsEv", metadata !72, i32 1757, metadata !1019, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1757} ; [ DW_TAG_subprogram ]
 !1019 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1020, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
@@ -1340,14 +1342,14 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1034 = metadata !{null, metadata !1035}
 !1035 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !1028} ; [ DW_TAG_pointer_type ]
 !1036 = metadata !{metadata !1037, metadata !867}
-!1037 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !88, i64 33, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!1037 = metadata !{i32 786480, null, metadata !"_AP_N", metadata !63, i64 33, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !1038 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1340, metadata !1039, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1340} ; [ DW_TAG_subprogram ]
 !1039 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1040, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1040 = metadata !{null, metadata !1041}
 !1041 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !1025} ; [ DW_TAG_pointer_type ]
 !1042 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1362, metadata !1043, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1362} ; [ DW_TAG_subprogram ]
 !1043 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1044, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1044 = metadata !{null, metadata !1041, metadata !63}
+!1044 = metadata !{null, metadata !1041, metadata !89}
 !1045 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1363, metadata !1046, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1363} ; [ DW_TAG_subprogram ]
 !1046 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1047, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1047 = metadata !{null, metadata !1041, metadata !108}
@@ -1362,7 +1364,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1056 = metadata !{null, metadata !1041, metadata !120}
 !1057 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1367, metadata !1058, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1367} ; [ DW_TAG_subprogram ]
 !1058 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1059, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1059 = metadata !{null, metadata !1041, metadata !88}
+!1059 = metadata !{null, metadata !1041, metadata !63}
 !1060 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"ap_int_base", metadata !"ap_int_base", metadata !"", metadata !72, i32 1368, metadata !1061, i1 false, i1 false, i32 0, i32 0, null, i32 384, i1 false, null, null, i32 0, metadata !84, i32 1368} ; [ DW_TAG_subprogram ]
 !1061 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1062, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1062 = metadata !{null, metadata !1041, metadata !127}
@@ -1425,10 +1427,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1119 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !1025} ; [ DW_TAG_const_type ]
 !1120 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE7to_boolEv", metadata !72, i32 1557, metadata !1121, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1557} ; [ DW_TAG_subprogram ]
 !1121 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1122, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1122 = metadata !{metadata !63, metadata !1118}
+!1122 = metadata !{metadata !89, metadata !1118}
 !1123 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_int", metadata !"to_int", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE6to_intEv", metadata !72, i32 1558, metadata !1124, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1558} ; [ DW_TAG_subprogram ]
 !1124 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1125, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1125 = metadata !{metadata !88, metadata !1118}
+!1125 = metadata !{metadata !63, metadata !1118}
 !1126 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_uint", metadata !"to_uint", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE7to_uintEv", metadata !72, i32 1559, metadata !1127, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1559} ; [ DW_TAG_subprogram ]
 !1127 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1128, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1128 = metadata !{metadata !127, metadata !1118}
@@ -1450,7 +1452,7 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1144 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"length", metadata !"length", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE6lengthEv", metadata !72, i32 1577, metadata !1124, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1577} ; [ DW_TAG_subprogram ]
 !1145 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"length", metadata !"length", metadata !"_ZNVK11ap_int_baseILi33ELb1ELb1EE6lengthEv", metadata !72, i32 1578, metadata !1146, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1578} ; [ DW_TAG_subprogram ]
 !1146 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1147, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1147 = metadata !{metadata !88, metadata !1148}
+!1147 = metadata !{metadata !63, metadata !1148}
 !1148 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !1149} ; [ DW_TAG_pointer_type ]
 !1149 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !1091} ; [ DW_TAG_const_type ]
 !1150 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"reverse", metadata !"reverse", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE7reverseEv", metadata !72, i32 1583, metadata !1151, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1583} ; [ DW_TAG_subprogram ]
@@ -1463,11 +1465,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1157 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"invert", metadata !"invert", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE6invertEi", metadata !72, i32 1613, metadata !1058, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1613} ; [ DW_TAG_subprogram ]
 !1158 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"test", metadata !"test", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE4testEi", metadata !72, i32 1621, metadata !1159, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1621} ; [ DW_TAG_subprogram ]
 !1159 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1160, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1160 = metadata !{metadata !63, metadata !1118, metadata !88}
+!1160 = metadata !{metadata !89, metadata !1118, metadata !63}
 !1161 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE3setEi", metadata !72, i32 1627, metadata !1058, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1627} ; [ DW_TAG_subprogram ]
 !1162 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"set", metadata !"set", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE3setEib", metadata !72, i32 1633, metadata !1163, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1633} ; [ DW_TAG_subprogram ]
 !1163 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1164, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1164 = metadata !{null, metadata !1041, metadata !88, metadata !63}
+!1164 = metadata !{null, metadata !1041, metadata !63, metadata !89}
 !1165 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"lrotate", metadata !"lrotate", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE7lrotateEi", metadata !72, i32 1640, metadata !1058, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1640} ; [ DW_TAG_subprogram ]
 !1166 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"rrotate", metadata !"rrotate", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE7rrotateEi", metadata !72, i32 1649, metadata !1058, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1649} ; [ DW_TAG_subprogram ]
 !1167 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"set_bit", metadata !"set_bit", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE7set_bitEib", metadata !72, i32 1657, metadata !1163, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1657} ; [ DW_TAG_subprogram ]
@@ -1475,12 +1477,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1169 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"b_not", metadata !"b_not", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE5b_notEv", metadata !72, i32 1667, metadata !1039, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1667} ; [ DW_TAG_subprogram ]
 !1170 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"countLeadingZeros", metadata !"countLeadingZeros", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE17countLeadingZerosEv", metadata !72, i32 1674, metadata !1171, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1674} ; [ DW_TAG_subprogram ]
 !1171 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1172, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1172 = metadata !{metadata !88, metadata !1041}
+!1172 = metadata !{metadata !63, metadata !1041}
 !1173 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEppEv", metadata !72, i32 1731, metadata !1151, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1731} ; [ DW_TAG_subprogram ]
 !1174 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEmmEv", metadata !72, i32 1735, metadata !1151, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1735} ; [ DW_TAG_subprogram ]
 !1175 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator++", metadata !"operator++", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEppEi", metadata !72, i32 1743, metadata !1176, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1743} ; [ DW_TAG_subprogram ]
 !1176 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1177, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1177 = metadata !{metadata !1119, metadata !1041, metadata !88}
+!1177 = metadata !{metadata !1119, metadata !1041, metadata !63}
 !1178 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator--", metadata !"operator--", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEmmEi", metadata !72, i32 1748, metadata !1176, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1748} ; [ DW_TAG_subprogram ]
 !1179 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator+", metadata !"operator+", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EEpsEv", metadata !72, i32 1757, metadata !1180, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1757} ; [ DW_TAG_subprogram ]
 !1180 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1181, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
@@ -1492,20 +1494,20 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1186 = metadata !{i32 786434, null, metadata !"ap_int_base<34, true, true>", metadata !72, i32 605, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !1187 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"range", metadata !"range", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE5rangeEii", metadata !72, i32 1898, metadata !1188, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1898} ; [ DW_TAG_subprogram ]
 !1188 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1189, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1189 = metadata !{metadata !1190, metadata !1041, metadata !88, metadata !88}
+!1189 = metadata !{metadata !1190, metadata !1041, metadata !63, metadata !63}
 !1190 = metadata !{i32 786434, null, metadata !"ap_range_ref<33, true>", metadata !72, i32 878, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !1191 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator()", metadata !"operator()", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEclEii", metadata !72, i32 1904, metadata !1188, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1904} ; [ DW_TAG_subprogram ]
 !1192 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"range", metadata !"range", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE5rangeEii", metadata !72, i32 1910, metadata !1193, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1910} ; [ DW_TAG_subprogram ]
 !1193 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1194, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1194 = metadata !{metadata !1190, metadata !1118, metadata !88, metadata !88}
+!1194 = metadata !{metadata !1190, metadata !1118, metadata !63, metadata !63}
 !1195 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator()", metadata !"operator()", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EEclEii", metadata !72, i32 1916, metadata !1193, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1916} ; [ DW_TAG_subprogram ]
 !1196 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator[]", metadata !"operator[]", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EEixEi", metadata !72, i32 1935, metadata !1197, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1935} ; [ DW_TAG_subprogram ]
 !1197 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1198, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1198 = metadata !{metadata !1199, metadata !1041, metadata !88}
+!1198 = metadata !{metadata !1199, metadata !1041, metadata !63}
 !1199 = metadata !{i32 786434, null, metadata !"ap_bit_ref<33, true>", metadata !72, i32 1124, i64 128, i64 64, i32 0, i32 0, null, metadata !1200, i32 0, null, metadata !1232} ; [ DW_TAG_class_type ]
 !1200 = metadata !{metadata !1201, metadata !1202, metadata !1203, metadata !1208, metadata !1212, metadata !1217, metadata !1218, metadata !1221, metadata !1224, metadata !1225, metadata !1228, metadata !1229}
 !1201 = metadata !{i32 786445, metadata !1199, metadata !"d_bv", metadata !72, i32 1125, i64 64, i64 64, i64 0, i32 0, metadata !1095} ; [ DW_TAG_member ]
-!1202 = metadata !{i32 786445, metadata !1199, metadata !"d_index", metadata !72, i32 1126, i64 32, i64 32, i64 64, i32 0, metadata !88} ; [ DW_TAG_member ]
+!1202 = metadata !{i32 786445, metadata !1199, metadata !"d_index", metadata !72, i32 1126, i64 32, i64 32, i64 64, i32 0, metadata !63} ; [ DW_TAG_member ]
 !1203 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"ap_bit_ref", metadata !"ap_bit_ref", metadata !"", metadata !72, i32 1129, metadata !1204, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1129} ; [ DW_TAG_subprogram ]
 !1204 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1205, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1205 = metadata !{null, metadata !1206, metadata !1207}
@@ -1513,11 +1515,11 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1207 = metadata !{i32 786448, null, null, null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !1199} ; [ DW_TAG_reference_type ]
 !1208 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"ap_bit_ref", metadata !"ap_bit_ref", metadata !"", metadata !72, i32 1132, metadata !1209, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1132} ; [ DW_TAG_subprogram ]
 !1209 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1210, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1210 = metadata !{null, metadata !1206, metadata !1211, metadata !88}
+!1210 = metadata !{null, metadata !1206, metadata !1211, metadata !63}
 !1211 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !1025} ; [ DW_TAG_pointer_type ]
 !1212 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"operator _Bool", metadata !"operator _Bool", metadata !"_ZNK10ap_bit_refILi33ELb1EEcvbEv", metadata !72, i32 1134, metadata !1213, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1134} ; [ DW_TAG_subprogram ]
 !1213 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1214, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1214 = metadata !{metadata !63, metadata !1215}
+!1214 = metadata !{metadata !89, metadata !1215}
 !1215 = metadata !{i32 786447, i32 0, metadata !"", i32 0, i32 0, i64 64, i64 64, i64 0, i32 64, metadata !1216} ; [ DW_TAG_pointer_type ]
 !1216 = metadata !{i32 786470, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !1199} ; [ DW_TAG_const_type ]
 !1217 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"to_bool", metadata !"to_bool", metadata !"_ZNK10ap_bit_refILi33ELb1EE7to_boolEv", metadata !72, i32 1135, metadata !1213, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1135} ; [ DW_TAG_subprogram ]
@@ -1530,19 +1532,19 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1224 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"get", metadata !"get", metadata !"_ZNK10ap_bit_refILi33ELb1EE3getEv", metadata !72, i32 1265, metadata !1213, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1265} ; [ DW_TAG_subprogram ]
 !1225 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"get", metadata !"get", metadata !"_ZN10ap_bit_refILi33ELb1EE3getEv", metadata !72, i32 1269, metadata !1226, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1269} ; [ DW_TAG_subprogram ]
 !1226 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1227, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1227 = metadata !{metadata !63, metadata !1206}
+!1227 = metadata !{metadata !89, metadata !1206}
 !1228 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"operator~", metadata !"operator~", metadata !"_ZNK10ap_bit_refILi33ELb1EEcoEv", metadata !72, i32 1278, metadata !1213, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1278} ; [ DW_TAG_subprogram ]
 !1229 = metadata !{i32 786478, i32 0, metadata !1199, metadata !"length", metadata !"length", metadata !"_ZNK10ap_bit_refILi33ELb1EE6lengthEv", metadata !72, i32 1283, metadata !1230, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1283} ; [ DW_TAG_subprogram ]
 !1230 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1231, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1231 = metadata !{metadata !88, metadata !1215}
+!1231 = metadata !{metadata !63, metadata !1215}
 !1232 = metadata !{metadata !1233, metadata !867}
-!1233 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !88, i64 33, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!1233 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !63, i64 33, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !1234 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"operator[]", metadata !"operator[]", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EEixEi", metadata !72, i32 1949, metadata !1159, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1949} ; [ DW_TAG_subprogram ]
 !1235 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"bit", metadata !"bit", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE3bitEi", metadata !72, i32 1963, metadata !1197, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1963} ; [ DW_TAG_subprogram ]
 !1236 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"bit", metadata !"bit", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE3bitEi", metadata !72, i32 1977, metadata !1159, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1977} ; [ DW_TAG_subprogram ]
 !1237 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"and_reduce", metadata !"and_reduce", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE10and_reduceEv", metadata !72, i32 2157, metadata !1238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2157} ; [ DW_TAG_subprogram ]
 !1238 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1239, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1239 = metadata !{metadata !63, metadata !1041}
+!1239 = metadata !{metadata !89, metadata !1041}
 !1240 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"nand_reduce", metadata !"nand_reduce", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE11nand_reduceEv", metadata !72, i32 2160, metadata !1238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2160} ; [ DW_TAG_subprogram ]
 !1241 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"or_reduce", metadata !"or_reduce", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE9or_reduceEv", metadata !72, i32 2163, metadata !1238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2163} ; [ DW_TAG_subprogram ]
 !1242 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"nor_reduce", metadata !"nor_reduce", metadata !"_ZN11ap_int_baseILi33ELb1ELb1EE10nor_reduceEv", metadata !72, i32 2166, metadata !1238, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2166} ; [ DW_TAG_subprogram ]
@@ -1556,32 +1558,32 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1250 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"xnor_reduce", metadata !"xnor_reduce", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE11xnor_reduceEv", metadata !72, i32 2191, metadata !1121, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2191} ; [ DW_TAG_subprogram ]
 !1251 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE9to_stringEPci8BaseModeb", metadata !72, i32 2198, metadata !1252, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2198} ; [ DW_TAG_subprogram ]
 !1252 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1253, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1253 = metadata !{null, metadata !1118, metadata !299, metadata !88, metadata !300, metadata !63}
+!1253 = metadata !{null, metadata !1118, metadata !299, metadata !63, metadata !300, metadata !89}
 !1254 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE9to_stringE8BaseModeb", metadata !72, i32 2225, metadata !1255, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2225} ; [ DW_TAG_subprogram ]
 !1255 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1256, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1256 = metadata !{metadata !299, metadata !1118, metadata !300, metadata !63}
+!1256 = metadata !{metadata !299, metadata !1118, metadata !300, metadata !89}
 !1257 = metadata !{i32 786478, i32 0, metadata !1025, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi33ELb1ELb1EE9to_stringEab", metadata !72, i32 2229, metadata !1258, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2229} ; [ DW_TAG_subprogram ]
 !1258 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1259, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1259 = metadata !{metadata !299, metadata !1118, metadata !108, metadata !63}
+!1259 = metadata !{metadata !299, metadata !1118, metadata !108, metadata !89}
 !1260 = metadata !{i32 786478, i32 0, metadata !854, metadata !"range", metadata !"range", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE5rangeEii", metadata !72, i32 1898, metadata !1261, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1898} ; [ DW_TAG_subprogram ]
 !1261 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1262, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1262 = metadata !{metadata !1263, metadata !871, metadata !88, metadata !88}
+!1262 = metadata !{metadata !1263, metadata !871, metadata !63, metadata !63}
 !1263 = metadata !{i32 786434, null, metadata !"ap_range_ref<32, true>", metadata !72, i32 878, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !1264 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator()", metadata !"operator()", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEclEii", metadata !72, i32 1904, metadata !1261, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1904} ; [ DW_TAG_subprogram ]
 !1265 = metadata !{i32 786478, i32 0, metadata !854, metadata !"range", metadata !"range", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE5rangeEii", metadata !72, i32 1910, metadata !1266, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1910} ; [ DW_TAG_subprogram ]
 !1266 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1267, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1267 = metadata !{metadata !1263, metadata !957, metadata !88, metadata !88}
+!1267 = metadata !{metadata !1263, metadata !957, metadata !63, metadata !63}
 !1268 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator()", metadata !"operator()", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EEclEii", metadata !72, i32 1916, metadata !1266, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1916} ; [ DW_TAG_subprogram ]
 !1269 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator[]", metadata !"operator[]", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EEixEi", metadata !72, i32 1935, metadata !1270, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1935} ; [ DW_TAG_subprogram ]
 !1270 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1271, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1271 = metadata !{metadata !1272, metadata !871, metadata !88}
+!1271 = metadata !{metadata !1272, metadata !871, metadata !63}
 !1272 = metadata !{i32 786434, null, metadata !"ap_bit_ref<32, true>", metadata !72, i32 1124, i32 0, i32 0, i32 0, i32 4, null, null, i32 0} ; [ DW_TAG_class_type ]
 !1273 = metadata !{i32 786478, i32 0, metadata !854, metadata !"operator[]", metadata !"operator[]", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EEixEi", metadata !72, i32 1949, metadata !998, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1949} ; [ DW_TAG_subprogram ]
 !1274 = metadata !{i32 786478, i32 0, metadata !854, metadata !"bit", metadata !"bit", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE3bitEi", metadata !72, i32 1963, metadata !1270, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1963} ; [ DW_TAG_subprogram ]
 !1275 = metadata !{i32 786478, i32 0, metadata !854, metadata !"bit", metadata !"bit", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE3bitEi", metadata !72, i32 1977, metadata !998, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 1977} ; [ DW_TAG_subprogram ]
 !1276 = metadata !{i32 786478, i32 0, metadata !854, metadata !"and_reduce", metadata !"and_reduce", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE10and_reduceEv", metadata !72, i32 2157, metadata !1277, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2157} ; [ DW_TAG_subprogram ]
 !1277 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1278, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1278 = metadata !{metadata !63, metadata !871}
+!1278 = metadata !{metadata !89, metadata !871}
 !1279 = metadata !{i32 786478, i32 0, metadata !854, metadata !"nand_reduce", metadata !"nand_reduce", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE11nand_reduceEv", metadata !72, i32 2160, metadata !1277, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2160} ; [ DW_TAG_subprogram ]
 !1280 = metadata !{i32 786478, i32 0, metadata !854, metadata !"or_reduce", metadata !"or_reduce", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE9or_reduceEv", metadata !72, i32 2163, metadata !1277, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2163} ; [ DW_TAG_subprogram ]
 !1281 = metadata !{i32 786478, i32 0, metadata !854, metadata !"nor_reduce", metadata !"nor_reduce", metadata !"_ZN11ap_int_baseILi32ELb1ELb1EE10nor_reduceEv", metadata !72, i32 2166, metadata !1277, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2166} ; [ DW_TAG_subprogram ]
@@ -1595,29 +1597,32 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !1289 = metadata !{i32 786478, i32 0, metadata !854, metadata !"xnor_reduce", metadata !"xnor_reduce", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE11xnor_reduceEv", metadata !72, i32 2191, metadata !960, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2191} ; [ DW_TAG_subprogram ]
 !1290 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE9to_stringEPci8BaseModeb", metadata !72, i32 2198, metadata !1291, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2198} ; [ DW_TAG_subprogram ]
 !1291 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1292, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1292 = metadata !{null, metadata !957, metadata !299, metadata !88, metadata !300, metadata !63}
+!1292 = metadata !{null, metadata !957, metadata !299, metadata !63, metadata !300, metadata !89}
 !1293 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE9to_stringE8BaseModeb", metadata !72, i32 2225, metadata !1294, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2225} ; [ DW_TAG_subprogram ]
 !1294 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1295, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1295 = metadata !{metadata !299, metadata !957, metadata !300, metadata !63}
+!1295 = metadata !{metadata !299, metadata !957, metadata !300, metadata !89}
 !1296 = metadata !{i32 786478, i32 0, metadata !854, metadata !"to_string", metadata !"to_string", metadata !"_ZNK11ap_int_baseILi32ELb1ELb1EE9to_stringEab", metadata !72, i32 2229, metadata !1297, i1 false, i1 false, i32 0, i32 0, null, i32 256, i1 false, null, null, i32 0, metadata !84, i32 2229} ; [ DW_TAG_subprogram ]
 !1297 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1298, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1298 = metadata !{metadata !299, metadata !957, metadata !108, metadata !63}
+!1298 = metadata !{metadata !299, metadata !957, metadata !108, metadata !89}
 !1299 = metadata !{i32 786478, i32 0, metadata !854, metadata !"~ap_int_base", metadata !"~ap_int_base", metadata !"", metadata !72, i32 1302, metadata !869, i1 false, i1 false, i32 0, i32 0, null, i32 320, i1 false, null, null, i32 0, metadata !84, i32 1302} ; [ DW_TAG_subprogram ]
 !1300 = metadata !{metadata !1301, metadata !867}
-!1301 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !88, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
+!1301 = metadata !{i32 786480, null, metadata !"_AP_W", metadata !63, i64 32, null, i32 0, i32 0} ; [ DW_TAG_template_value_parameter ]
 !1302 = metadata !{i32 3359, i32 0, metadata !1303, metadata !833}
 !1303 = metadata !{i32 786443, metadata !1304, i32 3359, i32 5220, metadata !72, i32 7} ; [ DW_TAG_lexical_block ]
 !1304 = metadata !{i32 786478, i32 0, metadata !72, metadata !"operator!=<4, false>", metadata !"operator!=<4, false>", metadata !"_ZneILi4ELb0EEbRK11ap_int_baseIXT_EXT0_EXleT_Li64EEEi", metadata !72, i32 3359, metadata !1305, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !312, null, metadata !84, i32 3359} ; [ DW_TAG_subprogram ]
 !1305 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1306, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!1306 = metadata !{metadata !63, metadata !97, metadata !88}
-!1307 = metadata !{i32 106, i32 5, metadata !834, null}
-!1308 = metadata !{i32 105, i32 5, metadata !834, null}
-!1309 = metadata !{i32 108, i32 4, metadata !791, null}
-!1310 = metadata !{i32 217, i32 49, metadata !782, metadata !1311}
-!1311 = metadata !{i32 109, i32 4, metadata !791, null}
-!1312 = metadata !{i32 218, i32 10, metadata !787, metadata !1311}
-!1313 = metadata !{i32 75, i32 26, metadata !789, null}
-!1314 = metadata !{i32 138, i32 2, metadata !778, null}
-!1315 = metadata !{i32 139, i32 2, metadata !745, null}
-!1316 = metadata !{i32 140, i32 1, metadata !745, null}
-!1317 = metadata !{i32 141, i32 2, metadata !745, null}
+!1306 = metadata !{metadata !89, metadata !97, metadata !63}
+!1307 = metadata !{i32 102, i32 6, metadata !1308, null}
+!1308 = metadata !{i32 786443, metadata !834, i32 101, i32 33, metadata !60, i32 6} ; [ DW_TAG_lexical_block ]
+!1309 = metadata !{i32 786688, metadata !745, metadata !"result", metadata !60, i32 69, metadata !63, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
+!1310 = metadata !{i32 106, i32 5, metadata !834, null}
+!1311 = metadata !{i32 105, i32 5, metadata !834, null}
+!1312 = metadata !{i32 108, i32 4, metadata !791, null}
+!1313 = metadata !{i32 217, i32 49, metadata !782, metadata !1314}
+!1314 = metadata !{i32 109, i32 4, metadata !791, null}
+!1315 = metadata !{i32 218, i32 10, metadata !787, metadata !1314}
+!1316 = metadata !{i32 75, i32 26, metadata !789, null}
+!1317 = metadata !{i32 138, i32 2, metadata !778, null}
+!1318 = metadata !{i32 139, i32 2, metadata !745, null}
+!1319 = metadata !{i32 140, i32 1, metadata !745, null}
+!1320 = metadata !{i32 141, i32 2, metadata !745, null}

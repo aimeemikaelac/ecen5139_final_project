@@ -97,7 +97,7 @@ set opts {
         sync_rst true
         type scalar
         dir O
-        width 1
+        width 32
         mode SIG_OUT_VLD_OFF:SIG_OUT_ACC_OFF
     }
 }

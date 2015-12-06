@@ -15,7 +15,7 @@ target triple = "x86_64-unknown-linux-gnu"
 @str = internal constant [9 x i8] c"runQueue\00"  ; [#uses=1 type=[9 x i8]*]
 
 ; [#uses=0]
-define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration) {
+define i32 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration) {
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut.V), !map !906
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityIn.V), !map !910
   call void (...)* @_ssdm_op_SpecBitsMap(i2* %cmdOut.V), !map !914
@@ -25,13 +25,13 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
   call void (...)* @_ssdm_op_SpecBitsMap(i32 %iterations), !map !930
   call void (...)* @_ssdm_op_SpecBitsMap(i1* %finished), !map !936
   call void (...)* @_ssdm_op_SpecBitsMap(i32* %currentIteration), !map !940
-  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !944
+  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !944
   call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
   %localFull = alloca i1, align 1                 ; [#uses=3 type=i1*]
   %localEmpty = alloca i1, align 1                ; [#uses=3 type=i1*]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut.V}, i64 0, metadata !950), !dbg !1588 ; [debug line = 35:32] [debug variable = priorityOut.V]
-  call void @llvm.dbg.value(metadata !{i4* %priorityIn.V}, i64 0, metadata !1589), !dbg !1591 ; [debug line = 35:62] [debug variable = priorityIn.V]
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut.V}, i64 0, metadata !1592), !dbg !1601 ; [debug line = 35:88] [debug variable = cmdOut.V]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut.V}, i64 0, metadata !950), !dbg !1588 ; [debug line = 35:31] [debug variable = priorityOut.V]
+  call void @llvm.dbg.value(metadata !{i4* %priorityIn.V}, i64 0, metadata !1589), !dbg !1591 ; [debug line = 35:61] [debug variable = priorityIn.V]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut.V}, i64 0, metadata !1592), !dbg !1601 ; [debug line = 35:87] [debug variable = cmdOut.V]
   call void @llvm.dbg.value(metadata !{i1* %empty}, i64 0, metadata !1602), !dbg !1603 ; [debug line = 36:18] [debug variable = empty]
   call void @llvm.dbg.value(metadata !{i1* %full}, i64 0, metadata !1604), !dbg !1605 ; [debug line = 36:40] [debug variable = full]
   call void @llvm.dbg.value(metadata !{i1* %fullOut}, i64 0, metadata !1606), !dbg !1607 ; [debug line = 36:61] [debug variable = fullOut]
@@ -72,7 +72,7 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
 
 ; <label>:1                                       ; preds = %8, %0
   %j = phi i32 [ 0, %0 ], [ %j.1, %8 ]            ; [#uses=3 type=i32]
-  %result = phi i1 [ true, %0 ], [ %result.1.lcssa, %8 ] ; [#uses=2 type=i1]
+  %result = phi i32 [ 0, %0 ], [ %result.1.lcssa, %8 ] ; [#uses=2 type=i32]
   %tmp = icmp slt i32 %j, %iterations, !dbg !1668 ; [#uses=1 type=i1] [debug line = 75:7]
   br i1 %tmp, label %2, label %9, !dbg !1668      ; [debug line = 75:7]
 
@@ -126,7 +126,7 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
 
 ; <label>:6                                       ; preds = %7, %5
   %op2.assign = phi i32 [ 0, %5 ], [ %i.1, %7 ]   ; [#uses=2 type=i32]
-  %result.1 = phi i1 [ %result, %5 ], [ %result.1., %7 ] ; [#uses=2 type=i1]
+  %result.1 = phi i32 [ %result, %5 ], [ %result.1., %7 ] ; [#uses=3 type=i32]
   call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1713), !dbg !1718 ; [debug line = 99:4] [debug variable = localEmpty]
   %localEmpty.load = load volatile i1* %localEmpty, align 1, !dbg !1718 ; [#uses=1 type=i1] [debug line = 99:4]
   br i1 %localEmpty.load, label %8, label %7, !dbg !1718 ; [debug line = 99:4]
@@ -141,29 +141,31 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
   call void @llvm.dbg.value(metadata !{i32 %op2.assign}, i64 0, metadata !2193), !dbg !2195 ; [debug line = 1367:68@1367:88@3359:0@101:8] [debug variable = op]
   %tmp.4 = zext i4 %priorityIn.V.load to i32, !dbg !2197 ; [#uses=1 type=i32] [debug line = 1874:9@3359:0@101:8]
   %tmp.5 = icmp eq i32 %tmp.4, %op2.assign, !dbg !2197 ; [#uses=1 type=i1] [debug line = 1874:9@3359:0@101:8]
-  %result.1. = and i1 %tmp.5, %result.1, !dbg !1726 ; [#uses=1 type=i1] [debug line = 101:8]
-  %i.1 = add nsw i32 %op2.assign, 1, !dbg !2202   ; [#uses=1 type=i32] [debug line = 105:5]
-  call void @llvm.dbg.value(metadata !{i32 %i.1}, i64 0, metadata !1705), !dbg !2202 ; [debug line = 105:5] [debug variable = i]
-  %localEmpty.2 = load volatile i1* %empty, align 1, !dbg !2203 ; [#uses=1 type=i1] [debug line = 106:5]
-  call void @llvm.dbg.value(metadata !{i1 %localEmpty.2}, i64 0, metadata !1713), !dbg !2203 ; [debug line = 106:5] [debug variable = localEmpty]
-  store volatile i1 %localEmpty.2, i1* %localEmpty, align 1, !dbg !2203 ; [debug line = 106:5]
-  br label %6, !dbg !2204                         ; [debug line = 107:4]
+  %result.2 = add nsw i32 %result.1, 1, !dbg !2202 ; [#uses=1 type=i32] [debug line = 102:6]
+  call void @llvm.dbg.value(metadata !{i32 %result.2}, i64 0, metadata !2204), !dbg !2202 ; [debug line = 102:6] [debug variable = result]
+  %result.1. = select i1 %tmp.5, i32 %result.1, i32 %result.2, !dbg !1726 ; [#uses=1 type=i32] [debug line = 101:8]
+  %i.1 = add nsw i32 %op2.assign, 1, !dbg !2205   ; [#uses=1 type=i32] [debug line = 105:5]
+  call void @llvm.dbg.value(metadata !{i32 %i.1}, i64 0, metadata !1705), !dbg !2205 ; [debug line = 105:5] [debug variable = i]
+  %localEmpty.2 = load volatile i1* %empty, align 1, !dbg !2206 ; [#uses=1 type=i1] [debug line = 106:5]
+  call void @llvm.dbg.value(metadata !{i1 %localEmpty.2}, i64 0, metadata !1713), !dbg !2206 ; [debug line = 106:5] [debug variable = localEmpty]
+  store volatile i1 %localEmpty.2, i1* %localEmpty, align 1, !dbg !2206 ; [debug line = 106:5]
+  br label %6, !dbg !2207                         ; [debug line = 107:4]
 
 ; <label>:8                                       ; preds = %6
-  %result.1.lcssa = phi i1 [ %result.1, %6 ]      ; [#uses=1 type=i1]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !2205 ; [debug line = 108:4]
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut.V}, i64 0, metadata !1660), !dbg !2206 ; [debug line = 217:49@109:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  store volatile i2 0, i2* %cmdOut.V, align 1, !dbg !2208 ; [debug line = 218:10@109:4]
-  %j.1 = add nsw i32 %j, 1, !dbg !2209            ; [#uses=1 type=i32] [debug line = 75:26]
-  call void @llvm.dbg.value(metadata !{i32 %j.1}, i64 0, metadata !2210), !dbg !2209 ; [debug line = 75:26] [debug variable = j]
-  br label %1, !dbg !2209                         ; [debug line = 75:26]
+  %result.1.lcssa = phi i32 [ %result.1, %6 ]     ; [#uses=1 type=i32]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !2208 ; [debug line = 108:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut.V}, i64 0, metadata !1660), !dbg !2209 ; [debug line = 217:49@109:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  store volatile i2 0, i2* %cmdOut.V, align 1, !dbg !2211 ; [debug line = 218:10@109:4]
+  %j.1 = add nsw i32 %j, 1, !dbg !2212            ; [#uses=1 type=i32] [debug line = 75:26]
+  call void @llvm.dbg.value(metadata !{i32 %j.1}, i64 0, metadata !2213), !dbg !2212 ; [debug line = 75:26] [debug variable = j]
+  br label %1, !dbg !2212                         ; [debug line = 75:26]
 
 ; <label>:9                                       ; preds = %1
-  %result.lcssa = phi i1 [ %result, %1 ]          ; [#uses=1 type=i1]
-  %10 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @.str6, i32 %tmp.2), !dbg !2211 ; [#uses=0 type=i32] [debug line = 138:2]
-  store i1 true, i1* %finished, align 1, !dbg !2212 ; [debug line = 139:2]
-  call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @.str1, [10 x i8]* @.str3, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1), !dbg !2213 ; [debug line = 140:1]
-  ret i1 %result.lcssa, !dbg !2214                ; [debug line = 141:2]
+  %result.lcssa = phi i32 [ %result, %1 ]         ; [#uses=1 type=i32]
+  %10 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @.str6, i32 %tmp.2), !dbg !2214 ; [#uses=0 type=i32] [debug line = 138:2]
+  store i1 true, i1* %finished, align 1, !dbg !2215 ; [debug line = 139:2]
+  call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @.str1, [10 x i8]* @.str3, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1), !dbg !2216 ; [debug line = 140:1]
+  ret i32 %result.lcssa, !dbg !2217               ; [debug line = 141:2]
 }
 
 ; [#uses=10]
@@ -175,7 +177,7 @@ declare void @_ssdm_op_SpecProtocol(...) nounwind
 ; [#uses=6]
 declare void @_ssdm_op_Wait(...) nounwind
 
-; [#uses=46]
+; [#uses=47]
 declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
 ; [#uses=1]
@@ -1144,16 +1146,16 @@ declare void @_ssdm_op_SpecIFCore(...)
 !942 = metadata !{metadata !943}
 !943 = metadata !{metadata !"currentIteration", metadata !12, metadata !"int"}
 !944 = metadata !{metadata !945}
-!945 = metadata !{i32 0, i32 0, metadata !946}
+!945 = metadata !{i32 0, i32 31, metadata !946}
 !946 = metadata !{metadata !947}
-!947 = metadata !{metadata !"return", metadata !948, metadata !"bool"}
+!947 = metadata !{metadata !"return", metadata !948, metadata !"int"}
 !948 = metadata !{metadata !949}
 !949 = metadata !{i32 0, i32 1, i32 0}
 !950 = metadata !{i32 790531, metadata !951, metadata !"priorityOut.V", null, i32 35, metadata !1581, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !951 = metadata !{i32 786689, metadata !952, metadata !"priorityOut", metadata !18, i32 16777251, metadata !955, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !952 = metadata !{i32 786478, i32 0, metadata !18, metadata !"runQueue", metadata !"runQueue", metadata !"_Z8runQueuePV7ap_uintILi4EES2_PVS_ILi2EEPVbS7_S7_iPbPi", metadata !18, i32 35, metadata !953, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, null, metadata !88, i32 37} ; [ DW_TAG_subprogram ]
 !953 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !954, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
-!954 = metadata !{metadata !223, metadata !955, metadata !955, metadata !1267, metadata !1577, metadata !1577, metadata !1577, metadata !20, metadata !1579, metadata !1580}
+!954 = metadata !{metadata !20, metadata !955, metadata !955, metadata !1267, metadata !1577, metadata !1577, metadata !1577, metadata !20, metadata !1579, metadata !1580}
 !955 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !956} ; [ DW_TAG_pointer_type ]
 !956 = metadata !{i32 786485, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !957} ; [ DW_TAG_volatile_type ]
 !957 = metadata !{i32 786454, null, metadata !"uint_4", metadata !18, i32 19, i64 0, i64 0, i64 0, i32 0, metadata !958} ; [ DW_TAG_typedef ]
@@ -1787,10 +1789,10 @@ declare void @_ssdm_op_SpecIFCore(...)
 !1585 = metadata !{metadata !1586}
 !1586 = metadata !{i32 786438, null, metadata !"ssdm_int<4 + 1024 * 0, false>", metadata !967, i32 6, i64 4, i64 8, i32 0, i32 0, null, metadata !1587, i32 0, null, metadata !975} ; [ DW_TAG_class_field_type ]
 !1587 = metadata !{metadata !969}
-!1588 = metadata !{i32 35, i32 32, metadata !952, null}
+!1588 = metadata !{i32 35, i32 31, metadata !952, null}
 !1589 = metadata !{i32 790531, metadata !1590, metadata !"priorityIn.V", null, i32 35, metadata !1581, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !1590 = metadata !{i32 786689, metadata !952, metadata !"priorityIn", metadata !18, i32 33554467, metadata !955, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
-!1591 = metadata !{i32 35, i32 62, metadata !952, null}
+!1591 = metadata !{i32 35, i32 61, metadata !952, null}
 !1592 = metadata !{i32 790531, metadata !1593, metadata !"cmdOut.V", null, i32 35, metadata !1594, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
 !1593 = metadata !{i32 786689, metadata !952, metadata !"cmdOut", metadata !18, i32 50331683, metadata !1267, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !1594 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !1595} ; [ DW_TAG_pointer_type ]
@@ -1800,7 +1802,7 @@ declare void @_ssdm_op_SpecIFCore(...)
 !1598 = metadata !{metadata !1599}
 !1599 = metadata !{i32 786438, null, metadata !"ssdm_int<2 + 1024 * 0, false>", metadata !967, i32 4, i64 2, i64 8, i32 0, i32 0, null, metadata !1600, i32 0, null, metadata !1284} ; [ DW_TAG_class_field_type ]
 !1600 = metadata !{metadata !1278}
-!1601 = metadata !{i32 35, i32 88, metadata !952, null}
+!1601 = metadata !{i32 35, i32 87, metadata !952, null}
 !1602 = metadata !{i32 786689, metadata !952, metadata !"empty", metadata !18, i32 67108900, metadata !1577, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !1603 = metadata !{i32 36, i32 18, metadata !952, null}
 !1604 = metadata !{i32 786689, metadata !952, metadata !"full", metadata !18, i32 83886116, metadata !1577, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
@@ -2401,16 +2403,19 @@ declare void @_ssdm_op_SpecIFCore(...)
 !2199 = metadata !{i32 786478, i32 0, null, metadata !"operator!=<32, true>", metadata !"operator!=<32, true>", metadata !"_ZNK11ap_int_baseILi4ELb0ELb1EEneILi32ELb1EEEbRKS_IXT_EXT0_EXleT_Li64EEE", metadata !963, i32 1873, metadata !2200, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !1765, null, metadata !88, i32 1873} ; [ DW_TAG_subprogram ]
 !2200 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !2201, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !2201 = metadata !{metadata !223, metadata !1079, metadata !1764}
-!2202 = metadata !{i32 105, i32 5, metadata !1720, null}
-!2203 = metadata !{i32 106, i32 5, metadata !1720, null}
-!2204 = metadata !{i32 107, i32 4, metadata !1720, null}
-!2205 = metadata !{i32 108, i32 4, metadata !1671, null}
-!2206 = metadata !{i32 217, i32 49, metadata !1662, metadata !2207}
-!2207 = metadata !{i32 109, i32 4, metadata !1671, null}
-!2208 = metadata !{i32 218, i32 10, metadata !1667, metadata !2207}
-!2209 = metadata !{i32 75, i32 26, metadata !1669, null}
-!2210 = metadata !{i32 786688, metadata !1625, metadata !"j", metadata !18, i32 68, metadata !20, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
-!2211 = metadata !{i32 138, i32 2, metadata !1658, null}
-!2212 = metadata !{i32 139, i32 2, metadata !1625, null}
-!2213 = metadata !{i32 140, i32 1, metadata !1625, null}
-!2214 = metadata !{i32 141, i32 2, metadata !1625, null}
+!2202 = metadata !{i32 102, i32 6, metadata !2203, null}
+!2203 = metadata !{i32 786443, metadata !1720, i32 101, i32 33, metadata !18, i32 6} ; [ DW_TAG_lexical_block ]
+!2204 = metadata !{i32 786688, metadata !1625, metadata !"result", metadata !18, i32 69, metadata !20, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
+!2205 = metadata !{i32 105, i32 5, metadata !1720, null}
+!2206 = metadata !{i32 106, i32 5, metadata !1720, null}
+!2207 = metadata !{i32 107, i32 4, metadata !1720, null}
+!2208 = metadata !{i32 108, i32 4, metadata !1671, null}
+!2209 = metadata !{i32 217, i32 49, metadata !1662, metadata !2210}
+!2210 = metadata !{i32 109, i32 4, metadata !1671, null}
+!2211 = metadata !{i32 218, i32 10, metadata !1667, metadata !2210}
+!2212 = metadata !{i32 75, i32 26, metadata !1669, null}
+!2213 = metadata !{i32 786688, metadata !1625, metadata !"j", metadata !18, i32 68, metadata !20, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
+!2214 = metadata !{i32 138, i32 2, metadata !1658, null}
+!2215 = metadata !{i32 139, i32 2, metadata !1625, null}
+!2216 = metadata !{i32 140, i32 1, metadata !1625, null}
+!2217 = metadata !{i32 141, i32 2, metadata !1625, null}

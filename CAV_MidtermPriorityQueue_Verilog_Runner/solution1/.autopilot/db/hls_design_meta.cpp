@@ -17,6 +17,6 @@ const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("finished", 1, hls_out, 7, "ap_ovld", "out_data", 1),
 	Port_Property("finished_ap_vld", 1, hls_out, 7, "ap_ovld", "out_vld", 1),
 	Port_Property("currentIteration", 32, hls_out, 8, "ap_none", "out_data", 1),
-	Port_Property("ap_return", 1, hls_out, -1, "", "", 1),
+	Port_Property("ap_return", 32, hls_out, -1, "", "", 1),
 };
 const char* HLS_Design_Meta::dut_name = "runQueue";

@@ -43,7 +43,7 @@ module runQueue_AXI4LiteS_if
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
     input  wire                      O_ap_idle,
-    input  wire [0:0]                O_ap_return
+    input  wire [31:0]               O_ap_return
 );
 //------------------------Address Info-------------------
 // 0x00 : Control signals
@@ -83,8 +83,7 @@ module runQueue_AXI4LiteS_if
 // 0x2c : Data signal of currentIteration
 //        bit 31~0 - currentIteration[31:0] (Read)
 // 0x30 : Data signal of ap_return
-//        bit 0  - ap_return[0] (Read)
-//        others - reserved
+//        bit 31~0 - ap_return[31:0] (Read)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
 //------------------------Parameter----------------------
@@ -148,7 +147,7 @@ reg                  _iterations_ap_vld;
 wire [0:0]           _finished;
 reg                  _finished_ap_vld;
 wire [31:0]          _currentIteration;
-wire [0:0]           ap_return;
+wire [31:0]          ap_return;
 
 //------------------------Body---------------------------
 //++++++++++++++++++++++++axi write++++++++++++++++++++++
@@ -272,7 +271,7 @@ always @(posedge ACLK) begin
                 rdata <= _currentIteration[31:0];
             end
             ADDR_AP_RETURN_0: begin
-                rdata <= ap_return[0:0];
+                rdata <= ap_return[31:0];
             end
         endcase
     end

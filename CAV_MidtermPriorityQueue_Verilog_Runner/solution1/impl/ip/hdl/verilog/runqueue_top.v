@@ -100,7 +100,7 @@ wire sig_runQueue_ap_start;
 wire sig_runQueue_ap_ready;
 wire sig_runQueue_ap_done;
 wire sig_runQueue_ap_idle;
-wire [1 - 1:0] sig_runQueue_ap_return;
+wire [32 - 1:0] sig_runQueue_ap_return;
 
 wire sig_runQueue_ap_rst;
 
