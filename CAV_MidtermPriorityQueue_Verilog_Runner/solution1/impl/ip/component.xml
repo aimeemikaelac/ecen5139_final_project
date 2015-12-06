@@ -768,10 +768,6 @@
 				<spirit:userFileType>USED_IN_implementation</spirit:userFileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_random_priorities_rom.dat</spirit:name>
-				<spirit:userFileType>mif</spirit:userFileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>hdl/verilog/runQueue_AXI4LiteS_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
@@ -781,10 +777,6 @@
 			</spirit:file>
 			<spirit:file>
 				<spirit:name>hdl/verilog/runqueue_top.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_random_priorities.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -796,10 +788,6 @@
 		<spirit:fileSet>
 			<spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
 			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_random_priorities_rom.dat</spirit:name>
-				<spirit:userFileType>mif</spirit:userFileType>
-			</spirit:file>
-			<spirit:file>
 				<spirit:name>hdl/verilog/runQueue_AXI4LiteS_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
@@ -809,10 +797,6 @@
 			</spirit:file>
 			<spirit:file>
 				<spirit:name>hdl/verilog/runqueue_top.v</spirit:name>
-				<spirit:fileType>verilogSource</spirit:fileType>
-			</spirit:file>
-			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_random_priorities.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
@@ -916,8 +900,8 @@
 				<xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>Runqueue</xilinx:displayName>
-			<xilinx:coreRevision>1512052314</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2015-12-06T06:14:36Z</xilinx:coreCreationDateTime>
+			<xilinx:coreRevision>1512052359</xilinx:coreRevision>
+			<xilinx:coreCreationDateTime>2015-12-06T06:59:17Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2014.1</xilinx:xilinxVersion>

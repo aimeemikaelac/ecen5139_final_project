@@ -27,44 +27,30 @@
 <Name>Loop 1</Name>
 <TripCount>undef</TripCount>
 <Latency>undef</Latency>
-<IterationLatency>3</IterationLatency>
-<PipelineDepth>3</PipelineDepth>
-</Loop1>
-<Loop2>
-<Name>Loop 2</Name>
-<TripCount>undef</TripCount>
-<Latency>undef</Latency>
 <IterationLatency>undef</IterationLatency>
 <PipelineDepth>undef</PipelineDepth>
-<Loop2.1>
-<Name>Loop 2.1</Name>
+<Loop1.1>
+<Name>Loop 1.1</Name>
 <TripCount>undef</TripCount>
 <Latency>undef</Latency>
-<IterationLatency>2</IterationLatency>
-<PipelineDepth>2</PipelineDepth>
-</Loop2.1>
-<Loop2.2>
-<Name>Loop 2.2</Name>
+<IterationLatency>1</IterationLatency>
+<PipelineDepth>1</PipelineDepth>
+</Loop1.1>
+<Loop1.2>
+<Name>Loop 1.2</Name>
 <TripCount>undef</TripCount>
 <Latency>undef</Latency>
-<IterationLatency>3</IterationLatency>
-<PipelineDepth>3</PipelineDepth>
-</Loop2.2>
-<Loop2.3>
-<Name>Loop 2.3</Name>
-<TripCount>undef</TripCount>
-<Latency>undef</Latency>
-<IterationLatency>2</IterationLatency>
-<PipelineDepth>2</PipelineDepth>
-</Loop2.3>
-</Loop2>
+<IterationLatency>1</IterationLatency>
+<PipelineDepth>1</PipelineDepth>
+</Loop1.2>
+</Loop1>
 </SummaryOfLoopLatency>
 </PerformanceEstimates>
 <AreaEstimates>
 <Resources>
-<BRAM_18K>1</BRAM_18K>
-<FF>351</FF>
-<LUT>560</LUT>
+<FF>243</FF>
+<LUT>483</LUT>
+<BRAM_18K>0</BRAM_18K>
 <DSP48E>0</DSP48E>
 <SLICE>0</SLICE>
 </Resources>

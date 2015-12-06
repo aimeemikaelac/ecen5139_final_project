@@ -93,6 +93,11 @@
 			<location>/home/michael/ecen5139_final_project/CAV_MidtermPriorityQueue_Verilog_Runner/.apc/.tb</location>
 		</link>
 		<link>
+			<name>.reference/autopilot_ssdm_op.h</name>
+			<type>1</type>
+			<location>/Xilinx/Vivado_HLS/2014.1/include/etc/autopilot_ssdm_op.h</location>
+		</link>
+		<link>
 			<name>.reference/systemc.h</name>
 			<type>1</type>
 			<location>/Xilinx/Vivado_HLS/2014.1/lnx64/tools/systemc/include/systemc.h</location>
