@@ -33,14 +33,15 @@ int random_priorities[] = { 325, 437, 294,197, 295,	178, 325, 500, 207, 384, 16,
 
 //top function. runs the test in the FPGA and time from the CPU
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
-		volatile bool *empty, volatile bool *full, volatile uint_4 *currentPriority, volatile bool *fullOut){
-#pragma HLS INTERFACE s_axilite port=currentPriority
+		volatile bool *empty, volatile bool *full, volatile bool *fullOut,
+		int iterations){
+#pragma HLS RESOURCE variable=iterations core=AXI4LiteS
+
+#pragma HLS INTERFACE ap_vld port=iterations
 
 #pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
 
 #pragma HLS INTERFACE ap_none port=fullOut
-
-#pragma HLS INTERFACE ap_none port=currentPriority
 
 #pragma HLS INTERFACE ap_none port=full
 
@@ -61,7 +62,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 	volatile bool localFull, localEmpty;
 	P1:{
 #pragma HLS PROTOCOL floating
-		for(j=0; j<10000; j++){
+		for(j=0; j<iterations; j++){
 //		for(j=0; j<1; j++){
 	//		result &= runTest();
 			i=0;
@@ -70,7 +71,6 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 				*cmdOut = 1;
 				*priorityOut = uint_4(i);
 				ap_wait();
-				*currentPriority = uint_4(i);
 				*fullOut = *full;
 	//			*cmdOut = 0;
 				i++;
@@ -86,7 +86,6 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 				if((uint_4)*priorityIn != i){
 					result = false;
 				}
-				*currentPriority = *priorityIn;
 	//			*cmdOut = 0;
 				i++;
 				localEmpty = *empty;
@@ -99,7 +98,6 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 				*cmdOut = 1;
 				*priorityOut = uint_4(random_priorities[i]);
 				ap_wait();
-				*currentPriority = uint_4(random_priorities[i]);
 	//			*cmdOut = 0;
 				i++;
 				localFull = *full;
@@ -113,7 +111,6 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 					result = false;
 				}
 				ap_wait();
-				*currentPriority = *priorityIn;
 	//			*cmdOut = 0;
 				last = ((uint_4)*priorityIn).to_int();
 				localEmpty = *empty;

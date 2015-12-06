@@ -11,7 +11,7 @@ set TrivialPipelineFlag 0
 set noPortSwitchingFlag 0
 set FloatingPointFlag 0
 set FftOrFirFlag 0
-set ResetLevelFlag 0
+set ResetLevelFlag 1
 set ResetStyle "control"
 set ResetSyncFlag 1
 set ResetVariableFlag 0

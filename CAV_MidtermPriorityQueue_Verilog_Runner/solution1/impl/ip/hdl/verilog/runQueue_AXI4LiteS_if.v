@@ -8,7 +8,7 @@
 `timescale 1ns/1ps
 module runQueue_AXI4LiteS_if
 #(parameter
-    C_ADDR_WIDTH = 5,
+    C_ADDR_WIDTH = 6,
     C_DATA_WIDTH = 32
 )(
     // axi4 lite slave signals
@@ -34,6 +34,8 @@ module runQueue_AXI4LiteS_if
     output wire                      interrupt,
     // user signals
     input  wire [0:0]                O_fullOut,
+    output wire [31:0]               I_iterations,
+    output wire                      I_iterations_ap_vld,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -63,7 +65,12 @@ module runQueue_AXI4LiteS_if
 // 0x14 : Data signal of fullOut
 //        bit 0  - fullOut[0] (Read)
 //        others - reserved
-// 0x18 : Data signal of ap_return
+// 0x18 : Control signal of iterations
+//        bit 0  - iterations_ap_vld (Read/Write/SC)
+//        others - reserved
+// 0x1c : Data signal of iterations
+//        bit 31~0 - iterations[31:0] (Read/Write)
+// 0x20 : Data signal of ap_return
 //        bit 0  - ap_return[0] (Read)
 //        others - reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
@@ -71,17 +78,19 @@ module runQueue_AXI4LiteS_if
 //------------------------Parameter----------------------
 // address bits
 localparam
-    ADDR_BITS = 5;
+    ADDR_BITS = 6;
 
 // address
 localparam
-    ADDR_AP_CTRL        = 5'h00,
-    ADDR_GIE            = 5'h04,
-    ADDR_IER            = 5'h08,
-    ADDR_ISR            = 5'h0c,
-    ADDR_FULLOUT_CTRL   = 5'h10,
-    ADDR_FULLOUT_DATA_0 = 5'h14,
-    ADDR_AP_RETURN_0    = 5'h18;
+    ADDR_AP_CTRL           = 6'h00,
+    ADDR_GIE               = 6'h04,
+    ADDR_IER               = 6'h08,
+    ADDR_ISR               = 6'h0c,
+    ADDR_FULLOUT_CTRL      = 6'h10,
+    ADDR_FULLOUT_DATA_0    = 6'h14,
+    ADDR_ITERATIONS_CTRL   = 6'h18,
+    ADDR_ITERATIONS_DATA_0 = 6'h1c,
+    ADDR_AP_RETURN_0       = 6'h20;
 
 // axi write fsm
 localparam
@@ -118,6 +127,8 @@ reg                  gie;
 reg  [1:0]           ier;
 reg  [1:0]           isr;
 wire [0:0]           _fullOut;
+reg  [31:0]          _iterations;
+reg                  _iterations_ap_vld;
 wire [0:0]           ap_return;
 
 //------------------------Body---------------------------
@@ -226,6 +237,12 @@ always @(posedge ACLK) begin
             ADDR_FULLOUT_DATA_0: begin
                 rdata <= _fullOut[0:0];
             end
+            ADDR_ITERATIONS_CTRL: begin
+                rdata[0] <= _iterations_ap_vld;
+            end
+            ADDR_ITERATIONS_DATA_0: begin
+                rdata <= _iterations[31:0];
+            end
             ADDR_AP_RETURN_0: begin
                 rdata <= ap_return[0:0];
             end
@@ -235,12 +252,14 @@ end
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //++++++++++++++++++++++++internal registers+++++++++++++
-assign interrupt  = gie & (|isr);
-assign I_ap_start = ap_start;
-assign ap_idle    = O_ap_idle;
-assign ap_ready   = O_ap_ready;
-assign _fullOut   = O_fullOut;
-assign ap_return  = O_ap_return;
+assign interrupt           = gie & (|isr);
+assign I_ap_start          = ap_start;
+assign ap_idle             = O_ap_idle;
+assign ap_ready            = O_ap_ready;
+assign _fullOut            = O_fullOut;
+assign I_iterations_ap_vld = _iterations_ap_vld;
+assign I_iterations        = _iterations;
+assign ap_return           = O_ap_return;
 
 // ap_start
 always @(posedge ACLK) begin
@@ -304,6 +323,22 @@ always @(posedge ACLK) begin
         isr[1] <= 1'b1;
     else if (w_hs && waddr == ADDR_ISR && WSTRB[0])
         isr[1] <= isr[1] ^ WDATA[1]; // toggle on write
+end
+
+// _iterations_ap_vld
+always @(posedge ACLK) begin
+    if (~ARESETN)
+        _iterations_ap_vld <= 1'b0;
+    else if (w_hs && waddr == ADDR_ITERATIONS_CTRL && WSTRB[0] && WDATA[0])
+        _iterations_ap_vld <= 1'b1;
+    else
+        _iterations_ap_vld <= 1'b0; // self clear
+end
+
+// _iterations[31:0]
+always @(posedge ACLK) begin
+    if (w_hs && waddr == ADDR_ITERATIONS_DATA_0)
+        _iterations[31:0] <= (WDATA[31:0] & wmask) | (_iterations[31:0] & ~wmask);
 end
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
