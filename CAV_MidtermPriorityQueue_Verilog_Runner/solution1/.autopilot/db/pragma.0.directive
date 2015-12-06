@@ -124,5 +124,10 @@
 <option name="core" value="AXI4LiteS"/>
 </pragma>
 </directive>
+<directive functionLabel="" functionName="runQueue" label="">
+<pragma name="PROTOCOL">
+<option name="floating" positionalBoolean="mode" value=""/>
+</pragma>
+</directive>
 </sourceFile>
 </AutoPilot:ProjectResources>

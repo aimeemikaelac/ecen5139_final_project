@@ -2,6 +2,7 @@
 //#include <iostream>
 //#include <string.h>
 #include "ap_int.h"
+#include "ap_utils.h"
 
 //using namespace std;
 
@@ -54,12 +55,15 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 	int i, j, last =0;
 	bool result = true;
 //	for(j=0; j<10000; j++){
-	for(j=0; j<1; j++){
+	P1: for(j=0; j<1; j++){
+#pragma HLS PROTOCOL floating
+
 //		result &= runTest();
 		i=0;
 		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(i);
+			ap_wait();
 			*currentPriority = uint_4(i);
 //			*cmdOut = 0;
 			i++;
@@ -68,6 +72,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 		i=0;
 		while(empty == 0){
 			*cmdOut = 2;
+			ap_wait();
 			if((uint_4)priorityIn != i){
 				result = false;
 			}
@@ -80,6 +85,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(random_priorities[i]);
+			ap_wait();
 			*currentPriority = uint_4(random_priorities[i]);
 //			*cmdOut = 0;
 			i++;
@@ -90,6 +96,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 			if(last > (uint_4)priorityIn){
 				result = false;
 			}
+			ap_wait();
 			*currentPriority = priorityIn;
 //			*cmdOut = 0;
 			last = ((uint_4)priorityIn).to_int();
