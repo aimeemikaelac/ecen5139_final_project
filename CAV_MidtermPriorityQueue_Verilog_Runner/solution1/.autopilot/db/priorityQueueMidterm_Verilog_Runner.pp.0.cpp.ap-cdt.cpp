@@ -39923,42 +39923,51 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
-//			i=0;
-//			localFull = *full;
-//			ap_wait();
-//			*cmdOut = 1;
-//			while(localFull == false){
-//				*priorityOut = uint_4(random_priorities[i]);
-//				ap_wait();
-//	//			*cmdOut = 0;
-//				i++;
-//				localFull = *full;
-//			}
-//			ap_wait();
-//			*cmdOut = 0;
-//			localEmpty = *empty;
-//			while(localEmpty == false){
-//				*cmdOut = 2;
-//				if(last > (uint_4)*priorityIn){
-//					result = false;
-//				}
-//				ap_wait();
-//	//			*cmdOut = 0;
-//				last = ((uint_4)*priorityIn).to_int();
-//				localEmpty = *empty;
-//			}
-//			ap_wait();
-//			*cmdOut = 0;
-//			ap_wait();
+   i=0;
+   localFull = *full;
+   _ssdm_op_Wait(1);
+   *cmdOut = 1;
+   while(localFull == false){
+    *cmdOut = 1;
+    _ssdm_op_Wait(1);
+    *priorityOut = uint_8(random_priorities[i]);
+    _ssdm_op_Wait(1);
+ //			*cmdOut = 0;
+    i++;
+    localFull = *full;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
+   }
+   _ssdm_op_Wait(1);
+   *cmdOut = 0;
+   localEmpty = *empty;
+   while(localEmpty == false){
+    *cmdOut = 2;
+    _ssdm_op_Wait(1);
+    if(last > (uint_8)*priorityIn){
+     result+= ((uint_8)*priorityIn).to_int();
+    }
+    _ssdm_op_Wait(1);
+ //			*cmdOut = 0;
+    last = ((uint_8)*priorityIn).to_int();
+    localEmpty = *empty;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
+   }
+   _ssdm_op_Wait(1);
+   *cmdOut = 0;
+   _ssdm_op_Wait(1);
   }
  _ssdm_RegionEnd("P1");}
  *total = count;
 #pragma HLS RESOURCE variable=total core=AXI4LiteS
-#pragma line 153 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#pragma line 162 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  *finished = true;
 #pragma HLS RESOURCE variable=finished core=AXI4LiteS
-#pragma line 154 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#pragma line 163 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
 //	cout << "Result: "<<result<<endl;
  return result;

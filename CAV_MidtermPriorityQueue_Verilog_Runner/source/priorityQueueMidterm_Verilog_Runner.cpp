@@ -121,33 +121,42 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
 			}
 			ap_wait();
 			*cmdOut = 0;
-//			i=0;
-//			localFull = *full;
-//			ap_wait();
-//			*cmdOut = 1;
-//			while(localFull == false){
-//				*priorityOut = uint_4(random_priorities[i]);
-//				ap_wait();
-//	//			*cmdOut = 0;
-//				i++;
-//				localFull = *full;
-//			}
-//			ap_wait();
-//			*cmdOut = 0;
-//			localEmpty = *empty;
-//			while(localEmpty == false){
-//				*cmdOut = 2;
-//				if(last > (uint_4)*priorityIn){
-//					result = false;
-//				}
-//				ap_wait();
-//	//			*cmdOut = 0;
-//				last = ((uint_4)*priorityIn).to_int();
-//				localEmpty = *empty;
-//			}
-//			ap_wait();
-//			*cmdOut = 0;
-//			ap_wait();
+			i=0;
+			localFull = *full;
+			ap_wait();
+			*cmdOut = 1;
+			while(localFull == false){
+				*cmdOut = 1;
+				ap_wait();
+				*priorityOut = uint_8(random_priorities[i]);
+				ap_wait();
+	//			*cmdOut = 0;
+				i++;
+				localFull = *full;
+				ap_wait();
+				*cmdOut = 0;
+				ap_wait();
+			}
+			ap_wait();
+			*cmdOut = 0;
+			localEmpty = *empty;
+			while(localEmpty == false){
+				*cmdOut = 2;
+				ap_wait();
+				if(last > (uint_8)*priorityIn){
+					result+= ((uint_8)*priorityIn).to_int();
+				}
+				ap_wait();
+	//			*cmdOut = 0;
+				last = ((uint_8)*priorityIn).to_int();
+				localEmpty = *empty;
+				ap_wait();
+				*cmdOut = 0;
+				ap_wait();
+			}
+			ap_wait();
+			*cmdOut = 0;
+			ap_wait();
 		}
 	}
 	*total = count;
