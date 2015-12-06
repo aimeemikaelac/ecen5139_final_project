@@ -100,6 +100,16 @@ set opts {
         mode SIG_OUT_VLD_OFF:SIG_OUT_ACC_OFF
     }
     {
+        id 8
+        name fullOut
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 1
+        mode SIG_OUT_VLD_OFF:SIG_OUT_ACC_OFF
+    }
+    {
         id -1
         name ap_start
         reset_level 1

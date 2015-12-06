@@ -39743,7 +39743,11 @@ int random_priorities[] = { 325, 437, 294,197, 295, 178, 325, 500, 207, 384, 16,
 #pragma empty_line
 //top function. runs the test in the FPGA and time from the CPU
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile cmd *cmdOut,
-  volatile bool empty, volatile bool full, volatile uint_4 *currentPriority){
+  volatile bool empty, volatile bool full, volatile uint_4 *currentPriority, volatile bool *fullOut){
+#pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
+#pragma empty_line
+#pragma HLS INTERFACE ap_none port=fullOut
+#pragma empty_line
 #pragma HLS RESOURCE variable=currentPriority core=AXI4LiteS
 #pragma empty_line
 #pragma HLS INTERFACE ap_none port=currentPriority
@@ -39770,17 +39774,18 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 #pragma empty_line
 //		result &= runTest();
   i=0;
-  while(full == 0){
+  while(full == false){
    *cmdOut = 1;
    *priorityOut = uint_4(i);
    _ssdm_op_Wait(1);
    *currentPriority = uint_4(i);
+   *fullOut = full;
 //			*cmdOut = 0;
    i++;
   }
   *cmdOut = 0;
   i=0;
-  while(empty == 0){
+  while(empty == false){
    *cmdOut = 2;
    _ssdm_op_Wait(1);
    if((uint_4)priorityIn != i){
@@ -39792,7 +39797,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
   }
   *cmdOut = 0;
   i=0;
-  while(full == 0){
+  while(full == false){
    *cmdOut = 1;
    *priorityOut = uint_4(random_priorities[i]);
    _ssdm_op_Wait(1);
@@ -39801,7 +39806,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
    i++;
   }
   *cmdOut = 0;
-  while(empty == 0){
+  while(empty == false){
    *cmdOut = 2;
    if(last > (uint_4)priorityIn){
     result = false;

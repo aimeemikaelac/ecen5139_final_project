@@ -8,7 +8,7 @@
 `timescale 1ns/1ps
 module runQueue_AXI4LiteS_if
 #(parameter
-    C_ADDR_WIDTH = 5,
+    C_ADDR_WIDTH = 6,
     C_DATA_WIDTH = 32
 )(
     // axi4 lite slave signals
@@ -34,6 +34,7 @@ module runQueue_AXI4LiteS_if
     output wire                      interrupt,
     // user signals
     input  wire [3:0]                O_currentPriority_V,
+    input  wire [0:0]                O_fullOut,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -63,7 +64,11 @@ module runQueue_AXI4LiteS_if
 // 0x14 : Data signal of currentPriority_V
 //        bit 3~0 - currentPriority_V[3:0] (Read)
 //        others  - reserved
-// 0x18 : Data signal of ap_return
+// 0x18 : reserved
+// 0x1c : Data signal of fullOut
+//        bit 0  - fullOut[0] (Read)
+//        others - reserved
+// 0x20 : Data signal of ap_return
 //        bit 0  - ap_return[0] (Read)
 //        others - reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
@@ -71,17 +76,19 @@ module runQueue_AXI4LiteS_if
 //------------------------Parameter----------------------
 // address bits
 localparam
-    ADDR_BITS = 5;
+    ADDR_BITS = 6;
 
 // address
 localparam
-    ADDR_AP_CTRL                  = 5'h00,
-    ADDR_GIE                      = 5'h04,
-    ADDR_IER                      = 5'h08,
-    ADDR_ISR                      = 5'h0c,
-    ADDR_CURRENTPRIORITY_V_CTRL   = 5'h10,
-    ADDR_CURRENTPRIORITY_V_DATA_0 = 5'h14,
-    ADDR_AP_RETURN_0              = 5'h18;
+    ADDR_AP_CTRL                  = 6'h00,
+    ADDR_GIE                      = 6'h04,
+    ADDR_IER                      = 6'h08,
+    ADDR_ISR                      = 6'h0c,
+    ADDR_CURRENTPRIORITY_V_CTRL   = 6'h10,
+    ADDR_CURRENTPRIORITY_V_DATA_0 = 6'h14,
+    ADDR_FULLOUT_CTRL             = 6'h18,
+    ADDR_FULLOUT_DATA_0           = 6'h1c,
+    ADDR_AP_RETURN_0              = 6'h20;
 
 // axi write fsm
 localparam
@@ -118,6 +125,7 @@ reg                  gie;
 reg  [1:0]           ier;
 reg  [1:0]           isr;
 wire [3:0]           _currentPriority_V;
+wire [0:0]           _fullOut;
 wire [0:0]           ap_return;
 
 //------------------------Body---------------------------
@@ -226,6 +234,9 @@ always @(posedge ACLK) begin
             ADDR_CURRENTPRIORITY_V_DATA_0: begin
                 rdata <= _currentPriority_V[3:0];
             end
+            ADDR_FULLOUT_DATA_0: begin
+                rdata <= _fullOut[0:0];
+            end
             ADDR_AP_RETURN_0: begin
                 rdata <= ap_return[0:0];
             end
@@ -240,6 +251,7 @@ assign I_ap_start         = ap_start;
 assign ap_idle            = O_ap_idle;
 assign ap_ready           = O_ap_ready;
 assign _currentPriority_V = O_currentPriority_V;
+assign _fullOut           = O_fullOut;
 assign ap_return          = O_ap_return;
 
 // ap_start

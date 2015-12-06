@@ -13,7 +13,7 @@ target triple = "x86_64-unknown-linux-gnu"
 @str = internal constant [9 x i8] c"runQueue\00"
 @random_priorities = constant [200 x i9] [i9 -187, i9 -75, i9 -218, i9 197, i9 -217, i9 178, i9 -187, i9 -12, i9 207, i9 -128, i9 16, i9 21, i9 95, i9 -21, i9 -152, i9 22, i9 10, i9 -249, i9 -201, i9 -102, i9 -131, i9 -179, i9 65, i9 191, i9 137, i9 184, i9 -158, i9 94, i9 -210, i9 106, i9 -196, i9 -91, i9 166, i9 -37, i9 -148, i9 250, i9 91, i9 -239, i9 -12, i9 -129, i9 -183, i9 -73, i9 -37, i9 234, i9 -73, i9 -21, i9 235, i9 240, i9 -202, i9 -150, i9 203, i9 53, i9 78, i9 -97, i9 -177, i9 214, i9 100, i9 -77, i9 -216, i9 69, i9 -65, i9 125, i9 124, i9 -138, i9 65, i9 213, i9 -216, i9 -173, i9 211, i9 -138, i9 -34, i9 -110, i9 85, i9 -159, i9 66, i9 200, i9 -49, i9 181, i9 -243, i9 -241, i9 -100, i9 58, i9 -168, i9 -38, i9 90, i9 105, i9 20, i9 156, i9 -106, i9 -203, i9 -21, i9 -97, i9 -242, i9 92, i9 -84, i9 16, i9 227, i9 -71, i9 49, i9 -135, i9 -94, i9 -88, i9 -95, i9 66, i9 241, i9 -183, i9 157, i9 154, i9 226, i9 -73, i9 246, i9 28, i9 36, i9 -89, i9 -101, i9 12, i9 173, i9 226, i9 172, i9 150, i9 -214, i9 -106, i9 80, i9 -187, i9 -154, i9 -66, i9 -126, i9 75, i9 -228, i9 -95, i9 143, i9 24, i9 168, i9 -215, i9 3, i9 116, i9 37, i9 186, i9 -153, i9 222, i9 41, i9 120, i9 -137, i9 -233, i9 -146, i9 -158, i9 -109, i9 62, i9 -83, i9 -107, i9 133, i9 -209, i9 -124, i9 193, i9 16, i9 -229, i9 -85, i9 233, i9 175, i9 -57, i9 129, i9 158, i9 -203, i9 59, i9 -146, i9 108, i9 -105, i9 -125, i9 216, i9 -131, i9 118, i9 -170, i9 12, i9 61, i9 -101, i9 110, i9 -55, i9 88, i9 199, i9 -93, i9 -38, i9 116, i9 145, i9 8, i9 144, i9 32, i9 106, i9 -61, i9 253, i9 115, i9 202, i9 -18, i9 239, i9 188, i9 -161, i9 155, i9 28, i9 227, i9 -248, i9 184]
 
-define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zeroext %empty, i1 zeroext %full, i4* %currentPriority_V) {
+define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zeroext %empty, i1 zeroext %full, i4* %currentPriority_V, i1* %fullOut) {
   %result = alloca i1, align 1
   %last = alloca i32, align 4
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut_V), !map !7
@@ -22,7 +22,8 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void (...)* @_ssdm_op_SpecBitsMap(i1 %empty), !map !21
   call void (...)* @_ssdm_op_SpecBitsMap(i1 %full), !map !25
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %currentPriority_V), !map !29
-  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !33
+  call void (...)* @_ssdm_op_SpecBitsMap(i1* %fullOut), !map !33
+  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !37
   call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
   %full_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %full)
   %empty_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %empty)
@@ -31,6 +32,7 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   %full_assign = alloca i1, align 1
   store volatile i1 %empty_read, i1* %empty_assign, align 1
   store volatile i1 %full_read, i1* %full_assign, align 1
+  call void (...)* @_ssdm_op_SpecWire(i1* %fullOut, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i4* %currentPriority_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i1 %full, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i1 %empty, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
@@ -75,9 +77,12 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_reg2mem)
   call void (...)* @_ssdm_op_SpecIFCore(i4* %currentPriority_V, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
-  %full_assign_load_2 = load volatile i1* %full_assign, align 1
+  %full_assign_load_1 = load volatile i1* %full_assign, align 1
+  call void @_ssdm_op_Write.ap_none.volatile.i1P(i1* %fullOut, i1 %full_assign_load_1)
+  call void (...)* @_ssdm_op_SpecIFCore(i1* %fullOut, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+  %full_assign_load_3 = load volatile i1* %full_assign, align 1
   %i8 = add nsw i32 %i_reg2mem, 1
-  br i1 %full_assign_load_2, label %7, label %4
+  br i1 %full_assign_load_3, label %7, label %4
 
 ; <label>:6                                       ; preds = %2
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
@@ -119,18 +124,18 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
 
 ; <label>:12                                      ; preds = %11
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  %full_assign_load_4 = load volatile i1* %full_assign, align 1
-  br i1 %full_assign_load_4, label %21, label %16
+  %full_assign_load_5 = load volatile i1* %full_assign, align 1
+  br i1 %full_assign_load_5, label %21, label %16
 
 ; <label>:13                                      ; preds = %6
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  %full_assign_load_1 = load volatile i1* %full_assign, align 1
-  br i1 %full_assign_load_1, label %22, label %17
+  %full_assign_load_2 = load volatile i1* %full_assign, align 1
+  br i1 %full_assign_load_2, label %22, label %17
 
 ; <label>:14                                      ; preds = %7
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  %full_assign_load_3 = load volatile i1* %full_assign, align 1
-  br i1 %full_assign_load_3, label %23, label %18
+  %full_assign_load_4 = load volatile i1* %full_assign, align 1
+  br i1 %full_assign_load_4, label %23, label %18
 
 ; <label>:15                                      ; preds = %19
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
@@ -166,9 +171,9 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   %tmp_6_reg2mem = phi i4 [ %tmp_1, %15 ], [ 5, %.preheader132 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_6_reg2mem)
-  %full_assign_load_5 = load volatile i1* %full_assign, align 1
+  %full_assign_load_6 = load volatile i1* %full_assign, align 1
   %i_1 = add nsw i32 %i_3_reg2mem, 1
-  br i1 %full_assign_load_5, label %20, label %15
+  br i1 %full_assign_load_6, label %20, label %15
 
 ; <label>:20                                      ; preds = %19
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
@@ -339,6 +344,12 @@ entry:
   ret void
 }
 
+define weak void @_ssdm_op_Write.ap_none.volatile.i1P(i1*, i1) {
+entry:
+  store i1 %1, i1* %0
+  ret void
+}
+
 declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 
 declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
@@ -381,6 +392,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
 !33 = metadata !{metadata !34}
 !34 = metadata !{i32 0, i32 0, metadata !35}
 !35 = metadata !{metadata !36}
-!36 = metadata !{metadata !"return", metadata !37, metadata !"bool"}
+!36 = metadata !{metadata !"fullOut", metadata !5, metadata !"bool"}
 !37 = metadata !{metadata !38}
-!38 = metadata !{i32 0, i32 1, i32 0}
+!38 = metadata !{i32 0, i32 0, metadata !39}
+!39 = metadata !{metadata !40}
+!40 = metadata !{metadata !"return", metadata !41, metadata !"bool"}
+!41 = metadata !{metadata !42}
+!42 = metadata !{i32 0, i32 1, i32 0}

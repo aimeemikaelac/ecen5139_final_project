@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'runQueue'" level="0">
-<item name = "Date">Sat Dec  5 17:25:29 2015
+<item name = "Date">Sat Dec  5 18:13:08 2015
 </item>
 <item name = "Version">2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)</item>
 <item name = "Project">CAV_MidtermPriorityQueue_Verilog_Runner</item>
@@ -36,7 +36,7 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- P1">?, ?, ?, -, -, 1, no</column>
-<column name=" + P1.1">?, ?, 1, -, -, ?, no</column>
+<column name=" + P1.1">?, ?, 2, -, -, ?, no</column>
 <column name=" + P1.2">?, ?, 1, -, -, ?, no</column>
 <column name=" + P1.3">?, ?, 2, -, -, ?, no</column>
 <column name=" + P1.4">?, ?, 1, -, -, ?, no</column>
@@ -56,7 +56,7 @@
 <column name="Instance">-, -, -, -</column>
 <column name="Memory">1, -, -, -</column>
 <column name="Multiplexer">-, -, -, 160</column>
-<column name="Register">-, -, 210, -</column>
+<column name="Register">-, -, 211, -</column>
 <specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
 <specialColumn name="Utilization (%)">~0, 0, ~0, ~0</specialColumn>
 </table>
@@ -78,17 +78,17 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="i8_fu_301_p2">+, 0, 0, 32, 32, 1</column>
-<column name="i_1_fu_335_p2">+, 0, 0, 32, 32, 1</column>
-<column name="i_s_fu_324_p2">+, 0, 0, 32, 32, 1</column>
-<column name="ap_sig_bdd_74">and, 0, 0, 1, 1, 1</column>
-<column name="grp_fu_265_p2">and, 0, 0, 1, 1, 1</column>
-<column name="p_result_2_fu_330_p2">and, 0, 0, 1, 1, 1</column>
-<column name="p_result_3_fu_346_p2">and, 0, 0, 1, 1, 1</column>
-<column name="result_1_s_fu_317_p2">and, 0, 0, 1, 1, 1</column>
-<column name="grp_fu_255_p2">icmp, 0, 0, 40, 32, 32</column>
-<column name="tmp_3_fu_312_p2">icmp, 0, 0, 40, 32, 32</column>
-<column name="grp_fu_259_p2">xor, 0, 0, 2, 1, 2</column>
+<column name="i8_fu_313_p2">+, 0, 0, 32, 32, 1</column>
+<column name="i_1_fu_347_p2">+, 0, 0, 32, 32, 1</column>
+<column name="i_s_fu_336_p2">+, 0, 0, 32, 32, 1</column>
+<column name="ap_sig_bdd_76">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_277_p2">and, 0, 0, 1, 1, 1</column>
+<column name="p_result_2_fu_342_p2">and, 0, 0, 1, 1, 1</column>
+<column name="p_result_3_fu_358_p2">and, 0, 0, 1, 1, 1</column>
+<column name="result_1_s_fu_329_p2">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_267_p2">icmp, 0, 0, 40, 32, 32</column>
+<column name="tmp_3_fu_324_p2">icmp, 0, 0, 40, 32, 32</column>
+<column name="grp_fu_271_p2">xor, 0, 0, 2, 1, 2</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -97,15 +97,15 @@
 <column name="cmdOut_V_preg">2, 3, 2, 6</column>
 <column name="currentPriority_V">4, 4, 4, 16</column>
 <column name="currentPriority_V_preg">4, 3, 4, 12</column>
-<column name="i_1_reg2mem_reg_195">32, 2, 32, 64</column>
-<column name="i_3_reg2mem_reg_208">32, 2, 32, 64</column>
-<column name="i_reg2mem_reg_161">32, 2, 32, 64</column>
-<column name="last_fu_80">4, 2, 4, 8</column>
-<column name="op2_assign_reg2mem_reg_184">32, 2, 32, 64</column>
+<column name="i_1_reg2mem_reg_206">32, 2, 32, 64</column>
+<column name="i_3_reg2mem_reg_219">32, 2, 32, 64</column>
+<column name="i_reg2mem_reg_172">32, 2, 32, 64</column>
+<column name="last_fu_84">4, 2, 4, 8</column>
+<column name="op2_assign_reg2mem_reg_195">32, 2, 32, 64</column>
 <column name="priorityOut_V">4, 5, 4, 20</column>
 <column name="priorityOut_V_preg">4, 4, 4, 16</column>
-<column name="tmp_6_reg2mem_reg_219">4, 2, 4, 8</column>
-<column name="tmp_reg2mem_reg_172">4, 2, 4, 8</column>
+<column name="tmp_6_reg2mem_reg_230">4, 2, 4, 8</column>
+<column name="tmp_reg2mem_reg_183">4, 2, 4, 8</column>
 </table>
 </item>
 <item name = "Register"><table name="" hasTotal="1">
@@ -113,32 +113,33 @@
 <column name="ap_CS_fsm">5, 0, 5, 0</column>
 <column name="cmdOut_V_preg">2, 0, 2, 0</column>
 <column name="currentPriority_V_preg">4, 0, 4, 0</column>
-<column name="empty_assign_fu_84">1, 0, 1, 0</column>
-<column name="empty_assign_load_2_reg_435">1, 0, 1, 0</column>
-<column name="empty_assign_load_reg_418">1, 0, 1, 0</column>
-<column name="full_assign_fu_88">1, 0, 1, 0</column>
-<column name="full_assign_load_1_reg_482">1, 0, 1, 0</column>
-<column name="full_assign_load_3_reg_439">1, 0, 1, 0</column>
-<column name="full_assign_load_4_reg_465">1, 0, 1, 0</column>
-<column name="full_assign_load_reg_414">1, 0, 1, 0</column>
-<column name="i_1_reg2mem_reg_195">32, 0, 32, 0</column>
-<column name="i_1_reg_489">32, 0, 32, 0</column>
-<column name="i_3_reg2mem_reg_208">32, 0, 32, 0</column>
-<column name="i_reg2mem_reg_161">32, 0, 32, 0</column>
-<column name="j_reg_148">1, 0, 1, 0</column>
-<column name="last_1_reg_397">4, 0, 32, 28</column>
-<column name="last_fu_80">4, 0, 32, 28</column>
-<column name="last_load_reg_409">4, 0, 32, 28</column>
-<column name="op2_assign_reg2mem_reg_184">32, 0, 32, 0</column>
-<column name="p_result_3_reg2mem_0_ph_reg_231">1, 0, 1, 0</column>
-<column name="p_result_3_reg_502">1, 0, 1, 0</column>
+<column name="empty_assign_fu_88">1, 0, 1, 0</column>
+<column name="empty_assign_load_2_reg_447">1, 0, 1, 0</column>
+<column name="empty_assign_load_reg_430">1, 0, 1, 0</column>
+<column name="fullOut_preg">1, 0, 1, 0</column>
+<column name="full_assign_fu_92">1, 0, 1, 0</column>
+<column name="full_assign_load_2_reg_494">1, 0, 1, 0</column>
+<column name="full_assign_load_4_reg_451">1, 0, 1, 0</column>
+<column name="full_assign_load_5_reg_477">1, 0, 1, 0</column>
+<column name="full_assign_load_reg_426">1, 0, 1, 0</column>
+<column name="i_1_reg2mem_reg_206">32, 0, 32, 0</column>
+<column name="i_1_reg_501">32, 0, 32, 0</column>
+<column name="i_3_reg2mem_reg_219">32, 0, 32, 0</column>
+<column name="i_reg2mem_reg_172">32, 0, 32, 0</column>
+<column name="j_reg_159">1, 0, 1, 0</column>
+<column name="last_1_reg_409">4, 0, 32, 28</column>
+<column name="last_fu_84">4, 0, 32, 28</column>
+<column name="last_load_reg_421">4, 0, 32, 28</column>
+<column name="op2_assign_reg2mem_reg_195">32, 0, 32, 0</column>
+<column name="p_result_3_reg2mem_0_ph_reg_242">1, 0, 1, 0</column>
+<column name="p_result_3_reg_514">1, 0, 1, 0</column>
 <column name="priorityOut_V_preg">4, 0, 4, 0</column>
-<column name="result_1_s_reg_451">1, 0, 1, 0</column>
-<column name="result_fu_76">1, 0, 1, 0</column>
-<column name="result_load_2_reg_469">1, 0, 1, 0</column>
-<column name="result_load_reg_404">1, 0, 1, 0</column>
-<column name="tmp_6_reg2mem_reg_219">4, 0, 4, 0</column>
-<column name="tmp_reg2mem_reg_172">4, 0, 4, 0</column>
+<column name="result_1_s_reg_463">1, 0, 1, 0</column>
+<column name="result_fu_80">1, 0, 1, 0</column>
+<column name="result_load_2_reg_481">1, 0, 1, 0</column>
+<column name="result_load_reg_416">1, 0, 1, 0</column>
+<column name="tmp_6_reg2mem_reg_230">4, 0, 4, 0</column>
+<column name="tmp_reg2mem_reg_183">4, 0, 4, 0</column>
 </table>
 </item>
 </section>
@@ -161,6 +162,7 @@
 <column name="empty">in, 1, ap_none, empty, scalar</column>
 <column name="full">in, 1, ap_none, full, scalar</column>
 <column name="currentPriority_V">out, 4, ap_none, currentPriority_V, pointer</column>
+<column name="fullOut">out, 1, ap_none, fullOut, pointer</column>
 </table>
 </item>
 </section>
