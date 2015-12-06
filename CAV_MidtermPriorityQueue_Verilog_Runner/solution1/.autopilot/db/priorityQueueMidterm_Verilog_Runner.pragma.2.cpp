@@ -39852,18 +39852,21 @@ _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
  P1:{_ssdm_RegionBegin("P1");
 _ssdm_op_SpecProtocol(1, "");
 
- for(j=0; j<iterations; j++){
+ *cmdOut = 0;
+  for(j=0; j<iterations; j++){
+   last = 0;
 //		for(j=0; j<1; j++){
  //		result &= runTest();
    i=0;
    localFull = *full;
+   *cmdOut = 0;
    while(localFull == false){
     *cmdOut = 1;
     *priorityOut = uint_4(i);
     _ssdm_op_Wait(1);
     *fullOut = *full;
 _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
-# 79 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+# 82 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  //			*cmdOut = 0;
     i++;
@@ -39910,12 +39913,12 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
-
+   _ssdm_op_Wait(1);
   }
  _ssdm_RegionEnd("P1");}
  *finished = true;
 _ssdm_op_SpecResource(finished, "", "AXI4LiteS", "", "", "", "");
-# 128 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+# 131 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
 //	cout << "Result: "<<result<<endl;
  return result;

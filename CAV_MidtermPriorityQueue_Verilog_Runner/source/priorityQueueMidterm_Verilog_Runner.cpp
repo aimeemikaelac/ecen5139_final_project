@@ -67,11 +67,14 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 	P1:{
 #pragma HLS PROTOCOL fixed
 
+		*cmdOut = 0;
 		for(j=0; j<iterations; j++){
+			last = 0;
 //		for(j=0; j<1; j++){
 	//		result &= runTest();
 			i=0;
 			localFull = *full;
+			*cmdOut  = 0;
 			while(localFull == false){
 				*cmdOut = 1;
 				*priorityOut = uint_4(i);
@@ -122,7 +125,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 			}
 			ap_wait();
 			*cmdOut = 0;
-
+			ap_wait();
 		}
 	}
 	*finished = true;

@@ -916,8 +916,8 @@
 				<xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>Runqueue</xilinx:displayName>
-			<xilinx:coreRevision>1512052224</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2015-12-06T05:24:07Z</xilinx:coreCreationDateTime>
+			<xilinx:coreRevision>1512052254</xilinx:coreRevision>
+			<xilinx:coreCreationDateTime>2015-12-06T05:54:10Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2014.1</xilinx:xilinxVersion>

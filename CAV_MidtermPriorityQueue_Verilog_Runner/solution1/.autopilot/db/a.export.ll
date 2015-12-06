@@ -42,86 +42,79 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   %tmp_5 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str6)
   call void (...)* @_ssdm_op_SpecProtocol(i32 1, [1 x i8]* @p_str1) nounwind
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   %tmp6 = icmp sgt i32 %iterations_read, 0
-  br i1 %tmp6, label %1, label %.loopexit95
+  br i1 %tmp6, label %1, label %.loopexit90
 
 ; <label>:1                                       ; preds = %0
   %full_read = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
   store volatile i1 %full_read, i1* %localFull, align 1
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   %localFull_load = load volatile i1* %localFull, align 1
   br i1 %localFull_load, label %.preheader, label %4
 
-; <label>:2                                       ; preds = %17
-  %full_read_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
-  store volatile i1 %full_read_1, i1* %localFull, align 1
-  %localFull_load_1 = load volatile i1* %localFull, align 1
-  br i1 %localFull_load_1, label %7, label %5
-
-.preheader:                                       ; preds = %6, %1
-  %last_1 = phi i32 [ 0, %1 ], [ %last_reg2mem_0_ph, %6 ]
-  %result_reg2mem_1_ph = phi i1 [ true, %1 ], [ %result_reg2mem_0_ph, %6 ]
-  %j_1_reg2mem_1_ph = phi i32 [ 1, %1 ], [ %j_1_reg2mem_0_ph, %6 ]
-  %last = alloca i32, align 4
-  store i32 %last_1, i32* %last, align 4
-  br label %7
+; <label>:2                                       ; preds = %.loopexit
+  %full_read_3 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
+  store volatile i1 %full_read_3, i1* %localFull, align 1
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  %localFull_load11 = load volatile i1* %localFull, align 1
+  br i1 %localFull_load11, label %.preheader, label %5
 
 ; <label>:3                                       ; preds = %6
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
-  %tmp = trunc i32 %i_reg2mem to i4
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp)
+  %tmp_1 = trunc i32 %i_reg2mem to i4
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
   br label %6
 
 ; <label>:4                                       ; preds = %1
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 0)
-  br label %.preheader96
+  br label %.preheader91
 
 ; <label>:5                                       ; preds = %2
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 0)
-  br label %.preheader96
+  br label %.preheader91
 
-.preheader96:                                     ; preds = %4, %5
-  %last_reg2mem_0_ph = phi i32 [ %last_load_1, %5 ], [ 0, %4 ]
+.preheader91:                                     ; preds = %4, %5
   %result_reg2mem_0_ph = phi i1 [ %result_3_reg2mem, %5 ], [ true, %4 ]
   %j_1_reg2mem_0_ph = phi i32 [ %j_s, %5 ], [ 1, %4 ]
   br label %6
 
-; <label>:6                                       ; preds = %.preheader96, %3
-  %i_reg2mem = phi i32 [ %i, %3 ], [ 1, %.preheader96 ]
+; <label>:6                                       ; preds = %.preheader91, %3
+  %i_reg2mem = phi i32 [ %i, %3 ], [ 1, %.preheader91 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
-  %full_read_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
-  call void @_ssdm_op_Write.ap_none.volatile.i1P(i1* %fullOut, i1 %full_read_2)
+  %full_read_4 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
+  call void @_ssdm_op_Write.ap_none.volatile.i1P(i1* %fullOut, i1 %full_read_4)
   call void (...)* @_ssdm_op_SpecIFCore(i1* %fullOut, [1 x i8]* @p_str1, [10 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
-  %localFull_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
-  store volatile i1 %localFull_1, i1* %localFull, align 1
-  %localFull_load_2 = load volatile i1* %localFull, align 1
+  %localFull_4 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
+  store volatile i1 %localFull_4, i1* %localFull, align 1
+  %localFull_load_3 = load volatile i1* %localFull, align 1
   %i = add nsw i32 %i_reg2mem, 1
-  br i1 %localFull_load_2, label %.preheader, label %3
+  br i1 %localFull_load_3, label %.preheader, label %3
 
-; <label>:7                                       ; preds = %.preheader, %2
-  %result_reg2mem_1 = phi i1 [ %result_3_reg2mem, %2 ], [ %result_reg2mem_1_ph, %.preheader ]
-  %j_1_reg2mem_1 = phi i32 [ %j_s, %2 ], [ %j_1_reg2mem_1_ph, %.preheader ]
-  %last_load = load i32* %last, align 4
+.preheader:                                       ; preds = %1, %6, %2
+  %result_reg2mem_1 = phi i1 [ %result_3_reg2mem, %2 ], [ true, %1 ], [ %result_reg2mem_0_ph, %6 ]
+  %j_1_reg2mem_1 = phi i32 [ %j_s, %2 ], [ 1, %1 ], [ %j_1_reg2mem_0_ph, %6 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   %localEmpty_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_1, i1* %localEmpty, align 1
   %localEmpty_load = load volatile i1* %localEmpty, align 1
-  br i1 %localEmpty_load, label %.loopexit94, label %8
+  br i1 %localEmpty_load, label %.loopexit89, label %7
 
-; <label>:8                                       ; preds = %7
+; <label>:7                                       ; preds = %.preheader
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
-  br label %10
+  br label %9
 
-; <label>:9                                       ; preds = %10
+; <label>:8                                       ; preds = %9
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
-  br label %10
+  br label %9
 
-; <label>:10                                      ; preds = %9, %8
-  %op2_assign_reg2mem = phi i32 [ 0, %8 ], [ %i_1_reg2mem, %9 ]
-  %result_1_reg2mem = phi i1 [ %result_reg2mem_1, %8 ], [ %result_1_s, %9 ]
-  %i_1_reg2mem = phi i32 [ 1, %8 ], [ %i_s, %9 ]
+; <label>:9                                       ; preds = %8, %7
+  %op2_assign_reg2mem = phi i32 [ 0, %7 ], [ %i_1_reg2mem, %8 ]
+  %result_1_reg2mem = phi i1 [ %result_reg2mem_1, %7 ], [ %result_1_s, %8 ]
+  %i_1_reg2mem = phi i32 [ 1, %7 ], [ %i_s, %8 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
   %tmp_3 = zext i4 %priorityIn_V_read to i32
@@ -131,90 +124,81 @@ define i1 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %e
   store volatile i1 %localEmpty_2, i1* %localEmpty, align 1
   %localEmpty_load_1 = load volatile i1* %localEmpty, align 1
   %i_s = add nsw i32 %i_1_reg2mem, 1
-  br i1 %localEmpty_load_1, label %.loopexit94, label %9
+  br i1 %localEmpty_load_1, label %.loopexit89, label %8
 
-.loopexit94:                                      ; preds = %10, %7
-  %result_1_reg2mem_1 = phi i1 [ %result_reg2mem_1, %7 ], [ %result_1_s, %10 ]
+.loopexit89:                                      ; preds = %9, %.preheader
+  %result_1_reg2mem_1 = phi i1 [ %result_reg2mem_1, %.preheader ], [ %result_1_s, %9 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  %localFull_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
-  store volatile i1 %localFull_2, i1* %localFull, align 1
-  %localFull_load_3 = load volatile i1* %localFull, align 1
-  br i1 %localFull_load_3, label %.loopexit93, label %11
+  %localFull_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
+  store volatile i1 %localFull_1, i1* %localFull, align 1
+  %localFull_load_1 = load volatile i1* %localFull, align 1
+  br i1 %localFull_load_1, label %.loopexit88, label %10
 
-; <label>:11                                      ; preds = %.loopexit94
+; <label>:10                                      ; preds = %.loopexit89
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5)
-  br label %13
+  br label %12
 
-; <label>:12                                      ; preds = %13
+; <label>:11                                      ; preds = %12
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   %tmp_s = sext i32 %i_3_reg2mem to i64
   %random_priorities_addr = getelementptr [200 x i9]* @random_priorities, i64 0, i64 %tmp_s
   %random_priorities_load = load i9* %random_priorities_addr, align 2
-  %tmp_1 = trunc i9 %random_priorities_load to i4
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
-  br label %13
+  %tmp = trunc i9 %random_priorities_load to i4
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp)
+  br label %12
 
-; <label>:13                                      ; preds = %12, %11
-  %i_3_reg2mem = phi i32 [ 1, %11 ], [ %i_1, %12 ]
+; <label>:12                                      ; preds = %11, %10
+  %i_3_reg2mem = phi i32 [ 1, %10 ], [ %i_1, %11 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %localFull_3 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
   store volatile i1 %localFull_3, i1* %localFull, align 1
-  %localFull_load_4 = load volatile i1* %localFull, align 1
+  %localFull_load_2 = load volatile i1* %localFull, align 1
   %i_1 = add nsw i32 %i_3_reg2mem, 1
-  br i1 %localFull_load_4, label %.loopexit93, label %12
+  br i1 %localFull_load_2, label %.loopexit88, label %11
 
-.loopexit93:                                      ; preds = %13, %.loopexit94
+.loopexit88:                                      ; preds = %12, %.loopexit89
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   %localEmpty_3 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_3, i1* %localEmpty, align 1
   %localEmpty_load_2 = load volatile i1* %localEmpty, align 1
-  br i1 %localEmpty_load_2, label %17, label %14
+  br i1 %localEmpty_load_2, label %.loopexit, label %13
 
-; <label>:14                                      ; preds = %.loopexit93
+; <label>:13                                      ; preds = %.loopexit88
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
-  %priorityIn_V_read_1 = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
-  %tmp_2_cast = zext i4 %priorityIn_V_read_1 to i32
-  %ult = icmp ult i32 %tmp_2_cast, %last_load
-  %rev1 = xor i1 %ult, true
-  %p_result_s = and i1 %rev1, %result_1_reg2mem_1
-  br label %16
+  %priorityIn_V_load_170 = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
+  br label %15
 
-; <label>:15                                      ; preds = %16
+; <label>:14                                      ; preds = %15
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
-  %priorityIn_V_read_3 = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
-  %ult1 = icmp ult i4 %priorityIn_V_read_3, %priorityIn_V_read_2
-  %rev = xor i1 %ult1, true
-  %p_result_1 = and i1 %rev, %p_result_3_reg2mem
-  br label %16
-
-; <label>:16                                      ; preds = %15, %14
-  %p_result_3_reg2mem = phi i1 [ %p_result_s, %14 ], [ %p_result_1, %15 ]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %priorityIn_V_read_2 = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
-  %last_2 = zext i4 %priorityIn_V_read_2 to i32
+  %ult = icmp ult i4 %priorityIn_V_read_2, %priorityIn_V_read_1
+  %rev = xor i1 %ult, true
+  %p_result_s = and i1 %rev, %p_result_3_reg2mem
+  br label %15
+
+; <label>:15                                      ; preds = %14, %13
+  %p_result_3_reg2mem = phi i1 [ %result_1_reg2mem_1, %13 ], [ %p_result_s, %14 ]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
+  %priorityIn_V_read_1 = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
   %localEmpty_4 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_4, i1* %localEmpty, align 1
   %localEmpty_load_3 = load volatile i1* %localEmpty, align 1
-  br i1 %localEmpty_load_3, label %.loopexit, label %15
+  br i1 %localEmpty_load_3, label %.loopexit, label %14
 
-.loopexit:                                        ; preds = %16
-  store i32 %last_2, i32* %last, align 4
-  br label %17
-
-; <label>:17                                      ; preds = %.loopexit, %.loopexit93
-  %result_3_reg2mem = phi i1 [ %result_1_reg2mem_1, %.loopexit93 ], [ %p_result_3_reg2mem, %.loopexit ]
-  %last_load_1 = load i32* %last, align 4
+.loopexit:                                        ; preds = %15, %.loopexit88
+  %result_3_reg2mem = phi i1 [ %result_1_reg2mem_1, %.loopexit88 ], [ %p_result_3_reg2mem, %15 ]
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %tmp4 = icmp slt i32 %j_1_reg2mem_1, %iterations_read
   %j_s = add nsw i32 %j_1_reg2mem_1, 1
-  br i1 %tmp4, label %2, label %.loopexit95
+  br i1 %tmp4, label %2, label %.loopexit90
 
-.loopexit95:                                      ; preds = %17, %0
-  %result_reg2mem_2 = phi i1 [ true, %0 ], [ %result_3_reg2mem, %17 ]
+.loopexit90:                                      ; preds = %.loopexit, %0
+  %result_reg2mem_2 = phi i1 [ true, %0 ], [ %result_3_reg2mem, %.loopexit ]
   %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str6, i32 %tmp_5)
   call void @_ssdm_op_Write.ap_ovld.i1P(i1* %finished, i1 true)
   call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @p_str1, [10 x i8]* @p_str2, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)

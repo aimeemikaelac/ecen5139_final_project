@@ -39777,11 +39777,14 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
  P1:{
 #pragma HLS PROTOCOL fixed
 #pragma empty_line
- for(j=0; j<iterations; j++){
+ *cmdOut = 0;
+  for(j=0; j<iterations; j++){
+   last = 0;
 //		for(j=0; j<1; j++){
  //		result &= runTest();
    i=0;
    localFull = *full;
+   *cmdOut = 0;
    while(localFull == false){
     *cmdOut = 1;
     *priorityOut = uint_4(i);
@@ -39832,7 +39835,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
-#pragma empty_line
+   _ssdm_op_Wait(1);
   }
  }
  *finished = true;
