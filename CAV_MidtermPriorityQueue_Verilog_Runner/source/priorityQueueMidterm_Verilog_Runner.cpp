@@ -60,63 +60,68 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 	bool result = true;
 	volatile bool localFull, localEmpty;
 //	for(j=0; j<10000; j++){
-	P1: for(j=0; j<1; j++){
+	P1:{
 #pragma HLS PROTOCOL floating
-
-//		result &= runTest();
-		i=0;
-		localFull = full;
-		while(localFull == false){
-			*cmdOut = 1;
-			*priorityOut = uint_4(i);
-			ap_wait();
-			*currentPriority = uint_4(i);
-			*fullOut = full;
-//			*cmdOut = 0;
-			i++;
+		for(j=0; j<1; j++){
+	//		result &= runTest();
+			i=0;
 			localFull = full;
-		}
-		*cmdOut = 0;
-		i=0;
-		localEmpty = empty;
-		while(localEmpty == false){
-			*cmdOut = 2;
-			ap_wait();
-			if((uint_4)priorityIn != i){
-				result = false;
-			}
-			*currentPriority = priorityIn;
-//			*cmdOut = 0;
-			i++;
-			localEmpty = empty;
-		}
-		*cmdOut = 0;
-		i=0;
-		localFull = full;
-		while(localFull == false){
-			*cmdOut = 1;
-			*priorityOut = uint_4(random_priorities[i]);
-			ap_wait();
-			*currentPriority = uint_4(random_priorities[i]);
-//			*cmdOut = 0;
-			i++;
-			localFull = full;
-		}
-		*cmdOut = 0;
-		localEmpty = empty;
-		while(localEmpty == false){
-			*cmdOut = 2;
-			if(last > (uint_4)priorityIn){
-				result = false;
+			while(localFull == false){
+				*cmdOut = 1;
+				*priorityOut = uint_4(i);
+				ap_wait();
+				*currentPriority = uint_4(i);
+				*fullOut = full;
+	//			*cmdOut = 0;
+				i++;
+				localFull = full;
 			}
 			ap_wait();
-			*currentPriority = priorityIn;
-//			*cmdOut = 0;
-			last = ((uint_4)priorityIn).to_int();
+			*cmdOut = 0;
+			i=0;
 			localEmpty = empty;
-		}
-		*cmdOut = 0;
+			while(localEmpty == false){
+				*cmdOut = 2;
+				ap_wait();
+				if((uint_4)priorityIn != i){
+					result = false;
+				}
+				*currentPriority = priorityIn;
+	//			*cmdOut = 0;
+				i++;
+				localEmpty = empty;
+			}
+			ap_wait();
+			*cmdOut = 0;
+			i=0;
+			localFull = full;
+			while(localFull == false){
+				*cmdOut = 1;
+				*priorityOut = uint_4(random_priorities[i]);
+				ap_wait();
+				*currentPriority = uint_4(random_priorities[i]);
+	//			*cmdOut = 0;
+				i++;
+				localFull = full;
+			}
+			ap_wait();
+			*cmdOut = 0;
+			localEmpty = empty;
+			while(localEmpty == false){
+				*cmdOut = 2;
+				if(last > (uint_4)priorityIn){
+					result = false;
+				}
+				ap_wait();
+				*currentPriority = priorityIn;
+	//			*cmdOut = 0;
+				last = ((uint_4)priorityIn).to_int();
+				localEmpty = empty;
+			}
+			ap_wait();
+			*cmdOut = 0;
 
+		}
 	}
 //	cout << "Result: "<<result<<endl;
 	return result;

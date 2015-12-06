@@ -39874,69 +39874,74 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
  bool result = true;
  volatile bool localFull, localEmpty;
 //	for(j=0; j<10000; j++){
- P1: for(j=0; j<1; j++){_ssdm_op_SpecLoopName("P1");_ssdm_RegionBegin("P1");
+ P1:{_ssdm_RegionBegin("P1");
 #pragma HLS PROTOCOL floating
-#pragma empty_line
-//		result &= runTest();
-  i=0;
-  localFull = full;
-  while(localFull == false){
-   *cmdOut = 1;
-   *priorityOut = uint_4(i);
-   _ssdm_op_Wait(1);
-   *currentPriority = uint_4(i);
+ for(j=0; j<1; j++){
+ //		result &= runTest();
+   i=0;
+   localFull = full;
+   while(localFull == false){
+    *cmdOut = 1;
+    *priorityOut = uint_4(i);
+    _ssdm_op_Wait(1);
+    *currentPriority = uint_4(i);
 #pragma HLS RESOURCE variable=currentPriority core=AXI4LiteS
 #pragma line 73 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
-   *fullOut = full;
+    *fullOut = full;
 #pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
 #pragma line 74 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
-//			*cmdOut = 0;
-   i++;
-   localFull = full;
-  }
-  *cmdOut = 0;
-  i=0;
-  localEmpty = empty;
-  while(localEmpty == false){
-   *cmdOut = 2;
-   _ssdm_op_Wait(1);
-   if((uint_4)priorityIn != i){
-    result = false;
-   }
-   *currentPriority = priorityIn;
-//			*cmdOut = 0;
-   i++;
-   localEmpty = empty;
-  }
-  *cmdOut = 0;
-  i=0;
-  localFull = full;
-  while(localFull == false){
-   *cmdOut = 1;
-   *priorityOut = uint_4(random_priorities[i]);
-   _ssdm_op_Wait(1);
-   *currentPriority = uint_4(random_priorities[i]);
-//			*cmdOut = 0;
-   i++;
-   localFull = full;
-  }
-  *cmdOut = 0;
-  localEmpty = empty;
-  while(localEmpty == false){
-   *cmdOut = 2;
-   if(last > (uint_4)priorityIn){
-    result = false;
+ //			*cmdOut = 0;
+    i++;
+    localFull = full;
    }
    _ssdm_op_Wait(1);
-   *currentPriority = priorityIn;
-//			*cmdOut = 0;
-   last = ((uint_4)priorityIn).to_int();
+   *cmdOut = 0;
+   i=0;
    localEmpty = empty;
-  }
-  *cmdOut = 0;
+   while(localEmpty == false){
+    *cmdOut = 2;
+    _ssdm_op_Wait(1);
+    if((uint_4)priorityIn != i){
+     result = false;
+    }
+    *currentPriority = priorityIn;
+ //			*cmdOut = 0;
+    i++;
+    localEmpty = empty;
+   }
+   _ssdm_op_Wait(1);
+   *cmdOut = 0;
+   i=0;
+   localFull = full;
+   while(localFull == false){
+    *cmdOut = 1;
+    *priorityOut = uint_4(random_priorities[i]);
+    _ssdm_op_Wait(1);
+    *currentPriority = uint_4(random_priorities[i]);
+ //			*cmdOut = 0;
+    i++;
+    localFull = full;
+   }
+   _ssdm_op_Wait(1);
+   *cmdOut = 0;
+   localEmpty = empty;
+   while(localEmpty == false){
+    *cmdOut = 2;
+    if(last > (uint_4)priorityIn){
+     result = false;
+    }
+    _ssdm_op_Wait(1);
+    *currentPriority = priorityIn;
+ //			*cmdOut = 0;
+    last = ((uint_4)priorityIn).to_int();
+    localEmpty = empty;
+   }
+   _ssdm_op_Wait(1);
+   *cmdOut = 0;
 #pragma empty_line
+  }
  _ssdm_RegionEnd("P1");}
 //	cout << "Result: "<<result<<endl;
  return result;
