@@ -111,81 +111,84 @@ module testbench;
 endmodule // testbench
 
 module pqueue #(parameter N = 200, parameter MSB = $clog2(N)-1)
-    (input clock, input [1:0] cmd, input [MSB:0] in, output [MSB:0] out,
-     output full, output empty);
-
-    parameter NOOP = 0, PUSH = 1, POP = 2;
-    localparam C = $clog2(N+1) - 1;
-
-    reg [MSB:0] queue [0:N-1];
-    reg [C:0]   count;
-    integer     j;
-
-    initial begin
+(
+input clock, 
+input [1:0] cmd, 
+input [MSB:0] in, 
+output [MSB:0] out,
+output full, 
+output empty
+);
+	parameter NOOP = 0, PUSH = 1, POP = 2;
+	localparam C = $clog2(N+1) - 1;
+	
+	reg [MSB:0] queue [0:N];
+	reg [C:0]   count;
+	integer	j;
+	integer	i;
+	integer next;
+	initial begin
         for (j = 0; j < N; j = j + 1)
-          queue[j] = 0;
+		queue[j] = 0;
         count = 0;
-    end
+	end
 
-    assign full = count == N;
-    assign empty = count == 0;
-    assign out = queue[0];
+	assign full = count == N;
+	assign empty = count == 0;
+	assign out = queue[0];
 
-    genvar      i;
+	always @ (posedge clock) begin
+		case(cmd)
+			PUSH: if(full == 0) begin
+				queue[0] <= 0;
+				queue[count + 1] <= in;
+				for(i = count + 1; i >= 1 ; i = i >> 1) begin
+					if(queue[i] < queue[i >> 1]) begin //swap with parent
+						queue[i] <= queue[i >> 1];
+						queue[i >> 1] <= queue[i];
+					end else begin
+						break;
+					end
+				end
+			POP: if(empty == 0) begin
+				queue[0] <= queue[1];
+				queue[1] <= queue[C+1];
+				for(i=1; i <= count; i = next) begin
+					if(i << 1 > count && i << 1 + 1 > count) begin //if the current position has no children
+						break;
+					end else if(i << 1 + 1 > count) begin //if there is no right child, check, but is also last iteration
+						if(queue[i] > queue[i << 1]) begin
+							queue[i] <= queue[i << 1];
+							queue[i << 1] <= queue[i];
+						end
+						break;
+					end else if(queue[i] > queue[i<<1]) || queue[i] > queue[i<<1 + 1]) begin //check if is greater than children, when there are 2 children
+						if(queue[i<<1] <= queue[i<<1 + 1]) begin //swap with left child
+							queue[i] <= queue[i<<2];
+							queue[i<<2] <= queue[i];
+							next = i << 1;
+						end else begin //else swap with right child
+							queue[i] <= queue[i<<2 + 1];
+							queue[i<<2 + 1] <= queue[i];
+							next = i << 1 + 1;
+						end
+					end else begin //?
+						break;
+					end
+				end
+			default: //don't need to do anything for NOOP or invalid command
+				queue[0] <= 0;
+		endcase
+	end
+	
+	always @ (posedge clock) begin
+		case(cmd)
+			PUSH: if(full == 0)
+				count <= count + 1;
+			POP: if(empty == 0)
+				count <= count - 1;
+			default:;
+		endcase
+	end
+endmodule
 
-    generate
-        for (i = 0; i < N; i = i + 2) begin:slot
-            always @ (posedge clock) begin
-                case(cmd)
-                  PUSH: if (full == 0) begin
-                      if (i == 0) begin
-                          if (count == 0 || queue[0] > in) begin
-                              queue[1] <= queue[0];
-                              queue[0] <= in;
-                          end else begin
-                              queue[1] <= in;
-                          end
-                      end else if (i+1 < N) begin
-                          if (count == i || queue[i] > queue[i-1]) begin
-                              queue[i+1] <= queue[i];
-                              queue[i] <= queue[i-1];
-                          end else begin
-                              queue[i+1] <= queue[i-1];
-                          end
-                      end else begin // i == N - 1
-                          if (count == i) begin
-                              queue[i] <= queue[i-1];
-                          end
-                      end
-                  end
-                  POP: if (empty == 0) begin
-                      if (N == i + 1) begin
-                          queue[i] <= 0;
-                      end else if (N == i + 2) begin
-                          queue[i] <= queue[i+1];
-                          queue[i+1] <= 0;
-                      end else begin
-                          if (count == i+2 || queue[i+2] > queue[i+1]) begin
-                              queue[i] <= queue[i+1];
-                              queue[i+1] <= queue[i+2];
-                          end else begin
-                              queue[i] <= queue[i+2];
-                          end
-                      end
-                  end
-                  default:;
-                endcase
-            end
-        end
-    endgenerate
-
-    always @ (posedge clock)
-      case (cmd)
-        PUSH: if (full == 0)
-          count <= count + 1;
-        POP: if (empty == 0)
-          count <= count - 1;
-        default:;
-      endcase
-
-endmodule // pqueue
