@@ -39,6 +39,7 @@ module runQueue_AXI4LiteS_if
     input  wire [0:0]                O_finished,
     input  wire                      O_finished_ap_vld,
     input  wire [31:0]               O_currentIteration,
+    input  wire [31:0]               O_total,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -82,7 +83,10 @@ module runQueue_AXI4LiteS_if
 // 0x28 : reserved
 // 0x2c : Data signal of currentIteration
 //        bit 31~0 - currentIteration[31:0] (Read)
-// 0x30 : Data signal of ap_return
+// 0x30 : reserved
+// 0x34 : Data signal of total
+//        bit 31~0 - total[31:0] (Read)
+// 0x38 : Data signal of ap_return
 //        bit 31~0 - ap_return[31:0] (Read)
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
 
@@ -105,7 +109,9 @@ localparam
     ADDR_FINISHED_DATA_0         = 6'h24,
     ADDR_CURRENTITERATION_CTRL   = 6'h28,
     ADDR_CURRENTITERATION_DATA_0 = 6'h2c,
-    ADDR_AP_RETURN_0             = 6'h30;
+    ADDR_TOTAL_CTRL              = 6'h30,
+    ADDR_TOTAL_DATA_0            = 6'h34,
+    ADDR_AP_RETURN_0             = 6'h38;
 
 // axi write fsm
 localparam
@@ -147,6 +153,7 @@ reg                  _iterations_ap_vld;
 wire [0:0]           _finished;
 reg                  _finished_ap_vld;
 wire [31:0]          _currentIteration;
+wire [31:0]          _total;
 wire [31:0]          ap_return;
 
 //------------------------Body---------------------------
@@ -270,6 +277,9 @@ always @(posedge ACLK) begin
             ADDR_CURRENTITERATION_DATA_0: begin
                 rdata <= _currentIteration[31:0];
             end
+            ADDR_TOTAL_DATA_0: begin
+                rdata <= _total[31:0];
+            end
             ADDR_AP_RETURN_0: begin
                 rdata <= ap_return[31:0];
             end
@@ -288,6 +298,7 @@ assign I_iterations_ap_vld = _iterations_ap_vld;
 assign I_iterations        = _iterations;
 assign _finished           = O_finished;
 assign _currentIteration   = O_currentIteration;
+assign _total              = O_total;
 assign ap_return           = O_ap_return;
 
 // ap_start

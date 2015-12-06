@@ -39830,7 +39830,11 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_cmdOut
 #pragma line 35 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
   volatile bool *empty, volatile bool *full, volatile bool *fullOut,
-  int iterations, bool *finished, int *currentIteration){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+  int iterations, bool *finished, int *currentIteration, int *total){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+#pragma HLS INTERFACE ap_none port=total
+#pragma empty_line
+//#pragma HLS RESOURCE variable=total core=AXI4LiteS
+#pragma empty_line
 //#pragma HLS RESOURCE variable=currentIteration core=AXI4LiteS
 #pragma empty_line
 #pragma HLS INTERFACE ap_none port=currentIteration
@@ -39861,7 +39865,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 #pragma empty_line
 #pragma HLS RESOURCE variable=return core=AXI4LiteS
 #pragma empty_line
- int i, j, last =0;
+ int i, j, last =0, count = 0;
  int result = 0;
  volatile bool localFull, localEmpty;
 //	P1:{
@@ -39871,7 +39875,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
   for(j=0; j<iterations; j++){
    *currentIteration = j;
 #pragma HLS RESOURCE variable=currentIteration core=AXI4LiteS
-#pragma line 76 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#pragma line 80 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
    last = 0;
 //		for(j=0; j<1; j++){
@@ -39886,11 +39890,12 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
     *priorityOut = uint_4(i);
     *fullOut = *full;
 #pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
-#pragma line 88 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#pragma line 92 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  //			*cmdOut = 0;
     i++;
     localFull = *full;
+    count++;
    }
 //			ap_wait();
    *cmdOut = 0;
@@ -39938,9 +39943,13 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 //			ap_wait();
   }
 //	}
+ *total = count;
+#pragma HLS RESOURCE variable=total core=AXI4LiteS
+#pragma line 144 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+
  *finished = true;
 #pragma HLS RESOURCE variable=finished core=AXI4LiteS
-#pragma line 139 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#pragma line 145 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
 //	cout << "Result: "<<result<<endl;
  return result;

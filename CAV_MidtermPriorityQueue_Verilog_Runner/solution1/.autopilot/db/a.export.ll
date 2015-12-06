@@ -13,8 +13,9 @@ target triple = "x86_64-unknown-linux-gnu"
 @llvm_global_ctors_1 = appending global [1 x void ()*] [void ()* @_GLOBAL__I_a]
 @str = internal constant [9 x i8] c"runQueue\00"
 
-define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration) {
+define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %empty, i1* %full, i1* %fullOut, i32 %iterations, i1* %finished, i32* %currentIteration, i32* %total) {
   %result = alloca i32, align 4
+  %count = alloca i32, align 4
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut_V), !map !14
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityIn_V), !map !18
   call void (...)* @_ssdm_op_SpecBitsMap(i2* %cmdOut_V), !map !22
@@ -24,11 +25,13 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   call void (...)* @_ssdm_op_SpecBitsMap(i32 %iterations), !map !38
   call void (...)* @_ssdm_op_SpecBitsMap(i1* %finished), !map !44
   call void (...)* @_ssdm_op_SpecBitsMap(i32* %currentIteration), !map !48
-  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !52
+  call void (...)* @_ssdm_op_SpecBitsMap(i32* %total), !map !52
+  call void (...)* @_ssdm_op_SpecBitsMap(i32 0) nounwind, !map !56
   call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
   %iterations_read = call i32 @_ssdm_op_Read.ap_vld.i32(i32 %iterations)
   %localFull = alloca i1, align 1
   %localEmpty = alloca i1, align 1
+  call void (...)* @_ssdm_op_SpecWire(i32* %total, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i32* %currentIteration, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i1* %finished, [8 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecIFCore(i32 %iterations, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
@@ -42,6 +45,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @p_str5, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  store i32 0, i32* %count, align 4
   store i32 0, i32* %result, align 4
   br label %1
 
@@ -67,6 +71,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   br i1 %localFull_load, label %5, label %4
 
 ; <label>:4                                       ; preds = %3
+  %count_load_1 = load i32* %count, align 4
   %tmp_1 = trunc i32 %val_assign to i4
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
   %full_read = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
@@ -74,6 +79,8 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   call void (...)* @_ssdm_op_SpecIFCore(i1* %fullOut, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   %localFull_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
   store volatile i1 %localFull_2, i1* %localFull, align 1
+  %count_1 = add nsw i32 %count_load_1, 1
+  store i32 %count_1, i32* %count, align 4
   br label %3
 
 ; <label>:5                                       ; preds = %3
@@ -92,10 +99,10 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
 ; <label>:7                                       ; preds = %6
   %result_load_1 = load i32* %result, align 4
   %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
-  %tmp_4 = zext i4 %priorityIn_V_read to i32
-  %tmp_5 = icmp eq i32 %tmp_4, %op2_assign
+  %tmp_5 = zext i4 %priorityIn_V_read to i32
+  %tmp_6 = icmp eq i32 %tmp_5, %op2_assign
   %result_1 = add nsw i32 %result_load_1, 1
-  %result_1_s = select i1 %tmp_5, i32 %result_load_1, i32 %result_1
+  %result_1_s = select i1 %tmp_6, i32 %result_load_1, i32 %result_1
   %localEmpty_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_2, i1* %localEmpty, align 1
   store i32 %result_1_s, i32* %result, align 4
@@ -107,6 +114,9 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
 
 ; <label>:9                                       ; preds = %1
   %result_load = load i32* %result, align 4
+  %count_load = load i32* %count, align 4
+  call void @_ssdm_op_Write.ap_none.i32P(i32* %total, i32 %count_load)
+  call void (...)* @_ssdm_op_SpecIFCore(i32* %total, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   call void @_ssdm_op_Write.ap_ovld.i1P(i1* %finished, i1 true)
   call void (...)* @_ssdm_op_SpecIFCore(i1* %finished, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   ret i32 %result_load
@@ -242,6 +252,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i32.i32.i32(i32, i32, i32) nounwind readnone
 !52 = metadata !{metadata !53}
 !53 = metadata !{i32 0, i32 31, metadata !54}
 !54 = metadata !{metadata !55}
-!55 = metadata !{metadata !"return", metadata !56, metadata !"int"}
+!55 = metadata !{metadata !"total", metadata !12, metadata !"int"}
 !56 = metadata !{metadata !57}
-!57 = metadata !{i32 0, i32 1, i32 0}
+!57 = metadata !{i32 0, i32 31, metadata !58}
+!58 = metadata !{metadata !59}
+!59 = metadata !{metadata !"return", metadata !60, metadata !"int"}
+!60 = metadata !{metadata !61}
+!61 = metadata !{i32 0, i32 1, i32 0}
