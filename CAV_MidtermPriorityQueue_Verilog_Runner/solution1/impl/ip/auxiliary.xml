@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="runQueue" xd:componentRef="runQueue" xd:initiationInterval="x" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64">
-  <xd:returnValue xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x20"/>
+  <xd:returnValue xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x18"/>
   <xd:controlReg xd:name="control" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
   <xd:arg xd:name="*(priorityOut)" xd:originalName="priorityOut" xd:direction="out" xd:interfaceRef="priorityOut_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
-  <xd:arg xd:name="priorityIn" xd:originalName="priorityIn" xd:direction="in" xd:interfaceRef="priorityIn_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
+  <xd:arg xd:name="*(priorityIn)" xd:originalName="priorityIn" xd:direction="in" xd:interfaceRef="priorityIn_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
   <xd:arg xd:name="*(cmdOut)" xd:originalName="cmdOut" xd:direction="out" xd:interfaceRef="cmdOut_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="2"/>
-  <xd:arg xd:name="empty" xd:originalName="empty" xd:direction="in" xd:interfaceRef="empty" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
-  <xd:arg xd:name="full" xd:originalName="full" xd:direction="in" xd:interfaceRef="full" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
-  <xd:arg xd:name="*(currentPriority)" xd:originalName="currentPriority" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x14" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
-  <xd:arg xd:name="*(fullOut)" xd:originalName="fullOut" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x1C" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(empty)" xd:originalName="empty" xd:direction="in" xd:interfaceRef="empty" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(full)" xd:originalName="full" xd:direction="in" xd:interfaceRef="full" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(fullOut)" xd:originalName="fullOut" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x14" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="343" xd:FF="207" xd:BRAM="1" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="349" xd:FF="206" xd:BRAM="1" xd:DSP="0"/>
 </xd:acceleratorMap>

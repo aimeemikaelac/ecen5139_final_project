@@ -39835,23 +39835,23 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_cmdOut
 };
 };
 # 35 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
-bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile cmd *cmdOut,
-  volatile bool empty, volatile bool full, volatile uint_4 *currentPriority, volatile bool *fullOut){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_currentPriority< 4 >::aesl_keep_name_ap_uint_currentPriority(currentPriority);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(&priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
+  volatile bool *empty, volatile bool *full, volatile uint_4 *currentPriority, volatile bool *fullOut){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_currentPriority< 4 >::aesl_keep_name_ap_uint_currentPriority(currentPriority);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+_ssdm_op_SpecWire(currentPriority, "s_axilite", 0, 0, 0, 0, "", "", "");
+
 //#pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
 
 _ssdm_op_SpecWire(fullOut, "ap_none", 0, 0, 0, 0, "", "", "");
 
-//#pragma HLS RESOURCE variable=currentPriority core=AXI4LiteS
-
 _ssdm_op_SpecWire(currentPriority, "ap_none", 0, 0, 0, 0, "", "", "");
 
-_ssdm_op_SpecWire(&full, "ap_none", 0, 0, 0, 0, "", "", "");
+_ssdm_op_SpecWire(full, "ap_none", 0, 0, 0, 0, "", "", "");
 
-_ssdm_op_SpecWire(&empty, "ap_none", 0, 0, 0, 0, "", "", "");
+_ssdm_op_SpecWire(empty, "ap_none", 0, 0, 0, 0, "", "", "");
 
 _ssdm_op_SpecWire(cmdOut, "ap_none", 0, 0, 0, 0, "", "", "");
 
-_ssdm_op_SpecWire(&priorityIn, "ap_none", 0, 0, 0, 0, "", "", "");
+_ssdm_op_SpecWire(priorityIn, "ap_none", 0, 0, 0, 0, "", "", "");
 
 _ssdm_op_SpecWire(priorityOut, "ap_none", 0, 0, 0, 0, "", "", "");
 
@@ -39868,42 +39868,39 @@ _ssdm_op_SpecProtocol(0, "");
  for(j=0; j<1; j++){
  //		result &= runTest();
    i=0;
-   localFull = full;
+   localFull = *full;
    while(localFull == false){
     *cmdOut = 1;
     *priorityOut = uint_4(i);
     _ssdm_op_Wait(1);
     *currentPriority = uint_4(i);
-_ssdm_op_SpecResource(currentPriority, "", "AXI4LiteS", "", "", "", "");
-# 73 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
-
-    *fullOut = full;
+    *fullOut = *full;
 _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
 # 74 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  //			*cmdOut = 0;
     i++;
-    localFull = full;
+    localFull = *full;
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
    i=0;
-   localEmpty = empty;
+   localEmpty = *empty;
    while(localEmpty == false){
     *cmdOut = 2;
     _ssdm_op_Wait(1);
-    if((uint_4)priorityIn != i){
+    if((uint_4)*priorityIn != i){
      result = false;
     }
-    *currentPriority = priorityIn;
+    *currentPriority = *priorityIn;
  //			*cmdOut = 0;
     i++;
-    localEmpty = empty;
+    localEmpty = *empty;
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
    i=0;
-   localFull = full;
+   localFull = *full;
    while(localFull == false){
     *cmdOut = 1;
     *priorityOut = uint_4(random_priorities[i]);
@@ -39911,21 +39908,21 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
     *currentPriority = uint_4(random_priorities[i]);
  //			*cmdOut = 0;
     i++;
-    localFull = full;
+    localFull = *full;
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
-   localEmpty = empty;
+   localEmpty = *empty;
    while(localEmpty == false){
     *cmdOut = 2;
-    if(last > (uint_4)priorityIn){
+    if(last > (uint_4)*priorityIn){
      result = false;
     }
     _ssdm_op_Wait(1);
-    *currentPriority = priorityIn;
+    *currentPriority = *priorityIn;
  //			*cmdOut = 0;
-    last = ((uint_4)priorityIn).to_int();
-    localEmpty = empty;
+    last = ((uint_4)*priorityIn).to_int();
+    localEmpty = *empty;
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;

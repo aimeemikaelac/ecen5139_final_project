@@ -71,6 +71,12 @@
 </pragma>
 </directive>
 <directive functionLabel="" functionName="runQueue" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="currentPriority"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="runQueue" label="">
 <pragma name="RESOURCE">
 <option name="variable" positionalBoolean="4" value="fullOut"/>
 <option name="core" value="AXI4LiteS"/>
@@ -80,12 +86,6 @@
 <pragma name="INTERFACE">
 <option name="ap_none" positionalBoolean="mode" value=""/>
 <option name="port" positionalBoolean="4" value="fullOut"/>
-</pragma>
-</directive>
-<directive functionLabel="" functionName="runQueue" label="">
-<pragma name="RESOURCE">
-<option name="variable" positionalBoolean="4" value="currentPriority"/>
-<option name="core" value="AXI4LiteS"/>
 </pragma>
 </directive>
 <directive functionLabel="" functionName="runQueue" label="">

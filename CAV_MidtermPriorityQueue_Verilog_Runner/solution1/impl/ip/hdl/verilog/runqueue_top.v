@@ -34,7 +34,7 @@ empty,
 full
 );
 
-parameter C_S_AXI_AXI4LITES_ADDR_WIDTH = 6;
+parameter C_S_AXI_AXI4LITES_ADDR_WIDTH = 5;
 parameter C_S_AXI_AXI4LITES_DATA_WIDTH = 32;
 parameter RESET_ACTIVE_LOW = 1;
 
@@ -90,7 +90,6 @@ wire interrupt;
 wire aresetn;
 
 
-wire [4 - 1:0] sig_runQueue_currentPriority_V;
 wire [1 - 1:0] sig_runQueue_fullOut;
 wire sig_runQueue_ap_start;
 wire sig_runQueue_ap_ready;
@@ -98,19 +97,18 @@ wire sig_runQueue_ap_done;
 wire sig_runQueue_ap_idle;
 wire [1 - 1:0] sig_runQueue_ap_return;
 
-wire sig_runQueue_ap_rst;
+wire sig_runQueue_ap_rst_n;
 
 
 
 runQueue runQueue_U(
-    .currentPriority_V(sig_runQueue_currentPriority_V),
     .fullOut(sig_runQueue_fullOut),
     .ap_start(sig_runQueue_ap_start),
     .ap_ready(sig_runQueue_ap_ready),
     .ap_done(sig_runQueue_ap_done),
     .ap_idle(sig_runQueue_ap_idle),
     .ap_return(sig_runQueue_ap_return),
-    .ap_rst(sig_runQueue_ap_rst),
+    .ap_rst_n(sig_runQueue_ap_rst_n),
     .ap_clk(aclk),
     .priorityOut_V(priorityOut_V),
     .priorityIn_V(priorityIn_V),
@@ -125,7 +123,6 @@ runQueue_AXI4LiteS_if #(
 runQueue_AXI4LiteS_if_U(
     .ACLK(aclk),
     .ARESETN(aresetn),
-    .O_currentPriority_V(sig_runQueue_currentPriority_V),
     .O_fullOut(sig_runQueue_fullOut),
     .I_ap_start(sig_runQueue_ap_start),
     .O_ap_ready(sig_runQueue_ap_ready),
@@ -151,10 +148,10 @@ runQueue_AXI4LiteS_if_U(
     .RREADY(s_axi_AXI4LiteS_RREADY),
     .interrupt(interrupt));
 
-runQueue_ap_rst_if #(
+runQueue_ap_rst_n_if #(
     .RESET_ACTIVE_LOW(RESET_ACTIVE_LOW))
-ap_rst_if_U(
-    .dout(sig_runQueue_ap_rst),
+ap_rst_n_if_U(
+    .dout(sig_runQueue_ap_rst_n),
     .din(aresetn));
 
 endmodule

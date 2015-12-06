@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'runQueue'
 ================================================================
-* Date:           Sat Dec  5 20:06:40 2015
+* Date:           Sat Dec  5 20:43:15 2015
 
 * Version:        2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)
 * Project:        CAV_MidtermPriorityQueue_Verilog_Runner
@@ -20,7 +20,7 @@
     +---------+-------+----------+------------+
     |  Clock  | Target| Estimated| Uncertainty|
     +---------+-------+----------+------------+
-    |default  |  10.00|      5.26|        1.25|
+    |default  |  10.00|      6.55|        1.25|
     +---------+-------+----------+------------+
 
 + Latency (clock cycles): 
@@ -44,7 +44,7 @@
         |- Loop 1  |    ?|    ?|         3|          -|          -|     ?|    no    |
         |- Loop 2  |    ?|    ?|         2|          -|          -|     ?|    no    |
         |- Loop 3  |    ?|    ?|         3|          -|          -|     ?|    no    |
-        |- Loop 4  |    ?|    ?|         2|          -|          -|     ?|    no    |
+        |- Loop 4  |    ?|    ?|         3|          -|          -|     ?|    no    |
         +----------+-----+-----+----------+-----------+-----------+------+----------+
 
 
@@ -56,14 +56,14 @@
 +-----------------+---------+-------+--------+-------+
 |       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
 +-----------------+---------+-------+--------+-------+
-|Expression       |        -|      -|       0|    183|
+|Expression       |        -|      -|       0|    189|
 |FIFO             |        -|      -|       -|      -|
 |Instance         |        -|      -|       -|      -|
 |Memory           |        1|      -|       -|      -|
 |Multiplexer      |        -|      -|       -|    160|
-|Register         |        -|      -|     207|      -|
+|Register         |        -|      -|     206|      -|
 +-----------------+---------+-------+--------+-------+
-|Total            |        1|      0|     207|    343|
+|Total            |        1|      0|     206|    349|
 +-----------------+---------+-------+--------+-------+
 |Available        |      280|    220|  106400|  53200|
 +-----------------+---------+-------+--------+-------+
@@ -90,19 +90,21 @@
     +----------------------+----------+-------+---+----+------------+------------+
     |     Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------+----------+-------+---+----+------------+------------+
-    |i_1_fu_338_p2         |     +    |      0|  0|  32|          32|           1|
-    |i_fu_302_p2           |     +    |      0|  0|  32|          32|           1|
-    |i_s_fu_332_p2         |     +    |      0|  0|  32|          32|           1|
-    |ap_sig_bdd_195        |    and   |      0|  0|   1|           1|           1|
-    |ap_sig_bdd_60         |    and   |      0|  0|   1|           1|           1|
-    |ap_sig_bdd_75         |    and   |      0|  0|   1|           1|           1|
-    |p_result_s_fu_364_p2  |    and   |      0|  0|   1|           1|           1|
-    |result_1_s_fu_326_p2  |    and   |      0|  0|   1|           1|           1|
-    |tmp_3_fu_321_p2       |   icmp   |      0|  0|  40|          32|          32|
-    |ult_fu_354_p2         |   icmp   |      0|  0|  40|          32|          32|
-    |rev_fu_358_p2         |    xor   |      0|  0|   2|           1|           2|
+    |i_1_fu_328_p2         |     +    |      0|  0|  32|          32|           1|
+    |i_fu_288_p2           |     +    |      0|  0|  32|          32|           1|
+    |i_s_fu_322_p2         |     +    |      0|  0|  32|          32|           1|
+    |ap_sig_bdd_109        |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_91         |    and   |      0|  0|   1|           1|           1|
+    |p_result_1_fu_385_p2  |    and   |      0|  0|   1|           1|           1|
+    |p_result_s_fu_359_p2  |    and   |      0|  0|   1|           1|           1|
+    |result_1_s_fu_317_p2  |    and   |      0|  0|   1|           1|           1|
+    |tmp_3_fu_311_p2       |   icmp   |      0|  0|  40|          32|          32|
+    |ult1_fu_374_p2        |   icmp   |      0|  0|   4|           4|           4|
+    |ult_fu_348_p2         |   icmp   |      0|  0|  40|          32|          32|
+    |rev1_fu_353_p2        |    xor   |      0|  0|   2|           1|           2|
+    |rev_fu_379_p2         |    xor   |      0|  0|   2|           1|           2|
     +----------------------+----------+-------+---+----+------------+------------+
-    |Total                 |          |      0|  0| 183|         166|          74|
+    |Total                 |          |      0|  0| 189|         171|          80|
     +----------------------+----------+-------+---+----+------------+------------+
 
     * Multiplexer: 
@@ -113,53 +115,51 @@
     |cmdOut_V_preg               |   2|          3|    2|          6|
     |currentPriority_V           |   4|          4|    4|         16|
     |currentPriority_V_preg      |   4|          3|    4|         12|
-    |i_1_reg2mem_reg_206         |  32|          2|   32|         64|
-    |i_3_reg2mem_reg_231         |  32|          2|   32|         64|
-    |i_reg2mem_reg_161           |  32|          2|   32|         64|
-    |last_fu_94                  |   4|          2|    4|          8|
-    |op2_assign_reg2mem_reg_184  |  32|          2|   32|         64|
+    |i_1_reg2mem_reg_202         |  32|          2|   32|         64|
+    |i_3_reg2mem_reg_227         |  32|          2|   32|         64|
+    |i_reg2mem_reg_157           |  32|          2|   32|         64|
+    |last_fu_88                  |   4|          2|    4|          8|
+    |op2_assign_reg2mem_reg_180  |  32|          2|   32|         64|
     |priorityOut_V               |   4|          5|    4|         20|
     |priorityOut_V_preg          |   4|          4|    4|         16|
-    |tmp_6_reg2mem_reg_242       |   4|          2|    4|          8|
-    |tmp_reg2mem_reg_172         |   4|          2|    4|          8|
+    |tmp_6_reg2mem_reg_238       |   4|          2|    4|          8|
+    |tmp_reg2mem_reg_168         |   4|          2|    4|          8|
     +----------------------------+----+-----------+-----+-----------+
     |Total                       | 160|         37|  160|        358|
     +----------------------------+----+-----------+-----+-----------+
 
     * Register: 
-    +----------------------------+----+----+-----+-----------+
-    |            Name            | FF | LUT| Bits| Const Bits|
-    +----------------------------+----+----+-----+-----------+
-    |ap_CS_fsm                   |   4|   0|    4|          0|
-    |cmdOut_V_preg               |   2|   0|    2|          0|
-    |currentPriority_V_preg      |   4|   0|    4|          0|
-    |empty_assign_fu_78          |   1|   0|    1|          0|
-    |fullOut_preg                |   1|   0|    1|          0|
-    |full_assign_fu_82           |   1|   0|    1|          0|
-    |i_1_reg2mem_reg_206         |  32|   0|   32|          0|
-    |i_1_reg_464                 |  32|   0|   32|          0|
-    |i_3_reg2mem_reg_231         |  32|   0|   32|          0|
-    |i_reg2mem_reg_161           |  32|   0|   32|          0|
-    |last_1_reg_403              |   4|   0|   32|         28|
-    |last_fu_94                  |   4|   0|   32|         28|
-    |last_load_reg_434           |   4|   0|   32|         28|
-    |localEmpty_fu_90            |   1|   0|    1|          0|
-    |localEmpty_load_2_reg_479   |   1|   0|    1|          0|
-    |localEmpty_load_reg_439     |   1|   0|    1|          0|
-    |localFull_fu_86             |   1|   0|    1|          0|
-    |localFull_load_2_reg_457    |   1|   0|    1|          0|
-    |localFull_load_reg_410      |   1|   0|    1|          0|
-    |op2_assign_reg2mem_reg_184  |  32|   0|   32|          0|
-    |p_result_s_reg_483          |   1|   0|    1|          0|
-    |priorityOut_V_preg          |   4|   0|    4|          0|
-    |result_1_reg2mem_1_reg_219  |   1|   0|    1|          0|
-    |result_1_reg2mem_reg_195    |   1|   0|    1|          0|
-    |result_3_reg2mem_reg_254    |   1|   0|    1|          0|
-    |tmp_6_reg2mem_reg_242       |   4|   0|    4|          0|
-    |tmp_reg2mem_reg_172         |   4|   0|    4|          0|
-    +----------------------------+----+----+-----+-----------+
-    |Total                       | 207|   0|  291|         84|
-    +----------------------------+----+----+-----+-----------+
+    +-----------------------------+----+----+-----+-----------+
+    |             Name            | FF | LUT| Bits| Const Bits|
+    +-----------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                    |   5|   0|    5|          0|
+    |cmdOut_V_preg                |   2|   0|    2|          0|
+    |currentPriority_V_preg       |   4|   0|    4|          0|
+    |fullOut_preg                 |   1|   0|    1|          0|
+    |i_1_reg2mem_reg_202          |  32|   0|   32|          0|
+    |i_1_reg_462                  |  32|   0|   32|          0|
+    |i_3_reg2mem_reg_227          |  32|   0|   32|          0|
+    |i_reg2mem_reg_157            |  32|   0|   32|          0|
+    |last_fu_88                   |   4|   0|   32|         28|
+    |last_load_reg_427            |   4|   0|   32|         28|
+    |localEmpty_fu_84             |   1|   0|    1|          0|
+    |localEmpty_load_reg_432      |   1|   0|    1|          0|
+    |localFull_fu_80              |   1|   0|    1|          0|
+    |localFull_load_2_reg_455     |   1|   0|    1|          0|
+    |localFull_load_reg_403       |   1|   0|    1|          0|
+    |op2_assign_reg2mem_reg_180   |  32|   0|   32|          0|
+    |p_result_3_reg2mem_reg_250   |   1|   0|    1|          0|
+    |priorityIn_V_read_4_reg_485  |   4|   0|    4|          0|
+    |priorityOut_V_preg           |   4|   0|    4|          0|
+    |result_1_reg2mem_1_reg_215   |   1|   0|    1|          0|
+    |result_1_reg2mem_reg_191     |   1|   0|    1|          0|
+    |result_3_reg2mem_reg_260     |   1|   0|    1|          0|
+    |tmp_3_reg_436                |   1|   0|    1|          0|
+    |tmp_6_reg2mem_reg_238        |   4|   0|    4|          0|
+    |tmp_reg2mem_reg_168          |   4|   0|    4|          0|
+    +-----------------------------+----+----+-----+-----------+
+    |Total                        | 206|   0|  262|         56|
+    +-----------------------------+----+----+-----+-----------+
 
 
 
@@ -167,22 +167,38 @@
 == Interface
 ================================================================
 * Summary: 
-+-------------------+-----+-----+------------+-------------------+--------------+
-|     RTL Ports     | Dir | Bits|  Protocol  |   Source Object   |    C Type    |
-+-------------------+-----+-----+------------+-------------------+--------------+
-|ap_clk             |  in |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_rst             |  in |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_start           |  in |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_done            | out |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_idle            | out |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_ready           | out |    1| ap_ctrl_hs |      runQueue     | return value |
-|ap_return          | out |    1| ap_ctrl_hs |      runQueue     | return value |
-|priorityOut_V      | out |    4|   ap_none  |   priorityOut_V   |    pointer   |
-|priorityIn_V       |  in |    4|   ap_none  |    priorityIn_V   |    scalar    |
-|cmdOut_V           | out |    2|   ap_none  |      cmdOut_V     |    pointer   |
-|empty              |  in |    1|   ap_none  |       empty       |    scalar    |
-|full               |  in |    1|   ap_none  |        full       |    scalar    |
-|currentPriority_V  | out |    4|   ap_none  | currentPriority_V |    pointer   |
-|fullOut            | out |    1|   ap_none  |      fullOut      |    pointer   |
-+-------------------+-----+-----+------------+-------------------+--------------+
++------------------------+-----+-----+------------+---------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
++------------------------+-----+-----+------------+---------------+--------------+
+|s_axi_AXILiteS_AWVALID  |  in |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_AWREADY  | out |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_AWADDR   |  in |    5|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_WVALID   |  in |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_WREADY   | out |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_WDATA    |  in |   32|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_WSTRB    |  in |    4|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_ARVALID  |  in |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_ARREADY  | out |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_ARADDR   |  in |    5|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_RVALID   | out |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_RREADY   |  in |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_RDATA    | out |   32|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_RRESP    | out |    2|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_BVALID   | out |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_BREADY   |  in |    1|    s_axi   |    AXILiteS   |    pointer   |
+|s_axi_AXILiteS_BRESP    | out |    2|    s_axi   |    AXILiteS   |    pointer   |
+|ap_clk                  |  in |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_rst_n                |  in |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_start                |  in |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_done                 | out |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_ready                | out |    1| ap_ctrl_hs |    runQueue   | return value |
+|ap_return               | out |    1| ap_ctrl_hs |    runQueue   | return value |
+|priorityOut_V           | out |    4|   ap_none  | priorityOut_V |    pointer   |
+|priorityIn_V            |  in |    4|   ap_none  |  priorityIn_V |    pointer   |
+|cmdOut_V                | out |    2|   ap_none  |    cmdOut_V   |    pointer   |
+|empty                   |  in |    1|   ap_none  |     empty     |    pointer   |
+|full                    |  in |    1|   ap_none  |      full     |    pointer   |
+|fullOut                 | out |    1|   ap_none  |    fullOut    |    pointer   |
++------------------------+-----+-----+------------+---------------+--------------+
 

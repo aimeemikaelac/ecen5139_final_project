@@ -24,7 +24,7 @@ if {[info proc ap_gen_simcore_mem] == "ap_gen_simcore_mem"} {
     name ${MemName} \
     corename ${CoreName}  \
     op mem \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     stage_num 2 \
     registered_input ${RegisteredInput} \
@@ -58,7 +58,7 @@ if {[info proc ::AESL_LIB_VIRTEX::xil_gen_ROM] == "::AESL_LIB_VIRTEX::xil_gen_RO
     name ${MemName} \
     corename ${CoreName}  \
     op mem \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     stage_num 2 \
     registered_input ${RegisteredInput} \
@@ -86,23 +86,42 @@ if {${::AESL::PGuard_autoexp_gen}} {
     AESL_LIB_XILADAPTER::native_axis_begin
 }
 
+set port_AXILiteS {
+currentPriority_V { 
+	dir O
+	width 4
+	mode ap_none
+	offset 16
+}
+}
+
+
+# Native S_AXILite:
+if {${::AESL::PGuard_simmodel_gen}} {
+	if {[info proc ::AESL_LIB_XILADAPTER::s_axilite_gen] == "::AESL_LIB_XILADAPTER::s_axilite_gen"} {
+		eval "::AESL_LIB_XILADAPTER::s_axilite_gen { \
+			id 2 \
+			corename runQueue_AXILiteS_axilite \
+			name runQueue_AXILiteS_s_axi \
+			ports {$port_AXILiteS} \
+			op interface \
+		} "
+	} else {
+		puts "@W \[IMPL-110\] Cannot find AXI Lite interface model in the library. Ignored generation of AXI Lite  interface for 'AXILiteS'"
+	}
+}
+
+if {${::AESL::PGuard_rtl_comp_handler}} {
+	::AP::rtl_comp_handler runQueue_AXILiteS_s_axi
+}
+
 # Adapter definition:
 set corename AXI4LiteS
 set opts {
     {
-        id 7
-        name currentPriority_V
-        reset_level 1
-        sync_rst true
-        type scalar
-        dir O
-        width 4
-        mode SIG_OUT_VLD_OFF:SIG_OUT_ACC_OFF
-    }
-    {
         id 8
         name fullOut
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir O
@@ -112,7 +131,7 @@ set opts {
     {
         id -1
         name ap_start
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir I
@@ -122,7 +141,7 @@ set opts {
     {
         id -2
         name ap_ready
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir O
@@ -132,7 +151,7 @@ set opts {
     {
         id -3
         name ap_done
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir O
@@ -142,7 +161,7 @@ set opts {
     {
         id -4
         name ap_idle
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir O
@@ -152,7 +171,7 @@ set opts {
     {
         id -5
         name ap_return
-        reset_level 1
+        reset_level 0
         sync_rst true
         type scalar
         dir O
@@ -166,7 +185,7 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::axi_slave_int_gen] == "::AESL_LIB_XILADAPTER::axi_slave_int_gen"} {
 eval "::AESL_LIB_XILADAPTER::axi_slave_int_gen { \
     corename ${corename} \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     opts {${opts}} \
     portmap {${portmap}} \
@@ -181,11 +200,11 @@ puts "@W Can not find gen function '::AESL_LIB_XILADAPTER::axi_slave_int_gen' in
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 2 \
+    id 3 \
     name priorityOut_V \
     type other \
     dir O \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename dc_priorityOut_V \
     op interface \
@@ -196,11 +215,11 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 3 \
+    id 4 \
     name priorityIn_V \
     type other \
     dir I \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename dc_priorityIn_V \
     op interface \
@@ -211,11 +230,11 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 4 \
+    id 5 \
     name cmdOut_V \
     type other \
     dir O \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename dc_cmdOut_V \
     op interface \
@@ -226,11 +245,11 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 5 \
+    id 6 \
     name empty \
     type other \
     dir I \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename dc_empty \
     op interface \
@@ -241,11 +260,11 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 6 \
+    id 7 \
     name full \
     type other \
     dir I \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename dc_full \
     op interface \
@@ -262,7 +281,7 @@ if {[info proc cg_default_interface_gen_clock] == "cg_default_interface_gen_cloc
 eval "cg_default_interface_gen_clock { \
     id -6 \
     name ${PortName} \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
     corename apif_ap_clk \
     data_wd ${DataWd} \
@@ -275,16 +294,16 @@ puts "@W \[IMPL-113\] Cannot find bus interface model in the library. Ignored ge
 
 
 # Adapter definition:
-set PortName ap_rst
+set PortName ap_rst_n
 set DataWd 1 
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc cg_default_interface_gen_reset] == "cg_default_interface_gen_reset"} {
 eval "cg_default_interface_gen_reset { \
     id -7 \
     name ${PortName} \
-    reset_level 1 \
+    reset_level 0 \
     sync_rst true \
-    corename apif_ap_rst \
+    corename apif_ap_rst_n \
     data_wd ${DataWd} \
     op interface \
 }"

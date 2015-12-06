@@ -300,8 +300,8 @@ set gport26 [list $gportName26 $gportInterface26 $gportData26 $gportPointer26 $g
 lappend globalVariable $gport26
 set staticVariable ""
 set moduleName "runQueue"
-set rawDecl [list "bool" "runQueue\(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile cmd *cmdOut,
-  volatile bool empty, volatile bool full, volatile uint_4 *currentPriority, volatile bool *fullOut\)"]
+set rawDecl [list "bool" "runQueue\(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
+  volatile bool *empty, volatile bool *full, volatile uint_4 *currentPriority, volatile bool *fullOut\)"]
 set argAPint ""
 set returnAPint ""
 set portList ""
@@ -318,7 +318,7 @@ lappend portList $port0
 set portName1 "priorityIn"
 set portInterface1 "wire"
 set portData1 "[list ap_uint "4" ]"
-set portPointer1 "0"
+set portPointer1 "1"
 set portArrayDim1 0
 set portConst1 "0"
 set portVolatile1 "1"
@@ -338,7 +338,7 @@ lappend portList $port2
 set portName3 "empty"
 set portInterface3 "wire"
 set portData3 "bool"
-set portPointer3 "0"
+set portPointer3 "1"
 set portArrayDim3 0
 set portConst3 "0"
 set portVolatile3 "1"
@@ -348,7 +348,7 @@ lappend portList $port3
 set portName4 "full"
 set portInterface4 "wire"
 set portData4 "bool"
-set portPointer4 "0"
+set portPointer4 "1"
 set portArrayDim4 0
 set portConst4 "0"
 set portVolatile4 "1"

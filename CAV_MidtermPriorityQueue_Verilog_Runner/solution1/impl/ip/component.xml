@@ -163,7 +163,7 @@
 				<spirit:parameter>
 					<spirit:name>ADDR_WIDTH</spirit:name>
 					<spirit:value spirit:resolve="immediate"
-							spirit:id="BUSIFPARAM_VALUE.S_AXI_AXI4LITES.ADDR_WIDTH">6</spirit:value>
+							spirit:id="BUSIFPARAM_VALUE.S_AXI_AXI4LITES.ADDR_WIDTH">5</spirit:value>
 				</spirit:parameter>
 				<spirit:parameter>
 					<spirit:name>DATA_WIDTH</spirit:name>
@@ -453,7 +453,7 @@
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
 						<spirit:left spirit:resolve="dependent"
-								spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH&apos;)) - 1)">5</spirit:left>
+								spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH&apos;)) - 1)">4</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -602,7 +602,7 @@
 					<spirit:direction>in</spirit:direction>
 					<spirit:vector>
 						<spirit:left spirit:resolve="dependent"
-								spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH&apos;)) - 1)">5</spirit:left>
+								spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH&apos;)) - 1)">4</spirit:left>
 						<spirit:right>0</spirit:right>
 					</spirit:vector>
 					<spirit:wireTypeDefs>
@@ -747,7 +747,7 @@
 				<spirit:name>C_S_AXI_AXI4LITES_ADDR_WIDTH</spirit:name>
 				<spirit:value spirit:format="long"
 						spirit:resolve="generated"
-						spirit:id="MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH">6</spirit:value>
+						spirit:id="MODELPARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH">5</spirit:value>
 			</spirit:modelParameter>
 			<spirit:modelParameter spirit:dataType="integer">
 				<spirit:name>C_S_AXI_AXI4LITES_DATA_WIDTH</spirit:name>
@@ -788,9 +788,13 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_ap_rst_if.v</spirit:name>
+				<spirit:name>hdl/verilog/runQueue_ap_rst_n_if.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
-				<spirit:userFileType>CHECKSUM_b2664840</spirit:userFileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/verilog/runQueue_AXILiteS_s_axi.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+				<spirit:userFileType>CHECKSUM_b6ce41cf</spirit:userFileType>
 			</spirit:file>
 		</spirit:fileSet>
 		<spirit:fileSet>
@@ -816,7 +820,11 @@
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 			<spirit:file>
-				<spirit:name>hdl/verilog/runQueue_ap_rst_if.v</spirit:name>
+				<spirit:name>hdl/verilog/runQueue_ap_rst_n_if.v</spirit:name>
+				<spirit:fileType>verilogSource</spirit:fileType>
+			</spirit:file>
+			<spirit:file>
+				<spirit:name>hdl/verilog/runQueue_AXILiteS_s_axi.v</spirit:name>
 				<spirit:fileType>verilogSource</spirit:fileType>
 			</spirit:file>
 		</spirit:fileSet>
@@ -897,8 +905,8 @@
 					spirit:id="PARAM_VALUE.C_S_AXI_AXI4LITES_ADDR_WIDTH"
 					spirit:order="2"
 					spirit:configGroups="1 S_AXI_AXI4LITES_(AXI4Lite_Slave_Interface)"
-					spirit:minimum="6"
-					spirit:maximum="32">6</spirit:value>
+					spirit:minimum="5"
+					spirit:maximum="32">5</spirit:value>
 		</spirit:parameter>
 		<spirit:parameter>
 			<spirit:name>Component_Name</spirit:name>
@@ -916,8 +924,8 @@
 				<xilinx:taxonomy>/VIVADO_HLS_IP</xilinx:taxonomy>
 			</xilinx:taxonomies>
 			<xilinx:displayName>Runqueue</xilinx:displayName>
-			<xilinx:coreRevision>1512052007</xilinx:coreRevision>
-			<xilinx:coreCreationDateTime>2015-12-06T03:07:11Z</xilinx:coreCreationDateTime>
+			<xilinx:coreRevision>1512052044</xilinx:coreRevision>
+			<xilinx:coreCreationDateTime>2015-12-06T03:44:20Z</xilinx:coreCreationDateTime>
 		</xilinx:coreExtensions>
 		<xilinx:packagingInfo>
 			<xilinx:xilinxVersion>2014.1</xilinx:xilinxVersion>
