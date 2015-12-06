@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'runQueue'" level="0">
-<item name = "Date">Sat Dec  5 20:43:15 2015
+<item name = "Date">Sat Dec  5 21:17:32 2015
 </item>
 <item name = "Version">2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)</item>
 <item name = "Project">CAV_MidtermPriorityQueue_Verilog_Runner</item>
@@ -36,9 +36,10 @@
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
 <column name="- Loop 1">?, ?, 3, -, -, ?, no</column>
-<column name="- Loop 2">?, ?, 2, -, -, ?, no</column>
-<column name="- Loop 3">?, ?, 3, -, -, ?, no</column>
-<column name="- Loop 4">?, ?, 3, -, -, ?, no</column>
+<column name="- Loop 2">?, ?, ?, -, -, ?, no</column>
+<column name=" + Loop 2.1">?, ?, 2, -, -, ?, no</column>
+<column name=" + Loop 2.2">?, ?, 3, -, -, ?, no</column>
+<column name=" + Loop 2.3">?, ?, 3, -, -, ?, no</column>
 </table>
 </item>
 </section>

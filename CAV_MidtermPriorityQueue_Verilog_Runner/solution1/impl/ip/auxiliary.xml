@@ -9,5 +9,5 @@
   <xd:arg xd:name="*(full)" xd:originalName="full" xd:direction="in" xd:interfaceRef="full" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:arg xd:name="*(fullOut)" xd:originalName="fullOut" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x14" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="349" xd:FF="206" xd:BRAM="1" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="514" xd:FF="385" xd:BRAM="1" xd:DSP="0"/>
 </xd:acceleratorMap>

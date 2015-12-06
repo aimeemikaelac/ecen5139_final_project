@@ -39873,10 +39873,10 @@ _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
  int i, j, last =0;
  bool result = true;
  volatile bool localFull, localEmpty;
-//	for(j=0; j<10000; j++){
  P1:{_ssdm_RegionBegin("P1");
 _ssdm_op_SpecProtocol(0, "");
- for(j=0; j<1; j++){
+ for(j=0; j<10000; j++){
+//		for(j=0; j<1; j++){
  //		result &= runTest();
    i=0;
    localFull = *full;

@@ -39769,10 +39769,10 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
  int i, j, last =0;
  bool result = true;
  volatile bool localFull, localEmpty;
-//	for(j=0; j<10000; j++){
  P1:{
 #pragma HLS PROTOCOL floating
- for(j=0; j<1; j++){
+ for(j=0; j<10000; j++){
+//		for(j=0; j<1; j++){
  //		result &= runTest();
    i=0;
    localFull = *full;

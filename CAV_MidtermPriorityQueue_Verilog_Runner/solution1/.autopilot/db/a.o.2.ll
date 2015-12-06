@@ -48,16 +48,17 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
   call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut.V, [8 x i8]* @.str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1) nounwind, !dbg !1637 ; [debug line = 53:1]
   call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @.str3, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1) nounwind, !dbg !1638 ; [debug line = 55:1]
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @.str1, [10 x i8]* @.str4, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1, [1 x i8]* @.str1), !dbg !1639 ; [debug line = 57:1]
-  %tmp.4 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @.str5), !dbg !1640 ; [#uses=1 type=i32] [debug line = 63:6]
-  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @.str1) nounwind, !dbg !1642 ; [debug line = 64:1]
-  br label %1, !dbg !1643                         ; [debug line = 65:6]
+  %tmp.4 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @.str5), !dbg !1640 ; [#uses=1 type=i32] [debug line = 62:6]
+  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @.str1) nounwind, !dbg !1642 ; [debug line = 63:1]
+  br label %1, !dbg !1643                         ; [debug line = 64:6]
 
 ; <label>:1                                       ; preds = %15, %0
-  %j = phi i1 [ false, %0 ], [ %j.1, %15 ]        ; [#uses=2 type=i1]
+  %j = phi i14 [ 0, %0 ], [ %j.1, %15 ]           ; [#uses=2 type=i14]
   %last = phi i32 [ 0, %0 ], [ %last.1.lcssa, %15 ] ; [#uses=1 type=i32]
   %result = phi i1 [ true, %0 ], [ %result.3.lcssa, %15 ] ; [#uses=2 type=i1]
-  %2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1) ; [#uses=0 type=i32]
-  br i1 %j, label %16, label %3, !dbg !1643       ; [debug line = 65:6]
+  %exitcond = icmp eq i14 %j, -6384, !dbg !1643   ; [#uses=1 type=i1] [debug line = 64:6]
+  %2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 10000, i64 10000, i64 10000) ; [#uses=0 type=i32]
+  br i1 %exitcond, label %16, label %3, !dbg !1643 ; [debug line = 64:6]
 
 ; <label>:3                                       ; preds = %1
   %localFull.1 = load volatile i1* %full, align 1, !dbg !1645 ; [#uses=1 type=i1] [debug line = 68:4]
@@ -219,9 +220,9 @@ define i1 @runQueue(i4* %priorityOut.V, i4* %priorityIn.V, i2* %cmdOut.V, i1* %e
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !2252 ; [debug line = 121:4]
   call void @llvm.dbg.value(metadata !{i2* %cmdOut.V}, i64 0, metadata !1649), !dbg !2253 ; [debug line = 217:49@122:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
   store volatile i2 0, i2* %cmdOut.V, align 1, !dbg !2255 ; [debug line = 218:10@122:4]
-  %j.1 = xor i1 %j, true, !dbg !2256              ; [#uses=1 type=i1] [debug line = 65:16]
-  call void @llvm.dbg.value(metadata !{i1 %j.1}, i64 0, metadata !2257), !dbg !2256 ; [debug line = 65:16] [debug variable = j]
-  br label %1, !dbg !2256                         ; [debug line = 65:16]
+  %j.1 = add i14 %j, 1, !dbg !2256                ; [#uses=1 type=i14] [debug line = 64:20]
+  call void @llvm.dbg.value(metadata !{i14 %j.1}, i64 0, metadata !2257), !dbg !2256 ; [debug line = 64:20] [debug variable = j]
+  br label %1, !dbg !2256                         ; [debug line = 64:20]
 
 ; <label>:16                                      ; preds = %1
   %result.lcssa = phi i1 [ %result, %1 ]          ; [#uses=1 type=i1]
@@ -1905,13 +1906,13 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !1637 = metadata !{i32 53, i32 1, metadata !1603, null}
 !1638 = metadata !{i32 55, i32 1, metadata !1603, null}
 !1639 = metadata !{i32 57, i32 1, metadata !1603, null}
-!1640 = metadata !{i32 63, i32 6, metadata !1641, null}
-!1641 = metadata !{i32 786443, metadata !1603, i32 63, i32 5, metadata !11, i32 1} ; [ DW_TAG_lexical_block ]
-!1642 = metadata !{i32 64, i32 1, metadata !1641, null}
-!1643 = metadata !{i32 65, i32 6, metadata !1644, null}
-!1644 = metadata !{i32 786443, metadata !1641, i32 65, i32 2, metadata !11, i32 2} ; [ DW_TAG_lexical_block ]
+!1640 = metadata !{i32 62, i32 6, metadata !1641, null}
+!1641 = metadata !{i32 786443, metadata !1603, i32 62, i32 5, metadata !11, i32 1} ; [ DW_TAG_lexical_block ]
+!1642 = metadata !{i32 63, i32 1, metadata !1641, null}
+!1643 = metadata !{i32 64, i32 6, metadata !1644, null}
+!1644 = metadata !{i32 786443, metadata !1641, i32 64, i32 2, metadata !11, i32 2} ; [ DW_TAG_lexical_block ]
 !1645 = metadata !{i32 68, i32 4, metadata !1646, null}
-!1646 = metadata !{i32 786443, metadata !1644, i32 65, i32 20, metadata !11, i32 3} ; [ DW_TAG_lexical_block ]
+!1646 = metadata !{i32 786443, metadata !1644, i32 64, i32 24, metadata !11, i32 3} ; [ DW_TAG_lexical_block ]
 !1647 = metadata !{i32 786688, metadata !1603, metadata !"localFull", metadata !11, i32 61, metadata !1561, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !1648 = metadata !{i32 69, i32 4, metadata !1646, null}
 !1649 = metadata !{i32 790531, metadata !1650, metadata !"ssdm_int<2 + 1024 * 0, false>.V", null, i32 217, metadata !1575, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
@@ -2521,7 +2522,7 @@ declare i32 @_ssdm_op_SpecLoopTripCount(...)
 !2253 = metadata !{i32 217, i32 49, metadata !1651, metadata !2254}
 !2254 = metadata !{i32 122, i32 4, metadata !1646, null}
 !2255 = metadata !{i32 218, i32 10, metadata !1657, metadata !2254}
-!2256 = metadata !{i32 65, i32 16, metadata !1644, null}
+!2256 = metadata !{i32 64, i32 20, metadata !1644, null}
 !2257 = metadata !{i32 786688, metadata !1603, metadata !"j", metadata !11, i32 59, metadata !13, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
 !2258 = metadata !{i32 125, i32 2, metadata !1641, null}
 !2259 = metadata !{i32 127, i32 2, metadata !1603, null}
