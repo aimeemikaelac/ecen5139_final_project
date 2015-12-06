@@ -39778,10 +39778,10 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
  int i, j, last =0;
  int result = 0;
  volatile bool localFull, localEmpty;
- P1:{
-#pragma HLS PROTOCOL fixed
+//	P1:{
+//#pragma HLS PROTOCOL fixed
 #pragma empty_line
- *cmdOut = 0;
+  *cmdOut = 0;
   for(j=0; j<iterations; j++){
    *currentIteration = j;
    last = 0;
@@ -39790,24 +39790,24 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
    i=0;
    localFull = *full;
    *cmdOut = 0;
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 1;
    while(localFull == false){
-    _ssdm_op_Wait(1);
+//				ap_wait();
     *priorityOut = uint_4(i);
     *fullOut = *full;
  //			*cmdOut = 0;
     i++;
     localFull = *full;
    }
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 0;
    i=0;
    localEmpty = *empty;
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 2;
    while(localEmpty == false){
-    _ssdm_op_Wait(1);
+//				ap_wait();
     if((uint_4)*priorityIn != i){
      result++;
     }
@@ -39815,7 +39815,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
     i++;
     localEmpty = *empty;
    }
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 0;
 //			i=0;
 //			localFull = *full;
@@ -39845,7 +39845,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 //			*cmdOut = 0;
 //			ap_wait();
   }
- }
+//	}
  *finished = true;
 //	cout << "Result: "<<result<<endl;
  return result;

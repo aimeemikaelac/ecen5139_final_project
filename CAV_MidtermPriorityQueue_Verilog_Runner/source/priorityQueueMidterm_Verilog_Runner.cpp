@@ -68,8 +68,8 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 	int i, j, last =0;
 	int result = 0;
 	volatile bool localFull, localEmpty;
-	P1:{
-#pragma HLS PROTOCOL fixed
+//	P1:{
+//#pragma HLS PROTOCOL fixed
 
 		*cmdOut = 0;
 		for(j=0; j<iterations; j++){
@@ -80,24 +80,24 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 			i=0;
 			localFull = *full;
 			*cmdOut  = 0;
-			ap_wait();
+//			ap_wait();
 			*cmdOut = 1;
 			while(localFull == false){
-				ap_wait();
+//				ap_wait();
 				*priorityOut = uint_4(i);
 				*fullOut = *full;
 	//			*cmdOut = 0;
 				i++;
 				localFull = *full;
 			}
-			ap_wait();
+//			ap_wait();
 			*cmdOut = 0;
 			i=0;
 			localEmpty = *empty;
-			ap_wait();
+//			ap_wait();
 			*cmdOut = 2;
 			while(localEmpty == false){
-				ap_wait();
+//				ap_wait();
 				if((uint_4)*priorityIn != i){
 					result++;
 				}
@@ -105,7 +105,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 				i++;
 				localEmpty = *empty;
 			}
-			ap_wait();
+//			ap_wait();
 			*cmdOut = 0;
 //			i=0;
 //			localFull = *full;
@@ -135,7 +135,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 //			*cmdOut = 0;
 //			ap_wait();
 		}
-	}
+//	}
 	*finished = true;
 //	cout << "Result: "<<result<<endl;
 	return result;

@@ -39864,10 +39864,10 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
  int i, j, last =0;
  int result = 0;
  volatile bool localFull, localEmpty;
- P1:{_ssdm_RegionBegin("P1");
-#pragma HLS PROTOCOL fixed
+//	P1:{
+//#pragma HLS PROTOCOL fixed
 
- *cmdOut = 0;
+  *cmdOut = 0;
   for(j=0; j<iterations; j++){
    *currentIteration = j;
 #pragma HLS RESOURCE variable=currentIteration core=AXI4LiteS
@@ -39879,10 +39879,10 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
    i=0;
    localFull = *full;
    *cmdOut = 0;
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 1;
    while(localFull == false){
-    _ssdm_op_Wait(1);
+//				ap_wait();
     *priorityOut = uint_4(i);
     *fullOut = *full;
 #pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
@@ -39892,14 +39892,14 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
     i++;
     localFull = *full;
    }
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 0;
    i=0;
    localEmpty = *empty;
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 2;
    while(localEmpty == false){
-    _ssdm_op_Wait(1);
+//				ap_wait();
     if((uint_4)*priorityIn != i){
      result++;
     }
@@ -39907,7 +39907,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
     i++;
     localEmpty = *empty;
    }
-   _ssdm_op_Wait(1);
+//			ap_wait();
    *cmdOut = 0;
 //			i=0;
 //			localFull = *full;
@@ -39937,7 +39937,7 @@ int runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile
 //			*cmdOut = 0;
 //			ap_wait();
   }
- _ssdm_RegionEnd("P1");}
+//	}
  *finished = true;
 #pragma HLS RESOURCE variable=finished core=AXI4LiteS
 #139 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
