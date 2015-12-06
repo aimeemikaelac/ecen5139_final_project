@@ -16,6 +16,7 @@ set C_modelArgList {
 	{ fullOut int 1 regular {pointer 1 volatile }  }
 	{ iterations int 32 regular  }
 	{ finished int 1 regular {pointer 1}  }
+	{ currentIteration int 32 regular {pointer 1}  }
 }
 set C_modelArgMapList {[ 
 	{ "Name" : "priorityOut_V", "interface" : "wire", "bitwidth" : 4,"bitSlice":[{"low":0,"up":3,"cElement": [{"cName": "priorityOut.V","cData": "uint4","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
@@ -26,9 +27,10 @@ set C_modelArgMapList {[
  	{ "Name" : "fullOut", "interface" : "wire", "bitwidth" : 1,"bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "fullOut","cData": "bool","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "Name" : "iterations", "interface" : "wire", "bitwidth" : 32,"bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "iterations","cData": "int","cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "finished", "interface" : "wire", "bitwidth" : 1,"bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "finished","cData": "bool","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
+ 	{ "Name" : "currentIteration", "interface" : "wire", "bitwidth" : 32,"bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "currentIteration","cData": "int","cArray": [{"low" : 0,"up" : 0,"step" : 1}]}]}]} , 
  	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 1,"bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "return","cData": "bool","cArray": [{"low" : 0,"up" : 1,"step" : 0}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 17
+set portNum 18
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
@@ -46,6 +48,7 @@ set portList {
 	{ iterations_ap_vld sc_in sc_logic 1 invld 6 } 
 	{ finished sc_out sc_logic 1 signal 7 } 
 	{ finished_ap_vld sc_out sc_logic 1 outvld 7 } 
+	{ currentIteration sc_out sc_lv 32 signal 8 } 
 	{ ap_return sc_out sc_lv 1 signal -1 } 
 }
 set NewPortList {[ 
@@ -65,6 +68,7 @@ set NewPortList {[
  	{ "name": "iterations_ap_vld", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "invld", "bundle":{"name": "iterations", "role": "ap_vld" }} , 
  	{ "name": "finished", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "finished", "role": "default" }} , 
  	{ "name": "finished_ap_vld", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "outvld", "bundle":{"name": "finished", "role": "ap_vld" }} , 
+ 	{ "name": "currentIteration", "direction": "out", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "currentIteration", "role": "default" }} , 
  	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":1, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 set Spec2ImplPortList { 
 	priorityOut_V { ap_none {  { priorityOut_V out_data 1 4 } } }
@@ -75,6 +79,7 @@ set Spec2ImplPortList {
 	fullOut { ap_none {  { fullOut out_data 1 1 } } }
 	iterations { ap_vld {  { iterations in_data 0 32 }  { iterations_ap_vld in_vld 0 1 } } }
 	finished { ap_ovld {  { finished out_data 1 1 }  { finished_ap_vld out_vld 1 1 } } }
+	currentIteration { ap_none {  { currentIteration out_data 1 32 } } }
 }
 
 # RTL port scheduling information:

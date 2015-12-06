@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="runQueue" xd:componentRef="runQueue" xd:initiationInterval="x" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64">
-  <xd:returnValue xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x28"/>
+  <xd:returnValue xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x30"/>
   <xd:controlReg xd:name="control" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
   <xd:arg xd:name="*(priorityOut)" xd:originalName="priorityOut" xd:direction="out" xd:interfaceRef="priorityOut_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
   <xd:arg xd:name="*(priorityIn)" xd:originalName="priorityIn" xd:direction="in" xd:interfaceRef="priorityIn_V" xd:busTypeRef="register" xd:handshakeRef="ap_none" xd:dataWidth="4"/>
@@ -10,6 +10,7 @@
   <xd:arg xd:name="*(fullOut)" xd:originalName="fullOut" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x14" xd:handshakeRef="ap_none" xd:dataWidth="1"/>
   <xd:arg xd:name="iterations" xd:originalName="iterations" xd:direction="in" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x1C" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
   <xd:arg xd:name="*(finished)" xd:originalName="finished" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x24" xd:handshakeRef="ap_vld" xd:dataWidth="1"/>
+  <xd:arg xd:name="*(currentIteration)" xd:originalName="currentIteration" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x2C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="496" xd:FF="319" xd:BRAM="1" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="560" xd:FF="351" xd:BRAM="1" xd:DSP="0"/>
 </xd:acceleratorMap>

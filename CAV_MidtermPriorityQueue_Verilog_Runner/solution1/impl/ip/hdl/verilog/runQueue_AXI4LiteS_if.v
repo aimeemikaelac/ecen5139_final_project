@@ -38,6 +38,7 @@ module runQueue_AXI4LiteS_if
     output wire                      I_iterations_ap_vld,
     input  wire [0:0]                O_finished,
     input  wire                      O_finished_ap_vld,
+    input  wire [31:0]               O_currentIteration,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -78,7 +79,10 @@ module runQueue_AXI4LiteS_if
 // 0x24 : Data signal of finished
 //        bit 0  - finished[0] (Read)
 //        others - reserved
-// 0x28 : Data signal of ap_return
+// 0x28 : reserved
+// 0x2c : Data signal of currentIteration
+//        bit 31~0 - currentIteration[31:0] (Read)
+// 0x30 : Data signal of ap_return
 //        bit 0  - ap_return[0] (Read)
 //        others - reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
@@ -90,17 +94,19 @@ localparam
 
 // address
 localparam
-    ADDR_AP_CTRL           = 6'h00,
-    ADDR_GIE               = 6'h04,
-    ADDR_IER               = 6'h08,
-    ADDR_ISR               = 6'h0c,
-    ADDR_FULLOUT_CTRL      = 6'h10,
-    ADDR_FULLOUT_DATA_0    = 6'h14,
-    ADDR_ITERATIONS_CTRL   = 6'h18,
-    ADDR_ITERATIONS_DATA_0 = 6'h1c,
-    ADDR_FINISHED_CTRL     = 6'h20,
-    ADDR_FINISHED_DATA_0   = 6'h24,
-    ADDR_AP_RETURN_0       = 6'h28;
+    ADDR_AP_CTRL                 = 6'h00,
+    ADDR_GIE                     = 6'h04,
+    ADDR_IER                     = 6'h08,
+    ADDR_ISR                     = 6'h0c,
+    ADDR_FULLOUT_CTRL            = 6'h10,
+    ADDR_FULLOUT_DATA_0          = 6'h14,
+    ADDR_ITERATIONS_CTRL         = 6'h18,
+    ADDR_ITERATIONS_DATA_0       = 6'h1c,
+    ADDR_FINISHED_CTRL           = 6'h20,
+    ADDR_FINISHED_DATA_0         = 6'h24,
+    ADDR_CURRENTITERATION_CTRL   = 6'h28,
+    ADDR_CURRENTITERATION_DATA_0 = 6'h2c,
+    ADDR_AP_RETURN_0             = 6'h30;
 
 // axi write fsm
 localparam
@@ -141,6 +147,7 @@ reg  [31:0]          _iterations;
 reg                  _iterations_ap_vld;
 wire [0:0]           _finished;
 reg                  _finished_ap_vld;
+wire [31:0]          _currentIteration;
 wire [0:0]           ap_return;
 
 //------------------------Body---------------------------
@@ -261,6 +268,9 @@ always @(posedge ACLK) begin
             ADDR_FINISHED_DATA_0: begin
                 rdata <= _finished[0:0];
             end
+            ADDR_CURRENTITERATION_DATA_0: begin
+                rdata <= _currentIteration[31:0];
+            end
             ADDR_AP_RETURN_0: begin
                 rdata <= ap_return[0:0];
             end
@@ -278,6 +288,7 @@ assign _fullOut            = O_fullOut;
 assign I_iterations_ap_vld = _iterations_ap_vld;
 assign I_iterations        = _iterations;
 assign _finished           = O_finished;
+assign _currentIteration   = O_currentIteration;
 assign ap_return           = O_ap_return;
 
 // ap_start

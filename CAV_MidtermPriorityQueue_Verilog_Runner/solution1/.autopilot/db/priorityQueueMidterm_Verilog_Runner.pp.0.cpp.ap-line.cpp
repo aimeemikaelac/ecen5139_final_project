@@ -39744,7 +39744,11 @@ int random_priorities[] = { 325, 437, 294,197, 295, 178, 325, 500, 207, 384, 16,
 //top function. runs the test in the FPGA and time from the CPU
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
   volatile bool *empty, volatile bool *full, volatile bool *fullOut,
-  int iterations, bool *finished){
+  int iterations, bool *finished, int *currentIteration){
+#pragma HLS RESOURCE variable=currentIteration core=AXI4LiteS
+#pragma empty_line
+#pragma HLS INTERFACE ap_none port=currentIteration
+#pragma empty_line
 #pragma HLS RESOURCE variable=finished core=AXI4LiteS
 #pragma empty_line
 #pragma HLS INTERFACE ap_ovld port=finished
@@ -39779,6 +39783,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 #pragma empty_line
  *cmdOut = 0;
   for(j=0; j<iterations; j++){
+   *currentIteration = j;
    last = 0;
 //		for(j=0; j<1; j++){
  //		result &= runTest();
