@@ -39887,16 +39887,20 @@ _ssdm_op_SpecResource(currentIteration, "", "AXI4LiteS", "", "", "", "");
    _ssdm_op_Wait(1);
    *cmdOut = 1;
    while(localFull == false){
+    *cmdOut = 1;
     _ssdm_op_Wait(1);
     *priorityOut = uint_8(i);
     *fullOut = *full;
 _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
-#93 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#94 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  //			*cmdOut = 0;
     i++;
     localFull = *full;
     count++;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
@@ -39905,13 +39909,17 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
    _ssdm_op_Wait(1);
    *cmdOut = 2;
    while(localEmpty == false){
+    *cmdOut = 2;
     _ssdm_op_Wait(1);
     if((uint_8)*priorityIn != i){
-     result++;
+     result+=((uint_8)*priorityIn).to_int();
     }
  //			*cmdOut = 0;
     i++;
     localEmpty = *empty;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
@@ -39946,11 +39954,11 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
  _ssdm_RegionEnd("P1");}
  *total = count;
 _ssdm_op_SpecResource(total, "", "AXI4LiteS", "", "", "", "");
-#145 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#153 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  *finished = true;
 _ssdm_op_SpecResource(finished, "", "AXI4LiteS", "", "", "", "");
-#146 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#154 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
 //	cout << "Result: "<<result<<endl;
  return result;

@@ -13,5 +13,5 @@
   <xd:arg xd:name="*(currentIteration)" xd:originalName="currentIteration" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x2C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:arg xd:name="*(total)" xd:originalName="total" xd:direction="out" xd:interfaceRef="S_AXI_AXI4LITES" xd:busTypeRef="axilite" xd:offset="0x34" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
   <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
-  <xd:resourceEstimates xd:LUT="541" xd:FF="337" xd:BRAM="0" xd:DSP="0"/>
+  <xd:resourceEstimates xd:LUT="509" xd:FF="379" xd:BRAM="0" xd:DSP="0"/>
 </xd:acceleratorMap>

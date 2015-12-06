@@ -88,6 +88,7 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
 			ap_wait();
 			*cmdOut = 1;
 			while(localFull == false){
+				*cmdOut = 1;
 				ap_wait();
 				*priorityOut = uint_8(i);
 				*fullOut = *full;
@@ -95,6 +96,9 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
 				i++;
 				localFull = *full;
 				count++;
+				ap_wait();
+				*cmdOut = 0;
+				ap_wait();
 			}
 			ap_wait();
 			*cmdOut = 0;
@@ -103,13 +107,17 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
 			ap_wait();
 			*cmdOut = 2;
 			while(localEmpty == false){
+				*cmdOut = 2;
 				ap_wait();
 				if((uint_8)*priorityIn != i){
-					result++;
+					result+=((uint_8)*priorityIn).to_int();
 				}
 	//			*cmdOut = 0;
 				i++;
 				localEmpty = *empty;
+				ap_wait();
+				*cmdOut = 0;
+				ap_wait();
 			}
 			ap_wait();
 			*cmdOut = 0;

@@ -39798,6 +39798,7 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
    _ssdm_op_Wait(1);
    *cmdOut = 1;
    while(localFull == false){
+    *cmdOut = 1;
     _ssdm_op_Wait(1);
     *priorityOut = uint_8(i);
     *fullOut = *full;
@@ -39805,6 +39806,9 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
     i++;
     localFull = *full;
     count++;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;
@@ -39813,13 +39817,17 @@ int runQueue(volatile uint_8 *priorityOut, volatile uint_8 *priorityIn, volatile
    _ssdm_op_Wait(1);
    *cmdOut = 2;
    while(localEmpty == false){
+    *cmdOut = 2;
     _ssdm_op_Wait(1);
     if((uint_8)*priorityIn != i){
-     result++;
+     result+=((uint_8)*priorityIn).to_int();
     }
  //			*cmdOut = 0;
     i++;
     localEmpty = *empty;
+    _ssdm_op_Wait(1);
+    *cmdOut = 0;
+    _ssdm_op_Wait(1);
    }
    _ssdm_op_Wait(1);
    *cmdOut = 0;

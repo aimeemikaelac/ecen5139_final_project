@@ -51,11 +51,11 @@ define i32 @runQueue(i8* %priorityOut_V, i8* %priorityIn_V, i2* %cmdOut_V, i1* %
   store i32 0, i32* %result, align 4
   br label %1
 
-; <label>:1                                       ; preds = %8, %0
-  %j = phi i32 [ 0, %0 ], [ %j_1, %8 ]
+; <label>:1                                       ; preds = %9, %0
+  %j = phi i32 [ 0, %0 ], [ %j_1, %9 ]
   %tmp = icmp slt i32 %j, %iterations_read
   %j_1 = add nsw i32 %j, 1
-  br i1 %tmp, label %2, label %9
+  br i1 %tmp, label %2, label %10
 
 ; <label>:2                                       ; preds = %1
   call void @_ssdm_op_Write.ap_none.i32P(i32* %currentIteration, i32 %j)
@@ -75,6 +75,7 @@ define i32 @runQueue(i8* %priorityOut_V, i8* %priorityIn_V, i2* %cmdOut_V, i1* %
 
 ; <label>:4                                       ; preds = %3
   %count_load_1 = load i32* %count, align 4
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %tmp_2 = trunc i32 %val_assign to i8
   call void @_ssdm_op_Write.ap_none.volatile.i8P(i8* %priorityOut_V, i8 %tmp_2)
@@ -84,6 +85,9 @@ define i32 @runQueue(i8* %priorityOut_V, i8* %priorityIn_V, i2* %cmdOut_V, i1* %
   %localFull_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
   store volatile i1 %localFull_2, i1* %localFull, align 1
   %count_1 = add nsw i32 %count_load_1, 1
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   store i32 %count_1, i32* %count, align 4
   br label %3
 
@@ -96,31 +100,42 @@ define i32 @runQueue(i8* %priorityOut_V, i8* %priorityIn_V, i2* %cmdOut_V, i1* %
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
   br label %6
 
-; <label>:6                                       ; preds = %7, %5
-  %op2_assign = phi i32 [ 0, %5 ], [ %i_1, %7 ]
+; <label>:6                                       ; preds = %._crit_edge, %5
+  %op2_assign = phi i32 [ 0, %5 ], [ %i_1, %._crit_edge ]
   %localEmpty_load = load volatile i1* %localEmpty, align 1
   %i_1 = add i32 %op2_assign, 1
-  br i1 %localEmpty_load, label %8, label %7
+  br i1 %localEmpty_load, label %9, label %7
 
 ; <label>:7                                       ; preds = %6
-  %result_load_1 = load i32* %result, align 4
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %priorityIn_V_read = call i8 @_ssdm_op_Read.ap_none.volatile.i8P(i8* %priorityIn_V)
   %tmp_4 = zext i8 %priorityIn_V_read to i32
   %tmp_5 = icmp eq i32 %tmp_4, %op2_assign
-  %result_1 = add nsw i32 %result_load_1, 1
-  %result_1_s = select i1 %tmp_5, i32 %result_load_1, i32 %result_1
+  br i1 %tmp_5, label %._crit_edge, label %8
+
+; <label>:8                                       ; preds = %7
+  %result_load_1 = load i32* %result, align 4
+  %priorityIn_V_read_1 = call i8 @_ssdm_op_Read.ap_none.volatile.i8P(i8* %priorityIn_V)
+  %tmp_6 = zext i8 %priorityIn_V_read_1 to i32
+  %result_1 = add nsw i32 %result_load_1, %tmp_6
+  store i32 %result_1, i32* %result, align 4
+  br label %._crit_edge
+
+._crit_edge:                                      ; preds = %8, %7
   %localEmpty_2 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_2, i1* %localEmpty, align 1
-  store i32 %result_1_s, i32* %result, align 4
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   br label %6
 
-; <label>:8                                       ; preds = %6
+; <label>:9                                       ; preds = %6
   call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   br label %1
 
-; <label>:9                                       ; preds = %1
+; <label>:10                                      ; preds = %1
   %result_load = load i32* %result, align 4
   %count_load = load i32* %count, align 4
   %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str6, i32 %tmp_1)
