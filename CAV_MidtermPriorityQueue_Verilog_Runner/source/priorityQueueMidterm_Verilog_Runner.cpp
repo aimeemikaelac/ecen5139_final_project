@@ -32,7 +32,11 @@ int random_priorities[] = { 325, 437, 294,197, 295,	178, 325, 500, 207, 384, 16,
 
 //top function. runs the test in the FPGA and time from the CPU
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile cmd *cmdOut,
-		volatile bool empty, volatile bool full){
+		volatile bool empty, volatile bool full, volatile uint_4 *currentPriority){
+#pragma HLS RESOURCE variable=currentPriority core=AXI4LiteS
+
+#pragma HLS INTERFACE ap_none port=currentPriority
+
 #pragma HLS INTERFACE ap_none port=full
 
 #pragma HLS INTERFACE ap_none port=empty
@@ -56,33 +60,41 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile
 		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(i);
-			*cmdOut = 0;
+			*currentPriority = uint_4(i);
+//			*cmdOut = 0;
 			i++;
 		}
+		*cmdOut = 0;
 		i=0;
 		while(empty == 0){
 			*cmdOut = 2;
 			if((uint_4)priorityIn != i){
 				result = false;
 			}
-			*cmdOut = 0;
+			*currentPriority = priorityIn;
+//			*cmdOut = 0;
 			i++;
 		}
+		*cmdOut = 0;
 		i=0;
 		while(full == 0){
 			*cmdOut = 1;
 			*priorityOut = uint_4(random_priorities[i]);
-			*cmdOut = 0;
+			*currentPriority = uint_4(random_priorities[i]);
+//			*cmdOut = 0;
 			i++;
 		}
+		*cmdOut = 0;
 		while(empty == 0){
 			*cmdOut = 2;
 			if(last > (uint_4)priorityIn){
 				result = false;
 			}
-			*cmdOut = 0;
+			*currentPriority = priorityIn;
+//			*cmdOut = 0;
 			last = ((uint_4)priorityIn).to_int();
 		}
+		*cmdOut = 0;
 
 	}
 //	cout << "Result: "<<result<<endl;

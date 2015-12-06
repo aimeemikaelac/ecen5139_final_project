@@ -38107,6 +38107,24 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_priori
 
 };
 template< int _AP_W >
+class aesl_keep_name_class_ap_uint_currentPriority{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name_ap_uint_currentPriority(volatile ap_uint< 4 >* currentPriority) {aesl_keep_name_class_ap_int_base_ap_uint_currentPriority< 4 >::aesl_keep_name_ap_int_base_currentPriority(currentPriority);}
+
+};
+template< int _AP_W >
+class aesl_keep_name_class_ap_int_base_ap_uint_currentPriority{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name_ap_int_base_currentPriority(volatile ap_int_base< _AP_W, false >* currentPriority) {aesl_keep_name_class_ssdm_int_ap_int_base_currentPriority< _AP_W, false >::aesl_keep_name_ssdm_int_currentPriority(currentPriority);}
+
+};
+template< int _AP_W, bool _AP_S >
+class aesl_keep_name_class_ssdm_int_ap_int_base_currentPriority{
+public:
+inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_currentPriority(volatile ssdm_int< _AP_W, _AP_S >* currentPriority) {_ssdm_op_SpecExt("member_name", "currentPriority.V", &currentPriority->V);; }
+
+};
+template< int _AP_W >
 class aesl_keep_name_class_ap_uint_cmdOut{
 public:
 inline __attribute__((always_inline)) static void aesl_keep_name_ap_uint_cmdOut(volatile ap_uint< 2 >* cmdOut) {aesl_keep_name_class_ap_int_base_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_int_base_cmdOut(cmdOut);}
@@ -38127,7 +38145,11 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_cmdOut
 };
 # 34 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 priorityIn, volatile cmd *cmdOut,
-  volatile bool empty, volatile bool full){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(&priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+  volatile bool empty, volatile bool full, volatile uint_4 *currentPriority){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_currentPriority< 4 >::aesl_keep_name_ap_uint_currentPriority(currentPriority);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(&priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+//#pragma HLS RESOURCE variable=currentPriority core=AXI4LiteS
+
+_ssdm_op_SpecWire(currentPriority, "ap_none", 0, 0, 0, 0, "", "", "");
+
 _ssdm_op_SpecWire(&full, "ap_none", 0, 0, 0, 0, "", "", "");
 
 _ssdm_op_SpecWire(&empty, "ap_none", 0, 0, 0, 0, "", "", "");
@@ -38151,33 +38173,44 @@ _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
   while(full == 0){
    *cmdOut = 1;
    *priorityOut = uint_4(i);
-   *cmdOut = 0;
+   *currentPriority = uint_4(i);
+_ssdm_op_SpecResource(currentPriority, "", "AXI4LiteS", "", "", "", "");
+# 63 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+
+//			*cmdOut = 0;
    i++;
   }
+  *cmdOut = 0;
   i=0;
   while(empty == 0){
    *cmdOut = 2;
    if((uint_4)priorityIn != i){
     result = false;
    }
-   *cmdOut = 0;
+   *currentPriority = priorityIn;
+//			*cmdOut = 0;
    i++;
   }
+  *cmdOut = 0;
   i=0;
   while(full == 0){
    *cmdOut = 1;
    *priorityOut = uint_4(random_priorities[i]);
-   *cmdOut = 0;
+   *currentPriority = uint_4(random_priorities[i]);
+//			*cmdOut = 0;
    i++;
   }
+  *cmdOut = 0;
   while(empty == 0){
    *cmdOut = 2;
    if(last > (uint_4)priorityIn){
     result = false;
    }
-   *cmdOut = 0;
+   *currentPriority = priorityIn;
+//			*cmdOut = 0;
    last = ((uint_4)priorityIn).to_int();
   }
+  *cmdOut = 0;
 
  }
 //	cout << "Result: "<<result<<endl;

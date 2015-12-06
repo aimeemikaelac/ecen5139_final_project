@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'runQueue'
 ================================================================
-* Date:           Sat Dec  5 16:04:49 2015
+* Date:           Sat Dec  5 16:43:40 2015
 
 * Version:        2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)
 * Project:        CAV_MidtermPriorityQueue_Verilog_Runner
@@ -42,10 +42,10 @@
         |  Loop Name  | min | max |  Latency |  achieved |   target  | Count| Pipelined|
         +-------------+-----+-----+----------+-----------+-----------+------+----------+
         |- Loop 1     |    ?|    ?|         ?|          -|          -|     1|    no    |
-        | + Loop 1.1  |    ?|    ?|         2|          -|          -|     ?|    no    |
-        | + Loop 1.2  |    ?|    ?|         2|          -|          -|     ?|    no    |
+        | + Loop 1.1  |    ?|    ?|         1|          -|          -|     ?|    no    |
+        | + Loop 1.2  |    ?|    ?|         1|          -|          -|     ?|    no    |
         | + Loop 1.3  |    ?|    ?|         2|          -|          -|     ?|    no    |
-        | + Loop 1.4  |    ?|    ?|         2|          -|          -|     ?|    no    |
+        | + Loop 1.4  |    ?|    ?|         1|          -|          -|     ?|    no    |
         +-------------+-----+-----+----------+-----------+-----------+------+----------+
 
 
@@ -124,7 +124,7 @@ IsGatedGlobalClock: 0
 ============================================================
 + Verbose Summary: Schedule
 ============================================================
-* Number of FSM states: 10
+* Number of FSM states: 7
 * Pipeline: 0
 * Dataflow Pipeline: 0
 
@@ -134,264 +134,285 @@ IsGatedGlobalClock: 0
 2 --> 
 	3  / (!j)
 3 --> 
-	4  / (!full_assign_load)
-	5  / (full_assign_load)
+	3  / (!full_assign_load)
+	4  / (full_assign_load)
 4 --> 
-	3  / true
+	4  / (!empty_assign_load)
+	5  / (empty_assign_load)
 5 --> 
-	6  / (!empty_assign_load)
-	7  / (empty_assign_load)
+	6  / (!full_assign_load_1)
+	7  / (full_assign_load_1)
 6 --> 
 	5  / true
 7 --> 
-	8  / (!full_assign_load_1)
-	9  / (full_assign_load_1)
-8 --> 
-	7  / true
-9 --> 
+	7  / (!empty_assign_load_1)
 	2  / (empty_assign_load_1)
-	10  / (!empty_assign_load_1)
-10 --> 
-	9  / true
 * FSM state operations: 
 
  <State 1>: 1.57ns
 ST_1: last [1/1] 0.00ns
 :0  %last = alloca i32, align 4
 
-ST_1: stg_12 [1/1] 0.00ns
+ST_1: stg_9 [1/1] 0.00ns
 :1  call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut_V), !map !7
 
-ST_1: stg_13 [1/1] 0.00ns
+ST_1: stg_10 [1/1] 0.00ns
 :2  call void (...)* @_ssdm_op_SpecBitsMap(i4 %priorityIn_V), !map !11
 
-ST_1: stg_14 [1/1] 0.00ns
+ST_1: stg_11 [1/1] 0.00ns
 :3  call void (...)* @_ssdm_op_SpecBitsMap(i2* %cmdOut_V), !map !17
 
-ST_1: stg_15 [1/1] 0.00ns
+ST_1: stg_12 [1/1] 0.00ns
 :4  call void (...)* @_ssdm_op_SpecBitsMap(i1 %empty), !map !21
 
-ST_1: stg_16 [1/1] 0.00ns
+ST_1: stg_13 [1/1] 0.00ns
 :5  call void (...)* @_ssdm_op_SpecBitsMap(i1 %full), !map !25
 
-ST_1: stg_17 [1/1] 0.00ns
-:6  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !29
+ST_1: stg_14 [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(i4* %currentPriority_V), !map !29
 
-ST_1: stg_18 [1/1] 0.00ns
-:7  call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
+ST_1: stg_15 [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !33
+
+ST_1: stg_16 [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
 
 ST_1: full_read [1/1] 0.00ns
-:8  %full_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %full)
+:9  %full_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %full)
 
 ST_1: empty_read [1/1] 0.00ns
-:9  %empty_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %empty)
+:10  %empty_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %empty)
 
 ST_1: priorityIn_V_read [1/1] 0.00ns
-:10  %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.i4(i4 %priorityIn_V)
+:11  %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.i4(i4 %priorityIn_V)
 
 ST_1: empty_assign [1/1] 0.00ns
-:11  %empty_assign = alloca i1, align 1
+:12  %empty_assign = alloca i1, align 1
 
 ST_1: full_assign [1/1] 0.00ns
-:12  %full_assign = alloca i1, align 1
+:13  %full_assign = alloca i1, align 1
+
+ST_1: stg_22 [1/1] 0.00ns
+:14  store volatile i1 %empty_read, i1* %empty_assign, align 1
+
+ST_1: stg_23 [1/1] 0.00ns
+:15  store volatile i1 %full_read, i1* %full_assign, align 1
 
 ST_1: stg_24 [1/1] 0.00ns
-:13  store volatile i1 %empty_read, i1* %empty_assign, align 1
+:16  call void (...)* @_ssdm_op_SpecWire(i4* %currentPriority_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_25 [1/1] 0.00ns
-:14  store volatile i1 %full_read, i1* %full_assign, align 1
+:17  call void (...)* @_ssdm_op_SpecWire(i1 %full, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_26 [1/1] 0.00ns
-:15  call void (...)* @_ssdm_op_SpecWire(i1 %full, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+:18  call void (...)* @_ssdm_op_SpecWire(i1 %empty, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_27 [1/1] 0.00ns
-:16  call void (...)* @_ssdm_op_SpecWire(i1 %empty, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+:19  call void (...)* @_ssdm_op_SpecWire(i2* %cmdOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_28 [1/1] 0.00ns
-:17  call void (...)* @_ssdm_op_SpecWire(i2* %cmdOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+:20  call void (...)* @_ssdm_op_SpecWire(i4 %priorityIn_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_29 [1/1] 0.00ns
-:18  call void (...)* @_ssdm_op_SpecWire(i4 %priorityIn_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+:21  call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_30 [1/1] 0.00ns
-:19  call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
+:22  call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
 
 ST_1: stg_31 [1/1] 0.00ns
-:20  call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
-
-ST_1: stg_32 [1/1] 0.00ns
-:21  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+:23  call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
 
 ST_1: last_1 [1/1] 0.00ns
-:22  %last_1 = zext i4 %priorityIn_V_read to i32
+:24  %last_1 = zext i4 %priorityIn_V_read to i32
 
-ST_1: stg_34 [1/1] 1.57ns
-:23  store i32 0, i32* %last, align 4
+ST_1: stg_33 [1/1] 1.57ns
+:25  store i32 0, i32* %last, align 4
 
-ST_1: stg_35 [1/1] 1.30ns
-:24  br label %.loopexit
+ST_1: stg_34 [1/1] 1.30ns
+:26  br label %1
 
 
  <State 2>: 1.57ns
 ST_2: j [1/1] 0.00ns
-.loopexit:0  %j = phi i1 [ false, %0 ], [ true, %.preheader ]
+:0  %j = phi i1 [ false, %0 ], [ true, %12 ]
 
 ST_2: result [1/1] 0.00ns
-.loopexit:1  %result = phi i1 [ true, %0 ], [ %result_3, %.preheader ]
+:1  %result = phi i1 [ true, %0 ], [ %result_3, %12 ]
 
 ST_2: empty_2 [1/1] 0.00ns
-.loopexit:2  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1)
+:2  %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1)
 
-ST_2: stg_39 [1/1] 1.57ns
-.loopexit:3  br i1 %j, label %5, label %.preheader124
+ST_2: stg_38 [1/1] 1.57ns
+:3  br i1 %j, label %13, label %.preheader
 
-ST_2: stg_40 [1/1] 0.00ns
+ST_2: stg_39 [1/1] 0.00ns
 :0  ret i1 %result
 
 
  <State 3>: 2.44ns
 ST_3: val_assign [1/1] 0.00ns
-.preheader124:0  %val_assign = phi i32 [ %i, %1 ], [ 0, %.loopexit ]
+.preheader:0  %val_assign = phi i32 [ %i, %2 ], [ 0, %1 ]
 
 ST_3: full_assign_load [1/1] 0.00ns
-.preheader124:1  %full_assign_load = load volatile i1* %full_assign, align 1
+.preheader:1  %full_assign_load = load volatile i1* %full_assign, align 1
 
 ST_3: i [1/1] 2.44ns
-.preheader124:2  %i = add nsw i32 %val_assign, 1
+.preheader:2  %i = add nsw i32 %val_assign, 1
 
-ST_3: stg_44 [1/1] 1.57ns
-.preheader124:3  br i1 %full_assign_load, label %.preheader123, label %1
+ST_3: stg_43 [1/1] 0.00ns
+.preheader:3  br i1 %full_assign_load, label %3, label %2
 
-ST_3: stg_45 [1/1] 0.00ns
+ST_3: stg_44 [1/1] 0.00ns
 :0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
 
 ST_3: tmp [1/1] 0.00ns
 :1  %tmp = trunc i32 %val_assign to i4
 
-ST_3: stg_47 [1/1] 0.00ns
+ST_3: stg_46 [1/1] 0.00ns
 :2  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp)
 
+ST_3: stg_47 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp)
 
- <State 4>: 0.00ns
-ST_4: stg_48 [1/1] 0.00ns
-:3  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+ST_3: stg_48 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecIFCore(i4* %currentPriority_V, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
 
-ST_4: stg_49 [1/1] 0.00ns
-:4  br label %.preheader124
+ST_3: stg_49 [1/1] 0.00ns
+:5  br label %.preheader
+
+ST_3: stg_50 [1/1] 0.00ns
+:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+
+ST_3: stg_51 [1/1] 1.57ns
+:1  br label %4
 
 
- <State 5>: 3.89ns
-ST_5: op2_assign [1/1] 0.00ns
-.preheader123:0  %op2_assign = phi i32 [ %i_1, %2 ], [ 0, %.preheader124 ]
+ <State 4>: 3.89ns
+ST_4: op2_assign [1/1] 0.00ns
+:0  %op2_assign = phi i32 [ 0, %3 ], [ %i_1, %5 ]
 
-ST_5: result_1 [1/1] 0.00ns
-.preheader123:1  %result_1 = phi i1 [ %result_1_s, %2 ], [ %result, %.preheader124 ]
+ST_4: result_1 [1/1] 0.00ns
+:1  %result_1 = phi i1 [ %result, %3 ], [ %result_1_s, %5 ]
 
-ST_5: empty_assign_load [1/1] 0.00ns
-.preheader123:2  %empty_assign_load = load volatile i1* %empty_assign, align 1
+ST_4: empty_assign_load [1/1] 0.00ns
+:2  %empty_assign_load = load volatile i1* %empty_assign, align 1
 
-ST_5: i_1 [1/1] 2.44ns
-.preheader123:3  %i_1 = add nsw i32 %op2_assign, 1
+ST_4: i_1 [1/1] 2.44ns
+:3  %i_1 = add nsw i32 %op2_assign, 1
 
-ST_5: stg_54 [1/1] 1.57ns
-.preheader123:4  br i1 %empty_assign_load, label %.preheader122, label %2
+ST_4: stg_56 [1/1] 0.00ns
+:4  br i1 %empty_assign_load, label %6, label %5
 
-ST_5: stg_55 [1/1] 0.00ns
+ST_4: stg_57 [1/1] 0.00ns
 :0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
 
-ST_5: tmp_3 [1/1] 2.52ns
+ST_4: tmp_3 [1/1] 2.52ns
 :1  %tmp_3 = icmp eq i32 %last_1, %op2_assign
 
-ST_5: result_1_s [1/1] 1.37ns
+ST_4: result_1_s [1/1] 1.37ns
 :2  %result_1_s = and i1 %tmp_3, %result_1
 
+ST_4: stg_60 [1/1] 0.00ns
+:3  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read)
 
- <State 6>: 0.00ns
-ST_6: stg_58 [1/1] 0.00ns
-:3  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+ST_4: stg_61 [1/1] 0.00ns
+:4  br label %4
 
-ST_6: stg_59 [1/1] 0.00ns
-:4  br label %.preheader123
+ST_4: stg_62 [1/1] 0.00ns
+:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+
+ST_4: stg_63 [1/1] 1.57ns
+:1  br label %7
 
 
- <State 7>: 2.44ns
-ST_7: i_2 [1/1] 0.00ns
-.preheader122:0  %i_2 = phi i32 [ %i_3, %3 ], [ 0, %.preheader123 ]
+ <State 5>: 2.44ns
+ST_5: i_2 [1/1] 0.00ns
+:0  %i_2 = phi i32 [ 0, %6 ], [ %i_3, %8 ]
 
-ST_7: full_assign_load_1 [1/1] 0.00ns
-.preheader122:1  %full_assign_load_1 = load volatile i1* %full_assign, align 1
+ST_5: full_assign_load_1 [1/1] 0.00ns
+:1  %full_assign_load_1 = load volatile i1* %full_assign, align 1
 
-ST_7: i_3 [1/1] 2.44ns
-.preheader122:2  %i_3 = add nsw i32 %i_2, 1
+ST_5: i_3 [1/1] 2.44ns
+:2  %i_3 = add nsw i32 %i_2, 1
 
-ST_7: stg_63 [1/1] 1.30ns
-.preheader122:3  br i1 %full_assign_load_1, label %.preheader, label %3
+ST_5: stg_67 [1/1] 0.00ns
+:3  br i1 %full_assign_load_1, label %9, label %8
 
-ST_7: stg_64 [1/1] 0.00ns
-:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
-
-ST_7: tmp_5 [1/1] 0.00ns
+ST_5: tmp_5 [1/1] 0.00ns
 :1  %tmp_5 = sext i32 %i_2 to i64
 
-ST_7: random_priorities_addr [1/1] 0.00ns
+ST_5: random_priorities_addr [1/1] 0.00ns
 :2  %random_priorities_addr = getelementptr [200 x i9]* @random_priorities, i64 0, i64 %tmp_5
 
-ST_7: random_priorities_load [2/2] 2.39ns
+ST_5: random_priorities_load [2/2] 2.39ns
 :3  %random_priorities_load = load i9* %random_priorities_addr, align 2
 
+ST_5: stg_71 [1/1] 0.00ns
+:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
 
- <State 8>: 2.39ns
-ST_8: random_priorities_load [1/2] 2.39ns
+ST_5: stg_72 [1/1] 1.30ns
+:1  br label %10
+
+
+ <State 6>: 2.39ns
+ST_6: stg_73 [1/1] 0.00ns
+:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
+
+ST_6: random_priorities_load [1/2] 2.39ns
 :3  %random_priorities_load = load i9* %random_priorities_addr, align 2
 
-ST_8: tmp_1 [1/1] 0.00ns
+ST_6: tmp_1 [1/1] 0.00ns
 :4  %tmp_1 = trunc i9 %random_priorities_load to i4
 
-ST_8: stg_70 [1/1] 0.00ns
+ST_6: stg_76 [1/1] 0.00ns
 :5  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
 
-ST_8: stg_71 [1/1] 0.00ns
-:6  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+ST_6: stg_77 [1/1] 0.00ns
+:6  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_1)
 
-ST_8: stg_72 [1/1] 0.00ns
-:7  br label %.preheader122
+ST_6: stg_78 [1/1] 0.00ns
+:7  br label %7
 
 
- <State 9>: 5.26ns
-ST_9: result_3 [1/1] 0.00ns
-.preheader:0  %result_3 = phi i1 [ %p_result_3, %4 ], [ %result_1, %.preheader122 ]
+ <State 7>: 5.26ns
+ST_7: result_3 [1/1] 0.00ns
+:0  %result_3 = phi i1 [ %result_1, %9 ], [ %p_result_3, %11 ]
 
-ST_9: empty_assign_load_1 [1/1] 0.00ns
-.preheader:1  %empty_assign_load_1 = load volatile i1* %empty_assign, align 1
+ST_7: empty_assign_load_1 [1/1] 0.00ns
+:1  %empty_assign_load_1 = load volatile i1* %empty_assign, align 1
 
-ST_9: stg_75 [1/1] 0.00ns
-.preheader:2  br i1 %empty_assign_load_1, label %.loopexit, label %4
+ST_7: stg_81 [1/1] 0.00ns
+:2  br i1 %empty_assign_load_1, label %12, label %11
 
-ST_9: last_load [1/1] 0.00ns
+ST_7: last_load [1/1] 0.00ns
 :0  %last_load = load i32* %last, align 4
 
-ST_9: stg_77 [1/1] 0.00ns
+ST_7: stg_83 [1/1] 0.00ns
 :1  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
 
-ST_9: ult [1/1] 2.52ns
+ST_7: ult [1/1] 2.52ns
 :2  %ult = icmp ult i32 %last_1, %last_load
 
-ST_9: rev4 [1/1] 1.37ns
+ST_7: rev4 [1/1] 1.37ns
 :3  %rev4 = xor i1 %ult, true
 
-ST_9: p_result_3 [1/1] 1.37ns
+ST_7: p_result_3 [1/1] 1.37ns
 :4  %p_result_3 = and i1 %rev4, %result_3
 
-ST_9: stg_81 [1/1] 1.57ns
+ST_7: stg_87 [1/1] 0.00ns
+:5  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read)
+
+ST_7: stg_88 [1/1] 1.57ns
 :6  store i32 %last_1, i32* %last, align 4
 
+ST_7: stg_89 [1/1] 0.00ns
+:7  br label %10
 
- <State 10>: 0.00ns
-ST_10: stg_82 [1/1] 0.00ns
-:5  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+ST_7: stg_90 [1/1] 0.00ns
+:0  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
 
-ST_10: stg_83 [1/1] 0.00ns
-:7  br label %.preheader
+ST_7: stg_91 [1/1] 0.00ns
+:1  br label %1
 
 
 
@@ -409,9 +430,6 @@ N/A
 	State 5
 	State 6
 	State 7
-	State 8
-	State 9
-	State 10
 
 
 ============================================================

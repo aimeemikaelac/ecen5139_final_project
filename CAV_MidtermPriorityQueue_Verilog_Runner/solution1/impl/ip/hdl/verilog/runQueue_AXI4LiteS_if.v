@@ -33,6 +33,7 @@ module runQueue_AXI4LiteS_if
     input  wire                      RREADY,
     output wire                      interrupt,
     // user signals
+    input  wire [3:0]                O_currentPriority_V,
     output wire                      I_ap_start,
     input  wire                      O_ap_ready,
     input  wire                      O_ap_done,
@@ -58,7 +59,11 @@ module runQueue_AXI4LiteS_if
 //        bit 0  - Channel 0 (ap_done)
 //        bit 1  - Channel 1 (ap_ready)
 //        others - reserved
-// 0x10 : Data signal of ap_return
+// 0x10 : reserved
+// 0x14 : Data signal of currentPriority_V
+//        bit 3~0 - currentPriority_V[3:0] (Read)
+//        others  - reserved
+// 0x18 : Data signal of ap_return
 //        bit 0  - ap_return[0] (Read)
 //        others - reserved
 // (SC = Self Clear, COR = Clear on Read, TOW = Toggle on Write, COH = Clear on Handshake)
@@ -70,11 +75,13 @@ localparam
 
 // address
 localparam
-    ADDR_AP_CTRL     = 5'h00,
-    ADDR_GIE         = 5'h04,
-    ADDR_IER         = 5'h08,
-    ADDR_ISR         = 5'h0c,
-    ADDR_AP_RETURN_0 = 5'h10;
+    ADDR_AP_CTRL                  = 5'h00,
+    ADDR_GIE                      = 5'h04,
+    ADDR_IER                      = 5'h08,
+    ADDR_ISR                      = 5'h0c,
+    ADDR_CURRENTPRIORITY_V_CTRL   = 5'h10,
+    ADDR_CURRENTPRIORITY_V_DATA_0 = 5'h14,
+    ADDR_AP_RETURN_0              = 5'h18;
 
 // axi write fsm
 localparam
@@ -110,6 +117,7 @@ reg                  auto_restart;
 reg                  gie;
 reg  [1:0]           ier;
 reg  [1:0]           isr;
+wire [3:0]           _currentPriority_V;
 wire [0:0]           ap_return;
 
 //------------------------Body---------------------------
@@ -215,6 +223,9 @@ always @(posedge ACLK) begin
             ADDR_ISR: begin
                 rdata <= isr;
             end
+            ADDR_CURRENTPRIORITY_V_DATA_0: begin
+                rdata <= _currentPriority_V[3:0];
+            end
             ADDR_AP_RETURN_0: begin
                 rdata <= ap_return[0:0];
             end
@@ -224,11 +235,12 @@ end
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 //++++++++++++++++++++++++internal registers+++++++++++++
-assign interrupt  = gie & (|isr);
-assign I_ap_start = ap_start;
-assign ap_idle    = O_ap_idle;
-assign ap_ready   = O_ap_ready;
-assign ap_return  = O_ap_return;
+assign interrupt          = gie & (|isr);
+assign I_ap_start         = ap_start;
+assign ap_idle            = O_ap_idle;
+assign ap_ready           = O_ap_ready;
+assign _currentPriority_V = O_currentPriority_V;
+assign ap_return          = O_ap_return;
 
 // ap_start
 always @(posedge ACLK) begin

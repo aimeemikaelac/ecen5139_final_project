@@ -12,14 +12,15 @@ target triple = "x86_64-unknown-linux-gnu"
 @str = internal constant [9 x i8] c"runQueue\00"
 @random_priorities = constant [200 x i9] [i9 -187, i9 -75, i9 -218, i9 197, i9 -217, i9 178, i9 -187, i9 -12, i9 207, i9 -128, i9 16, i9 21, i9 95, i9 -21, i9 -152, i9 22, i9 10, i9 -249, i9 -201, i9 -102, i9 -131, i9 -179, i9 65, i9 191, i9 137, i9 184, i9 -158, i9 94, i9 -210, i9 106, i9 -196, i9 -91, i9 166, i9 -37, i9 -148, i9 250, i9 91, i9 -239, i9 -12, i9 -129, i9 -183, i9 -73, i9 -37, i9 234, i9 -73, i9 -21, i9 235, i9 240, i9 -202, i9 -150, i9 203, i9 53, i9 78, i9 -97, i9 -177, i9 214, i9 100, i9 -77, i9 -216, i9 69, i9 -65, i9 125, i9 124, i9 -138, i9 65, i9 213, i9 -216, i9 -173, i9 211, i9 -138, i9 -34, i9 -110, i9 85, i9 -159, i9 66, i9 200, i9 -49, i9 181, i9 -243, i9 -241, i9 -100, i9 58, i9 -168, i9 -38, i9 90, i9 105, i9 20, i9 156, i9 -106, i9 -203, i9 -21, i9 -97, i9 -242, i9 92, i9 -84, i9 16, i9 227, i9 -71, i9 49, i9 -135, i9 -94, i9 -88, i9 -95, i9 66, i9 241, i9 -183, i9 157, i9 154, i9 226, i9 -73, i9 246, i9 28, i9 36, i9 -89, i9 -101, i9 12, i9 173, i9 226, i9 172, i9 150, i9 -214, i9 -106, i9 80, i9 -187, i9 -154, i9 -66, i9 -126, i9 75, i9 -228, i9 -95, i9 143, i9 24, i9 168, i9 -215, i9 3, i9 116, i9 37, i9 186, i9 -153, i9 222, i9 41, i9 120, i9 -137, i9 -233, i9 -146, i9 -158, i9 -109, i9 62, i9 -83, i9 -107, i9 133, i9 -209, i9 -124, i9 193, i9 16, i9 -229, i9 -85, i9 233, i9 175, i9 -57, i9 129, i9 158, i9 -203, i9 59, i9 -146, i9 108, i9 -105, i9 -125, i9 216, i9 -131, i9 118, i9 -170, i9 12, i9 61, i9 -101, i9 110, i9 -55, i9 88, i9 199, i9 -93, i9 -38, i9 116, i9 145, i9 8, i9 144, i9 32, i9 106, i9 -61, i9 253, i9 115, i9 202, i9 -18, i9 239, i9 188, i9 -161, i9 155, i9 28, i9 227, i9 -248, i9 184]
 
-define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zeroext %empty, i1 zeroext %full) {
+define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zeroext %empty, i1 zeroext %full, i4* %currentPriority_V) {
   %last = alloca i32, align 4
   call void (...)* @_ssdm_op_SpecBitsMap(i4* %priorityOut_V), !map !7
   call void (...)* @_ssdm_op_SpecBitsMap(i4 %priorityIn_V), !map !11
   call void (...)* @_ssdm_op_SpecBitsMap(i2* %cmdOut_V), !map !17
   call void (...)* @_ssdm_op_SpecBitsMap(i1 %empty), !map !21
   call void (...)* @_ssdm_op_SpecBitsMap(i1 %full), !map !25
-  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !29
+  call void (...)* @_ssdm_op_SpecBitsMap(i4* %currentPriority_V), !map !29
+  call void (...)* @_ssdm_op_SpecBitsMap(i1 false) nounwind, !map !33
   call void (...)* @_ssdm_op_SpecTopModule([9 x i8]* @str) nounwind
   %full_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %full)
   %empty_read = call i1 @_ssdm_op_Read.ap_none.i1(i1 %empty)
@@ -28,6 +29,7 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   %full_assign = alloca i1, align 1
   store volatile i1 %empty_read, i1* %empty_assign, align 1
   store volatile i1 %full_read, i1* %full_assign, align 1
+  call void (...)* @_ssdm_op_SpecWire(i4* %currentPriority_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i1 %full, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i1 %empty, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i2* %cmdOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
@@ -37,73 +39,90 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   %last_1 = zext i4 %priorityIn_V_read to i32
   store i32 0, i32* %last, align 4
-  br label %.loopexit
+  br label %1
 
-.loopexit:                                        ; preds = %.preheader, %0
-  %j = phi i1 [ false, %0 ], [ true, %.preheader ]
-  %result = phi i1 [ true, %0 ], [ %result_3, %.preheader ]
+; <label>:1                                       ; preds = %12, %0
+  %j = phi i1 [ false, %0 ], [ true, %12 ]
+  %result = phi i1 [ true, %0 ], [ %result_3, %12 ]
   %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1)
-  br i1 %j, label %5, label %.preheader124
+  br i1 %j, label %13, label %.preheader
 
-.preheader124:                                    ; preds = %.loopexit, %1
-  %val_assign = phi i32 [ %i, %1 ], [ 0, %.loopexit ]
+.preheader:                                       ; preds = %1, %2
+  %val_assign = phi i32 [ %i, %2 ], [ 0, %1 ]
   %full_assign_load = load volatile i1* %full_assign, align 1
   %i = add nsw i32 %val_assign, 1
-  br i1 %full_assign_load, label %.preheader123, label %1
+  br i1 %full_assign_load, label %3, label %2
 
-; <label>:1                                       ; preds = %.preheader124
+; <label>:2                                       ; preds = %.preheader
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   %tmp = trunc i32 %val_assign to i4
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp)
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  br label %.preheader124
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp)
+  call void (...)* @_ssdm_op_SpecIFCore(i4* %currentPriority_V, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+  br label %.preheader
 
-.preheader123:                                    ; preds = %.preheader124, %2
-  %op2_assign = phi i32 [ %i_1, %2 ], [ 0, %.preheader124 ]
-  %result_1 = phi i1 [ %result_1_s, %2 ], [ %result, %.preheader124 ]
+; <label>:3                                       ; preds = %.preheader
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  br label %4
+
+; <label>:4                                       ; preds = %5, %3
+  %op2_assign = phi i32 [ 0, %3 ], [ %i_1, %5 ]
+  %result_1 = phi i1 [ %result, %3 ], [ %result_1_s, %5 ]
   %empty_assign_load = load volatile i1* %empty_assign, align 1
   %i_1 = add nsw i32 %op2_assign, 1
-  br i1 %empty_assign_load, label %.preheader122, label %2
+  br i1 %empty_assign_load, label %6, label %5
 
-; <label>:2                                       ; preds = %.preheader123
+; <label>:5                                       ; preds = %4
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
   %tmp_3 = icmp eq i32 %last_1, %op2_assign
   %result_1_s = and i1 %tmp_3, %result_1
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  br label %.preheader123
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read)
+  br label %4
 
-.preheader122:                                    ; preds = %.preheader123, %3
-  %i_2 = phi i32 [ %i_3, %3 ], [ 0, %.preheader123 ]
+; <label>:6                                       ; preds = %4
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  br label %7
+
+; <label>:7                                       ; preds = %8, %6
+  %i_2 = phi i32 [ 0, %6 ], [ %i_3, %8 ]
   %full_assign_load_1 = load volatile i1* %full_assign, align 1
   %i_3 = add nsw i32 %i_2, 1
-  br i1 %full_assign_load_1, label %.preheader, label %3
+  br i1 %full_assign_load_1, label %9, label %8
 
-; <label>:3                                       ; preds = %.preheader122
+; <label>:8                                       ; preds = %7
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   %tmp_5 = sext i32 %i_2 to i64
   %random_priorities_addr = getelementptr [200 x i9]* @random_priorities, i64 0, i64 %tmp_5
   %random_priorities_load = load i9* %random_priorities_addr, align 2
   %tmp_1 = trunc i9 %random_priorities_load to i4
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_1)
+  br label %7
+
+; <label>:9                                       ; preds = %7
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
-  br label %.preheader122
+  br label %10
 
-.preheader:                                       ; preds = %.preheader122, %4
-  %result_3 = phi i1 [ %p_result_3, %4 ], [ %result_1, %.preheader122 ]
+; <label>:10                                      ; preds = %11, %9
+  %result_3 = phi i1 [ %result_1, %9 ], [ %p_result_3, %11 ]
   %empty_assign_load_1 = load volatile i1* %empty_assign, align 1
-  br i1 %empty_assign_load_1, label %.loopexit, label %4
+  br i1 %empty_assign_load_1, label %12, label %11
 
-; <label>:4                                       ; preds = %.preheader
+; <label>:11                                      ; preds = %10
   %last_load = load i32* %last, align 4
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
   %ult = icmp ult i32 %last_1, %last_load
   %rev4 = xor i1 %ult, true
   %p_result_3 = and i1 %rev4, %result_3
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read)
   store i32 %last_1, i32* %last, align 4
-  br label %.preheader
+  br label %10
 
-; <label>:5                                       ; preds = %.loopexit
+; <label>:12                                      ; preds = %10
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  br label %1
+
+; <label>:13                                      ; preds = %1
   ret i1 %result
 }
 
@@ -194,8 +213,12 @@ declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
 !27 = metadata !{metadata !28}
 !28 = metadata !{metadata !"full", metadata !15, metadata !"bool"}
 !29 = metadata !{metadata !30}
-!30 = metadata !{i32 0, i32 0, metadata !31}
+!30 = metadata !{i32 0, i32 3, metadata !31}
 !31 = metadata !{metadata !32}
-!32 = metadata !{metadata !"return", metadata !33, metadata !"bool"}
+!32 = metadata !{metadata !"currentPriority.V", metadata !5, metadata !"uint4"}
 !33 = metadata !{metadata !34}
-!34 = metadata !{i32 0, i32 1, i32 0}
+!34 = metadata !{i32 0, i32 0, metadata !35}
+!35 = metadata !{metadata !36}
+!36 = metadata !{metadata !"return", metadata !37, metadata !"bool"}
+!37 = metadata !{metadata !38}
+!38 = metadata !{i32 0, i32 1, i32 0}

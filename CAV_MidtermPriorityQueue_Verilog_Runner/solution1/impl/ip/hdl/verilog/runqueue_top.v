@@ -90,6 +90,7 @@ wire interrupt;
 wire aresetn;
 
 
+wire [4 - 1:0] sig_runQueue_currentPriority_V;
 wire sig_runQueue_ap_start;
 wire sig_runQueue_ap_ready;
 wire sig_runQueue_ap_done;
@@ -101,6 +102,7 @@ wire sig_runQueue_ap_rst;
 
 
 runQueue runQueue_U(
+    .currentPriority_V(sig_runQueue_currentPriority_V),
     .ap_start(sig_runQueue_ap_start),
     .ap_ready(sig_runQueue_ap_ready),
     .ap_done(sig_runQueue_ap_done),
@@ -121,6 +123,7 @@ runQueue_AXI4LiteS_if #(
 runQueue_AXI4LiteS_if_U(
     .ACLK(aclk),
     .ARESETN(aresetn),
+    .O_currentPriority_V(sig_runQueue_currentPriority_V),
     .I_ap_start(sig_runQueue_ap_start),
     .O_ap_ready(sig_runQueue_ap_ready),
     .O_ap_done(sig_runQueue_ap_done),

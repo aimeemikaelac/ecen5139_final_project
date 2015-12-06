@@ -11,6 +11,7 @@ const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("cmdOut_V", 2, hls_out, 2, "ap_none", "out_data", 1),
 	Port_Property("empty", 1, hls_in, 3, "ap_none", "in_data", 1),
 	Port_Property("full", 1, hls_in, 4, "ap_none", "in_data", 1),
+	Port_Property("currentPriority_V", 4, hls_out, 5, "ap_none", "out_data", 1),
 	Port_Property("ap_return", 1, hls_out, -1, "", "", 1),
 };
 const char* HLS_Design_Meta::dut_name = "runQueue";

@@ -90,6 +90,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 set corename AXI4LiteS
 set opts {
     {
+        id 7
+        name currentPriority_V
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 4
+        mode SIG_OUT_VLD_OFF:SIG_OUT_ACC_OFF
+    }
+    {
         id -1
         name ap_start
         reset_level 1
@@ -141,7 +151,7 @@ set opts {
     }
 }
 set portmap { }
-set metadata {}
+set metadata { -bus_bundle}
 if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::axi_slave_int_gen] == "::AESL_LIB_XILADAPTER::axi_slave_int_gen"} {
 eval "::AESL_LIB_XILADAPTER::axi_slave_int_gen { \
