@@ -39857,7 +39857,7 @@ _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
  int i, j, last =0, count = 0;
  int result = 0;
  volatile bool localFull, localEmpty;
-//	P1:{
+ P1:{_ssdm_RegionBegin("P1");
 //#pragma HLS PROTOCOL fixed
 
   *cmdOut = 0;
@@ -39872,10 +39872,10 @@ _ssdm_op_SpecResource(currentIteration, "", "AXI4LiteS", "", "", "", "");
    i=0;
    localFull = *full;
    *cmdOut = 0;
-//			ap_wait();
+   _ssdm_op_Wait(1);
    *cmdOut = 1;
    while(localFull == false){
-//				ap_wait();
+    _ssdm_op_Wait(1);
     *priorityOut = uint_4(i);
     *fullOut = *full;
 _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
@@ -39886,14 +39886,14 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
     localFull = *full;
     count++;
    }
-//			ap_wait();
+   _ssdm_op_Wait(1);
    *cmdOut = 0;
    i=0;
    localEmpty = *empty;
-//			ap_wait();
+   _ssdm_op_Wait(1);
    *cmdOut = 2;
    while(localEmpty == false){
-//				ap_wait();
+    _ssdm_op_Wait(1);
     if((uint_4)*priorityIn != i){
      result++;
     }
@@ -39901,7 +39901,7 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
     i++;
     localEmpty = *empty;
    }
-//			ap_wait();
+   _ssdm_op_Wait(1);
    *cmdOut = 0;
 //			i=0;
 //			localFull = *full;
@@ -39931,7 +39931,7 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
 //			*cmdOut = 0;
 //			ap_wait();
   }
-//	}
+ _ssdm_RegionEnd("P1");}
  *total = count;
 _ssdm_op_SpecResource(total, "", "AXI4LiteS", "", "", "", "");
 # 144 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"

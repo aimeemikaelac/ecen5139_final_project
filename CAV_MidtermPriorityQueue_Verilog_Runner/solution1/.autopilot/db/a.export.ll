@@ -9,6 +9,7 @@ target triple = "x86_64-unknown-linux-gnu"
 @p_str3 = private unnamed_addr constant [10 x i8] c"AXI4LiteS\00", align 1
 @p_str4 = private unnamed_addr constant [7 x i8] c"ap_vld\00", align 1
 @p_str5 = private unnamed_addr constant [11 x i8] c"ap_ctrl_hs\00", align 1
+@p_str6 = private unnamed_addr constant [3 x i8] c"P1\00", align 1
 @llvm_global_ctors_0 = appending global [1 x i32] [i32 65535]
 @llvm_global_ctors_1 = appending global [1 x void ()*] [void ()* @_GLOBAL__I_a]
 @str = internal constant [9 x i8] c"runQueue\00"
@@ -44,6 +45,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @p_str5, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
+  %tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str6)
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   store i32 0, i32* %count, align 4
   store i32 0, i32* %result, align 4
@@ -61,6 +63,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   %localFull_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
   store volatile i1 %localFull_1, i1* %localFull, align 1
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1)
   br label %3
 
@@ -72,6 +75,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
 
 ; <label>:4                                       ; preds = %3
   %count_load_1 = load i32* %count, align 4
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %tmp_1 = trunc i32 %val_assign to i4
   call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1)
   %full_read = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %full)
@@ -84,9 +88,11 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   br label %3
 
 ; <label>:5                                       ; preds = %3
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   %localEmpty_1 = call i1 @_ssdm_op_Read.ap_none.volatile.i1P(i1* %empty)
   store volatile i1 %localEmpty_1, i1* %localEmpty, align 1
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2)
   br label %6
 
@@ -98,6 +104,7 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
 
 ; <label>:7                                       ; preds = %6
   %result_load_1 = load i32* %result, align 4
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.volatile.i4P(i4* %priorityIn_V)
   %tmp_5 = zext i4 %priorityIn_V_read to i32
   %tmp_6 = icmp eq i32 %tmp_5, %op2_assign
@@ -109,12 +116,14 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
   br label %6
 
 ; <label>:8                                       ; preds = %6
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind
   call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0)
   br label %1
 
 ; <label>:9                                       ; preds = %1
   %result_load = load i32* %result, align 4
   %count_load = load i32* %count, align 4
+  %empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str6, i32 %tmp_2)
   call void @_ssdm_op_Write.ap_none.i32P(i32* %total, i32 %count_load)
   call void (...)* @_ssdm_op_SpecIFCore(i32* %total, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1)
   call void @_ssdm_op_Write.ap_ovld.i1P(i1* %finished, i1 true)
@@ -123,6 +132,11 @@ define i32 @runQueue(i4* %priorityOut_V, i4* %priorityIn_V, i2* %cmdOut_V, i1* %
 }
 
 define weak void @_ssdm_op_SpecWire(...) nounwind {
+entry:
+  ret void
+}
+
+define weak void @_ssdm_op_Wait(...) nounwind {
 entry:
   ret void
 }
@@ -140,6 +154,16 @@ entry:
 }
 
 declare void @_GLOBAL__I_a() nounwind section ".text.startup"
+
+define weak i32 @_ssdm_op_SpecRegionBegin(...) {
+entry:
+  ret i32 0
+}
+
+define weak i32 @_ssdm_op_SpecRegionEnd(...) {
+entry:
+  ret i32 0
+}
 
 define weak void @_ssdm_op_SpecIFCore(...) {
 entry:
