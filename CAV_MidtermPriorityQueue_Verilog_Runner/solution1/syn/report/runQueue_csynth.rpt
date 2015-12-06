@@ -3,7 +3,7 @@
 ================================================================
 == Vivado HLS Report for 'runQueue'
 ================================================================
-* Date:           Sat Dec  5 21:55:53 2015
+* Date:           Sat Dec  5 22:23:27 2015
 
 * Version:        2014.1 (build date: Fri Apr 04 13:20:25 PM 2014)
 * Project:        CAV_MidtermPriorityQueue_Verilog_Runner
@@ -91,24 +91,24 @@
     +----------------------+----------+-------+---+----+------------+------------+
     |     Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
     +----------------------+----------+-------+---+----+------------+------------+
-    |i_1_fu_412_p2         |     +    |      0|  0|  32|          32|           1|
-    |i_fu_486_p2           |     +    |      0|  0|  32|          32|           1|
-    |i_s_fu_406_p2         |     +    |      0|  0|  32|          32|           1|
-    |j_s_fu_480_p2         |     +    |      0|  0|  32|          32|           1|
-    |ap_sig_bdd_216        |    and   |      0|  0|   1|           1|           1|
-    |ap_sig_bdd_236        |    and   |      0|  0|   1|           1|           1|
-    |ap_sig_bdd_86         |    and   |      0|  0|   1|           1|           1|
-    |p_result_1_fu_464_p2  |    and   |      0|  0|   1|           1|           1|
-    |p_result_s_fu_444_p2  |    and   |      0|  0|   1|           1|           1|
-    |result_1_s_fu_400_p2  |    and   |      0|  0|   1|           1|           1|
-    |tmp4_fu_475_p2        |   icmp   |      0|  0|  40|          32|          32|
-    |tmp6_fu_379_p2        |   icmp   |      0|  0|  40|          32|           1|
-    |tmp_4_fu_394_p2       |   icmp   |      0|  0|  40|          32|          32|
-    |ult1_fu_453_p2        |   icmp   |      0|  0|   4|           4|           4|
-    |ult_fu_432_p2         |   icmp   |      0|  0|  40|          32|          32|
-    |ap_sig_bdd_72         |    or    |      0|  0|   1|           1|           1|
-    |rev1_fu_438_p2        |    xor   |      0|  0|   2|           1|           2|
-    |rev_fu_458_p2         |    xor   |      0|  0|   2|           1|           2|
+    |i_1_fu_426_p2         |     +    |      0|  0|  32|          32|           1|
+    |i_fu_500_p2           |     +    |      0|  0|  32|          32|           1|
+    |i_s_fu_420_p2         |     +    |      0|  0|  32|          32|           1|
+    |j_s_fu_494_p2         |     +    |      0|  0|  32|          32|           1|
+    |ap_sig_bdd_218        |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_238        |    and   |      0|  0|   1|           1|           1|
+    |ap_sig_bdd_88         |    and   |      0|  0|   1|           1|           1|
+    |p_result_1_fu_478_p2  |    and   |      0|  0|   1|           1|           1|
+    |p_result_s_fu_458_p2  |    and   |      0|  0|   1|           1|           1|
+    |result_1_s_fu_414_p2  |    and   |      0|  0|   1|           1|           1|
+    |tmp4_fu_489_p2        |   icmp   |      0|  0|  40|          32|          32|
+    |tmp6_fu_393_p2        |   icmp   |      0|  0|  40|          32|           1|
+    |tmp_4_fu_408_p2       |   icmp   |      0|  0|  40|          32|          32|
+    |ult1_fu_467_p2        |   icmp   |      0|  0|   4|           4|           4|
+    |ult_fu_446_p2         |   icmp   |      0|  0|  40|          32|          32|
+    |ap_sig_bdd_74         |    or    |      0|  0|   1|           1|           1|
+    |rev1_fu_452_p2        |    xor   |      0|  0|   2|           1|           2|
+    |rev_fu_472_p2         |    xor   |      0|  0|   2|           1|           2|
     +----------------------+----------+-------+---+----+------------+------------+
     |Total                 |          |      0|  0| 303|         269|         116|
     +----------------------+----------+-------+---+----+------------+------------+
@@ -119,17 +119,17 @@
     +----------------------------+----+-----------+-----+-----------+
     |cmdOut_V                    |   2|          4|    2|          8|
     |cmdOut_V_preg               |   2|          3|    2|          6|
-    |i_1_reg2mem_reg_233         |  32|          2|   32|         64|
-    |i_3_reg2mem_reg_257         |  32|          2|   32|         64|
-    |i_reg2mem_reg_331           |  32|          2|   32|         64|
+    |i_1_reg2mem_reg_247         |  32|          2|   32|         64|
+    |i_3_reg2mem_reg_271         |  32|          2|   32|         64|
+    |i_reg2mem_reg_345           |  32|          2|   32|         64|
     |iterations_in_sig           |  32|          2|   32|         64|
-    |j_1_reg2mem_0_ph_reg_318    |  32|          2|   32|         64|
-    |j_1_reg2mem_1_ph_reg_178    |  32|          2|   32|         64|
-    |j_1_reg2mem_1_reg_201       |  32|          2|   32|         64|
-    |last_1_reg_155              |  32|          2|   32|         64|
-    |last_fu_88                  |  32|          2|   32|         64|
-    |last_reg2mem_0_ph_reg_291   |  32|          2|   32|         64|
-    |op2_assign_reg2mem_reg_212  |  32|          2|   32|         64|
+    |j_1_reg2mem_0_ph_reg_332    |  32|          2|   32|         64|
+    |j_1_reg2mem_1_ph_reg_192    |  32|          2|   32|         64|
+    |j_1_reg2mem_1_reg_215       |  32|          2|   32|         64|
+    |last_1_reg_169              |  32|          2|   32|         64|
+    |last_fu_94                  |  32|          2|   32|         64|
+    |last_reg2mem_0_ph_reg_305   |  32|          2|   32|         64|
+    |op2_assign_reg2mem_reg_226  |  32|          2|   32|         64|
     |priorityOut_V               |   4|          5|    4|         20|
     |priorityOut_V_preg          |   4|          4|    4|         16|
     +----------------------------+----+-----------+-----+-----------+
@@ -143,38 +143,38 @@
     |ap_CS_fsm                    |   5|   0|    5|          0|
     |cmdOut_V_preg                |   2|   0|    2|          0|
     |fullOut_preg                 |   1|   0|    1|          0|
-    |i_1_reg2mem_reg_233          |  32|   0|   32|          0|
-    |i_1_reg_553                  |  32|   0|   32|          0|
-    |i_3_reg2mem_reg_257          |  32|   0|   32|          0|
-    |i_reg2mem_reg_331            |  32|   0|   32|          0|
+    |i_1_reg2mem_reg_247          |  32|   0|   32|          0|
+    |i_1_reg_567                  |  32|   0|   32|          0|
+    |i_3_reg2mem_reg_271          |  32|   0|   32|          0|
+    |i_reg2mem_reg_345            |  32|   0|   32|          0|
     |iterations_ap_vld_preg       |   1|   0|    1|          0|
     |iterations_preg              |  32|   0|   32|          0|
-    |j_1_reg2mem_0_ph_reg_318     |  32|   0|   32|          0|
-    |j_1_reg2mem_1_ph_reg_178     |  32|   0|   32|          0|
-    |j_1_reg2mem_1_reg_201        |  32|   0|   32|          0|
-    |j_s_reg_590                  |  32|   0|   32|          0|
-    |last_1_reg_155               |  32|   0|   32|          0|
-    |last_fu_88                   |  32|   0|   32|          0|
-    |last_reg2mem_0_ph_reg_291    |  32|   0|   32|          0|
-    |localEmpty_fu_84             |   1|   0|    1|          0|
-    |localEmpty_load_2_reg_563    |   1|   0|    1|          0|
-    |localEmpty_load_reg_528      |   1|   0|    1|          0|
-    |localFull_fu_80              |   1|   0|    1|          0|
-    |localFull_load_3_reg_546     |   1|   0|    1|          0|
-    |localFull_load_reg_517       |   1|   0|    1|          0|
-    |op2_assign_reg2mem_reg_212   |  32|   0|   32|          0|
-    |p_result_3_reg2mem_reg_268   |   1|   0|    1|          0|
-    |priorityIn_V_read_2_reg_572  |   4|   0|    4|          0|
+    |j_1_reg2mem_0_ph_reg_332     |  32|   0|   32|          0|
+    |j_1_reg2mem_1_ph_reg_192     |  32|   0|   32|          0|
+    |j_1_reg2mem_1_reg_215        |  32|   0|   32|          0|
+    |j_s_reg_604                  |  32|   0|   32|          0|
+    |last_1_reg_169               |  32|   0|   32|          0|
+    |last_fu_94                   |  32|   0|   32|          0|
+    |last_reg2mem_0_ph_reg_305    |  32|   0|   32|          0|
+    |localEmpty_fu_90             |   1|   0|    1|          0|
+    |localEmpty_load_2_reg_577    |   1|   0|    1|          0|
+    |localEmpty_load_reg_542      |   1|   0|    1|          0|
+    |localFull_fu_86              |   1|   0|    1|          0|
+    |localFull_load_3_reg_560     |   1|   0|    1|          0|
+    |localFull_load_reg_531       |   1|   0|    1|          0|
+    |op2_assign_reg2mem_reg_226   |  32|   0|   32|          0|
+    |p_result_3_reg2mem_reg_282   |   1|   0|    1|          0|
+    |priorityIn_V_read_2_reg_586  |   4|   0|    4|          0|
     |priorityOut_V_preg           |   4|   0|    4|          0|
-    |reg_374                      |  32|   0|   32|          0|
-    |result_1_reg2mem_1_reg_246   |   1|   0|    1|          0|
-    |result_1_reg2mem_reg_223     |   1|   0|    1|          0|
-    |result_3_reg2mem_reg_278     |   1|   0|    1|          0|
-    |result_reg2mem_0_ph_reg_304  |   1|   0|    1|          0|
-    |result_reg2mem_1_ph_reg_166  |   1|   0|    1|          0|
-    |result_reg2mem_1_reg_190     |   1|   0|    1|          0|
-    |result_reg2mem_2_reg_342     |   1|   0|    1|          0|
-    |tmp4_reg_586                 |   1|   0|    1|          0|
+    |reg_388                      |  32|   0|   32|          0|
+    |result_1_reg2mem_1_reg_260   |   1|   0|    1|          0|
+    |result_1_reg2mem_reg_237     |   1|   0|    1|          0|
+    |result_3_reg2mem_reg_292     |   1|   0|    1|          0|
+    |result_reg2mem_0_ph_reg_318  |   1|   0|    1|          0|
+    |result_reg2mem_1_ph_reg_180  |   1|   0|    1|          0|
+    |result_reg2mem_1_reg_204     |   1|   0|    1|          0|
+    |result_reg2mem_2_reg_356     |   1|   0|    1|          0|
+    |tmp4_reg_600                 |   1|   0|    1|          0|
     +-----------------------------+----+----+-----+-----------+
     |Total                        | 480|   0|  480|          0|
     +-----------------------------+----+----+-----+-----------+
@@ -203,5 +203,7 @@
 |fullOut            | out |    1|   ap_none  |    fullOut    |    pointer   |
 |iterations         |  in |   32|   ap_vld   |   iterations  |    scalar    |
 |iterations_ap_vld  |  in |    1|   ap_vld   |   iterations  |    scalar    |
+|finished           | out |    1|   ap_ovld  |    finished   |    pointer   |
+|finished_ap_vld    | out |    1|   ap_ovld  |    finished   |    pointer   |
 +-------------------+-----+-----+------------+---------------+--------------+
 

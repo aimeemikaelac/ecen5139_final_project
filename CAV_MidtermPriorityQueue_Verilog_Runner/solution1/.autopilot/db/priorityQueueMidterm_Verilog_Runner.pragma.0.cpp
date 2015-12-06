@@ -39830,7 +39830,11 @@ inline __attribute__((always_inline)) static void aesl_keep_name_ssdm_int_cmdOut
 #35 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
   volatile bool *empty, volatile bool *full, volatile bool *fullOut,
-  int iterations){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+  int iterations, bool *finished){::aesl_keep_name_class::aesl_keep_name_class_ap_uint_cmdOut< 2 >::aesl_keep_name_ap_uint_cmdOut(cmdOut);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityIn< 4 >::aesl_keep_name_ap_uint_priorityIn(priorityIn);::aesl_keep_name_class::aesl_keep_name_class_ap_uint_priorityOut< 4 >::aesl_keep_name_ap_uint_priorityOut(priorityOut);
+//#pragma HLS RESOURCE variable=finished core=AXI4LiteS
+
+#pragma HLS INTERFACE ap_ovld port=finished
+
 #pragma HLS RESOURCE variable=&iterations core=AXI4LiteS
 
 #pragma HLS INTERFACE ap_vld port=&iterations
@@ -39857,7 +39861,8 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
  bool result = true;
  volatile bool localFull, localEmpty;
  P1:{_ssdm_RegionBegin("P1");
-#pragma HLS PROTOCOL floating
+#pragma HLS PROTOCOL fixed
+
  for(j=0; j<iterations; j++){
 //		for(j=0; j<1; j++){
  //		result &= runTest();
@@ -39869,7 +39874,7 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
     _ssdm_op_Wait(1);
     *fullOut = *full;
 #pragma HLS RESOURCE variable=fullOut core=AXI4LiteS
-#74 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+#79 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
  //			*cmdOut = 0;
     i++;
@@ -39919,6 +39924,10 @@ bool runQueue(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatil
 
   }
  _ssdm_RegionEnd("P1");}
+ *finished = true;
+#pragma HLS RESOURCE variable=finished core=AXI4LiteS
+#128 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+
 //	cout << "Result: "<<result<<endl;
  return result;
 }

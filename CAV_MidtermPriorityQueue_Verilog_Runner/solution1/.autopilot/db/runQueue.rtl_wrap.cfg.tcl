@@ -302,7 +302,7 @@ set staticVariable ""
 set moduleName "runQueue"
 set rawDecl [list "bool" "runQueue\(volatile uint_4 *priorityOut, volatile uint_4 *priorityIn, volatile cmd *cmdOut,
   volatile bool *empty, volatile bool *full, volatile bool *fullOut,
-  int iterations\)"]
+  int iterations, bool *finished\)"]
 set argAPint ""
 set returnAPint ""
 set portList ""
@@ -376,16 +376,26 @@ set portVolatile6 "0"
 set portArrayOpt6 ""
 set port6 [list $portName6 $portInterface6 $portData6 $portPointer6 $portArrayDim6 $portConst6 $portVolatile6 $portArrayOpt6]
 lappend portList $port6
-set portName7 "return"
+set portName7 "finished"
 set portInterface7 "wire"
 set portData7 "bool"
-set portPointer7 "0"
+set portPointer7 "1"
 set portArrayDim7 0
 set portConst7 "0"
 set portVolatile7 "0"
 set portArrayOpt7 ""
 set port7 [list $portName7 $portInterface7 $portData7 $portPointer7 $portArrayDim7 $portConst7 $portVolatile7 $portArrayOpt7]
 lappend portList $port7
+set portName8 "return"
+set portInterface8 "wire"
+set portData8 "bool"
+set portPointer8 "0"
+set portArrayDim8 0
+set portConst8 "0"
+set portVolatile8 "0"
+set portArrayOpt8 ""
+set port8 [list $portName8 $portInterface8 $portData8 $portPointer8 $portArrayDim8 $portConst8 $portVolatile8 $portArrayOpt8]
+lappend portList $port8
 set dataPackList ""
 set module [list $moduleName $portList $rawDecl $argAPint $returnAPint $dataPackList]
 set hasCPPAPInt 1

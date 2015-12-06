@@ -110,6 +110,16 @@ set opts {
         mode SIG_IN_VLD_ON:SIG_IN_ACC_OFF
     }
     {
+        id 9
+        name finished
+        reset_level 1
+        sync_rst true
+        type scalar
+        dir O
+        width 1
+        mode SIG_OUT_VLD_ON:SIG_OUT_ACC_OFF
+    }
+    {
         id -1
         name ap_start
         reset_level 1

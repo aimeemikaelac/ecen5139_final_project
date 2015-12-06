@@ -72,6 +72,18 @@
 </directive>
 <directive functionLabel="" functionName="runQueue" label="">
 <pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="finished"/>
+<option name="core" value="AXI4LiteS"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="runQueue" label="">
+<pragma name="INTERFACE">
+<option name="ap_ovld" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="finished"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="runQueue" label="">
+<pragma name="RESOURCE">
 <option name="variable" positionalBoolean="4" value="iterations"/>
 <option name="core" value="AXI4LiteS"/>
 </pragma>
@@ -138,7 +150,7 @@
 </directive>
 <directive functionLabel="" functionName="runQueue" label="">
 <pragma name="PROTOCOL">
-<option name="floating" positionalBoolean="mode" value=""/>
+<option name="fixed" positionalBoolean="mode" value=""/>
 </pragma>
 </directive>
 </sourceFile>

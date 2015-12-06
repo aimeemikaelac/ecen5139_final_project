@@ -93,6 +93,8 @@ wire aresetn;
 wire [1 - 1:0] sig_runQueue_fullOut;
 wire [32 - 1:0] sig_runQueue_iterations;
 wire sig_runQueue_iterations_ap_vld;
+wire [1 - 1:0] sig_runQueue_finished;
+wire sig_runQueue_finished_ap_vld;
 wire sig_runQueue_ap_start;
 wire sig_runQueue_ap_ready;
 wire sig_runQueue_ap_done;
@@ -107,6 +109,8 @@ runQueue runQueue_U(
     .fullOut(sig_runQueue_fullOut),
     .iterations(sig_runQueue_iterations),
     .iterations_ap_vld(sig_runQueue_iterations_ap_vld),
+    .finished(sig_runQueue_finished),
+    .finished_ap_vld(sig_runQueue_finished_ap_vld),
     .ap_start(sig_runQueue_ap_start),
     .ap_ready(sig_runQueue_ap_ready),
     .ap_done(sig_runQueue_ap_done),
@@ -130,6 +134,8 @@ runQueue_AXI4LiteS_if_U(
     .O_fullOut(sig_runQueue_fullOut),
     .I_iterations(sig_runQueue_iterations),
     .I_iterations_ap_vld(sig_runQueue_iterations_ap_vld),
+    .O_finished(sig_runQueue_finished),
+    .O_finished_ap_vld(sig_runQueue_finished_ap_vld),
     .I_ap_start(sig_runQueue_ap_start),
     .O_ap_ready(sig_runQueue_ap_ready),
     .O_ap_done(sig_runQueue_ap_done),
