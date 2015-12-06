@@ -39861,30 +39861,34 @@ _ssdm_op_SpecResource(0, "", "AXI4LiteS", "", "", "", "");
 
  int i, j, last =0;
  bool result = true;
+ volatile bool localFull, localEmpty;
 //	for(j=0; j<10000; j++){
  P1: for(j=0; j<1; j++){_ssdm_op_SpecLoopName("P1");_ssdm_RegionBegin("P1");
 _ssdm_op_SpecProtocol(0, "");
 
 //		result &= runTest();
   i=0;
-  while(full == false){
+  localFull = full;
+  while(localFull == false){
    *cmdOut = 1;
    *priorityOut = uint_4(i);
    _ssdm_op_Wait(1);
    *currentPriority = uint_4(i);
 _ssdm_op_SpecResource(currentPriority, "", "AXI4LiteS", "", "", "", "");
-# 71 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+# 73 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
    *fullOut = full;
 _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
-# 72 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
+# 74 "CAV_MidtermPriorityQueue_Verilog_Runner/source/priorityQueueMidterm_Verilog_Runner.cpp"
 
 //			*cmdOut = 0;
    i++;
+   localFull = full;
   }
   *cmdOut = 0;
   i=0;
-  while(empty == false){
+  localEmpty = empty;
+  while(localEmpty == false){
    *cmdOut = 2;
    _ssdm_op_Wait(1);
    if((uint_4)priorityIn != i){
@@ -39893,19 +39897,23 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
    *currentPriority = priorityIn;
 //			*cmdOut = 0;
    i++;
+   localEmpty = empty;
   }
   *cmdOut = 0;
   i=0;
-  while(full == false){
+  localFull = full;
+  while(localFull == false){
    *cmdOut = 1;
    *priorityOut = uint_4(random_priorities[i]);
    _ssdm_op_Wait(1);
    *currentPriority = uint_4(random_priorities[i]);
 //			*cmdOut = 0;
    i++;
+   localFull = full;
   }
   *cmdOut = 0;
-  while(empty == false){
+  localEmpty = empty;
+  while(localEmpty == false){
    *cmdOut = 2;
    if(last > (uint_4)priorityIn){
     result = false;
@@ -39914,6 +39922,7 @@ _ssdm_op_SpecResource(fullOut, "", "AXI4LiteS", "", "", "", "");
    *currentPriority = priorityIn;
 //			*cmdOut = 0;
    last = ((uint_4)priorityIn).to_int();
+   localEmpty = empty;
   }
   *cmdOut = 0;
 

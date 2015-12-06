@@ -54,16 +54,18 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void @llvm.dbg.value(metadata !{i1 %empty_read}, i64 0, metadata !684), !dbg !685 ; [debug line = 36:17] [debug variable = empty]
   %priorityIn_V_read = call i4 @_ssdm_op_Read.ap_none.i4(i4 %priorityIn_V) ; [#uses=3 type=i4]
   call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !686), !dbg !702 ; [debug line = 59:108@36:0] [debug variable = priorityIn.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !709 ; [debug line = 145:83@81:7] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !717 ; [debug line = 145:83@145:105@81:7] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !719), !dbg !722 ; [debug line = 221:92@84:4] [debug variable = op2.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !719), !dbg !729 ; [debug line = 221:92@105:4] [debug variable = op2.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !731 ; [debug line = 145:83@107:11] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !733 ; [debug line = 145:83@145:105@107:11] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !709 ; [debug line = 145:83@85:7] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !717 ; [debug line = 145:83@145:105@85:7] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !719), !dbg !722 ; [debug line = 221:92@88:4] [debug variable = op2.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !719), !dbg !729 ; [debug line = 221:92@113:4] [debug variable = op2.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !705), !dbg !731 ; [debug line = 145:83@115:11] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V_read}, i64 0, metadata !714), !dbg !733 ; [debug line = 145:83@145:105@115:11] [debug variable = op.V]
   %empty_assign = alloca i1, align 1              ; [#uses=9 type=i1*]
   %full_assign = alloca i1, align 1               ; [#uses=8 type=i1*]
+  %localFull = alloca i1, align 1                 ; [#uses=12 type=i1*]
+  %localEmpty = alloca i1, align 1                ; [#uses=16 type=i1*]
   call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !735), !dbg !737 ; [debug line = 35:32] [debug variable = priorityOut.V]
   call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !738), !dbg !747 ; [debug line = 35:87] [debug variable = cmdOut.V]
   call void @llvm.dbg.value(metadata !{i1 %empty}, i64 0, metadata !684), !dbg !685 ; [debug line = 36:17] [debug variable = empty]
@@ -107,10 +109,10 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void (...)* @_ssdm_op_SpecWire(i4* %priorityOut_V, [8 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind, !dbg !785 ; [debug line = 53:1]
   call void (...)* @_ssdm_op_SpecWire(i32 0, [11 x i8]* @p_str2, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1) nounwind, !dbg !786 ; [debug line = 55:1]
   call void (...)* @_ssdm_op_SpecIFCore(i32 0, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !787 ; [debug line = 57:1]
-  %last_1 = zext i4 %priorityIn_V_read to i32, !dbg !788 ; [#uses=6 type=i32] [debug line = 1874:9@3359:0@81:7]
+  %last_1 = zext i4 %priorityIn_V_read to i32, !dbg !788 ; [#uses=6 type=i32] [debug line = 1874:9@3359:0@85:7]
   store i32 0, i32* %last, align 4
   store i1 true, i1* %result, align 1
-  br label %1, !dbg !1247                         ; [debug line = 62:10]
+  br label %1, !dbg !1247                         ; [debug line = 63:10]
 
 ; <label>:1                                       ; preds = %35, %0
   %j = phi i1 [ false, %0 ], [ true, %35 ]        ; [#uses=1 type=i1]
@@ -118,457 +120,504 @@ define i1 @runQueue(i4* %priorityOut_V, i4 %priorityIn_V, i2* %cmdOut_V, i1 zero
   call void @llvm.dbg.value(metadata !{i32* %last}, i64 0, metadata !1248) ; [debug variable = last]
   %last_load = load i32* %last, align 4           ; [#uses=4 type=i32]
   %empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1, i64 1, i64 1) ; [#uses=0 type=i32]
-  br i1 %j, label %36, label %2, !dbg !1247       ; [debug line = 62:10]
+  br i1 %j, label %36, label %2, !dbg !1247       ; [debug line = 63:10]
 
 ; <label>:2                                       ; preds = %1
-  call void (...)* @_ssdm_op_SpecLoopName([3 x i8]* @p_str4) nounwind, !dbg !1249 ; [debug line = 62:25]
-  %tmp_4 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str4), !dbg !1250 ; [#uses=1 type=i32] [debug line = 62:53]
-  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1) nounwind, !dbg !1251 ; [debug line = 63:1]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  %full_assign_load = load volatile i1* %full_assign, align 1, !dbg !1252 ; [#uses=1 type=i1] [debug line = 67:3]
-  br i1 %full_assign_load, label %6, label %3, !dbg !1252 ; [debug line = 67:3]
+  call void (...)* @_ssdm_op_SpecLoopName([3 x i8]* @p_str4) nounwind, !dbg !1249 ; [debug line = 63:25]
+  %tmp_4 = call i32 (...)* @_ssdm_op_SpecRegionBegin([3 x i8]* @p_str4), !dbg !1250 ; [#uses=1 type=i32] [debug line = 63:53]
+  call void (...)* @_ssdm_op_SpecProtocol(i32 0, [1 x i8]* @p_str1) nounwind, !dbg !1251 ; [debug line = 64:1]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 68:3] [debug variable = full]
+  %localFull_1 = load volatile i1* %full_assign, align 1, !dbg !1252 ; [#uses=1 type=i1] [debug line = 68:3]
+  call void @llvm.dbg.value(metadata !{i1 %localFull_1}, i64 0, metadata !1253), !dbg !1252 ; [debug line = 68:3] [debug variable = localFull]
+  store volatile i1 %localFull_1, i1* %localFull, align 1, !dbg !1252 ; [debug line = 68:3]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1254 ; [debug line = 69:3] [debug variable = localFull]
+  %localFull_load = load volatile i1* %localFull, align 1, !dbg !1254 ; [#uses=1 type=i1] [debug line = 69:3]
+  br i1 %localFull_load, label %6, label %3, !dbg !1254 ; [debug line = 69:3]
 
 ; <label>:3                                       ; preds = %2
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1257 ; [debug line = 217:49@68:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1260 ; [debug line = 218:10@68:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1266 ; [debug line = 217:49@69:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 0), !dbg !1268 ; [debug line = 218:10@69:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1259 ; [debug line = 217:49@70:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1262 ; [debug line = 218:10@70:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1268 ; [debug line = 217:49@71:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 0), !dbg !1270 ; [debug line = 218:10@71:4]
   br label %5
 
 ; <label>:4                                       ; preds = %5
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1257 ; [debug line = 217:49@68:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1260 ; [debug line = 218:10@68:4]
-  %tmp = trunc i32 %i_reg2mem to i4, !dbg !1270   ; [#uses=2 type=i4] [debug line = 204:62@204:77@69:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1266 ; [debug line = 217:49@69:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp), !dbg !1268 ; [debug line = 218:10@69:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1259 ; [debug line = 217:49@70:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1262 ; [debug line = 218:10@70:4]
+  %tmp = trunc i32 %i_reg2mem to i4, !dbg !1272   ; [#uses=2 type=i4] [debug line = 204:62@204:77@71:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1268 ; [debug line = 217:49@71:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp), !dbg !1270 ; [debug line = 218:10@71:4]
   br label %5
 
 ; <label>:5                                       ; preds = %4, %3
   %i_reg2mem = phi i32 [ 1, %3 ], [ %i8, %4 ]     ; [#uses=2 type=i32]
   %tmp_reg2mem = phi i4 [ 0, %3 ], [ %tmp, %4 ]   ; [#uses=1 type=i4]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1275 ; [debug line = 70:4]
-  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1262), !dbg !1276 ; [debug line = 217:49@71:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_reg2mem), !dbg !1278 ; [debug line = 218:10@71:4]
-  call void (...)* @_ssdm_op_SpecIFCore(i4* %currentPriority_V, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1279 ; [debug line = 72:1]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1280 ; [debug line = 72:4] [debug variable = full]
-  %full_assign_load_1 = load volatile i1* %full_assign, align 1, !dbg !1280 ; [#uses=1 type=i1] [debug line = 72:4]
-  call void @_ssdm_op_Write.ap_none.volatile.i1P(i1* %fullOut, i1 %full_assign_load_1), !dbg !1280 ; [debug line = 72:4]
-  call void (...)* @_ssdm_op_SpecIFCore(i1* %fullOut, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1281 ; [debug line = 73:1]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1252 ; [debug line = 67:3] [debug variable = full]
-  %full_assign_load_3 = load volatile i1* %full_assign, align 1, !dbg !1252 ; [#uses=1 type=i1] [debug line = 67:3]
-  %i8 = add nsw i32 %i_reg2mem, 1, !dbg !1282     ; [#uses=1 type=i32] [debug line = 74:4]
-  br i1 %full_assign_load_3, label %7, label %4, !dbg !1252 ; [debug line = 67:3]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1277 ; [debug line = 72:4]
+  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1264), !dbg !1278 ; [debug line = 217:49@73:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_reg2mem), !dbg !1280 ; [debug line = 218:10@73:4]
+  call void (...)* @_ssdm_op_SpecIFCore(i4* %currentPriority_V, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1281 ; [debug line = 74:1]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1282 ; [debug line = 74:4] [debug variable = full]
+  %full_assign_load = load volatile i1* %full_assign, align 1, !dbg !1282 ; [#uses=1 type=i1] [debug line = 74:4]
+  call void @_ssdm_op_Write.ap_none.volatile.i1P(i1* %fullOut, i1 %full_assign_load), !dbg !1282 ; [debug line = 74:4]
+  call void (...)* @_ssdm_op_SpecIFCore(i1* %fullOut, [1 x i8]* @p_str1, [10 x i8]* @p_str3, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1), !dbg !1283 ; [debug line = 75:1]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1284 ; [debug line = 77:4] [debug variable = full]
+  %localFull_2 = load volatile i1* %full_assign, align 1, !dbg !1284 ; [#uses=1 type=i1] [debug line = 77:4]
+  call void @llvm.dbg.value(metadata !{i1 %localFull_2}, i64 0, metadata !1253), !dbg !1284 ; [debug line = 77:4] [debug variable = localFull]
+  store volatile i1 %localFull_2, i1* %localFull, align 1, !dbg !1284 ; [debug line = 77:4]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1254 ; [debug line = 69:3] [debug variable = localFull]
+  %localFull_load_2 = load volatile i1* %localFull, align 1, !dbg !1254 ; [#uses=1 type=i1] [debug line = 69:3]
+  %i8 = add nsw i32 %i_reg2mem, 1, !dbg !1285     ; [#uses=1 type=i32] [debug line = 76:4]
+  br i1 %localFull_load_2, label %7, label %4, !dbg !1254 ; [debug line = 69:3]
 
 ; <label>:6                                       ; preds = %2
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1283 ; [debug line = 217:49@76:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1285 ; [debug line = 218:10@76:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  %empty_assign_load = load volatile i1* %empty_assign, align 1, !dbg !1286 ; [#uses=1 type=i1] [debug line = 78:3]
-  br i1 %empty_assign_load, label %13, label %9, !dbg !1286 ; [debug line = 78:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1286 ; [debug line = 217:49@79:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1288 ; [debug line = 218:10@79:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  %empty_assign_load = load volatile i1* %empty_assign, align 1, !dbg !1289 ; [#uses=1 type=i1] [debug line = 81:3]
+  store volatile i1 %empty_assign_load, i1* %localEmpty, align 1, !dbg !1289 ; [debug line = 81:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1291 ; [debug line = 82:3] [debug variable = localEmpty]
+  %localEmpty_load = load volatile i1* %localEmpty, align 1, !dbg !1291 ; [#uses=1 type=i1] [debug line = 82:3]
+  br i1 %localEmpty_load, label %13, label %9, !dbg !1291 ; [debug line = 82:3]
 
 ; <label>:7                                       ; preds = %5
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1283 ; [debug line = 217:49@76:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1285 ; [debug line = 218:10@76:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  %empty_assign_load_2 = load volatile i1* %empty_assign, align 1, !dbg !1286 ; [#uses=1 type=i1] [debug line = 78:3]
-  br i1 %empty_assign_load_2, label %14, label %10, !dbg !1286 ; [debug line = 78:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1286 ; [debug line = 217:49@79:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1288 ; [debug line = 218:10@79:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1289 ; [debug line = 81:3] [debug variable = empty]
+  %empty_assign_load_2 = load volatile i1* %empty_assign, align 1, !dbg !1289 ; [#uses=1 type=i1] [debug line = 81:3]
+  store volatile i1 %empty_assign_load_2, i1* %localEmpty, align 1, !dbg !1289 ; [debug line = 81:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1291 ; [debug line = 82:3] [debug variable = localEmpty]
+  %localEmpty_load_2 = load volatile i1* %localEmpty, align 1, !dbg !1291 ; [#uses=1 type=i1] [debug line = 82:3]
+  br i1 %localEmpty_load_2, label %14, label %10, !dbg !1291 ; [debug line = 82:3]
 
 ; <label>:8                                       ; preds = %11
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1287 ; [debug line = 217:49@79:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1289 ; [debug line = 218:10@79:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1292 ; [debug line = 217:49@83:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1294 ; [debug line = 218:10@83:4]
   store i1 %result_1_s, i1* %result, align 1
   br label %11
 
 ; <label>:9                                       ; preds = %6
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1287 ; [debug line = 217:49@79:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1289 ; [debug line = 218:10@79:4]
-  br label %.preheader133
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1292 ; [debug line = 217:49@83:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1294 ; [debug line = 218:10@83:4]
+  br label %.preheader142
 
 ; <label>:10                                      ; preds = %7
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1287 ; [debug line = 217:49@79:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1289 ; [debug line = 218:10@79:4]
-  br label %.preheader133
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1292 ; [debug line = 217:49@83:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1294 ; [debug line = 218:10@83:4]
+  br label %.preheader142
 
-.preheader133:                                    ; preds = %10, %9
-  br label %11, !dbg !1290                        ; [debug line = 80:4]
+.preheader142:                                    ; preds = %10, %9
+  br label %11, !dbg !1295                        ; [debug line = 84:4]
 
-; <label>:11                                      ; preds = %.preheader133, %8
-  %op2_assign_reg2mem = phi i32 [ %i_1_reg2mem, %8 ], [ 0, %.preheader133 ] ; [#uses=1 type=i32]
-  %i_1_reg2mem = phi i32 [ %i_s, %8 ], [ 1, %.preheader133 ] ; [#uses=2 type=i32]
-  %result_load_1 = load i1* %result, align 1, !dbg !710 ; [#uses=1 type=i1] [debug line = 81:7]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1290 ; [debug line = 80:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !709 ; [debug line = 145:83@81:7] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !717 ; [debug line = 145:83@145:105@81:7] [debug variable = op.V]
-  %tmp_3 = icmp eq i32 %last_1, %op2_assign_reg2mem, !dbg !788 ; [#uses=1 type=i1] [debug line = 1874:9@3359:0@81:7]
-  %result_1_s = and i1 %tmp_3, %result_load_1, !dbg !710 ; [#uses=4 type=i1] [debug line = 81:7]
-  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1291), !dbg !1293 ; [debug line = 221:49@84:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !719), !dbg !722 ; [debug line = 221:92@84:4] [debug variable = op2.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read), !dbg !1294 ; [debug line = 222:10@84:4]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1286 ; [debug line = 78:3] [debug variable = empty]
-  %empty_assign_load_4 = load volatile i1* %empty_assign, align 1, !dbg !1286 ; [#uses=1 type=i1] [debug line = 78:3]
-  %i_s = add nsw i32 %i_1_reg2mem, 1, !dbg !1296  ; [#uses=1 type=i32] [debug line = 86:4]
-  br i1 %empty_assign_load_4, label %12, label %8, !dbg !1286 ; [debug line = 78:3]
+; <label>:11                                      ; preds = %.preheader142, %8
+  %op2_assign_reg2mem = phi i32 [ %i_1_reg2mem, %8 ], [ 0, %.preheader142 ] ; [#uses=1 type=i32]
+  %i_1_reg2mem = phi i32 [ %i_s, %8 ], [ 1, %.preheader142 ] ; [#uses=2 type=i32]
+  %result_load_1 = load i1* %result, align 1, !dbg !710 ; [#uses=1 type=i1] [debug line = 85:7]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1295 ; [debug line = 84:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !709 ; [debug line = 145:83@85:7] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !717 ; [debug line = 145:83@145:105@85:7] [debug variable = op.V]
+  %tmp_3 = icmp eq i32 %last_1, %op2_assign_reg2mem, !dbg !788 ; [#uses=1 type=i1] [debug line = 1874:9@3359:0@85:7]
+  %result_1_s = and i1 %tmp_3, %result_load_1, !dbg !710 ; [#uses=4 type=i1] [debug line = 85:7]
+  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1296), !dbg !1298 ; [debug line = 221:49@88:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !719), !dbg !722 ; [debug line = 221:92@88:4] [debug variable = op2.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read), !dbg !1299 ; [debug line = 222:10@88:4]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1301 ; [debug line = 91:4] [debug variable = empty]
+  %localEmpty_1 = load volatile i1* %empty_assign, align 1, !dbg !1301 ; [#uses=1 type=i1] [debug line = 91:4]
+  call void @llvm.dbg.value(metadata !{i1 %localEmpty_1}, i64 0, metadata !1290), !dbg !1301 ; [debug line = 91:4] [debug variable = localEmpty]
+  store volatile i1 %localEmpty_1, i1* %localEmpty, align 1, !dbg !1301 ; [debug line = 91:4]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1291 ; [debug line = 82:3] [debug variable = localEmpty]
+  %localEmpty_load31 = load volatile i1* %localEmpty, align 1, !dbg !1291 ; [#uses=1 type=i1] [debug line = 82:3]
+  %i_s = add nsw i32 %i_1_reg2mem, 1, !dbg !1302  ; [#uses=1 type=i32] [debug line = 90:4]
+  br i1 %localEmpty_load31, label %12, label %8, !dbg !1291 ; [debug line = 82:3]
 
 ; <label>:12                                      ; preds = %11
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1297 ; [debug line = 217:49@88:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1299 ; [debug line = 218:10@88:3]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  %full_assign_load_5 = load volatile i1* %full_assign, align 1, !dbg !1300 ; [#uses=1 type=i1] [debug line = 90:3]
-  br i1 %full_assign_load_5, label %21, label %16, !dbg !1300 ; [debug line = 90:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1303 ; [debug line = 217:49@93:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1305 ; [debug line = 218:10@93:3]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  %full_assign_load_5 = load volatile i1* %full_assign, align 1, !dbg !1306 ; [#uses=1 type=i1] [debug line = 95:3]
+  store volatile i1 %full_assign_load_5, i1* %localFull, align 1, !dbg !1306 ; [debug line = 95:3]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1307 ; [debug line = 96:3] [debug variable = localFull]
+  %localFull_load_4 = load volatile i1* %localFull, align 1, !dbg !1307 ; [#uses=1 type=i1] [debug line = 96:3]
+  br i1 %localFull_load_4, label %21, label %16, !dbg !1307 ; [debug line = 96:3]
 
 ; <label>:13                                      ; preds = %6
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1297 ; [debug line = 217:49@88:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1299 ; [debug line = 218:10@88:3]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  %full_assign_load_2 = load volatile i1* %full_assign, align 1, !dbg !1300 ; [#uses=1 type=i1] [debug line = 90:3]
-  br i1 %full_assign_load_2, label %22, label %17, !dbg !1300 ; [debug line = 90:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1303 ; [debug line = 217:49@93:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1305 ; [debug line = 218:10@93:3]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  %full_assign_load_2 = load volatile i1* %full_assign, align 1, !dbg !1306 ; [#uses=1 type=i1] [debug line = 95:3]
+  store volatile i1 %full_assign_load_2, i1* %localFull, align 1, !dbg !1306 ; [debug line = 95:3]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1307 ; [debug line = 96:3] [debug variable = localFull]
+  %localFull_load_1 = load volatile i1* %localFull, align 1, !dbg !1307 ; [#uses=1 type=i1] [debug line = 96:3]
+  br i1 %localFull_load_1, label %22, label %17, !dbg !1307 ; [debug line = 96:3]
 
 ; <label>:14                                      ; preds = %7
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1297 ; [debug line = 217:49@88:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1299 ; [debug line = 218:10@88:3]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  %full_assign_load_4 = load volatile i1* %full_assign, align 1, !dbg !1300 ; [#uses=1 type=i1] [debug line = 90:3]
-  br i1 %full_assign_load_4, label %23, label %18, !dbg !1300 ; [debug line = 90:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1303 ; [debug line = 217:49@93:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1305 ; [debug line = 218:10@93:3]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1306 ; [debug line = 95:3] [debug variable = full]
+  %full_assign_load_4 = load volatile i1* %full_assign, align 1, !dbg !1306 ; [#uses=1 type=i1] [debug line = 95:3]
+  store volatile i1 %full_assign_load_4, i1* %localFull, align 1, !dbg !1306 ; [debug line = 95:3]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1307 ; [debug line = 96:3] [debug variable = localFull]
+  %localFull_load_3 = load volatile i1* %localFull, align 1, !dbg !1307 ; [#uses=1 type=i1] [debug line = 96:3]
+  br i1 %localFull_load_3, label %23, label %18, !dbg !1307 ; [debug line = 96:3]
 
 ; <label>:15                                      ; preds = %19
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1301 ; [debug line = 217:49@91:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1304 ; [debug line = 218:10@91:4]
-  %tmp_s = sext i32 %i_3_reg2mem to i64, !dbg !1305 ; [#uses=1 type=i64] [debug line = 92:4]
-  %random_priorities_addr = getelementptr [200 x i9]* @random_priorities, i64 0, i64 %tmp_s, !dbg !1305 ; [#uses=1 type=i9*] [debug line = 92:4]
-  %random_priorities_load = load i9* %random_priorities_addr, align 2, !dbg !1305 ; [#uses=1 type=i9] [debug line = 92:4]
-  %tmp_1 = trunc i9 %random_priorities_load to i4, !dbg !1306 ; [#uses=2 type=i4] [debug line = 204:62@204:77@92:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1308 ; [debug line = 217:49@92:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1), !dbg !1309 ; [debug line = 218:10@92:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1308 ; [debug line = 217:49@97:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1311 ; [debug line = 218:10@97:4]
+  %tmp_s = sext i32 %i_3_reg2mem to i64, !dbg !1312 ; [#uses=1 type=i64] [debug line = 98:4]
+  %random_priorities_addr = getelementptr [200 x i9]* @random_priorities, i64 0, i64 %tmp_s, !dbg !1312 ; [#uses=1 type=i9*] [debug line = 98:4]
+  %random_priorities_load = load i9* %random_priorities_addr, align 2, !dbg !1312 ; [#uses=1 type=i9] [debug line = 98:4]
+  %tmp_1 = trunc i9 %random_priorities_load to i4, !dbg !1313 ; [#uses=2 type=i4] [debug line = 204:62@204:77@98:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1315 ; [debug line = 217:49@98:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 %tmp_1), !dbg !1316 ; [debug line = 218:10@98:4]
   br label %19
 
 ; <label>:16                                      ; preds = %12
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1301 ; [debug line = 217:49@91:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1304 ; [debug line = 218:10@91:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1308 ; [debug line = 217:49@92:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1309 ; [debug line = 218:10@92:4]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1308 ; [debug line = 217:49@97:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1311 ; [debug line = 218:10@97:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1315 ; [debug line = 217:49@98:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1316 ; [debug line = 218:10@98:4]
   store i1 %result_1_s, i1* %result, align 1
-  br label %.preheader132
+  br label %.preheader141
 
 ; <label>:17                                      ; preds = %13
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1301 ; [debug line = 217:49@91:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1304 ; [debug line = 218:10@91:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1308 ; [debug line = 217:49@92:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1309 ; [debug line = 218:10@92:4]
-  br label %.preheader132
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1308 ; [debug line = 217:49@97:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1311 ; [debug line = 218:10@97:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1315 ; [debug line = 217:49@98:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1316 ; [debug line = 218:10@98:4]
+  br label %.preheader141
 
 ; <label>:18                                      ; preds = %14
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1301 ; [debug line = 217:49@91:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1304 ; [debug line = 218:10@91:4]
-  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1262), !dbg !1308 ; [debug line = 217:49@92:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1309 ; [debug line = 218:10@92:4]
-  br label %.preheader132
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1308 ; [debug line = 217:49@97:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 1), !dbg !1311 ; [debug line = 218:10@97:4]
+  call void @llvm.dbg.value(metadata !{i4* %priorityOut_V}, i64 0, metadata !1264), !dbg !1315 ; [debug line = 217:49@98:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %priorityOut_V, i4 5), !dbg !1316 ; [debug line = 218:10@98:4]
+  br label %.preheader141
 
-.preheader132:                                    ; preds = %18, %17, %16
+.preheader141:                                    ; preds = %18, %17, %16
   %result_load_2 = load i1* %result, align 1      ; [#uses=1 type=i1]
-  br label %19, !dbg !1310                        ; [debug line = 93:4]
+  br label %19, !dbg !1317                        ; [debug line = 99:4]
 
-; <label>:19                                      ; preds = %.preheader132, %15
-  %i_3_reg2mem = phi i32 [ %i_1, %15 ], [ 1, %.preheader132 ] ; [#uses=2 type=i32]
-  %tmp_6_reg2mem = phi i4 [ %tmp_1, %15 ], [ 5, %.preheader132 ] ; [#uses=1 type=i4]
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1310 ; [debug line = 93:4]
-  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1262), !dbg !1311 ; [debug line = 217:49@94:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_6_reg2mem), !dbg !1313 ; [debug line = 218:10@94:4]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1300 ; [debug line = 90:3] [debug variable = full]
-  %full_assign_load_6 = load volatile i1* %full_assign, align 1, !dbg !1300 ; [#uses=1 type=i1] [debug line = 90:3]
-  %i_1 = add nsw i32 %i_3_reg2mem, 1, !dbg !1314  ; [#uses=1 type=i32] [debug line = 96:4]
-  br i1 %full_assign_load_6, label %20, label %15, !dbg !1300 ; [debug line = 90:3]
+; <label>:19                                      ; preds = %.preheader141, %15
+  %i_3_reg2mem = phi i32 [ %i_1, %15 ], [ 1, %.preheader141 ] ; [#uses=2 type=i32]
+  %tmp_6_reg2mem = phi i4 [ %tmp_1, %15 ], [ 5, %.preheader141 ] ; [#uses=1 type=i4]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1317 ; [debug line = 99:4]
+  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1264), !dbg !1318 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %tmp_6_reg2mem), !dbg !1320 ; [debug line = 218:10@100:4]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  call void @llvm.dbg.value(metadata !{i1* %full_assign}, i64 0, metadata !43), !dbg !1321 ; [debug line = 103:4] [debug variable = full]
+  %localFull_3 = load volatile i1* %full_assign, align 1, !dbg !1321 ; [#uses=1 type=i1] [debug line = 103:4]
+  call void @llvm.dbg.value(metadata !{i1 %localFull_3}, i64 0, metadata !1253), !dbg !1321 ; [debug line = 103:4] [debug variable = localFull]
+  store volatile i1 %localFull_3, i1* %localFull, align 1, !dbg !1321 ; [debug line = 103:4]
+  call void @llvm.dbg.value(metadata !{i1* %localFull}, i64 0, metadata !1253), !dbg !1307 ; [debug line = 96:3] [debug variable = localFull]
+  %localFull_load_5 = load volatile i1* %localFull, align 1, !dbg !1307 ; [#uses=1 type=i1] [debug line = 96:3]
+  %i_1 = add nsw i32 %i_3_reg2mem, 1, !dbg !1322  ; [#uses=1 type=i32] [debug line = 102:4]
+  br i1 %localFull_load_5, label %20, label %15, !dbg !1307 ; [debug line = 96:3]
 
 ; <label>:20                                      ; preds = %19
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1315 ; [debug line = 217:49@98:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1317 ; [debug line = 218:10@98:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  %empty_assign_load_6 = load volatile i1* %empty_assign, align 1, !dbg !1318 ; [#uses=1 type=i1] [debug line = 99:3]
-  br i1 %empty_assign_load_6, label %31, label %25, !dbg !1318 ; [debug line = 99:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1323 ; [debug line = 217:49@105:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1325 ; [debug line = 218:10@105:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  %empty_assign_load_6 = load volatile i1* %empty_assign, align 1, !dbg !1326 ; [#uses=1 type=i1] [debug line = 106:3]
+  store volatile i1 %empty_assign_load_6, i1* %localEmpty, align 1, !dbg !1326 ; [debug line = 106:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1327 ; [debug line = 107:3] [debug variable = localEmpty]
+  %localEmpty_load_5 = load volatile i1* %localEmpty, align 1, !dbg !1327 ; [#uses=1 type=i1] [debug line = 107:3]
+  br i1 %localEmpty_load_5, label %31, label %25, !dbg !1327 ; [debug line = 107:3]
 
 ; <label>:21                                      ; preds = %12
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1315 ; [debug line = 217:49@98:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1317 ; [debug line = 218:10@98:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  %empty_assign_load_5 = load volatile i1* %empty_assign, align 1, !dbg !1318 ; [#uses=1 type=i1] [debug line = 99:3]
-  br i1 %empty_assign_load_5, label %32, label %26, !dbg !1318 ; [debug line = 99:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1323 ; [debug line = 217:49@105:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1325 ; [debug line = 218:10@105:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  %empty_assign_load_5 = load volatile i1* %empty_assign, align 1, !dbg !1326 ; [#uses=1 type=i1] [debug line = 106:3]
+  store volatile i1 %empty_assign_load_5, i1* %localEmpty, align 1, !dbg !1326 ; [debug line = 106:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1327 ; [debug line = 107:3] [debug variable = localEmpty]
+  %localEmpty_load_4 = load volatile i1* %localEmpty, align 1, !dbg !1327 ; [#uses=1 type=i1] [debug line = 107:3]
+  br i1 %localEmpty_load_4, label %32, label %26, !dbg !1327 ; [debug line = 107:3]
 
 ; <label>:22                                      ; preds = %13
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1315 ; [debug line = 217:49@98:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1317 ; [debug line = 218:10@98:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  %empty_assign_load_1 = load volatile i1* %empty_assign, align 1, !dbg !1318 ; [#uses=1 type=i1] [debug line = 99:3]
-  br i1 %empty_assign_load_1, label %33, label %27, !dbg !1318 ; [debug line = 99:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1323 ; [debug line = 217:49@105:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1325 ; [debug line = 218:10@105:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  %empty_assign_load_1 = load volatile i1* %empty_assign, align 1, !dbg !1326 ; [#uses=1 type=i1] [debug line = 106:3]
+  store volatile i1 %empty_assign_load_1, i1* %localEmpty, align 1, !dbg !1326 ; [debug line = 106:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1327 ; [debug line = 107:3] [debug variable = localEmpty]
+  %localEmpty_load_1 = load volatile i1* %localEmpty, align 1, !dbg !1327 ; [#uses=1 type=i1] [debug line = 107:3]
+  br i1 %localEmpty_load_1, label %33, label %27, !dbg !1327 ; [debug line = 107:3]
 
 ; <label>:23                                      ; preds = %14
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1315 ; [debug line = 217:49@98:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1317 ; [debug line = 218:10@98:3]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  %empty_assign_load_3 = load volatile i1* %empty_assign, align 1, !dbg !1318 ; [#uses=1 type=i1] [debug line = 99:3]
-  br i1 %empty_assign_load_3, label %34, label %28, !dbg !1318 ; [debug line = 99:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1323 ; [debug line = 217:49@105:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1325 ; [debug line = 218:10@105:3]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1326 ; [debug line = 106:3] [debug variable = empty]
+  %empty_assign_load_3 = load volatile i1* %empty_assign, align 1, !dbg !1326 ; [#uses=1 type=i1] [debug line = 106:3]
+  store volatile i1 %empty_assign_load_3, i1* %localEmpty, align 1, !dbg !1326 ; [debug line = 106:3]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1327 ; [debug line = 107:3] [debug variable = localEmpty]
+  %localEmpty_load_3 = load volatile i1* %localEmpty, align 1, !dbg !1327 ; [#uses=1 type=i1] [debug line = 107:3]
+  br i1 %localEmpty_load_3, label %34, label %28, !dbg !1327 ; [debug line = 107:3]
 
 ; <label>:24                                      ; preds = %29
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1319 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1321 ; [debug line = 218:10@100:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1328 ; [debug line = 217:49@108:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1330 ; [debug line = 218:10@108:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
   br label %29
 
 ; <label>:25                                      ; preds = %20
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1319 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1321 ; [debug line = 218:10@100:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
-  %ult = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
-  %rev = xor i1 %ult, true, !dbg !725             ; [#uses=1 type=i1] [debug line = 101:14]
-  %p_result_3 = and i1 %rev, %result_load_2, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1328 ; [debug line = 217:49@108:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1330 ; [debug line = 218:10@108:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
+  %ult = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
+  %rev = xor i1 %ult, true, !dbg !725             ; [#uses=1 type=i1] [debug line = 109:14]
+  %p_result_3 = and i1 %rev, %result_load_2, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
   br label %.preheader
 
 ; <label>:26                                      ; preds = %21
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1319 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1321 ; [debug line = 218:10@100:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
-  %ult3 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
-  %rev3 = xor i1 %ult3, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 101:14]
-  %p_result_2 = and i1 %rev3, %result_1_s, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1328 ; [debug line = 217:49@108:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1330 ; [debug line = 218:10@108:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
+  %ult3 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
+  %rev3 = xor i1 %ult3, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 109:14]
+  %p_result_2 = and i1 %rev3, %result_1_s, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
   br label %.preheader
 
 ; <label>:27                                      ; preds = %22
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1319 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1321 ; [debug line = 218:10@100:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
-  %ult1 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
-  %rev1 = xor i1 %ult1, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 101:14]
-  %p_result_s = and i1 %rev1, %result_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1328 ; [debug line = 217:49@108:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1330 ; [debug line = 218:10@108:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
+  %ult1 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
+  %rev1 = xor i1 %ult1, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 109:14]
+  %p_result_s = and i1 %rev1, %result_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
   br label %.preheader
 
 ; <label>:28                                      ; preds = %23
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1319 ; [debug line = 217:49@100:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1321 ; [debug line = 218:10@100:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@101:14] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@101:14] [debug variable = op.V]
-  %ult2 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
-  %rev2 = xor i1 %ult2, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 101:14]
-  %p_result_1 = and i1 %rev2, %result_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 101:14]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1328 ; [debug line = 217:49@108:4] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 -2), !dbg !1330 ; [debug line = 218:10@108:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !724 ; [debug line = 145:83@109:14] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !727 ; [debug line = 145:83@145:105@109:14] [debug variable = op.V]
+  %ult2 = icmp ult i32 %last_1, %last_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
+  %rev2 = xor i1 %ult2, true, !dbg !725           ; [#uses=1 type=i1] [debug line = 109:14]
+  %p_result_1 = and i1 %rev2, %result_load, !dbg !725 ; [#uses=1 type=i1] [debug line = 109:14]
   br label %.preheader
 
 .preheader:                                       ; preds = %28, %27, %26, %25
   %p_result_3_reg2mem_0_ph = phi i1 [ %p_result_1, %28 ], [ %p_result_s, %27 ], [ %p_result_2, %26 ], [ %p_result_3, %25 ] ; [#uses=1 type=i1]
-  br label %29, !dbg !1322                        ; [debug line = 104:4]
+  br label %29, !dbg !1331                        ; [debug line = 112:4]
 
 ; <label>:29                                      ; preds = %.preheader, %24
-  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1322 ; [debug line = 104:4]
-  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1291), !dbg !1323 ; [debug line = 221:49@105:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !719), !dbg !729 ; [debug line = 221:92@105:4] [debug variable = op2.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read), !dbg !1324 ; [debug line = 222:10@105:4]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !731 ; [debug line = 145:83@107:11] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !733 ; [debug line = 145:83@145:105@107:11] [debug variable = op.V]
-  call void @llvm.dbg.value(metadata !{i32 %last_1}, i64 0, metadata !1248), !dbg !732 ; [debug line = 107:11] [debug variable = last]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1318 ; [debug line = 99:3] [debug variable = empty]
-  %empty_assign_load_7 = load volatile i1* %empty_assign, align 1, !dbg !1318 ; [#uses=1 type=i1] [debug line = 99:3]
-  br i1 %empty_assign_load_7, label %30, label %24, !dbg !1318 ; [debug line = 99:3]
+  call void (...)* @_ssdm_op_Wait(i32 1) nounwind, !dbg !1331 ; [debug line = 112:4]
+  call void @llvm.dbg.value(metadata !{i4* %currentPriority_V}, i64 0, metadata !1296), !dbg !1332 ; [debug line = 221:49@113:4] [debug variable = ssdm_int<4 + 1024 * 0, false>.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !719), !dbg !729 ; [debug line = 221:92@113:4] [debug variable = op2.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i4P(i4* %currentPriority_V, i4 %priorityIn_V_read), !dbg !1333 ; [debug line = 222:10@113:4]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !705), !dbg !731 ; [debug line = 145:83@115:11] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i4 %priorityIn_V}, i64 0, metadata !714), !dbg !733 ; [debug line = 145:83@145:105@115:11] [debug variable = op.V]
+  call void @llvm.dbg.value(metadata !{i32 %last_1}, i64 0, metadata !1248), !dbg !732 ; [debug line = 115:11] [debug variable = last]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  call void @llvm.dbg.value(metadata !{i1* %empty_assign}, i64 0, metadata !684), !dbg !1334 ; [debug line = 116:4] [debug variable = empty]
+  %localEmpty_2 = load volatile i1* %empty_assign, align 1, !dbg !1334 ; [#uses=1 type=i1] [debug line = 116:4]
+  call void @llvm.dbg.value(metadata !{i1 %localEmpty_2}, i64 0, metadata !1290), !dbg !1334 ; [debug line = 116:4] [debug variable = localEmpty]
+  store volatile i1 %localEmpty_2, i1* %localEmpty, align 1, !dbg !1334 ; [debug line = 116:4]
+  call void @llvm.dbg.value(metadata !{i1* %localEmpty}, i64 0, metadata !1290), !dbg !1327 ; [debug line = 107:3] [debug variable = localEmpty]
+  %localEmpty_load_6 = load volatile i1* %localEmpty, align 1, !dbg !1327 ; [#uses=1 type=i1] [debug line = 107:3]
+  br i1 %localEmpty_load_6, label %30, label %24, !dbg !1327 ; [debug line = 107:3]
 
 ; <label>:30                                      ; preds = %29
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1325 ; [debug line = 217:49@109:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1327 ; [debug line = 218:10@109:3]
-  call void @llvm.dbg.value(metadata !{i32 %last_1}, i64 0, metadata !1248), !dbg !732 ; [debug line = 107:11] [debug variable = last]
-  store i32 %last_1, i32* %last, align 4, !dbg !732 ; [debug line = 107:11]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1335 ; [debug line = 217:49@118:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1337 ; [debug line = 218:10@118:3]
+  call void @llvm.dbg.value(metadata !{i32 %last_1}, i64 0, metadata !1248), !dbg !732 ; [debug line = 115:11] [debug variable = last]
+  store i32 %last_1, i32* %last, align 4, !dbg !732 ; [debug line = 115:11]
   store i1 %p_result_3_reg2mem_0_ph, i1* %result, align 1
   br label %35
 
 ; <label>:31                                      ; preds = %20
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1325 ; [debug line = 217:49@109:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1327 ; [debug line = 218:10@109:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1335 ; [debug line = 217:49@118:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1337 ; [debug line = 218:10@118:3]
   br label %35
 
 ; <label>:32                                      ; preds = %21
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1325 ; [debug line = 217:49@109:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1327 ; [debug line = 218:10@109:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1335 ; [debug line = 217:49@118:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1337 ; [debug line = 218:10@118:3]
   store i1 %result_1_s, i1* %result, align 1
   br label %35
 
 ; <label>:33                                      ; preds = %22
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1325 ; [debug line = 217:49@109:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1327 ; [debug line = 218:10@109:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1335 ; [debug line = 217:49@118:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1337 ; [debug line = 218:10@118:3]
   br label %35
 
 ; <label>:34                                      ; preds = %23
-  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1253), !dbg !1325 ; [debug line = 217:49@109:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
-  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1327 ; [debug line = 218:10@109:3]
+  call void @llvm.dbg.value(metadata !{i2* %cmdOut_V}, i64 0, metadata !1255), !dbg !1335 ; [debug line = 217:49@118:3] [debug variable = ssdm_int<2 + 1024 * 0, false>.V]
+  call void @_ssdm_op_Write.ap_none.volatile.i2P(i2* %cmdOut_V, i2 0), !dbg !1337 ; [debug line = 218:10@118:3]
   br label %35
 
 ; <label>:35                                      ; preds = %34, %33, %32, %31, %30
-  %empty_3 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str4, i32 %tmp_4), !dbg !1328 ; [#uses=0 type=i32] [debug line = 111:2]
-  br label %1, !dbg !1329                         ; [debug line = 62:20]
+  %empty_3 = call i32 (...)* @_ssdm_op_SpecRegionEnd([3 x i8]* @p_str4, i32 %tmp_4), !dbg !1338 ; [#uses=0 type=i32] [debug line = 120:2]
+  br label %1, !dbg !1339                         ; [debug line = 63:20]
 
 ; <label>:36                                      ; preds = %1
-  ret i1 %result_load, !dbg !1330                 ; [debug line = 113:2]
+  ret i1 %result_load, !dbg !1340                 ; [debug line = 122:2]
 }
 
 ; [#uses=8]
@@ -595,7 +644,7 @@ entry:
   ret void
 }
 
-; [#uses=302]
+; [#uses=321]
 declare void @llvm.dbg.value(metadata, i64, metadata) nounwind readnone
 
 ; [#uses=1]
@@ -1388,10 +1437,10 @@ declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
 !707 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint<4>", metadata !"ap_uint<4>", metadata !"_ZN7ap_uintILi4EEC1ILi4EEERVKS_IXT_EE", metadata !53, i32 145, metadata !304, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !307, metadata !308, metadata !69, i32 145} ; [ DW_TAG_subprogram ]
 !708 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 0, i64 0, i64 0, i32 0, metadata !696} ; [ DW_TAG_pointer_type ]
 !709 = metadata !{i32 145, i32 83, metadata !707, metadata !710}
-!710 = metadata !{i32 81, i32 7, metadata !711, null}
-!711 = metadata !{i32 786443, metadata !712, i32 78, i32 24, metadata !45, i32 4} ; [ DW_TAG_lexical_block ]
-!712 = metadata !{i32 786443, metadata !713, i32 62, i32 24, metadata !45, i32 2} ; [ DW_TAG_lexical_block ]
-!713 = metadata !{i32 786443, metadata !704, i32 62, i32 6, metadata !45, i32 1} ; [ DW_TAG_lexical_block ]
+!710 = metadata !{i32 85, i32 7, metadata !711, null}
+!711 = metadata !{i32 786443, metadata !712, i32 82, i32 29, metadata !45, i32 4} ; [ DW_TAG_lexical_block ]
+!712 = metadata !{i32 786443, metadata !713, i32 63, i32 24, metadata !45, i32 2} ; [ DW_TAG_lexical_block ]
+!713 = metadata !{i32 786443, metadata !704, i32 63, i32 6, metadata !45, i32 1} ; [ DW_TAG_lexical_block ]
 !714 = metadata !{i32 790533, metadata !715, metadata !"op.V", null, i32 145, metadata !708, i32 0, i32 0} ; [ DW_TAG_arg_variable_field_ro ]
 !715 = metadata !{i32 786689, metadata !716, metadata !"op", metadata !53, i32 33554577, metadata !306, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !716 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint<4>", metadata !"ap_uint<4>", metadata !"_ZN7ap_uintILi4EEC2ILi4EEERVKS_IXT_EE", metadata !53, i32 145, metadata !304, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !307, metadata !308, metadata !69, i32 145} ; [ DW_TAG_subprogram ]
@@ -1401,16 +1450,16 @@ declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
 !720 = metadata !{i32 786689, metadata !721, metadata !"op2", metadata !53, i32 33554653, metadata !306, i32 0, i32 0} ; [ DW_TAG_arg_variable ]
 !721 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi4EEaSERVKS0_", metadata !53, i32 221, metadata !358, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !362, metadata !69, i32 221} ; [ DW_TAG_subprogram ]
 !722 = metadata !{i32 221, i32 92, metadata !721, metadata !723}
-!723 = metadata !{i32 84, i32 4, metadata !711, null}
+!723 = metadata !{i32 88, i32 4, metadata !711, null}
 !724 = metadata !{i32 145, i32 83, metadata !707, metadata !725}
-!725 = metadata !{i32 101, i32 14, metadata !726, null}
-!726 = metadata !{i32 786443, metadata !712, i32 99, i32 24, metadata !45, i32 7} ; [ DW_TAG_lexical_block ]
+!725 = metadata !{i32 109, i32 14, metadata !726, null}
+!726 = metadata !{i32 786443, metadata !712, i32 107, i32 29, metadata !45, i32 7} ; [ DW_TAG_lexical_block ]
 !727 = metadata !{i32 145, i32 83, metadata !716, metadata !728}
 !728 = metadata !{i32 145, i32 105, metadata !707, metadata !725}
 !729 = metadata !{i32 221, i32 92, metadata !721, metadata !730}
-!730 = metadata !{i32 105, i32 4, metadata !726, null}
+!730 = metadata !{i32 113, i32 4, metadata !726, null}
 !731 = metadata !{i32 145, i32 83, metadata !707, metadata !732}
-!732 = metadata !{i32 107, i32 11, metadata !726, null}
+!732 = metadata !{i32 115, i32 11, metadata !726, null}
 !733 = metadata !{i32 145, i32 83, metadata !716, metadata !734}
 !734 = metadata !{i32 145, i32 105, metadata !707, metadata !732}
 !735 = metadata !{i32 790531, metadata !736, metadata !"priorityOut.V", null, i32 35, metadata !695, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
@@ -1925,87 +1974,97 @@ declare i4 @_ssdm_op_PartSelect.i4.i9.i32.i32(i9, i32, i32) nounwind readnone
 !1244 = metadata !{i32 786478, i32 0, metadata !57, metadata !"operator!=<4, false>", metadata !"operator!=<4, false>", metadata !"_ZneILi4ELb0EEbRK11ap_int_baseIXT_EXT0_EXleT_Li64EEEi", metadata !57, i32 3359, metadata !1245, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, metadata !297, null, metadata !69, i32 3359} ; [ DW_TAG_subprogram ]
 !1245 = metadata !{i32 786453, i32 0, metadata !"", i32 0, i32 0, i64 0, i64 0, i64 0, i32 0, null, metadata !1246, i32 0, i32 0} ; [ DW_TAG_subroutine_type ]
 !1246 = metadata !{metadata !48, metadata !82, metadata !73}
-!1247 = metadata !{i32 62, i32 10, metadata !713, null}
+!1247 = metadata !{i32 63, i32 10, metadata !713, null}
 !1248 = metadata !{i32 786688, metadata !704, metadata !"last", metadata !45, i32 59, metadata !73, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
-!1249 = metadata !{i32 62, i32 25, metadata !712, null}
-!1250 = metadata !{i32 62, i32 53, metadata !712, null}
-!1251 = metadata !{i32 63, i32 1, metadata !712, null}
-!1252 = metadata !{i32 67, i32 3, metadata !712, null}
-!1253 = metadata !{i32 790531, metadata !1254, metadata !"ssdm_int<2 + 1024 * 0, false>.V", null, i32 217, metadata !740, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
-!1254 = metadata !{i32 786689, metadata !1255, metadata !"this", metadata !53, i32 16777433, metadata !1256, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
-!1255 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi2EEaSERKS0_", metadata !53, i32 217, metadata !668, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !667, metadata !69, i32 217} ; [ DW_TAG_subprogram ]
-!1256 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !671} ; [ DW_TAG_pointer_type ]
-!1257 = metadata !{i32 217, i32 49, metadata !1255, metadata !1258}
-!1258 = metadata !{i32 68, i32 4, metadata !1259, null}
-!1259 = metadata !{i32 786443, metadata !712, i32 67, i32 23, metadata !45, i32 3} ; [ DW_TAG_lexical_block ]
-!1260 = metadata !{i32 218, i32 10, metadata !1261, metadata !1258}
-!1261 = metadata !{i32 786443, metadata !1255, i32 217, i32 97, metadata !53, i32 24} ; [ DW_TAG_lexical_block ]
-!1262 = metadata !{i32 790531, metadata !1263, metadata !"ssdm_int<4 + 1024 * 0, false>.V", null, i32 217, metadata !695, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
-!1263 = metadata !{i32 786689, metadata !1264, metadata !"this", metadata !53, i32 16777433, metadata !1265, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
-!1264 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi4EEaSERKS0_", metadata !53, i32 217, metadata !358, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !357, metadata !69, i32 217} ; [ DW_TAG_subprogram ]
-!1265 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !361} ; [ DW_TAG_pointer_type ]
-!1266 = metadata !{i32 217, i32 49, metadata !1264, metadata !1267}
-!1267 = metadata !{i32 69, i32 4, metadata !1259, null}
-!1268 = metadata !{i32 218, i32 10, metadata !1269, metadata !1267}
-!1269 = metadata !{i32 786443, metadata !1264, i32 217, i32 97, metadata !53, i32 19} ; [ DW_TAG_lexical_block ]
-!1270 = metadata !{i32 204, i32 62, metadata !1271, metadata !1273}
-!1271 = metadata !{i32 786443, metadata !1272, i32 204, i32 60, metadata !53, i32 20} ; [ DW_TAG_lexical_block ]
-!1272 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint", metadata !"ap_uint", metadata !"_ZN7ap_uintILi4EEC2Ei", metadata !53, i32 204, metadata !328, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !327, metadata !69, i32 204} ; [ DW_TAG_subprogram ]
-!1273 = metadata !{i32 204, i32 77, metadata !1274, metadata !1267}
-!1274 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint", metadata !"ap_uint", metadata !"_ZN7ap_uintILi4EEC1Ei", metadata !53, i32 204, metadata !328, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !327, metadata !69, i32 204} ; [ DW_TAG_subprogram ]
-!1275 = metadata !{i32 70, i32 4, metadata !1259, null}
-!1276 = metadata !{i32 217, i32 49, metadata !1264, metadata !1277}
-!1277 = metadata !{i32 71, i32 4, metadata !1259, null}
-!1278 = metadata !{i32 218, i32 10, metadata !1269, metadata !1277}
-!1279 = metadata !{i32 72, i32 1, metadata !1259, null}
-!1280 = metadata !{i32 72, i32 4, metadata !1259, null}
-!1281 = metadata !{i32 73, i32 1, metadata !1259, null}
-!1282 = metadata !{i32 74, i32 4, metadata !1259, null}
-!1283 = metadata !{i32 217, i32 49, metadata !1255, metadata !1284}
-!1284 = metadata !{i32 76, i32 3, metadata !712, null}
-!1285 = metadata !{i32 218, i32 10, metadata !1261, metadata !1284}
-!1286 = metadata !{i32 78, i32 3, metadata !712, null}
-!1287 = metadata !{i32 217, i32 49, metadata !1255, metadata !1288}
-!1288 = metadata !{i32 79, i32 4, metadata !711, null}
-!1289 = metadata !{i32 218, i32 10, metadata !1261, metadata !1288}
-!1290 = metadata !{i32 80, i32 4, metadata !711, null}
-!1291 = metadata !{i32 790531, metadata !1292, metadata !"ssdm_int<4 + 1024 * 0, false>.V", null, i32 221, metadata !695, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
-!1292 = metadata !{i32 786689, metadata !721, metadata !"this", metadata !53, i32 16777437, metadata !1265, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
-!1293 = metadata !{i32 221, i32 49, metadata !721, metadata !723}
-!1294 = metadata !{i32 222, i32 10, metadata !1295, metadata !723}
-!1295 = metadata !{i32 786443, metadata !721, i32 221, i32 106, metadata !53, i32 11} ; [ DW_TAG_lexical_block ]
-!1296 = metadata !{i32 86, i32 4, metadata !711, null}
-!1297 = metadata !{i32 217, i32 49, metadata !1255, metadata !1298}
-!1298 = metadata !{i32 88, i32 3, metadata !712, null}
-!1299 = metadata !{i32 218, i32 10, metadata !1261, metadata !1298}
-!1300 = metadata !{i32 90, i32 3, metadata !712, null}
-!1301 = metadata !{i32 217, i32 49, metadata !1255, metadata !1302}
-!1302 = metadata !{i32 91, i32 4, metadata !1303, null}
-!1303 = metadata !{i32 786443, metadata !712, i32 90, i32 23, metadata !45, i32 6} ; [ DW_TAG_lexical_block ]
-!1304 = metadata !{i32 218, i32 10, metadata !1261, metadata !1302}
-!1305 = metadata !{i32 92, i32 4, metadata !1303, null}
-!1306 = metadata !{i32 204, i32 62, metadata !1271, metadata !1307}
-!1307 = metadata !{i32 204, i32 77, metadata !1274, metadata !1305}
-!1308 = metadata !{i32 217, i32 49, metadata !1264, metadata !1305}
-!1309 = metadata !{i32 218, i32 10, metadata !1269, metadata !1305}
-!1310 = metadata !{i32 93, i32 4, metadata !1303, null}
-!1311 = metadata !{i32 217, i32 49, metadata !1264, metadata !1312}
-!1312 = metadata !{i32 94, i32 4, metadata !1303, null}
-!1313 = metadata !{i32 218, i32 10, metadata !1269, metadata !1312}
-!1314 = metadata !{i32 96, i32 4, metadata !1303, null}
-!1315 = metadata !{i32 217, i32 49, metadata !1255, metadata !1316}
-!1316 = metadata !{i32 98, i32 3, metadata !712, null}
-!1317 = metadata !{i32 218, i32 10, metadata !1261, metadata !1316}
-!1318 = metadata !{i32 99, i32 3, metadata !712, null}
-!1319 = metadata !{i32 217, i32 49, metadata !1255, metadata !1320}
-!1320 = metadata !{i32 100, i32 4, metadata !726, null}
-!1321 = metadata !{i32 218, i32 10, metadata !1261, metadata !1320}
-!1322 = metadata !{i32 104, i32 4, metadata !726, null}
-!1323 = metadata !{i32 221, i32 49, metadata !721, metadata !730}
-!1324 = metadata !{i32 222, i32 10, metadata !1295, metadata !730}
-!1325 = metadata !{i32 217, i32 49, metadata !1255, metadata !1326}
-!1326 = metadata !{i32 109, i32 3, metadata !712, null}
-!1327 = metadata !{i32 218, i32 10, metadata !1261, metadata !1326}
-!1328 = metadata !{i32 111, i32 2, metadata !712, null}
-!1329 = metadata !{i32 62, i32 20, metadata !713, null}
-!1330 = metadata !{i32 113, i32 2, metadata !704, null}
+!1249 = metadata !{i32 63, i32 25, metadata !712, null}
+!1250 = metadata !{i32 63, i32 53, metadata !712, null}
+!1251 = metadata !{i32 64, i32 1, metadata !712, null}
+!1252 = metadata !{i32 68, i32 3, metadata !712, null}
+!1253 = metadata !{i32 786688, metadata !704, metadata !"localFull", metadata !45, i32 61, metadata !681, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
+!1254 = metadata !{i32 69, i32 3, metadata !712, null}
+!1255 = metadata !{i32 790531, metadata !1256, metadata !"ssdm_int<2 + 1024 * 0, false>.V", null, i32 217, metadata !740, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
+!1256 = metadata !{i32 786689, metadata !1257, metadata !"this", metadata !53, i32 16777433, metadata !1258, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
+!1257 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi2EEaSERKS0_", metadata !53, i32 217, metadata !668, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !667, metadata !69, i32 217} ; [ DW_TAG_subprogram ]
+!1258 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !671} ; [ DW_TAG_pointer_type ]
+!1259 = metadata !{i32 217, i32 49, metadata !1257, metadata !1260}
+!1260 = metadata !{i32 70, i32 4, metadata !1261, null}
+!1261 = metadata !{i32 786443, metadata !712, i32 69, i32 28, metadata !45, i32 3} ; [ DW_TAG_lexical_block ]
+!1262 = metadata !{i32 218, i32 10, metadata !1263, metadata !1260}
+!1263 = metadata !{i32 786443, metadata !1257, i32 217, i32 97, metadata !53, i32 24} ; [ DW_TAG_lexical_block ]
+!1264 = metadata !{i32 790531, metadata !1265, metadata !"ssdm_int<4 + 1024 * 0, false>.V", null, i32 217, metadata !695, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
+!1265 = metadata !{i32 786689, metadata !1266, metadata !"this", metadata !53, i32 16777433, metadata !1267, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
+!1266 = metadata !{i32 786478, i32 0, null, metadata !"operator=", metadata !"operator=", metadata !"_ZNV7ap_uintILi4EEaSERKS0_", metadata !53, i32 217, metadata !358, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !357, metadata !69, i32 217} ; [ DW_TAG_subprogram ]
+!1267 = metadata !{i32 786447, null, metadata !"", null, i32 0, i64 64, i64 64, i64 0, i32 0, metadata !361} ; [ DW_TAG_pointer_type ]
+!1268 = metadata !{i32 217, i32 49, metadata !1266, metadata !1269}
+!1269 = metadata !{i32 71, i32 4, metadata !1261, null}
+!1270 = metadata !{i32 218, i32 10, metadata !1271, metadata !1269}
+!1271 = metadata !{i32 786443, metadata !1266, i32 217, i32 97, metadata !53, i32 19} ; [ DW_TAG_lexical_block ]
+!1272 = metadata !{i32 204, i32 62, metadata !1273, metadata !1275}
+!1273 = metadata !{i32 786443, metadata !1274, i32 204, i32 60, metadata !53, i32 20} ; [ DW_TAG_lexical_block ]
+!1274 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint", metadata !"ap_uint", metadata !"_ZN7ap_uintILi4EEC2Ei", metadata !53, i32 204, metadata !328, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !327, metadata !69, i32 204} ; [ DW_TAG_subprogram ]
+!1275 = metadata !{i32 204, i32 77, metadata !1276, metadata !1269}
+!1276 = metadata !{i32 786478, i32 0, null, metadata !"ap_uint", metadata !"ap_uint", metadata !"_ZN7ap_uintILi4EEC1Ei", metadata !53, i32 204, metadata !328, i1 false, i1 true, i32 0, i32 0, null, i32 256, i1 false, null, null, metadata !327, metadata !69, i32 204} ; [ DW_TAG_subprogram ]
+!1277 = metadata !{i32 72, i32 4, metadata !1261, null}
+!1278 = metadata !{i32 217, i32 49, metadata !1266, metadata !1279}
+!1279 = metadata !{i32 73, i32 4, metadata !1261, null}
+!1280 = metadata !{i32 218, i32 10, metadata !1271, metadata !1279}
+!1281 = metadata !{i32 74, i32 1, metadata !1261, null}
+!1282 = metadata !{i32 74, i32 4, metadata !1261, null}
+!1283 = metadata !{i32 75, i32 1, metadata !1261, null}
+!1284 = metadata !{i32 77, i32 4, metadata !1261, null}
+!1285 = metadata !{i32 76, i32 4, metadata !1261, null}
+!1286 = metadata !{i32 217, i32 49, metadata !1257, metadata !1287}
+!1287 = metadata !{i32 79, i32 3, metadata !712, null}
+!1288 = metadata !{i32 218, i32 10, metadata !1263, metadata !1287}
+!1289 = metadata !{i32 81, i32 3, metadata !712, null}
+!1290 = metadata !{i32 786688, metadata !704, metadata !"localEmpty", metadata !45, i32 61, metadata !681, i32 0, i32 0} ; [ DW_TAG_auto_variable ]
+!1291 = metadata !{i32 82, i32 3, metadata !712, null}
+!1292 = metadata !{i32 217, i32 49, metadata !1257, metadata !1293}
+!1293 = metadata !{i32 83, i32 4, metadata !711, null}
+!1294 = metadata !{i32 218, i32 10, metadata !1263, metadata !1293}
+!1295 = metadata !{i32 84, i32 4, metadata !711, null}
+!1296 = metadata !{i32 790531, metadata !1297, metadata !"ssdm_int<4 + 1024 * 0, false>.V", null, i32 221, metadata !695, i32 0, i32 0} ; [ DW_TAG_arg_variable_field ]
+!1297 = metadata !{i32 786689, metadata !721, metadata !"this", metadata !53, i32 16777437, metadata !1267, i32 64, i32 0} ; [ DW_TAG_arg_variable ]
+!1298 = metadata !{i32 221, i32 49, metadata !721, metadata !723}
+!1299 = metadata !{i32 222, i32 10, metadata !1300, metadata !723}
+!1300 = metadata !{i32 786443, metadata !721, i32 221, i32 106, metadata !53, i32 11} ; [ DW_TAG_lexical_block ]
+!1301 = metadata !{i32 91, i32 4, metadata !711, null}
+!1302 = metadata !{i32 90, i32 4, metadata !711, null}
+!1303 = metadata !{i32 217, i32 49, metadata !1257, metadata !1304}
+!1304 = metadata !{i32 93, i32 3, metadata !712, null}
+!1305 = metadata !{i32 218, i32 10, metadata !1263, metadata !1304}
+!1306 = metadata !{i32 95, i32 3, metadata !712, null}
+!1307 = metadata !{i32 96, i32 3, metadata !712, null}
+!1308 = metadata !{i32 217, i32 49, metadata !1257, metadata !1309}
+!1309 = metadata !{i32 97, i32 4, metadata !1310, null}
+!1310 = metadata !{i32 786443, metadata !712, i32 96, i32 28, metadata !45, i32 6} ; [ DW_TAG_lexical_block ]
+!1311 = metadata !{i32 218, i32 10, metadata !1263, metadata !1309}
+!1312 = metadata !{i32 98, i32 4, metadata !1310, null}
+!1313 = metadata !{i32 204, i32 62, metadata !1273, metadata !1314}
+!1314 = metadata !{i32 204, i32 77, metadata !1276, metadata !1312}
+!1315 = metadata !{i32 217, i32 49, metadata !1266, metadata !1312}
+!1316 = metadata !{i32 218, i32 10, metadata !1271, metadata !1312}
+!1317 = metadata !{i32 99, i32 4, metadata !1310, null}
+!1318 = metadata !{i32 217, i32 49, metadata !1266, metadata !1319}
+!1319 = metadata !{i32 100, i32 4, metadata !1310, null}
+!1320 = metadata !{i32 218, i32 10, metadata !1271, metadata !1319}
+!1321 = metadata !{i32 103, i32 4, metadata !1310, null}
+!1322 = metadata !{i32 102, i32 4, metadata !1310, null}
+!1323 = metadata !{i32 217, i32 49, metadata !1257, metadata !1324}
+!1324 = metadata !{i32 105, i32 3, metadata !712, null}
+!1325 = metadata !{i32 218, i32 10, metadata !1263, metadata !1324}
+!1326 = metadata !{i32 106, i32 3, metadata !712, null}
+!1327 = metadata !{i32 107, i32 3, metadata !712, null}
+!1328 = metadata !{i32 217, i32 49, metadata !1257, metadata !1329}
+!1329 = metadata !{i32 108, i32 4, metadata !726, null}
+!1330 = metadata !{i32 218, i32 10, metadata !1263, metadata !1329}
+!1331 = metadata !{i32 112, i32 4, metadata !726, null}
+!1332 = metadata !{i32 221, i32 49, metadata !721, metadata !730}
+!1333 = metadata !{i32 222, i32 10, metadata !1300, metadata !730}
+!1334 = metadata !{i32 116, i32 4, metadata !726, null}
+!1335 = metadata !{i32 217, i32 49, metadata !1257, metadata !1336}
+!1336 = metadata !{i32 118, i32 3, metadata !712, null}
+!1337 = metadata !{i32 218, i32 10, metadata !1263, metadata !1336}
+!1338 = metadata !{i32 120, i32 2, metadata !712, null}
+!1339 = metadata !{i32 63, i32 20, metadata !713, null}
+!1340 = metadata !{i32 122, i32 2, metadata !704, null}
