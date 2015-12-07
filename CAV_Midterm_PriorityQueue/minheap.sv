@@ -150,6 +150,7 @@ output empty
 						break;
 					end
 				end
+			end
 			POP: if(empty == 0) begin
 				queue[0] <= queue[1];
 				queue[1] <= queue[C+1];
@@ -162,7 +163,7 @@ output empty
 							queue[i << 1] <= queue[i];
 						end
 						break;
-					end else if(queue[i] > queue[i<<1]) || queue[i] > queue[i<<1 + 1]) begin //check if is greater than children, when there are 2 children
+					end else if(queue[i] > queue[i<<1] || queue[i] > queue[i<<1 + 1]) begin //check if is greater than children, when there are 2 children
 						if(queue[i<<1] <= queue[i<<1 + 1]) begin //swap with left child
 							queue[i] <= queue[i<<2];
 							queue[i<<2] <= queue[i];
@@ -176,6 +177,7 @@ output empty
 						break;
 					end
 				end
+			end
 			default: //don't need to do anything for NOOP or invalid command
 				queue[0] <= 0;
 		endcase
