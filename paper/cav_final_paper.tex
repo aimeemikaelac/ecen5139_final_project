@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Setup
+%
+
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix}
+\usepackage[bookmarks,colorlinks=true,citecolor=black,urlcolor=black,linkcolor=black]{hyperref}
+\usepackage[rgb,dvipsnames]{xcolor}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[hyphenbreaks]{breakurl}
+\tcbuselibrary{listings}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{printlen}
+\uselengthunit{in}
+\newlength\imageheight
+\newlength\imagewidth
+
+\newcommand{\eg}{{\em e.g., }}
+\newcommand{\ie}{{\em i.e., }}
+\newcommand{\paragraphb}[1]{\vspace{0.03in}\noindent{\bf #1} }
+\newcommand{\paragraphe}[1]{\vspace{0.03in}\noindent{\em #1} }
+\newcommand{\paragraphbe}[1]{\vspace{0.03in}\noindent{\bf \em #1} }
+
+\newcommand{\eric}[1]{\textcolor{blue}{(ERIC: #1)}}
+\newcommand{\ericf}[1]{\footnote{\textcolor{blue}{ERIC: #1}}}
+\newcommand{\matt}[1]{\textcolor{red}{(MATT: #1)}}
+\newcommand{\mattf}[1]{\footnote{\textcolor{red}{MATT: #1}}}
+\newcommand{\oliver}[1]{\textcolor{green}{(OLIVER: #1)}}
+\newcommand{\oliverf}[1]{\footnote{\textcolor{green}{(OLIVER: #1)}}}
+
+\newcommand{\Yanc}{\textit{Yanc}\xspace}
+\newcommand{\yanc}{\textit{yanc}\xspace}
+\newcommand{\yancfs}{\textit{yancfs}\xspace}
+
+
+\setlength{\pdfpagewidth}{8.5in}
+
+\setlength{\pdfpageheight}{11in}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Metadata
+%
+
+
+\title{Evaluation of the Tagged Up/Down Sorter Priority Queue} 
+
+	\author{
+		Michael Couglin
+		\\
+		University of Colorado, Boulder \\
+%		\texttt{\{first.last\}@colorado.edu}
+	}
+
+	\maketitle
+
+
+	\input{introduction}
+	\input{methodology}
+	\input{eval}
+
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% References
+%
+
+	\footnotesize
+	\bibliographystyle{abbrv}
+	\bibliography{refs,refs2}
+
+\end{document}
+
+% vim: set noet : %
