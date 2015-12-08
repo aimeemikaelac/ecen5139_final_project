@@ -12,7 +12,6 @@ source design_1_wrapper.tcl
 # set_param gui.test TreeTableDev
 # set_msg_config -id {HDL 9-1061} -limit 100000
 # set_msg_config -id {HDL 9-1654} -limit 100000
-# set_msg_config -id {HDL-1065} -limit 10000
 # create_project -in_memory -part xc7z020clg484-1
 CRITICAL WARNING: [Board 49-4] Problem parsing board_part file - /Xilinx/Vivado/2014.2/data/boards/board_parts/zynq/zc706/1.0/board_part.xml, The board part 'xc7z045ffg900-2' is either not supported or invalid.
 CRITICAL WARNING: [Board 49-4] Problem parsing board_part file - /Xilinx/Vivado/2014.2/data/boards/board_parts/zynq/zc706/0.9/board_part.xml, The board part 'xc7z045ffg900-2' is either not supported or invalid.
@@ -57,7 +56,7 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 WARNING: [Synth 8-2507] parameter declaration becomes local in pqueue with formal parameter declaration list [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/minheap.sv:118]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 815.434 ; gain = 178.715
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 815.434 ; gain = 178.715
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'design_1_wrapper' [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
 WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:78]
@@ -68,12 +67,12 @@ INFO: [Synth 8-638] synthesizing module 'VCC' [/Xilinx/Vivado/2014.2/scripts/rt/
 INFO: [Synth 8-256] done synthesizing module 'VCC' (2#1) [/Xilinx/Vivado/2014.2/scripts/rt/data/unisim_comp.v:35476]
 INFO: [Synth 8-638] synthesizing module 'design_1_pqueue_0_0' [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_pqueue_0_0/synth/design_1_pqueue_0_0.v:56]
 INFO: [Synth 8-638] synthesizing module 'pqueue' [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/minheap.sv:109]
-	Parameter N bound to: 70 - type: integer 
+	Parameter N bound to: 40 - type: integer 
 	Parameter MSB bound to: 7 - type: integer 
 	Parameter NOOP bound to: 0 - type: integer 
 	Parameter PUSH bound to: 1 - type: integer 
 	Parameter POP bound to: 2 - type: integer 
-	Parameter C bound to: 6 - type: integer 
+	Parameter C bound to: 5 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'pqueue' (3#1) [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/minheap.sv:109]
 INFO: [Synth 8-256] done synthesizing module 'design_1_pqueue_0_0' (4#1) [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_pqueue_0_0/synth/design_1_pqueue_0_0.v:56]
 INFO: [Synth 8-638] synthesizing module 'design_1_processing_system7_0_0' [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_processing_system7_0_0/synth/design_1_processing_system7_0_0.v:57]
@@ -1120,7 +1119,7 @@ WARNING: [Synth 8-350] instance 'runQueue_0' of module 'design_1_runQueue_0_0' r
 INFO: [Synth 8-256] done synthesizing module 'design_1' (42#1) [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/hdl/design_1.v:13]
 INFO: [Synth 8-256] done synthesizing module 'design_1_wrapper' (43#1) [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:48 ; elapsed = 00:06:05 . Memory (MB): peak = 2596.398 ; gain = 1959.680
+Finished RTL Elaboration : Time (s): cpu = 00:01:19 ; elapsed = 00:04:46 . Memory (MB): peak = 1917.836 ; gain = 1281.117
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Optimization
@@ -1168,7 +1167,7 @@ Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:03:01 ; elapsed = 00:07:28 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:09 ; elapsed = 00:05:44 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -1182,10 +1181,10 @@ Applied set_property DONT_TOUCH = true for rst_processing_system7_0_100M. (const
 Applied set_property DONT_TOUCH = true for auto_pc. (constraint file  /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.runs/synth_1/dont_touch.xdc, line 23).
 Applied set_property DONT_TOUCH = true for inst. (constraint file  /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.runs/synth_1/dont_touch.xdc, line 26).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:03:03 ; elapsed = 00:07:30 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:10 ; elapsed = 00:05:46 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization : Time (s): cpu = 00:03:03 ; elapsed = 00:07:30 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Finished RTL Optimization : Time (s): cpu = 00:02:10 ; elapsed = 00:05:46 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3537] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the inputs of the operator [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/minheap.sv:138]
 INFO: [Synth 8-4471] merging register 'seq_cnt_en_reg' into 'from_sys_reg' [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/xilinx.com/proc_sys_reset_v5_0/48b3f032/hdl/src/vhdl/sequence.vhd:222]
@@ -1218,48 +1217,24 @@ Report RTL Partitions:
 +------+--------------+------------+----------+
 |      |RTL Partition |Replication |Instances |
 +------+--------------+------------+----------+
-|1     |pqueue__GB0   |           1|     58172|
-|2     |pqueue__GB1   |           1|     12983|
-|3     |pqueue__GB2   |           1|     21398|
-|4     |pqueue__GB3   |           1|     25436|
-|5     |pqueue__GB4   |           1|     33934|
-|6     |pqueue__GB5   |           1|     36547|
-|7     |pqueue__GB6   |           1|     46807|
-|8     |pqueue__GB7   |           1|     55505|
-|9     |pqueue__GB8   |           1|     43483|
-|10    |pqueue__GB9   |           1|     27623|
-|11    |pqueue__GB10  |           1|     51834|
-|12    |pqueue__GB11  |           1|      7032|
-|13    |pqueue__GB12  |           1|      9000|
-|14    |pqueue__GB13  |           1|     31761|
-|15    |pqueue__GB14  |           1|     56148|
-|16    |pqueue__GB15  |           1|     14701|
-|17    |pqueue__GB16  |           1|     26378|
-|18    |pqueue__GB17  |           1|     18409|
-|19    |pqueue__GB18  |           1|     34056|
-|20    |pqueue__GB19  |           1|     24186|
-|21    |pqueue__GB20  |           1|     12851|
-|22    |pqueue__GB21  |           1|     19287|
-|23    |pqueue__GB22  |           1|     44766|
-|24    |pqueue__GB23  |           1|     35711|
-|25    |pqueue__GB24  |           1|     52015|
-|26    |pqueue__GB25  |           1|     17592|
-|27    |pqueue__GB26  |           1|     16720|
-|28    |pqueue__GB27  |           1|     23217|
-|29    |pqueue__GB28  |           1|     31873|
-|30    |pqueue__GB29  |           1|     37435|
-|31    |pqueue__GB30  |           1|     50070|
-|32    |pqueue__GB31  |           1|     51335|
-|33    |pqueue__GB32  |           1|     13135|
-|34    |pqueue__GB33  |           1|     20619|
-|35    |pqueue__GB34  |           1|     21331|
-|36    |pqueue__GB35  |           1|     28340|
-|37    |pqueue__GB36  |           1|     41870|
-|38    |pqueue__GB37  |           1|     40547|
-|39    |pqueue__GB38  |           1|     17008|
-|40    |pqueue__GB39  |           1|     49040|
-|41    |pqueue__GB40  |           1|     10928|
-|42    |design_1__GC0 |           1|      9121|
+|1     |pqueue__GB0   |           1|     54005|
+|2     |pqueue__GB1   |           1|     16255|
+|3     |pqueue__GB2   |           1|     21694|
+|4     |pqueue__GB3   |           1|     23985|
+|5     |pqueue__GB4   |           1|     28841|
+|6     |pqueue__GB5   |           1|     41518|
+|7     |pqueue__GB6   |           1|     45390|
+|8     |pqueue__GB7   |           1|     56191|
+|9     |pqueue__GB8   |           1|     47643|
+|10    |pqueue__GB9   |           1|     23356|
+|11    |pqueue__GB10  |           1|     57603|
+|12    |pqueue__GB11  |           1|     11149|
+|13    |pqueue__GB12  |           1|     12990|
+|14    |pqueue__GB13  |           1|     51293|
+|15    |pqueue__GB14  |           1|     20443|
+|16    |pqueue__GB15  |           1|     39028|
+|17    |pqueue__GB16  |           1|     27982|
+|18    |design_1__GC0 |           1|      9121|
 +------+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -1271,8 +1246,7 @@ Detailed RTL Component Info :
 	   2 Input     10 Bit       Adders := 2     
 	   2 Input      9 Bit       Adders := 2     
 	   2 Input      8 Bit       Adders := 1     
-	   2 Input      7 Bit       Adders := 1     
-	   2 Input      6 Bit       Adders := 3     
+	   2 Input      6 Bit       Adders := 4     
 	   2 Input      5 Bit       Adders := 4     
 	   2 Input      4 Bit       Adders := 4     
 	   2 Input      2 Bit       Adders := 2     
@@ -1285,9 +1259,8 @@ Detailed RTL Component Info :
 	               14 Bit    Registers := 2     
 	               12 Bit    Registers := 7     
 	                9 Bit    Registers := 3     
-	                8 Bit    Registers := 10    
-	                7 Bit    Registers := 1     
-	                6 Bit    Registers := 2     
+	                8 Bit    Registers := 8     
+	                6 Bit    Registers := 3     
 	                5 Bit    Registers := 4     
 	                4 Bit    Registers := 6     
 	                3 Bit    Registers := 3     
@@ -1298,25 +1271,25 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   2 Input     66 Bit        Muxes := 4     
 	   2 Input     47 Bit        Muxes := 2     
-	   2 Input     32 Bit        Muxes := 511   
+	   2 Input     32 Bit        Muxes := 337   
+	   3 Input     32 Bit        Muxes := 8     
 	  13 Input     32 Bit        Muxes := 1     
-	   3 Input     32 Bit        Muxes := 9     
 	  35 Input     29 Bit        Muxes := 1     
 	   2 Input     14 Bit        Muxes := 2     
 	   2 Input     12 Bit        Muxes := 4     
 	   2 Input      9 Bit        Muxes := 4     
-	   2 Input      8 Bit        Muxes := 34489 
-	   3 Input      8 Bit        Muxes := 72    
-	   2 Input      7 Bit        Muxes := 8     
-	   2 Input      6 Bit        Muxes := 7     
+	   3 Input      8 Bit        Muxes := 42    
+	   2 Input      8 Bit        Muxes := 14815 
+	   2 Input      7 Bit        Muxes := 7     
+	   2 Input      6 Bit        Muxes := 6     
+	   2 Input      5 Bit        Muxes := 9     
 	  29 Input      5 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 10    
-	   2 Input      4 Bit        Muxes := 24    
+	   2 Input      4 Bit        Muxes := 23    
 	   2 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 3     
 	   2 Input      2 Bit        Muxes := 16    
+	   2 Input      1 Bit        Muxes := 2191  
 	   3 Input      1 Bit        Muxes := 7     
-	   2 Input      1 Bit        Muxes := 5219  
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -1330,22 +1303,22 @@ Module pqueue
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     32 Bit       Adders := 2     
-	   2 Input      7 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 1     
-	                8 Bit    Registers := 4     
-	                7 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 500   
-	   3 Input     32 Bit        Muxes := 7     
-	   3 Input      8 Bit        Muxes := 71    
-	   2 Input      8 Bit        Muxes := 34487 
-	   2 Input      7 Bit        Muxes := 8     
-	   2 Input      6 Bit        Muxes := 6     
-	   2 Input      5 Bit        Muxes := 6     
-	   2 Input      4 Bit        Muxes := 6     
+	   2 Input     32 Bit        Muxes := 326   
+	   3 Input     32 Bit        Muxes := 6     
+	   3 Input      8 Bit        Muxes := 41    
+	   2 Input      8 Bit        Muxes := 14813 
+	   2 Input      7 Bit        Muxes := 7     
+	   2 Input      6 Bit        Muxes := 5     
+	   2 Input      5 Bit        Muxes := 5     
+	   2 Input      4 Bit        Muxes := 5     
 	   2 Input      3 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 5165  
+	   2 Input      1 Bit        Muxes := 2137  
 	   3 Input      1 Bit        Muxes := 2     
 Module design_1_pqueue_0_0 
 Detailed RTL Component Info : 
@@ -1652,16 +1625,16 @@ BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Workers Ready, Starting Parallel Section  : Time (s): cpu = 00:19:08 ; elapsed = 00:25:18 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Workers Ready, Starting Parallel Section  : Time (s): cpu = 00:04:11 ; elapsed = 00:08:12 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/xilinx.com/axi_register_slice_v2_1/a2538a4c/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v:121]
 INFO: [Synth 8-3936] Found unconnected internal register 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar_pipe/m_payload_i_reg' and it is trimmed from '66' to '62' bits. [/home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/xilinx.com/axi_register_slice_v2_1/a2538a4c/hdl/verilog/axi_register_slice_v2_1_axic_register_slice.v:121]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:21:19 ; elapsed = 00:27:55 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Finished Cross Boundary Optimization : Time (s): cpu = 00:05:19 ; elapsed = 00:09:34 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
-Finished Parallel Reinfer  : Time (s): cpu = 00:21:19 ; elapsed = 00:27:55 . Memory (MB): peak = 3410.184 ; gain = 2773.465
+Finished Parallel Reinfer  : Time (s): cpu = 00:05:19 ; elapsed = 00:09:34 . Memory (MB): peak = 2335.605 ; gain = 1698.887
 ---------------------------------------------------------------------------------
 Start RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
@@ -1769,10 +1742,10 @@ INFO: [Synth 8-3332] Sequential element (\inst/runQueue_U/i_reg_450_reg[10] ) is
 INFO: [Synth 8-3332] Sequential element (\inst/runQueue_U/i_reg_450_reg[9] ) is unused and will be removed from module design_1_runQueue_0_0.
 INFO: [Synth 8-3332] Sequential element (\inst/runQueue_U/i_reg_450_reg[8] ) is unused and will be removed from module design_1_runQueue_0_0.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:32:13 ; elapsed = 00:39:22 . Memory (MB): peak = 3577.312 ; gain = 2940.594
+Finished Area Optimization : Time (s): cpu = 00:10:17 ; elapsed = 00:14:44 . Memory (MB): peak = 2335.609 ; gain = 1698.891
 ---------------------------------------------------------------------------------
-Finished Parallel Area Opt  : Time (s): cpu = 00:32:13 ; elapsed = 00:39:22 . Memory (MB): peak = 3577.312 ; gain = 2940.594
-Finished Parallel Section  : Time (s): cpu = 00:32:13 ; elapsed = 00:39:22 . Memory (MB): peak = 3577.312 ; gain = 2940.594
+Finished Parallel Area Opt  : Time (s): cpu = 00:10:17 ; elapsed = 00:14:44 . Memory (MB): peak = 2335.609 ; gain = 1698.891
+Finished Parallel Section  : Time (s): cpu = 00:10:17 ; elapsed = 00:14:44 . Memory (MB): peak = 2335.609 ; gain = 1698.891
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
@@ -1781,10 +1754,10 @@ Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 INFO: Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:32:23 ; elapsed = 00:39:34 . Memory (MB): peak = 3698.312 ; gain = 3061.594
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:10:27 ; elapsed = 00:14:56 . Memory (MB): peak = 2342.602 ; gain = 1705.883
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:46:26 ; elapsed = 00:54:16 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished Timing Optimization : Time (s): cpu = 00:17:17 ; elapsed = 00:22:33 . Memory (MB): peak = 2547.609 ; gain = 1910.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
@@ -1794,7 +1767,7 @@ INFO: [Synth 8-3332] Sequential element (\inst/gen_axilite.gen_b2s_conv.axilite_
 INFO: [Synth 8-3332] Sequential element (\inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw_pipe/skid_buffer_reg[64] ) is unused and will be removed from module design_1_auto_pc_0.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:48:05 ; elapsed = 00:56:13 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished Technology Mapping : Time (s): cpu = 00:18:32 ; elapsed = 00:24:02 . Memory (MB): peak = 2575.641 ; gain = 1938.922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1842,7 +1815,7 @@ WARNING: [Synth 8-4617] Design design_1_auto_pc_0 has 4 max_fanout violations th
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:48:14 ; elapsed = 00:56:23 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished IO Insertion : Time (s): cpu = 00:18:36 ; elapsed = 00:24:07 . Memory (MB): peak = 2575.641 ; gain = 1938.922
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1855,13 +1828,13 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:48:14 ; elapsed = 00:56:23 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished Renaming Generated Instances : Time (s): cpu = 00:18:36 ; elapsed = 00:24:07 . Memory (MB): peak = 2575.641 ; gain = 1938.922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:48:19 ; elapsed = 00:56:28 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:18:39 ; elapsed = 00:24:10 . Memory (MB): peak = 2575.641 ; gain = 1938.922
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RAM, DSP and Shift Register Reporting
@@ -1896,23 +1869,23 @@ Report Cell Usage:
 +------+-----------+------+
 |1     |BIBUF      |   130|
 |2     |BUFG       |     1|
-|3     |CARRY4     |   238|
-|4     |LUT1       |   359|
-|5     |LUT2       |  2516|
-|6     |LUT3       |  7100|
-|7     |LUT4       |  4120|
-|8     |LUT5       | 13449|
-|9     |LUT6       | 24583|
+|3     |CARRY4     |   212|
+|4     |LUT1       |   361|
+|5     |LUT2       |  1762|
+|6     |LUT3       |  3756|
+|7     |LUT4       |  1868|
+|8     |LUT5       |  6951|
+|9     |LUT6       | 12295|
 |10    |MUXCY_L    |    53|
-|11    |MUXF7      |  1438|
-|12    |MUXF8      |   319|
+|11    |MUXF7      |   429|
+|12    |MUXF8      |    53|
 |13    |PS7        |     1|
 |14    |RAMB18E1_1 |     1|
 |15    |SRL16      |     1|
 |16    |SRL16E     |    22|
 |17    |SRLC32E    |    47|
 |18    |XORCY      |    56|
-|19    |FDRE       |  1794|
+|19    |FDRE       |  1553|
 |20    |FDSE       |    67|
 +------+-----------+------+
 
@@ -1920,10 +1893,10 @@ Report Instance Areas:
 +------+---------------------------------------------------+------------------------------------------------------------+------+
 |      |Instance                                           |Module                                                      |Cells |
 +------+---------------------------------------------------+------------------------------------------------------------+------+
-|1     |top                                                |                                                            | 56295|
-|2     |  design_1_i                                       |design_1                                                    | 56295|
-|3     |    pqueue_0                                       |design_1_pqueue_0_0                                         | 53336|
-|4     |      inst                                         |pqueue                                                      | 53336|
+|1     |top                                                |                                                            | 29619|
+|2     |  design_1_i                                       |design_1                                                    | 29619|
+|3     |    pqueue_0                                       |design_1_pqueue_0_0                                         | 26660|
+|4     |      inst                                         |pqueue                                                      | 26660|
 |5     |    processing_system7_0                           |design_1_processing_system7_0_0                             |   221|
 |6     |      inst                                         |processing_system7_v5_4_processing_system7                  |   221|
 |7     |    processing_system7_0_axi_periph                |design_1_processing_system7_0_axi_periph_0                  |  1314|
@@ -1963,11 +1936,11 @@ Report Instance Areas:
 |41    |        runQueue_U                                 |runQueue                                                    |  1165|
 +------+---------------------------------------------------+------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:48:26 ; elapsed = 00:56:39 . Memory (MB): peak = 3953.320 ; gain = 3316.602
+Finished Writing Synthesis Report : Time (s): cpu = 00:18:40 ; elapsed = 00:24:13 . Memory (MB): peak = 2575.641 ; gain = 1938.922
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
-Synthesis Optimization Complete : Time (s): cpu = 00:48:26 ; elapsed = 00:56:39 . Memory (MB): peak = 3953.320 ; gain = 3316.602
-INFO: [Netlist 29-17] Analyzing 349 Unisim elements for replacement
+Synthesis Optimization Complete : Time (s): cpu = 00:18:40 ; elapsed = 00:24:14 . Memory (MB): peak = 2575.641 ; gain = 1938.922
+INFO: [Netlist 29-17] Analyzing 323 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 WARNING: [Netlist 29-101] Netlist 'design_1_wrapper' is not ideal for floorplanning, since the cellview 'pqueue' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Opt 31-140] Inserted 0 IBUFs to IO ports without IO buffers.
@@ -1981,8 +1954,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 266 Infos, 152 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:48:35 ; elapsed = 00:56:46 . Memory (MB): peak = 3953.324 ; gain = 3194.766
+synth_design: Time (s): cpu = 00:18:46 ; elapsed = 00:24:19 . Memory (MB): peak = 2575.645 ; gain = 1817.086
 # write_checkpoint design_1_wrapper.dcp
 # report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.47 . Memory (MB): peak = 3953.324 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Mon Dec  7 00:45:45 2015...
+report_utilization: Time (s): cpu = 00:00:00.25 ; elapsed = 00:00:00.30 . Memory (MB): peak = 2575.645 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Tue Dec  8 03:57:13 2015...

@@ -1,4 +1,12 @@
-03:11:41 INFO  : Processing command line option -hwspec /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
-03:17:34 INFO  : Invoking Bootgen: bootgen -image fsbl.bif -o i /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueueVerilog/minHeapVerilog_BOOT.bin
-03:17:34 INFO  : Creating new bif file /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueueVerilog/fsbl.bif
-03:17:36 INFO  : Bootgen command execution is done.
+03:31:14 INFO  : Processing command line option -hwspec /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
+04:14:05 INFO  : Processing command line option -hwspec /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
+04:14:05 INFO  : Checking for hwspec changes in the project design_1_wrapper_hw_platform_0.
+04:14:05 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1449573135000,  Project:1449477421000
+04:14:05 INFO  : The hardware specification for project 'design_1_wrapper_hw_platform_0' is different from /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
+04:14:05 INFO  : Copied contents of /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf into /design_1_wrapper_hw_platform_0/system.hdf.
+04:14:05 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+04:14:06 INFO  : Clearing existing target manager status.
+04:14:08 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+04:26:46 INFO  : Invoking Bootgen: bootgen -image fsbl.bif -o i /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueue/minHeapPriorityQueueBOOT.bin -w on
+04:26:46 INFO  : Overwriting existing bif file /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueue/fsbl.bif
+04:26:47 INFO  : Bootgen command execution is done.
