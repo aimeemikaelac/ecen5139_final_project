@@ -1,7 +1,7 @@
 Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2014.2 (lin64) Build 932637 Wed Jun 11 13:08:52 MDT 2014
-| Date             : Tue Dec  8 04:11:19 2015
+| Date             : Mon Dec  7 01:35:53 2015
 | Host             : ubuntu-xilinx-2014 running 64-bit Ubuntu 14.04.3 LTS
 | Command          : report_power -file design_1_wrapper_power_routed.rpt -pb design_1_wrapper_power_summary_routed.pb
 | Design           : design_1_wrapper
@@ -30,13 +30,13 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.898 |
-| Dynamic (W)              | 1.742 |
-| Device Static (W)        | 0.156 |
+| Total On-Chip Power (W)  | 1.468 |
+| Dynamic (W)              | 1.322 |
+| Device Static (W)        | 0.146 |
 | Total Off-Chip Power (W) | 0.121 |
 | Effective TJA (C/W)      | 11.5  |
-| Max Ambient (C)          | 63.1  |
-| Junction Temperature (C) | 46.9  |
+| Max Ambient (C)          | 68.1  |
+| Junction Temperature (C) | 41.9  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -51,18 +51,18 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.011 |        1 |       --- |             --- |
-| Slice Logic             |     0.135 |    29045 |       --- |             --- |
-|   LUT as Logic          |     0.135 |    25363 |     53200 |           47.67 |
-|   CARRY4                |    <0.001 |      220 |     13300 |            1.65 |
-|   F7/F8 Muxes           |    <0.001 |      482 |     53200 |            0.90 |
-|   Register              |    <0.001 |     1474 |    106400 |            1.38 |
-|   LUT as Shift Register |    <0.001 |       62 |     17400 |            0.35 |
+| Slice Logic             |    <0.001 |    55443 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |    45375 |     53200 |           85.29 |
+|   Register              |    <0.001 |     1715 |    106400 |            1.61 |
 |   Others                |     0.000 |      200 |       --- |             --- |
-| Signals                 |     0.288 |    26403 |       --- |             --- |
+|   CARRY4                |     0.000 |      246 |     13300 |            1.84 |
+|   F7/F8 Muxes           |     0.000 |     1754 |     53200 |            3.29 |
+|   LUT as Shift Register |     0.000 |       62 |     17400 |            0.35 |
+| Signals                 |     0.001 |    50208 |       --- |             --- |
 | Block RAM               |     0.000 |      0.5 |       140 |            0.35 |
 | PS7                     |     1.308 |        1 |       --- |             --- |
-| Static Power            |     0.156 |          |           |                 |
-| Total                   |     1.898 |          |           |                 |
+| Static Power            |     0.146 |          |           |                 |
+| Total                   |     1.468 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,8 +72,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.451 |       0.434 |      0.016 |
-| Vccaux    |       1.800 |     0.021 |       0.000 |      0.021 |
+| Vccint    |       1.000 |     0.027 |       0.013 |      0.013 |
+| Vccaux    |       1.800 |     0.020 |       0.000 |      0.020 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -85,7 +85,7 @@ Table of Contents
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccpint   |       1.000 |     0.424 |       0.391 |      0.033 |
+| Vccpint   |       1.000 |     0.419 |       0.391 |      0.028 |
 | Vccpaux   |       1.800 |     0.045 |       0.034 |      0.010 |
 | Vccpll    |       1.800 |     0.116 |       0.113 |      0.003 |
 | Vcco_ddr  |       1.500 |     0.511 |       0.509 |      0.002 |
@@ -148,17 +148,17 @@ Table of Contents
 +--------------------------------------------------+-----------+
 | Name                                             | Power (W) |
 +--------------------------------------------------+-----------+
-| design_1_wrapper                                 |     1.742 |
-|   design_1_i                                     |     1.742 |
-|     pqueue_0                                     |     0.422 |
-|       inst                                       |     0.422 |
+| design_1_wrapper                                 |     1.322 |
+|   design_1_i                                     |     1.322 |
+|     pqueue_0                                     |     0.005 |
+|       inst                                       |     0.005 |
 |     processing_system7_0                         |     1.309 |
 |       inst                                       |     1.309 |
-|     processing_system7_0_axi_periph              |     0.005 |
-|       s00_couplers                               |     0.005 |
-|         auto_pc                                  |     0.005 |
-|           inst                                   |     0.005 |
-|             gen_axilite.gen_b2s_conv.axilite_b2s |     0.005 |
+|     processing_system7_0_axi_periph              |     0.004 |
+|       s00_couplers                               |     0.004 |
+|         auto_pc                                  |     0.004 |
+|           inst                                   |     0.004 |
+|             gen_axilite.gen_b2s_conv.axilite_b2s |     0.004 |
 |               RD.ar_channel_0                    |    <0.001 |
 |                 ar_cmd_fsm_0                     |    <0.001 |
 |                 cmd_translator_0                 |    <0.001 |
@@ -185,10 +185,10 @@ Table of Contents
 |         EXT_LPF                                  |    <0.001 |
 |         SEQ                                      |    <0.001 |
 |           SEQ_COUNTER                            |    <0.001 |
-|     runQueue_0                                   |     0.007 |
-|       inst                                       |     0.007 |
+|     runQueue_0                                   |     0.004 |
+|       inst                                       |     0.004 |
 |         runQueue_AXI4LiteS_if_U                  |    <0.001 |
-|         runQueue_U                               |     0.006 |
+|         runQueue_U                               |     0.003 |
 +--------------------------------------------------+-----------+
 
 

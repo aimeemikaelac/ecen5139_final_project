@@ -70,7 +70,7 @@ output wire full;
 output wire empty;
 
   pqueue #(
-    .N(40),
+    .N(70),
     .MSB(7)
   ) inst (
     .clock(clock),

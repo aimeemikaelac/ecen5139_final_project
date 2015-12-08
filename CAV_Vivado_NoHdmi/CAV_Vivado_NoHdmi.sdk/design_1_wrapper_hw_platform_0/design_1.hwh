@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Dec  8 03:31:43 2015" VIVADOVERSION="2014.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Dec  6 23:48:30 2015" VIVADOVERSION="2014.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="em.avnet.com:zed:part0:1.0" DEVICE="7z020" NAME="design_1_imp" PACKAGE="clg484" SPEEDGRADE="-1"/>
 
@@ -31,7 +31,7 @@
     <MODULE FULLNAME="/pqueue_0" HWVERSION="1.0" INSTANCE="pqueue_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="pqueue" VLNV="ngn.cs.colorado.edu:user:pqueue:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="N" VALUE="40"/>
+        <PARAMETER NAME="N" VALUE="70"/>
         <PARAMETER NAME="MSB" VALUE="7"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_pqueue_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
