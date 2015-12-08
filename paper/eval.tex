@@ -34,6 +34,8 @@ Performance is difficult to compare, since both of the published state-of-the-ar
 
 The in-hardware testbed, as previously described, performs 10,000 iterations of a series of enqueue and dequeue operations. The queue that is uses is of size 40, since this is the largest queue that able to successfully access when the queue was implemented as a min-heap. The performance results of the two different implementations is tabulated in Table \ref{tab:perf}. It should be noted that repeated execution of the testbed and software interface yield the same results, since the testbed is a deterministic hardware function. Also, the testbed detects that the min-heap is not implemented correctly, as the output of the queue does not seem to be correct, even though the queue passed simulation. However, the time to perform a single enqueue or dequeue operation should not be affected.
 
+As can be seen from the performance results, the min-heap and Tagged Up/Down sorter achieve the same performance. This is because they both can perform an operation in a single cycle, and so cannot run any faster. Therefore, their performance is solely determined by the clock frequency of the FPGA.
+
 \begin{table}[t!]
 	\centering
 	\small
@@ -41,8 +43,8 @@ The in-hardware testbed, as previously described, performs 10,000 iterations of 
 	\begin{tabular}{| c | c | c |}
 		\hline
 		Queue Implementation & Test Execution Time & Number of Operations \\ \hline
-		Tagged Up/Down Sorter & 131,402 $\mu$s & 670,000 \\ \hline
-		Min-Heap & 
+		Tagged Up/Down Sorter & 28002 $\mu$s & 140,000 \\ \hline
+		Min-Heap & 27799 $\mu$s & 140,000  \\ \hline
 	\end{tabular}
 	}
 	\caption{Performance Results}
