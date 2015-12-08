@@ -1,7 +1,7 @@
 Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2014.2 (lin64) Build 932637 Wed Jun 11 13:08:52 MDT 2014
-| Date         : Mon Dec  7 01:35:36 2015
+| Date         : Tue Dec  8 04:11:07 2015
 | Host         : ubuntu-xilinx-2014 running 64-bit Ubuntu 14.04.3 LTS
 | Command      : report_timing_summary -warn_on_violation -file design_1_wrapper_timing_summary_routed.rpt -pb design_1_wrapper_timing_summary_routed.pb
 | Design       : design_1_wrapper
@@ -130,7 +130,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-    -87.278   -52417.523                   1413                 3718        0.059        0.000                      0                 3718        4.020        0.000                       0                  1787  
+    -57.827   -19545.223                    732                 3237        0.037        0.000                      0                 3237        4.020        0.000                       0                  1546  
 
 
 Timing constraints are not met.
@@ -153,7 +153,7 @@ clk_fpga_0  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-clk_fpga_0        -87.278   -52417.523                   1413                 3718        0.059        0.000                      0                 3718        4.020        0.000                       0                  1787  
+clk_fpga_0        -57.827   -19545.223                    732                 3237        0.037        0.000                      0                 3237        4.020        0.000                       0                  1546  
 
 
 ------------------------------------------------------------------------------------------------
@@ -184,28 +184,28 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  clk_fpga_0
   To Clock:  clk_fpga_0
 
-Setup :         1413  Failing Endpoints,  Worst Slack      -87.278ns,  Total Violation   -52417.523ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.059ns,  Total Violation        0.000ns
+Setup :          732  Failing Endpoints,  Worst Slack      -57.827ns,  Total Violation   -19545.223ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.037ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.020ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (VIOLATED) :        -87.278ns  (required time - arrival time)
-  Source:                 design_1_i/pqueue_0/inst/last_reg[0]/C
+Slack (VIOLATED) :        -57.827ns  (required time - arrival time)
+  Source:                 design_1_i/runQueue_0/inst/runQueue_U/FSM_onehot_ap_CS_fsm_reg[5]/C
                             (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            design_1_i/pqueue_0/inst/queue_reg[5][5]/D
+  Destination:            design_1_i/pqueue_0/inst/queue_reg[33][6]/D
                             (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_fpga_0
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (clk_fpga_0 rise@10.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        97.183ns  (logic 20.116ns (20.699%)  route 77.067ns (79.301%))
-  Logic Levels:           96  (CARRY4=15 LUT2=10 LUT3=3 LUT4=9 LUT5=15 LUT6=36 MUXF7=7 MUXF8=1)
-  Clock Path Skew:        0.028ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.193ns = ( 14.193 - 10.000 ) 
-    Source Clock Delay      (SCD):    4.714ns
-    Clock Pessimism Removal (CPR):    0.550ns
+  Data Path Delay:        67.556ns  (logic 13.601ns (20.133%)  route 53.955ns (79.867%))
+  Logic Levels:           65  (CARRY4=6 LUT2=2 LUT3=5 LUT4=9 LUT5=6 LUT6=36 MUXF7=1)
+  Clock Path Skew:        -0.147ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    3.951ns = ( 13.951 - 10.000 ) 
+    Source Clock Delay      (SCD):    4.511ns
+    Clock Pessimism Removal (CPR):    0.414ns
   Clock Uncertainty:      0.154ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.300ns
@@ -217,238 +217,167 @@ Slack (VIOLATED) :        -87.278ns  (required time - arrival time)
                          (clock clk_fpga_0 rise edge)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
-                         net (fo=1, routed)           2.944     2.944    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.045 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1787, routed)        1.669     4.714    design_1_i/pqueue_0/inst/clock
-    SLICE_X42Y48                                                      r  design_1_i/pqueue_0/inst/last_reg[0]/C
+                         net (fo=1, routed)           2.780     2.780    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     2.881 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1546, routed)        1.630     4.511    design_1_i/runQueue_0/inst/runQueue_U/aclk
+    SLICE_X53Y67                                                      r  design_1_i/runQueue_0/inst/runQueue_U/FSM_onehot_ap_CS_fsm_reg[5]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X42Y48         FDRE (Prop_fdre_C_Q)         0.518     5.232 r  design_1_i/pqueue_0/inst/last_reg[0]/Q
-                         net (fo=146, routed)         0.967     6.199    design_1_i/pqueue_0/inst/last__0[0]
-    SLICE_X41Y44         CARRY4 (Prop_carry4_DI[0]_CO[3])
-                                                      0.526     6.725 r  design_1_i/pqueue_0/inst/last_reg[2]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     6.725    design_1_i/pqueue_0/inst/n_4_last_reg[2]_i_3
-    SLICE_X41Y45         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     6.839 r  design_1_i/pqueue_0/inst/last_reg[7]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     6.839    design_1_i/pqueue_0/inst/n_4_last_reg[7]_i_3
-    SLICE_X41Y46         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     6.953 r  design_1_i/pqueue_0/inst/last_reg[11]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     6.953    design_1_i/pqueue_0/inst/n_4_last_reg[11]_i_3
-    SLICE_X41Y47         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     7.067 r  design_1_i/pqueue_0/inst/last_reg[15]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     7.067    design_1_i/pqueue_0/inst/n_4_last_reg[15]_i_3
-    SLICE_X41Y48         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     7.181 r  design_1_i/pqueue_0/inst/last_reg[19]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     7.181    design_1_i/pqueue_0/inst/n_4_last_reg[19]_i_3
-    SLICE_X41Y49         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     7.295 r  design_1_i/pqueue_0/inst/last_reg[23]_i_3/CO[3]
-                         net (fo=1, routed)           0.001     7.296    design_1_i/pqueue_0/inst/n_4_last_reg[23]_i_3
-    SLICE_X41Y50         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114     7.410 r  design_1_i/pqueue_0/inst/last_reg[27]_i_3/CO[3]
-                         net (fo=1, routed)           0.000     7.410    design_1_i/pqueue_0/inst/n_4_last_reg[27]_i_3
-    SLICE_X41Y51         CARRY4 (Prop_carry4_CI_O[2])
-                                                      0.239     7.649 f  design_1_i/pqueue_0/inst/last_reg[31]_i_3/O[2]
-                         net (fo=240, routed)         0.894     8.543    design_1_i/pqueue_0/inst/n_9_last_reg[31]_i_3
-    SLICE_X42Y51         LUT4 (Prop_lut4_I3_O)        0.302     8.845 f  design_1_i/pqueue_0/inst/queue[65][1]_i_80/O
-                         net (fo=5, routed)           1.368    10.213    design_1_i/pqueue_0/inst/n_4_queue[65][1]_i_80
-    SLICE_X45Y53         LUT5 (Prop_lut5_I0_O)        0.152    10.365 f  design_1_i/pqueue_0/inst/queue[65][1]_i_43/O
-                         net (fo=3, routed)           1.393    11.758    design_1_i/pqueue_0/inst/n_4_queue[65][1]_i_43
-    SLICE_X55Y53         LUT6 (Prop_lut6_I5_O)        0.326    12.084 r  design_1_i/pqueue_0/inst/queue[33][7]_i_46/O
-                         net (fo=13, routed)          1.347    13.431    design_1_i/pqueue_0/inst/n_4_queue[33][7]_i_46
-    SLICE_X82Y53         LUT3 (Prop_lut3_I1_O)        0.124    13.555 r  design_1_i/pqueue_0/inst/queue[33][2]_i_7/O
-                         net (fo=14, routed)          0.966    14.522    design_1_i/pqueue_0/inst/queue_reg[33]_14[2]
-    SLICE_X80Y51         LUT5 (Prop_lut5_I4_O)        0.124    14.646 r  design_1_i/pqueue_0/inst/queue[36][2]_i_78/O
-                         net (fo=1, routed)           0.968    15.613    design_1_i/pqueue_0/inst/n_4_queue[36][2]_i_78
-    SLICE_X57Y51         LUT6 (Prop_lut6_I4_O)        0.124    15.737 f  design_1_i/pqueue_0/inst/queue[36][2]_i_47/O
-                         net (fo=1, routed)           0.603    16.340    design_1_i/pqueue_0/inst/n_4_queue[36][2]_i_47
-    SLICE_X54Y51         LUT6 (Prop_lut6_I3_O)        0.124    16.464 r  design_1_i/pqueue_0/inst/queue[36][2]_i_31/O
-                         net (fo=1, routed)           1.026    17.491    design_1_i/pqueue_0/inst/n_4_queue[36][2]_i_31
-    SLICE_X53Y50         LUT6 (Prop_lut6_I0_O)        0.124    17.615 r  design_1_i/pqueue_0/inst/queue[36][2]_i_24/O
-                         net (fo=79, routed)          1.166    18.780    design_1_i/pqueue_0/inst/n_4_queue[36][2]_i_24
-    SLICE_X49Y39         LUT4 (Prop_lut4_I3_O)        0.124    18.904 r  design_1_i/pqueue_0/inst/queue[36][6]_i_27/O
-                         net (fo=1, routed)           0.000    18.904    design_1_i/pqueue_0/inst/n_4_queue[36][6]_i_27
-    SLICE_X49Y39         CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    19.454 r  design_1_i/pqueue_0/inst/queue_reg[36][6]_i_5/CO[3]
-                         net (fo=655, routed)         0.943    20.398    design_1_i/pqueue_0/inst/p_63_in
-    SLICE_X50Y38         LUT2 (Prop_lut2_I1_O)        0.429    20.827 r  design_1_i/pqueue_0/inst/queue[56][7]_i_12/O
-                         net (fo=1105, routed)        1.163    21.990    design_1_i/pqueue_0/inst/p_65_out
-    SLICE_X51Y35         LUT2 (Prop_lut2_I1_O)        0.124    22.114 r  design_1_i/pqueue_0/inst/queue[12][7]_i_96/O
-                         net (fo=508, routed)         2.264    24.378    design_1_i/pqueue_0/inst/n_4_queue[12][7]_i_96
-    SLICE_X70Y40         LUT5 (Prop_lut5_I4_O)        0.124    24.502 r  design_1_i/pqueue_0/inst/queue[42][1]_i_28/O
-                         net (fo=4, routed)           1.254    25.756    design_1_i/pqueue_0/inst/n_4_queue[42][1]_i_28
-    SLICE_X59Y44         LUT6 (Prop_lut6_I1_O)        0.124    25.880 r  design_1_i/pqueue_0/inst/queue[51][1]_i_260/O
-                         net (fo=1, routed)           0.839    26.719    design_1_i/pqueue_0/inst/n_4_queue[51][1]_i_260
-    SLICE_X55Y39         LUT5 (Prop_lut5_I4_O)        0.124    26.843 r  design_1_i/pqueue_0/inst/queue[51][1]_i_199/O
-                         net (fo=1, routed)           0.858    27.701    design_1_i/pqueue_0/inst/n_4_queue[51][1]_i_199
-    SLICE_X53Y37         LUT5 (Prop_lut5_I0_O)        0.124    27.825 r  design_1_i/pqueue_0/inst/queue[51][1]_i_114/O
-                         net (fo=1, routed)           0.828    28.653    design_1_i/pqueue_0/inst/n_4_queue[51][1]_i_114
-    SLICE_X52Y36         LUT6 (Prop_lut6_I1_O)        0.124    28.777 r  design_1_i/pqueue_0/inst/queue[51][1]_i_59/O
-                         net (fo=1, routed)           0.000    28.777    design_1_i/pqueue_0/inst/n_4_queue[51][1]_i_59
-    SLICE_X52Y36         MUXF7 (Prop_muxf7_I0_O)      0.212    28.989 r  design_1_i/pqueue_0/inst/queue_reg[51][1]_i_28/O
-                         net (fo=110, routed)         1.176    30.165    design_1_i/pqueue_0/inst/n_4_queue_reg[51][1]_i_28
-    SLICE_X54Y30         LUT4 (Prop_lut4_I1_O)        0.299    30.464 r  design_1_i/pqueue_0/inst/queue[61][7]_i_54/O
-                         net (fo=1, routed)           0.000    30.464    design_1_i/pqueue_0/inst/n_4_queue[61][7]_i_54
-    SLICE_X54Y30         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.513    30.977 r  design_1_i/pqueue_0/inst/queue_reg[61][7]_i_20/CO[3]
-                         net (fo=383, routed)         1.121    32.098    design_1_i/pqueue_0/inst/p_60_in
-    SLICE_X53Y28         LUT2 (Prop_lut2_I1_O)        0.424    32.522 f  design_1_i/pqueue_0/inst/queue[61][7]_i_186/O
-                         net (fo=127, routed)         2.188    34.710    design_1_i/pqueue_0/inst/n_4_queue[61][7]_i_186
-    SLICE_X29Y23         LUT4 (Prop_lut4_I1_O)        0.150    34.860 f  design_1_i/pqueue_0/inst/queue[48][6]_i_209/O
-                         net (fo=1, routed)           0.859    35.719    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_209
-    SLICE_X27Y23         LUT6 (Prop_lut6_I0_O)        0.326    36.045 f  design_1_i/pqueue_0/inst/queue[48][6]_i_152/O
-                         net (fo=2, routed)           0.801    36.845    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_152
-    SLICE_X29Y21         LUT6 (Prop_lut6_I1_O)        0.124    36.969 r  design_1_i/pqueue_0/inst/queue[48][6]_i_88/O
-                         net (fo=1, routed)           0.821    37.790    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_88
-    SLICE_X34Y21         LUT6 (Prop_lut6_I1_O)        0.124    37.914 r  design_1_i/pqueue_0/inst/queue[48][6]_i_52/O
-                         net (fo=1, routed)           0.978    38.893    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_52
-    SLICE_X42Y19         LUT6 (Prop_lut6_I1_O)        0.124    39.017 r  design_1_i/pqueue_0/inst/queue[48][6]_i_31/O
-                         net (fo=7, routed)           0.774    39.791    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_31
-    SLICE_X46Y20         LUT5 (Prop_lut5_I4_O)        0.124    39.915 r  design_1_i/pqueue_0/inst/queue[48][6]_i_17/O
-                         net (fo=75, routed)          1.315    41.230    design_1_i/pqueue_0/inst/n_4_queue[48][6]_i_17
-    SLICE_X52Y16         LUT4 (Prop_lut4_I2_O)        0.124    41.354 r  design_1_i/pqueue_0/inst/queue[12][7]_i_179/O
-                         net (fo=1, routed)           0.000    41.354    design_1_i/pqueue_0/inst/n_4_queue[12][7]_i_179
-    SLICE_X52Y16         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401    41.755 f  design_1_i/pqueue_0/inst/queue_reg[12][7]_i_60/CO[3]
-                         net (fo=423, routed)         0.478    42.233    design_1_i/pqueue_0/inst/p_57_in
-    SLICE_X55Y16         LUT2 (Prop_lut2_I0_O)        0.429    42.662 f  design_1_i/pqueue_0/inst/queue[65][7]_i_22/O
-                         net (fo=121, routed)         1.063    43.725    design_1_i/pqueue_0/inst/n_4_queue[65][7]_i_22
-    SLICE_X65Y18         LUT6 (Prop_lut6_I3_O)        0.124    43.849 r  design_1_i/pqueue_0/inst/queue[67][5]_i_56/O
-                         net (fo=72, routed)          2.105    45.954    design_1_i/pqueue_0/inst/n_4_queue[67][5]_i_56
-    SLICE_X86Y20         LUT6 (Prop_lut6_I4_O)        0.124    46.078 r  design_1_i/pqueue_0/inst/queue[52][2]_i_35/O
-                         net (fo=3, routed)           0.826    46.904    design_1_i/pqueue_0/inst/n_4_queue[52][2]_i_35
-    SLICE_X85Y19         LUT5 (Prop_lut5_I0_O)        0.124    47.028 r  design_1_i/pqueue_0/inst/queue[42][2]_i_193/O
-                         net (fo=2, routed)           1.125    48.153    design_1_i/pqueue_0/inst/n_4_queue[42][2]_i_193
-    SLICE_X66Y20         LUT5 (Prop_lut5_I4_O)        0.124    48.277 r  design_1_i/pqueue_0/inst/queue[42][2]_i_225/O
-                         net (fo=1, routed)           0.000    48.277    design_1_i/pqueue_0/inst/n_4_queue[42][2]_i_225
-    SLICE_X66Y20         MUXF7 (Prop_muxf7_I1_O)      0.214    48.491 r  design_1_i/pqueue_0/inst/queue_reg[42][2]_i_154/O
-                         net (fo=1, routed)           0.968    49.459    design_1_i/pqueue_0/inst/n_4_queue_reg[42][2]_i_154
-    SLICE_X62Y19         LUT6 (Prop_lut6_I1_O)        0.297    49.756 r  design_1_i/pqueue_0/inst/queue[42][2]_i_76/O
-                         net (fo=1, routed)           0.000    49.756    design_1_i/pqueue_0/inst/n_4_queue[42][2]_i_76
-    SLICE_X62Y19         MUXF7 (Prop_muxf7_I0_O)      0.209    49.965 r  design_1_i/pqueue_0/inst/queue_reg[42][2]_i_39/O
-                         net (fo=8, routed)           0.984    50.948    design_1_i/pqueue_0/inst/n_4_queue_reg[42][2]_i_39
-    SLICE_X59Y17         LUT5 (Prop_lut5_I2_O)        0.297    51.245 r  design_1_i/pqueue_0/inst/queue[42][2]_i_17/O
-                         net (fo=103, routed)         1.076    52.322    design_1_i/pqueue_0/inst/n_4_queue[42][2]_i_17
-    SLICE_X61Y17         LUT4 (Prop_lut4_I3_O)        0.124    52.446 r  design_1_i/pqueue_0/inst/queue[12][7]_i_138/O
-                         net (fo=1, routed)           0.000    52.446    design_1_i/pqueue_0/inst/n_4_queue[12][7]_i_138
-    SLICE_X61Y17         CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    52.996 r  design_1_i/pqueue_0/inst/queue_reg[12][7]_i_47/CO[3]
-                         net (fo=413, routed)         0.552    53.548    design_1_i/pqueue_0/inst/p_54_in
-    SLICE_X64Y17         LUT2 (Prop_lut2_I0_O)        0.429    53.977 r  design_1_i/pqueue_0/inst/queue[29][7]_i_31/O
-                         net (fo=121, routed)         1.161    55.138    design_1_i/pqueue_0/inst/n_4_queue[29][7]_i_31
-    SLICE_X79Y21         LUT6 (Prop_lut6_I5_O)        0.124    55.262 f  design_1_i/pqueue_0/inst/queue[0][7]_i_1124/O
-                         net (fo=26, routed)          0.492    55.754    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_1124
-    SLICE_X82Y22         LUT6 (Prop_lut6_I2_O)        0.124    55.878 r  design_1_i/pqueue_0/inst/queue[0][7]_i_815/O
-                         net (fo=160, routed)         1.222    57.101    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_815
-    SLICE_X87Y23         LUT5 (Prop_lut5_I0_O)        0.124    57.225 r  design_1_i/pqueue_0/inst/queue[33][2]_i_42/O
-                         net (fo=1, routed)           0.406    57.631    design_1_i/pqueue_0/inst/n_4_queue[33][2]_i_42
-    SLICE_X87Y24         LUT6 (Prop_lut6_I2_O)        0.124    57.755 r  design_1_i/pqueue_0/inst/queue[33][2]_i_41/O
-                         net (fo=1, routed)           0.805    58.560    design_1_i/pqueue_0/inst/n_4_queue[33][2]_i_41
-    SLICE_X88Y24         LUT5 (Prop_lut5_I2_O)        0.124    58.684 r  design_1_i/pqueue_0/inst/queue[33][2]_i_38/O
-                         net (fo=1, routed)           0.601    59.285    design_1_i/pqueue_0/inst/n_4_queue[33][2]_i_38
-    SLICE_X88Y25         LUT5 (Prop_lut5_I4_O)        0.124    59.409 r  design_1_i/pqueue_0/inst/queue[33][2]_i_35/O
-                         net (fo=3, routed)           1.206    60.615    design_1_i/pqueue_0/inst/n_4_queue[33][2]_i_35
-    SLICE_X88Y28         LUT6 (Prop_lut6_I5_O)        0.124    60.739 r  design_1_i/pqueue_0/inst/queue[29][2]_i_112/O
-                         net (fo=1, routed)           0.977    61.716    design_1_i/pqueue_0/inst/n_4_queue[29][2]_i_112
-    SLICE_X82Y32         LUT6 (Prop_lut6_I5_O)        0.124    61.840 r  design_1_i/pqueue_0/inst/queue[29][2]_i_67/O
-                         net (fo=2, routed)           1.365    63.205    design_1_i/pqueue_0/inst/n_4_queue[29][2]_i_67
-    SLICE_X65Y33         LUT6 (Prop_lut6_I1_O)        0.124    63.329 r  design_1_i/pqueue_0/inst/queue[29][2]_i_39/O
-                         net (fo=1, routed)           0.000    63.329    design_1_i/pqueue_0/inst/n_4_queue[29][2]_i_39
-    SLICE_X65Y33         MUXF7 (Prop_muxf7_I1_O)      0.217    63.546 r  design_1_i/pqueue_0/inst/queue_reg[29][2]_i_21/O
-                         net (fo=81, routed)          1.184    64.730    design_1_i/pqueue_0/inst/n_4_queue_reg[29][2]_i_21
-    SLICE_X67Y35         LUT4 (Prop_lut4_I2_O)        0.299    65.029 r  design_1_i/pqueue_0/inst/queue[12][7]_i_121/O
-                         net (fo=1, routed)           0.000    65.029    design_1_i/pqueue_0/inst/n_4_queue[12][7]_i_121
-    SLICE_X67Y35         CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.550    65.579 r  design_1_i/pqueue_0/inst/queue_reg[12][7]_i_39/CO[3]
-                         net (fo=254, routed)         1.104    66.684    design_1_i/pqueue_0/inst/p_51_in
-    SLICE_X72Y38         LUT2 (Prop_lut2_I1_O)        0.429    67.113 r  design_1_i/pqueue_0/inst/queue[12][7]_i_9/O
-                         net (fo=1021, routed)        1.873    68.985    design_1_i/pqueue_0/inst/p_53_out
-    SLICE_X36Y40         LUT6 (Prop_lut6_I3_O)        0.124    69.109 f  design_1_i/pqueue_0/inst/queue[11][7]_i_138/O
-                         net (fo=20, routed)          0.851    69.961    design_1_i/pqueue_0/inst/n_4_queue[11][7]_i_138
-    SLICE_X34Y42         LUT2 (Prop_lut2_I0_O)        0.124    70.085 f  design_1_i/pqueue_0/inst/queue[65][1]_i_185/O
-                         net (fo=2, routed)           0.311    70.396    design_1_i/pqueue_0/inst/n_4_queue[65][1]_i_185
-    SLICE_X34Y43         LUT6 (Prop_lut6_I2_O)        0.124    70.520 f  design_1_i/pqueue_0/inst/queue[11][7]_i_147/O
-                         net (fo=16, routed)          0.950    71.470    design_1_i/pqueue_0/inst/n_4_queue[11][7]_i_147
-    SLICE_X34Y46         LUT6 (Prop_lut6_I5_O)        0.124    71.594 r  design_1_i/pqueue_0/inst/queue[11][1]_i_62/O
-                         net (fo=1, routed)           0.567    72.161    design_1_i/pqueue_0/inst/n_4_queue[11][1]_i_62
-    SLICE_X37Y47         LUT6 (Prop_lut6_I3_O)        0.124    72.285 r  design_1_i/pqueue_0/inst/queue[11][1]_i_58/O
-                         net (fo=1, routed)           0.516    72.800    design_1_i/pqueue_0/inst/n_4_queue[11][1]_i_58
-    SLICE_X38Y47         LUT3 (Prop_lut3_I2_O)        0.124    72.924 r  design_1_i/pqueue_0/inst/queue[11][1]_i_49/O
-                         net (fo=3, routed)           1.892    74.816    design_1_i/pqueue_0/inst/n_4_queue[11][1]_i_49
-    SLICE_X62Y50         LUT6 (Prop_lut6_I1_O)        0.124    74.940 r  design_1_i/pqueue_0/inst/queue[12][1]_i_298/O
-                         net (fo=1, routed)           0.000    74.940    design_1_i/pqueue_0/inst/n_4_queue[12][1]_i_298
-    SLICE_X62Y50         MUXF7 (Prop_muxf7_I0_O)      0.241    75.181 r  design_1_i/pqueue_0/inst/queue_reg[12][1]_i_221/O
-                         net (fo=1, routed)           0.000    75.181    design_1_i/pqueue_0/inst/n_4_queue_reg[12][1]_i_221
-    SLICE_X62Y50         MUXF8 (Prop_muxf8_I0_O)      0.098    75.279 r  design_1_i/pqueue_0/inst/queue_reg[12][1]_i_138/O
-                         net (fo=1, routed)           0.979    76.258    design_1_i/pqueue_0/inst/n_4_queue_reg[12][1]_i_138
-    SLICE_X65Y53         LUT6 (Prop_lut6_I5_O)        0.319    76.577 r  design_1_i/pqueue_0/inst/queue[12][1]_i_83/O
-                         net (fo=1, routed)           0.000    76.577    design_1_i/pqueue_0/inst/n_4_queue[12][1]_i_83
-    SLICE_X65Y53         MUXF7 (Prop_muxf7_I0_O)      0.212    76.789 r  design_1_i/pqueue_0/inst/queue_reg[12][1]_i_47/O
-                         net (fo=76, routed)          1.285    78.073    design_1_i/pqueue_0/inst/n_4_queue_reg[12][1]_i_47
-    SLICE_X66Y51         LUT4 (Prop_lut4_I1_O)        0.299    78.372 r  design_1_i/pqueue_0/inst/queue[0][7]_i_174/O
-                         net (fo=1, routed)           0.000    78.372    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_174
-    SLICE_X66Y51         CARRY4 (Prop_carry4_S[0]_CO[3])
-                                                      0.513    78.885 r  design_1_i/pqueue_0/inst/queue_reg[0][7]_i_58/CO[3]
-                         net (fo=152, routed)         0.664    79.549    design_1_i/pqueue_0/inst/p_48_in
-    SLICE_X66Y52         LUT2 (Prop_lut2_I1_O)        0.424    79.973 r  design_1_i/pqueue_0/inst/queue[12][7]_i_40/O
-                         net (fo=122, routed)         3.251    83.224    design_1_i/pqueue_0/inst/n_4_queue[12][7]_i_40
-    SLICE_X14Y48         LUT6 (Prop_lut6_I4_O)        0.124    83.348 r  design_1_i/pqueue_0/inst/queue[0][7]_i_1340/O
-                         net (fo=1, routed)           0.665    84.013    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_1340
-    SLICE_X16Y48         LUT6 (Prop_lut6_I4_O)        0.124    84.137 r  design_1_i/pqueue_0/inst/queue[0][7]_i_1319/O
-                         net (fo=1, routed)           0.961    85.098    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_1319
-    SLICE_X20Y48         LUT6 (Prop_lut6_I2_O)        0.124    85.222 r  design_1_i/pqueue_0/inst/queue[0][7]_i_1224/O
-                         net (fo=1, routed)           0.453    85.675    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_1224
-    SLICE_X22Y49         LUT5 (Prop_lut5_I4_O)        0.124    85.799 r  design_1_i/pqueue_0/inst/queue[0][7]_i_931/O
-                         net (fo=3, routed)           2.028    87.827    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_931
-    SLICE_X62Y59         LUT3 (Prop_lut3_I1_O)        0.124    87.951 r  design_1_i/pqueue_0/inst/queue[0][7]_i_668/O
-                         net (fo=1, routed)           0.722    88.672    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_668
-    SLICE_X80Y60         LUT6 (Prop_lut6_I5_O)        0.124    88.796 r  design_1_i/pqueue_0/inst/queue[0][7]_i_390/O
-                         net (fo=1, routed)           0.000    88.796    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_390
-    SLICE_X80Y60         MUXF7 (Prop_muxf7_I1_O)      0.245    89.041 r  design_1_i/pqueue_0/inst/queue_reg[0][7]_i_166/O
-                         net (fo=1, routed)           1.080    90.121    design_1_i/pqueue_0/inst/n_4_queue_reg[0][7]_i_166
-    SLICE_X81Y61         LUT6 (Prop_lut6_I5_O)        0.298    90.419 r  design_1_i/pqueue_0/inst/queue[0][7]_i_57/O
-                         net (fo=1, routed)           0.424    90.843    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_57
-    SLICE_X83Y62         LUT5 (Prop_lut5_I4_O)        0.124    90.967 r  design_1_i/pqueue_0/inst/queue[0][7]_i_15/O
-                         net (fo=75, routed)          1.286    92.253    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_15
-    SLICE_X66Y64         LUT4 (Prop_lut4_I0_O)        0.124    92.377 r  design_1_i/pqueue_0/inst/queue[24][4]_i_80/O
-                         net (fo=1, routed)           0.000    92.377    design_1_i/pqueue_0/inst/n_4_queue[24][4]_i_80
-    SLICE_X66Y64         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.376    92.753 r  design_1_i/pqueue_0/inst/queue_reg[24][4]_i_48/CO[3]
-                         net (fo=12, routed)          0.818    93.571    design_1_i/pqueue_0/inst/p_45_in
-    SLICE_X62Y62         LUT2 (Prop_lut2_I0_O)        0.424    93.995 r  design_1_i/pqueue_0/inst/queue[24][4]_i_20/O
-                         net (fo=109, routed)         1.903    95.898    design_1_i/pqueue_0/inst/p_47_out
-    SLICE_X33Y57         LUT2 (Prop_lut2_I1_O)        0.124    96.022 r  design_1_i/pqueue_0/inst/queue[37][6]_i_148/O
-                         net (fo=16, routed)          1.830    97.851    design_1_i/pqueue_0/inst/n_4_queue[37][6]_i_148
-    SLICE_X15Y49         LUT6 (Prop_lut6_I3_O)        0.124    97.975 r  design_1_i/pqueue_0/inst/queue[5][5]_i_48/O
-                         net (fo=1, routed)           0.582    98.557    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_48
-    SLICE_X13Y49         LUT6 (Prop_lut6_I5_O)        0.124    98.681 r  design_1_i/pqueue_0/inst/queue[5][5]_i_45/O
-                         net (fo=1, routed)           0.554    99.235    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_45
-    SLICE_X11Y48         LUT6 (Prop_lut6_I0_O)        0.124    99.359 r  design_1_i/pqueue_0/inst/queue[5][5]_i_41/O
-                         net (fo=1, routed)           0.577    99.936    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_41
-    SLICE_X11Y48         LUT5 (Prop_lut5_I1_O)        0.124   100.060 r  design_1_i/pqueue_0/inst/queue[5][5]_i_29/O
-                         net (fo=1, routed)           0.305   100.365    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_29
-    SLICE_X10Y46         LUT6 (Prop_lut6_I2_O)        0.124   100.489 r  design_1_i/pqueue_0/inst/queue[5][5]_i_18/O
-                         net (fo=1, routed)           0.590   101.079    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_18
-    SLICE_X10Y47         LUT6 (Prop_lut6_I5_O)        0.124   101.203 r  design_1_i/pqueue_0/inst/queue[5][5]_i_6/O
-                         net (fo=1, routed)           0.571   101.774    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_6
-    SLICE_X11Y48         LUT6 (Prop_lut6_I5_O)        0.124   101.898 r  design_1_i/pqueue_0/inst/queue[5][5]_i_1/O
-                         net (fo=1, routed)           0.000   101.898    design_1_i/pqueue_0/inst/n_4_queue[5][5]_i_1
-    SLICE_X11Y48         FDRE                                         r  design_1_i/pqueue_0/inst/queue_reg[5][5]/D
+    SLICE_X53Y67         FDRE (Prop_fdre_C_Q)         0.456     4.967 r  design_1_i/runQueue_0/inst/runQueue_U/FSM_onehot_ap_CS_fsm_reg[5]/Q
+                         net (fo=10, routed)          0.757     5.725    design_1_i/runQueue_0/inst/runQueue_U/n_4_FSM_onehot_ap_CS_fsm_reg[5]
+    SLICE_X52Y67         LUT5 (Prop_lut5_I2_O)        0.124     5.849 r  design_1_i/runQueue_0/inst/runQueue_U/FSM_onehot_ap_CS_fsm[7]_i_3/O
+                         net (fo=2, routed)           0.433     6.282    design_1_i/runQueue_0/inst/runQueue_U/n_4_FSM_onehot_ap_CS_fsm[7]_i_3
+    SLICE_X52Y66         LUT6 (Prop_lut6_I5_O)        0.124     6.406 r  design_1_i/runQueue_0/inst/runQueue_U/FSM_onehot_ap_CS_fsm[7]_i_2/O
+                         net (fo=3, routed)           0.612     7.018    design_1_i/runQueue_0/inst/runQueue_U/n_4_FSM_onehot_ap_CS_fsm[7]_i_2
+    SLICE_X52Y64         LUT4 (Prop_lut4_I1_O)        0.124     7.142 r  design_1_i/runQueue_0/inst/runQueue_U/priorityOut_V[7]_INST_0_i_3/O
+                         net (fo=8, routed)           1.064     8.206    design_1_i/runQueue_0/inst/runQueue_U/n_4_priorityOut_V[7]_INST_0_i_3
+    SLICE_X49Y49         LUT4 (Prop_lut4_I0_O)        0.124     8.330 r  design_1_i/runQueue_0/inst/runQueue_U/priorityOut_V[1]_INST_0_i_1/O
+                         net (fo=1, routed)           0.977     9.307    design_1_i/runQueue_0/inst/runQueue_U/n_4_priorityOut_V[1]_INST_0_i_1
+    SLICE_X47Y37         LUT6 (Prop_lut6_I0_O)        0.124     9.431 r  design_1_i/runQueue_0/inst/runQueue_U/priorityOut_V[1]_INST_0/O
+                         net (fo=188, routed)         1.689    11.120    design_1_i/pqueue_0/inst/in[1]
+    SLICE_X48Y23         LUT6 (Prop_lut6_I0_O)        0.124    11.244 r  design_1_i/pqueue_0/inst/queue[25][1]_i_11/O
+                         net (fo=15, routed)          0.952    12.196    design_1_i/pqueue_0/inst/queue_reg[25]_7[1]
+    SLICE_X52Y23         LUT6 (Prop_lut6_I1_O)        0.124    12.320 r  design_1_i/pqueue_0/inst/queue[0][1]_i_62/O
+                         net (fo=1, routed)           0.987    13.307    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_62
+    SLICE_X52Y25         LUT6 (Prop_lut6_I3_O)        0.124    13.431 r  design_1_i/pqueue_0/inst/queue[0][1]_i_31/O
+                         net (fo=1, routed)           0.782    14.213    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_31
+    SLICE_X52Y29         LUT6 (Prop_lut6_I1_O)        0.124    14.337 r  design_1_i/pqueue_0/inst/queue[0][1]_i_18/O
+                         net (fo=106, routed)         1.157    15.494    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_18
+    SLICE_X55Y32         LUT4 (Prop_lut4_I2_O)        0.124    15.618 r  design_1_i/pqueue_0/inst/queue[24][7]_i_56/O
+                         net (fo=1, routed)           0.000    15.618    design_1_i/pqueue_0/inst/n_4_queue[24][7]_i_56
+    SLICE_X55Y32         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    16.150 f  design_1_i/pqueue_0/inst/queue_reg[24][7]_i_17/CO[3]
+                         net (fo=482, routed)         0.873    17.023    design_1_i/pqueue_0/inst/p_53_in
+    SLICE_X54Y31         LUT3 (Prop_lut3_I0_O)        0.429    17.452 r  design_1_i/pqueue_0/inst/queue[0][5]_i_143/O
+                         net (fo=27, routed)          0.825    18.276    design_1_i/pqueue_0/inst/n_4_queue[0][5]_i_143
+    SLICE_X55Y30         LUT5 (Prop_lut5_I1_O)        0.124    18.400 r  design_1_i/pqueue_0/inst/queue[34][0]_i_104/O
+                         net (fo=2, routed)           1.030    19.430    design_1_i/pqueue_0/inst/n_4_queue[34][0]_i_104
+    SLICE_X58Y29         LUT6 (Prop_lut6_I0_O)        0.124    19.554 r  design_1_i/pqueue_0/inst/queue[27][0]_i_58/O
+                         net (fo=1, routed)           0.631    20.185    design_1_i/pqueue_0/inst/n_4_queue[27][0]_i_58
+    SLICE_X61Y24         LUT6 (Prop_lut6_I3_O)        0.124    20.309 r  design_1_i/pqueue_0/inst/queue[27][0]_i_46/O
+                         net (fo=1, routed)           0.562    20.872    design_1_i/pqueue_0/inst/n_4_queue[27][0]_i_46
+    SLICE_X66Y23         LUT3 (Prop_lut3_I2_O)        0.124    20.996 r  design_1_i/pqueue_0/inst/queue[27][0]_i_28/O
+                         net (fo=1, routed)           0.821    21.817    design_1_i/pqueue_0/inst/n_4_queue[27][0]_i_28
+    SLICE_X66Y22         LUT6 (Prop_lut6_I5_O)        0.124    21.941 r  design_1_i/pqueue_0/inst/queue[27][0]_i_13/O
+                         net (fo=44, routed)          1.291    23.232    design_1_i/pqueue_0/inst/n_4_queue[27][0]_i_13
+    SLICE_X69Y32         LUT4 (Prop_lut4_I3_O)        0.124    23.356 r  design_1_i/pqueue_0/inst/queue[3][1]_i_56/O
+                         net (fo=1, routed)           0.000    23.356    design_1_i/pqueue_0/inst/n_4_queue[3][1]_i_56
+    SLICE_X69Y32         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    23.888 f  design_1_i/pqueue_0/inst/queue_reg[3][1]_i_17/CO[3]
+                         net (fo=64, routed)          0.992    24.880    design_1_i/pqueue_0/inst/p_50_in
+    SLICE_X67Y29         LUT6 (Prop_lut6_I3_O)        0.429    25.309 r  design_1_i/pqueue_0/inst/queue[28][4]_i_154/O
+                         net (fo=83, routed)          1.650    26.959    design_1_i/pqueue_0/inst/n_4_queue[28][4]_i_154
+    SLICE_X65Y4          LUT6 (Prop_lut6_I5_O)        0.124    27.083 r  design_1_i/pqueue_0/inst/queue[0][7]_i_561/O
+                         net (fo=13, routed)          0.988    28.071    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_561
+    SLICE_X72Y4          LUT2 (Prop_lut2_I0_O)        0.149    28.220 r  design_1_i/pqueue_0/inst/queue[0][1]_i_449/O
+                         net (fo=1, routed)           0.821    29.041    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_449
+    SLICE_X75Y5          LUT6 (Prop_lut6_I0_O)        0.332    29.373 r  design_1_i/pqueue_0/inst/queue[0][1]_i_363/O
+                         net (fo=1, routed)           0.845    30.219    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_363
+    SLICE_X74Y6          LUT6 (Prop_lut6_I5_O)        0.124    30.343 r  design_1_i/pqueue_0/inst/queue[0][1]_i_254/O
+                         net (fo=2, routed)           0.798    31.141    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_254
+    SLICE_X73Y9          LUT6 (Prop_lut6_I0_O)        0.124    31.265 r  design_1_i/pqueue_0/inst/queue[0][1]_i_155/O
+                         net (fo=1, routed)           0.803    32.068    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_155
+    SLICE_X74Y10         LUT6 (Prop_lut6_I5_O)        0.124    32.192 r  design_1_i/pqueue_0/inst/queue[0][1]_i_98/O
+                         net (fo=22, routed)          0.809    33.001    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_98
+    SLICE_X74Y15         LUT6 (Prop_lut6_I5_O)        0.124    33.125 r  design_1_i/pqueue_0/inst/queue[0][1]_i_42/O
+                         net (fo=46, routed)          1.416    34.541    design_1_i/pqueue_0/inst/n_4_queue[0][1]_i_42
+    SLICE_X80Y33         LUT4 (Prop_lut4_I0_O)        0.124    34.665 r  design_1_i/pqueue_0/inst/queue[28][4]_i_25/O
+                         net (fo=1, routed)           0.000    34.665    design_1_i/pqueue_0/inst/n_4_queue[28][4]_i_25
+    SLICE_X80Y33         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    35.197 r  design_1_i/pqueue_0/inst/queue_reg[28][4]_i_7/CO[3]
+                         net (fo=81, routed)          0.785    35.982    design_1_i/pqueue_0/inst/p_47_in
+    SLICE_X81Y36         LUT3 (Prop_lut3_I0_O)        0.429    36.411 r  design_1_i/pqueue_0/inst/queue[2][3]_i_65/O
+                         net (fo=156, routed)         0.812    37.223    design_1_i/pqueue_0/inst/n_4_queue[2][3]_i_65
+    SLICE_X83Y38         LUT6 (Prop_lut6_I4_O)        0.124    37.347 f  design_1_i/pqueue_0/inst/queue[2][3]_i_67/O
+                         net (fo=113, routed)         1.512    38.859    design_1_i/pqueue_0/inst/n_4_queue[2][3]_i_67
+    SLICE_X90Y49         LUT2 (Prop_lut2_I0_O)        0.124    38.983 f  design_1_i/pqueue_0/inst/queue[12][1]_i_41/O
+                         net (fo=1, routed)           0.856    39.839    design_1_i/pqueue_0/inst/n_4_queue[12][1]_i_41
+    SLICE_X91Y49         LUT6 (Prop_lut6_I5_O)        0.124    39.963 r  design_1_i/pqueue_0/inst/queue[12][1]_i_33/O
+                         net (fo=3, routed)           0.900    40.863    design_1_i/pqueue_0/inst/n_4_queue[12][1]_i_33
+    SLICE_X92Y47         LUT5 (Prop_lut5_I2_O)        0.124    40.987 r  design_1_i/pqueue_0/inst/queue[34][1]_i_159/O
+                         net (fo=2, routed)           0.795    41.781    design_1_i/pqueue_0/inst/n_4_queue[34][1]_i_159
+    SLICE_X92Y45         LUT6 (Prop_lut6_I5_O)        0.124    41.905 f  design_1_i/pqueue_0/inst/queue[34][1]_i_127/O
+                         net (fo=1, routed)           0.818    42.723    design_1_i/pqueue_0/inst/n_4_queue[34][1]_i_127
+    SLICE_X94Y41         LUT6 (Prop_lut6_I5_O)        0.124    42.847 r  design_1_i/pqueue_0/inst/queue[34][1]_i_94/O
+                         net (fo=1, routed)           0.000    42.847    design_1_i/pqueue_0/inst/n_4_queue[34][1]_i_94
+    SLICE_X94Y41         MUXF7 (Prop_muxf7_I1_O)      0.214    43.061 r  design_1_i/pqueue_0/inst/queue_reg[34][1]_i_60/O
+                         net (fo=49, routed)          1.022    44.084    design_1_i/pqueue_0/inst/n_4_queue_reg[34][1]_i_60
+    SLICE_X97Y42         LUT4 (Prop_lut4_I0_O)        0.297    44.381 r  design_1_i/pqueue_0/inst/queue[0][7]_i_135/O
+                         net (fo=1, routed)           0.000    44.381    design_1_i/pqueue_0/inst/n_4_queue[0][7]_i_135
+    SLICE_X97Y42         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    44.913 r  design_1_i/pqueue_0/inst/queue_reg[0][7]_i_52/CO[3]
+                         net (fo=140, routed)         0.778    45.691    design_1_i/pqueue_0/inst/p_44_in
+    SLICE_X99Y46         LUT3 (Prop_lut3_I0_O)        0.429    46.120 r  design_1_i/pqueue_0/inst/queue[19][6]_i_239/O
+                         net (fo=156, routed)         1.543    47.663    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_239
+    SLICE_X106Y50        LUT6 (Prop_lut6_I4_O)        0.124    47.787 r  design_1_i/pqueue_0/inst/queue[19][6]_i_147/O
+                         net (fo=1, routed)           1.040    48.826    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_147
+    SLICE_X105Y50        LUT6 (Prop_lut6_I2_O)        0.124    48.950 f  design_1_i/pqueue_0/inst/queue[19][6]_i_49/O
+                         net (fo=192, routed)         0.850    49.801    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_49
+    SLICE_X105Y46        LUT5 (Prop_lut5_I3_O)        0.118    49.919 r  design_1_i/pqueue_0/inst/queue[19][3]_i_148/O
+                         net (fo=1, routed)           0.712    50.630    design_1_i/pqueue_0/inst/n_4_queue[19][3]_i_148
+    SLICE_X104Y46        LUT6 (Prop_lut6_I5_O)        0.326    50.956 f  design_1_i/pqueue_0/inst/queue[19][3]_i_129/O
+                         net (fo=1, routed)           0.161    51.117    design_1_i/pqueue_0/inst/n_4_queue[19][3]_i_129
+    SLICE_X104Y46        LUT6 (Prop_lut6_I5_O)        0.124    51.241 f  design_1_i/pqueue_0/inst/queue[19][3]_i_95/O
+                         net (fo=1, routed)           0.848    52.090    design_1_i/pqueue_0/inst/n_4_queue[19][3]_i_95
+    SLICE_X103Y47        LUT6 (Prop_lut6_I2_O)        0.124    52.214 r  design_1_i/pqueue_0/inst/queue[19][3]_i_50/O
+                         net (fo=2, routed)           0.520    52.733    design_1_i/pqueue_0/inst/n_4_queue[19][3]_i_50
+    SLICE_X101Y50        LUT6 (Prop_lut6_I4_O)        0.124    52.857 r  design_1_i/pqueue_0/inst/queue[39][3]_i_45/O
+                         net (fo=12, routed)          0.894    53.751    design_1_i/pqueue_0/inst/n_4_queue[39][3]_i_45
+    SLICE_X99Y52         LUT4 (Prop_lut4_I1_O)        0.124    53.875 r  design_1_i/pqueue_0/inst/queue[34][7]_i_93/O
+                         net (fo=1, routed)           0.000    53.875    design_1_i/pqueue_0/inst/n_4_queue[34][7]_i_93
+    SLICE_X99Y52         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.550    54.425 f  design_1_i/pqueue_0/inst/queue_reg[34][7]_i_35/CO[3]
+                         net (fo=62, routed)          1.330    55.756    design_1_i/pqueue_0/inst/p_41_in
+    SLICE_X95Y62         LUT4 (Prop_lut4_I2_O)        0.455    56.211 r  design_1_i/pqueue_0/inst/queue[19][6]_i_490/O
+                         net (fo=28, routed)          0.545    56.756    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_490
+    SLICE_X92Y62         LUT6 (Prop_lut6_I5_O)        0.326    57.082 r  design_1_i/pqueue_0/inst/queue[19][6]_i_598/O
+                         net (fo=1, routed)           0.435    57.517    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_598
+    SLICE_X90Y62         LUT6 (Prop_lut6_I1_O)        0.124    57.641 f  design_1_i/pqueue_0/inst/queue[19][6]_i_500/O
+                         net (fo=1, routed)           0.593    58.234    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_500
+    SLICE_X90Y61         LUT6 (Prop_lut6_I0_O)        0.124    58.358 f  design_1_i/pqueue_0/inst/queue[19][6]_i_367/O
+                         net (fo=1, routed)           0.668    59.025    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_367
+    SLICE_X89Y61         LUT6 (Prop_lut6_I0_O)        0.124    59.149 r  design_1_i/pqueue_0/inst/queue[19][6]_i_206/O
+                         net (fo=176, routed)         1.742    60.891    design_1_i/pqueue_0/inst/n_4_queue[19][6]_i_206
+    SLICE_X96Y47         LUT5 (Prop_lut5_I3_O)        0.124    61.015 f  design_1_i/pqueue_0/inst/queue[19][7]_i_292/O
+                         net (fo=1, routed)           1.208    62.222    design_1_i/pqueue_0/inst/n_4_queue[19][7]_i_292
+    SLICE_X90Y57         LUT6 (Prop_lut6_I4_O)        0.124    62.346 f  design_1_i/pqueue_0/inst/queue[19][7]_i_206/O
+                         net (fo=1, routed)           1.035    63.381    design_1_i/pqueue_0/inst/n_4_queue[19][7]_i_206
+    SLICE_X89Y59         LUT6 (Prop_lut6_I0_O)        0.124    63.505 r  design_1_i/pqueue_0/inst/queue[19][7]_i_115/O
+                         net (fo=14, routed)          1.001    64.507    design_1_i/pqueue_0/inst/n_4_queue[19][7]_i_115
+    SLICE_X85Y51         LUT6 (Prop_lut6_I0_O)        0.124    64.631 r  design_1_i/pqueue_0/inst/queue[38][7]_i_40/O
+                         net (fo=3, routed)           0.954    65.585    design_1_i/pqueue_0/inst/n_4_queue[38][7]_i_40
+    SLICE_X85Y47         LUT4 (Prop_lut4_I0_O)        0.124    65.709 r  design_1_i/pqueue_0/inst/queue[34][7]_i_75/O
+                         net (fo=1, routed)           0.000    65.709    design_1_i/pqueue_0/inst/n_4_queue[34][7]_i_75
+    SLICE_X85Y47         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    66.110 f  design_1_i/pqueue_0/inst/queue_reg[34][7]_i_28/CO[3]
+                         net (fo=40, routed)          1.580    67.689    design_1_i/pqueue_0/inst/p_38_in
+    SLICE_X51Y47         LUT3 (Prop_lut3_I0_O)        0.429    68.118 r  design_1_i/pqueue_0/inst/queue[39][3]_i_24/O
+                         net (fo=48, routed)          1.098    69.216    design_1_i/pqueue_0/inst/n_4_queue[39][3]_i_24
+    SLICE_X46Y43         LUT6 (Prop_lut6_I1_O)        0.124    69.340 r  design_1_i/pqueue_0/inst/queue[33][6]_i_28/O
+                         net (fo=1, routed)           0.860    70.200    design_1_i/pqueue_0/inst/n_4_queue[33][6]_i_28
+    SLICE_X44Y38         LUT5 (Prop_lut5_I4_O)        0.124    70.324 r  design_1_i/pqueue_0/inst/queue[33][6]_i_11/O
+                         net (fo=1, routed)           0.928    71.252    design_1_i/pqueue_0/inst/n_4_queue[33][6]_i_11
+    SLICE_X41Y30         LUT6 (Prop_lut6_I1_O)        0.124    71.376 f  design_1_i/pqueue_0/inst/queue[33][6]_i_4/O
+                         net (fo=1, routed)           0.567    71.943    design_1_i/pqueue_0/inst/n_4_queue[33][6]_i_4
+    SLICE_X40Y28         LUT6 (Prop_lut6_I4_O)        0.124    72.067 r  design_1_i/pqueue_0/inst/queue[33][6]_i_1/O
+                         net (fo=1, routed)           0.000    72.067    design_1_i/pqueue_0/inst/n_4_queue[33][6]_i_1
+    SLICE_X40Y28         FDRE                                         r  design_1_i/pqueue_0/inst/queue_reg[33][6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
                                                      10.000    10.000 r  
     PS7_X0Y0             PS7                          0.000    10.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
-                         net (fo=1, routed)           2.519    12.519    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    12.610 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1787, routed)        1.582    14.193    design_1_i/pqueue_0/inst/clock
-    SLICE_X11Y48                                                      r  design_1_i/pqueue_0/inst/queue_reg[5][5]/C
-                         clock pessimism              0.550    14.742    
-                         clock uncertainty           -0.154    14.588    
-    SLICE_X11Y48         FDRE (Setup_fdre_C_D)        0.031    14.619    design_1_i/pqueue_0/inst/queue_reg[5][5]
+                         net (fo=1, routed)           2.376    12.376    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    12.467 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1546, routed)        1.483    13.951    design_1_i/pqueue_0/inst/clock
+    SLICE_X40Y28                                                      r  design_1_i/pqueue_0/inst/queue_reg[33][6]/C
+                         clock pessimism              0.414    14.365    
+                         clock uncertainty           -0.154    14.211    
+    SLICE_X40Y28         FDRE (Setup_fdre_C_D)        0.029    14.240    design_1_i/pqueue_0/inst/queue_reg[33][6]
   -------------------------------------------------------------------
-                         required time                         14.619    
-                         arrival time                        -101.898    
+                         required time                         14.240    
+                         arrival time                         -72.067    
   -------------------------------------------------------------------
-                         slack                                -87.278    
+                         slack                                -57.827    
 
 
 
@@ -456,50 +385,51 @@ Slack (VIOLATED) :        -87.278ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.059ns  (arrival time - required time)
-  Source:                 design_1_i/runQueue_0/inst/runQueue_U/val_assign_reg_205_reg[4]/C
+Slack (MET) :             0.037ns  (arrival time - required time)
+  Source:                 design_1_i/runQueue_0/inst/runQueue_AXI4LiteS_if_U/rdata_reg[21]/C
                             (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            design_1_i/runQueue_0/inst/runQueue_U/tmp_1_reg_455_reg[4]/D
-                            (rising edge-triggered cell FDRE clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Destination:            design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][21]_srl32/D
+                            (rising edge-triggered cell SRLC32E clocked by clk_fpga_0  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             clk_fpga_0
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (clk_fpga_0 rise@0.000ns - clk_fpga_0 rise@0.000ns)
-  Data Path Delay:        0.377ns  (logic 0.141ns (37.383%)  route 0.236ns (62.617%))
+  Data Path Delay:        0.419ns  (logic 0.164ns (39.095%)  route 0.255ns (60.905%))
   Logic Levels:           0  
-  Clock Path Skew:        0.259ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    2.276ns
-    Source Clock Delay      (SCD):    1.825ns
-    Clock Pessimism Removal (CPR):    0.192ns
+  Clock Path Skew:        0.267ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    2.197ns
+    Source Clock Delay      (SCD):    1.747ns
+    Clock Pessimism Removal (CPR):    0.183ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
                          (clock clk_fpga_0 rise edge)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
-                         net (fo=1, routed)           1.252     1.252    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     1.278 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1787, routed)        0.547     1.825    design_1_i/runQueue_0/inst/runQueue_U/aclk
-    SLICE_X47Y70                                                      r  design_1_i/runQueue_0/inst/runQueue_U/val_assign_reg_205_reg[4]/C
+                         net (fo=1, routed)           1.169     1.169    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     1.195 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1546, routed)        0.552     1.747    design_1_i/runQueue_0/inst/runQueue_AXI4LiteS_if_U/aclk
+    SLICE_X50Y95                                                      r  design_1_i/runQueue_0/inst/runQueue_AXI4LiteS_if_U/rdata_reg[21]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X47Y70         FDRE (Prop_fdre_C_Q)         0.141     1.966 r  design_1_i/runQueue_0/inst/runQueue_U/val_assign_reg_205_reg[4]/Q
-                         net (fo=2, routed)           0.236     2.202    design_1_i/runQueue_0/inst/runQueue_U/n_4_val_assign_reg_205_reg[4]
-    SLICE_X50Y68         FDRE                                         r  design_1_i/runQueue_0/inst/runQueue_U/tmp_1_reg_455_reg[4]/D
+    SLICE_X50Y95         FDRE (Prop_fdre_C_Q)         0.164     1.911 r  design_1_i/runQueue_0/inst/runQueue_AXI4LiteS_if_U/rdata_reg[21]/Q
+                         net (fo=1, routed)           0.255     2.167    design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/in[21]
+    SLICE_X36Y95         SRLC32E                                      r  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][21]_srl32/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk_fpga_0 rise edge)
                                                       0.000     0.000 r  
     PS7_X0Y0             PS7                          0.000     0.000 r  design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0]
-                         net (fo=1, routed)           1.436     1.436    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
-    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.465 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
-                         net (fo=1787, routed)        0.811     2.276    design_1_i/runQueue_0/inst/runQueue_U/aclk
-    SLICE_X50Y68                                                      r  design_1_i/runQueue_0/inst/runQueue_U/tmp_1_reg_455_reg[4]/C
-                         clock pessimism             -0.192     2.084    
-    SLICE_X50Y68         FDRE (Hold_fdre_C_D)         0.059     2.143    design_1_i/runQueue_0/inst/runQueue_U/tmp_1_reg_455_reg[4]
+                         net (fo=1, routed)           1.344     1.344    design_1_i/processing_system7_0/inst/FCLK_CLK_unbuffered[0]
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.373 r  design_1_i/processing_system7_0/inst/buffer_fclk_clk_0.FCLK_CLK_0_BUFG/O
+                         net (fo=1546, routed)        0.824     2.197    design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/aclk
+    SLICE_X36Y95                                                      r  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][21]_srl32/CLK
+                         clock pessimism             -0.183     2.014    
+    SLICE_X36Y95         SRLC32E (Hold_srlc32e_CLK_D)
+                                                      0.115     2.129    design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][21]_srl32
   -------------------------------------------------------------------
-                         required time                         -2.143    
-                         arrival time                           2.202    
+                         required time                         -2.129    
+                         arrival time                           2.167    
   -------------------------------------------------------------------
-                         slack                                  0.059    
+                         slack                                  0.037    
 
 
 
@@ -513,9 +443,9 @@ Period:             10.000
 Sources:            { design_1_i/processing_system7_0/inst/PS7_i/FCLKCLK[0] }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required  Actual  Slack  Location      Pin
-Min Period        n/a     RAMB18E1/CLKARDCLK  n/a            2.576     10.000  7.424  RAMB18_X3Y22  design_1_i/runQueue_0/inst/runQueue_U/i_2_reg_251_reg_rep/CLKARDCLK
-Low Pulse Width   Slow    SRLC32E/CLK         n/a            0.980     5.000   4.020  SLICE_X26Y79  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][10]_srl32/CLK
-High Pulse Width  Slow    SRLC32E/CLK         n/a            0.980     5.000   4.020  SLICE_X30Y82  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][20]_srl32/CLK
+Min Period        n/a     RAMB18E1/CLKARDCLK  n/a            2.576     10.000  7.424  RAMB18_X3Y18  design_1_i/runQueue_0/inst/runQueue_U/i_2_reg_251_reg_rep/CLKARDCLK
+Low Pulse Width   Fast    SRLC32E/CLK         n/a            0.980     5.000   4.020  SLICE_X38Y93  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][0]_srl32/CLK
+High Pulse Width  Slow    SRLC32E/CLK         n/a            0.980     5.000   4.020  SLICE_X36Y92  design_1_i/processing_system7_0_axi_periph/s00_couplers/auto_pc/inst/gen_axilite.gen_b2s_conv.axilite_b2s/RD.r_channel_0/rd_data_fifo_0/memory_reg[31][11]_srl32/CLK
 
 
 
