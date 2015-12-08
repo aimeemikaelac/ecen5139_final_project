@@ -1,0 +1,2 @@
+sv xil_defaultlib  "/home/michael/ecen5139_final_project/minheap_verilog/minheap_verilog.srcs/sources_1/imports/CAV_Midterm_PriorityQueue/minheap.sv"
+verilog xil_defaultlib "/Xilinx/Vivado/2014.2/data/verilog/src/glbl.v"
