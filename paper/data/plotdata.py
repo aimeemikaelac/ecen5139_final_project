@@ -10,6 +10,7 @@ utilization_reader = csv.DictReader(utilization_file)
 
 markers = ['o', '*', 'x', 'D', '8', 's']
 colors = ['blue', 'green', 'black', 'cyan', 'purple', 'brown']
+queue_names_map = {'minheap_verilog':'Min-Heap', 'midterm_verilog':'Tagged Up/Down Sorter', 'huang':'Huang, et. al.', 'kumar':'Kumar, et. al.'}
 
 data_dict = {}
 
@@ -48,9 +49,11 @@ all_sizes = sorted(set(all_sizes))
 
 i=0
 fits = []
+queue_names = []
 for queue, queue_data in data_dict.iteritems():
     if queue == 'huang':
         continue
+    queue_names.append(queue_names_map[queue])
     sizes, luts = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['luts']))))
     fit = numpy.polyfit(numpy.log(sizes), numpy.log(luts), 1)
     fit_fn = numpy.poly1d(fit)
@@ -60,7 +63,7 @@ for queue, queue_data in data_dict.iteritems():
 
 xlabel("Size of Priority Queue")
 ylabel("LUT Utilization")
-legend(list(data_dict.iterkeys()), loc=4)
+legend(queue_names, loc=4)
 
 for i in range(len(fits)):
     fit = fits[i]
@@ -78,9 +81,9 @@ figure()
 
 i = 0
 fits = []
+queue_names = []
 for queue, queue_data in data_dict.iteritems():
-    if queue == 'minheap_verilog':
-        continue
+    queue_names.append(queue_names_map[queue])
     sizes, ffs = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['ff']))))
     fit = numpy.polyfit(numpy.log(sizes), numpy.log(ffs), 1)
     fit_fn = numpy.poly1d(fit)
@@ -91,7 +94,7 @@ for queue, queue_data in data_dict.iteritems():
 
 xlabel("Size of Priority Queue")
 ylabel("Flip-flop Utilization")
-legend(list(data_dict.iterkeys()), loc=4)
+legend(queue_names, loc=4)
 grid()
 
 for i in range(len(fits)):
@@ -106,14 +109,18 @@ savefig("ff_utilization.pdf", bbox_inches='tight')
 figure()
 
 i = 0
+queue_names = []
 for queue, queue_data in data_dict.iteritems():
+    if queue == 'kumar' or queue == 'huang':
+        continue
+    queue_names.append(queue_names_map[queue])
     sizes, times = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['times']))))
     loglog(sizes, times, marker=markers[i])
     i = i + 1
 
 xlabel("Size of Priority Queue")
 ylabel("Synthesis time")
-legend(list(data_dict.iterkeys()), loc=4)
+legend(queue_names, loc=4)
 grid()
 
 savefig("synthesis_times.pdf", bbox_inches='tight')
