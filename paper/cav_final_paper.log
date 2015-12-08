@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.5.15)  8 DEC 2015 04:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.5.15)  8 DEC 2015 05:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,14 +712,21 @@ File: data/synthesis_times.pdf Graphic file (type pdf)
 <use data/synthesis_times.pdf>
 Package pdftex.def Info: data/synthesis_times.pdf used on input line 25.
 (pdftex.def)             Requested size: 225.84375pt x 175.9538pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [2 <./data/lut_utilization.pdf> <./data/ff_utilization.pdf
 
 pdfTeX warning: pdflatex (file ./data/ff_utilization.pdf): PDF inclusion: multi
 ple pdfs with page group included in a single page
 >]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
-) (./discussion.tex) (./conclusion.tex)
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
+) (./discussion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
+(./conclusion.tex)
 No file cav_final_paper.bbl.
 [3 <./data/synthesis_times.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
@@ -738,7 +745,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
 Here is how much of TeX's memory you used:
  16989 strings out of 493105
  312005 string characters out of 6137072
- 387644 words of memory out of 5000000
+ 386644 words of memory out of 5000000
  20137 multiletter control sequences out of 15000+600000
  26530 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -748,10 +755,10 @@ e/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb
 >
-Output written on cav_final_paper.pdf (3 pages, 97036 bytes).
+Output written on cav_final_paper.pdf (3 pages, 97529 bytes).
 PDF statistics:
- 227 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
+ 228 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  15 named destinations out of 1000 (max. 500000)
  84 words of extra memory for PDF output out of 10000 (max. 10000000)
 
