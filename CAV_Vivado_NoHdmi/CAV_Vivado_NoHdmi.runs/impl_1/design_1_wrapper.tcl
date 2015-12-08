@@ -44,7 +44,6 @@ proc step_failed { step } {
 
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set rc [catch {
@@ -62,6 +61,8 @@ set rc [catch {
   set_property processing_order EARLY [get_files /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0.xdc]
   read_xdc -prop_thru_buffers -ref design_1_rst_processing_system7_0_100M_0 /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0_board.xdc
   set_property processing_order EARLY [get_files /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0_board.xdc]
+  read_xdc -ref design_1_pqueue_0_1 /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/constrs_1/imports/verilog/runQueue.xdc
+  set_property processing_order EARLY [get_files /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/constrs_1/imports/verilog/runQueue.xdc]
   link_design -top design_1_wrapper -part xc7z020clg484-1
   close_msg_db -file init_design.pb
 } RESULT]

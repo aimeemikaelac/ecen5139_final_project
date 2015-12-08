@@ -1,7 +1,7 @@
 //Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2014.2 (lin64) Build 932637 Wed Jun 11 13:08:52 MDT 2014
-//Date        : Sun Dec  6 23:48:38 2015
+//Date        : Tue Dec  8 05:08:49 2015
 //Host        : ubuntu-xilinx-2014 running 64-bit Ubuntu 14.04.3 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -146,7 +146,7 @@ GND GND
        (.G(GND_1));
 VCC VCC
        (.P(VCC_1));
-design_1_pqueue_0_0 pqueue_0
+design_1_pqueue_0_1 pqueue_0
        (.clock(processing_system7_0_FCLK_CLK0),
         .cmd(runQueue_0_cmdOut_V),
         .empty(pqueue_0_empty),

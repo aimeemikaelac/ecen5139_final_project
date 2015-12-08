@@ -1,4 +1,4 @@
-03:11:41 INFO  : Processing command line option -hwspec /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
-03:17:34 INFO  : Invoking Bootgen: bootgen -image fsbl.bif -o i /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueueVerilog/minHeapVerilog_BOOT.bin
-03:17:34 INFO  : Creating new bif file /home/michael/ecen5139_final_project/bitstreams/minHeapPriorityQueueVerilog/fsbl.bif
-03:17:36 INFO  : Bootgen command execution is done.
+05:12:41 INFO  : Processing command line option -hwspec /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk/design_1_wrapper.hdf.
+05:14:51 INFO  : Invoking Bootgen: bootgen -image fsbl.bif -o i /home/michael/ecen5139_final_project/bitstreams/midtermPriorityQueueVerilog/midtermPriorityQueueVerilog_BOOT.bin -w on
+05:14:51 INFO  : Overwriting existing bif file /home/michael/ecen5139_final_project/bitstreams/midtermPriorityQueueVerilog/fsbl.bif
+05:14:52 INFO  : Bootgen command execution is done.

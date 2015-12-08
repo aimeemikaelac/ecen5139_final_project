@@ -5,7 +5,6 @@
   set_param gui.test TreeTableDev
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {HDL-1065} -limit 10000
 create_project -in_memory -part xc7z020clg484-1
 set_property target_language Verilog [current_project]
 set_property board_part em.avnet.com:zed:part0:1.0 [current_project]
@@ -13,7 +12,7 @@ set_param project.compositeFile.enableAutoGeneration 0
 set_property default_lib xil_defaultlib [current_project]
 set_property ip_repo_paths {
   /home/michael/ecen5139_final_project/CAV_MidtermPriorityQueue_Verilog_Runner
-  /home/michael/ecen5139_final_project/minheap_verilog
+  /home/michael/ecen5139_final_project/project_1
 } [current_fileset]
 
 add_files /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/design_1.bd
@@ -22,6 +21,7 @@ set_property used_in_implementation false [get_files -all /home/michael/ecen5139
 set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0.xdc]
 set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_rst_processing_system7_0_100M_0/design_1_rst_processing_system7_0_100M_0_board.xdc]
+set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/ipshared/ngn.cs.colorado.edu/pqueue_v1_0/1d519e33/constrs_1/imports/verilog/runQueue.xdc]
 set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.srcs/sources_1/bd/design_1/design_1_ooc.xdc]
 set_msg_config -id {IP_Flow 19-2162} -severity warning -new_severity info
