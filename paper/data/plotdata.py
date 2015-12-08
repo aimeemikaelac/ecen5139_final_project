@@ -11,6 +11,8 @@ utilization_reader = csv.DictReader(utilization_file)
 markers = ['o', '*', 'x', 'D', '8', 's']
 colors = ['blue', 'green', 'black', 'cyan', 'purple', 'brown']
 queue_names_map = {'minheap_verilog':'Min-Heap', 'midterm_verilog':'Tagged Up/Down Sorter', 'huang':'Huang, et. al.', 'kumar':'Kumar, et. al.'}
+queue_colors = {'minheap_verilog':'blue', 'midterm_verilog':'green', 'huang':'black', 'kumar':'cyan'}
+queue_markers = {'minheap_verilog':'o', 'midterm_verilog':'*', 'huang':'s', 'kumar':'D'}
 
 data_dict = {}
 
@@ -47,28 +49,28 @@ for row in utilization_reader:
 
 all_sizes = sorted(set(all_sizes))
 
-i=0
-fits = []
+i=-1
+fits = {}
 queue_names = []
 for queue, queue_data in data_dict.iteritems():
+    i = i + 1
     if queue == 'huang':
         continue
     queue_names.append(queue_names_map[queue])
     sizes, luts = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['luts']))))
     fit = numpy.polyfit(numpy.log(sizes), numpy.log(luts), 1)
     fit_fn = numpy.poly1d(fit)
-    fits.append(fit_fn)
-    loglog(sizes, luts, marker=markers[i], linestyle = 'None', c=colors[i])
-    i = i + 1
+    fits[queue] = fit_fn
+    loglog(sizes, luts, marker=queue_markers[queue], linestyle = 'None', c=queue_colors[queue])
 
 xlabel("Size of Priority Queue")
 ylabel("LUT Utilization")
 legend(queue_names, loc=4)
 
-for i in range(len(fits)):
-    fit = fits[i]
+i = -1
+for queue, fit in fits.iteritems():
     ys = lambda x: numpy.exp(fit(numpy.log(x)))
-    loglog(all_sizes, ys(all_sizes), c=colors[i])
+    loglog(all_sizes, ys(all_sizes), c=queue_colors[queue])
 
 axhline(53200, linestyle='dashed', color='red')
 
@@ -79,17 +81,17 @@ savefig("lut_utilization.pdf", bbox_inches='tight')
 
 figure()
 
-i = 0
-fits = []
+i = -1
+fits = {}
 queue_names = []
 for queue, queue_data in data_dict.iteritems():
+    i = i + 1
     queue_names.append(queue_names_map[queue])
     sizes, ffs = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['ff']))))
     fit = numpy.polyfit(numpy.log(sizes), numpy.log(ffs), 1)
     fit_fn = numpy.poly1d(fit)
-    fits.append(fit_fn)
-    loglog(sizes, ffs, marker=markers[i], c=colors[i], linestyle='None')
-    i = i + 1
+    fits[queue] = fit_fn
+    loglog(sizes, ffs, marker=queue_markers[queue], c=queue_colors[queue], linestyle='None')
 
 
 xlabel("Size of Priority Queue")
@@ -97,10 +99,9 @@ ylabel("Flip-flop Utilization")
 legend(queue_names, loc=4)
 grid()
 
-for i in range(len(fits)):
-    fit = fits[i]
+for queue, fit in fits.iteritems():
     ys = lambda x: numpy.exp(fit(numpy.log(x)))
-    loglog(all_sizes, ys(all_sizes), c=colors[i])
+    loglog(all_sizes, ys(all_sizes), c=queue_colors[queue])
 
 axhline(106400, linestyle='dashed', color='red')
 
@@ -108,15 +109,13 @@ savefig("ff_utilization.pdf", bbox_inches='tight')
 
 figure()
 
-i = 0
 queue_names = []
 for queue, queue_data in data_dict.iteritems():
     if queue == 'kumar' or queue == 'huang':
         continue
     queue_names.append(queue_names_map[queue])
     sizes, times = (list(t) for t in zip(*sorted(zip(queue_data['sizes'], queue_data['times']))))
-    loglog(sizes, times, marker=markers[i])
-    i = i + 1
+    loglog(sizes, times, marker=queue_markers[queue], c=queue_colors[queue])
 
 xlabel("Size of Priority Queue")
 ylabel("Synthesis time")
