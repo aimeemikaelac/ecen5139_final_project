@@ -1,0 +1,1 @@
+--debug "typical" --relax -L "xil_defaultlib" -L "secureip" --snapshot "testbench_behav" --prj "/home/michael/ecen5139_final_project/minheap_verilog/minheap_verilog.sim/sim_1/behav/testbench.prj" "xil_defaultlib.testbench" 

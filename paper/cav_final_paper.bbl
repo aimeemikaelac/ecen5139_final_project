@@ -1,0 +1,21 @@
+\begin{thebibliography}{1}
+
+\bibitem{huang2014scalable}
+M.~Huang, K.~Lim, and J.~Cong.
+\newblock A scalable, high-performance customized priority queue.
+\newblock In {\em Field Programmable Logic and Applications (FPL), 2014 24th
+  International Conference on}, pages 1--4. IEEE, 2014.
+
+\bibitem{KumVya13B}
+C.~Kumar, S.~Vyas, R.~Cytron, C.~Gill, J.~Zambreno, and P.~Jones.
+\newblock Hardware-software architecture for priority queue management in
+  real-time and embedded systems.
+\newblock {\em International Journal of Embedded Systems (IJES)},
+  6(4):319--334, 2014.
+
+\bibitem{Moore95taggedup/down}
+S.~W. Moore and B.~T. Graham.
+\newblock Tagged up/down sorter - a hardware priority queue.
+\newblock {\em The Computer Journal}, 38:695--703, 1995.
+
+\end{thebibliography}

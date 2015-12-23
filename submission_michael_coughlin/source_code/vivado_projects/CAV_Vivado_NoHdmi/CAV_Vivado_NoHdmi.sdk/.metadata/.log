@@ -1,0 +1,12 @@
+!SESSION 2015-12-08 05:27:54.509 -----------------------------------------------
+eclipse.buildId=2014.2
+java.version=1.7.0_40
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data /home/michael/ecen5139_final_project/CAV_Vivado_NoHdmi/CAV_Vivado_NoHdmi.sdk
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-12-08 05:28:34.133
+!MESSAGE Indexed 'fsbl' (12 sources, 57 headers) in 1.89 sec: 1,594 declarations; 7,111 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2015-12-08 05:28:36.447
+!MESSAGE Indexed 'fsbl_bsp' (117 sources, 144 headers) in 2.28 sec: 6,112 declarations; 28,712 references; 65 unresolved inclusions; 9 syntax errors; 38 unresolved names (0.11%)

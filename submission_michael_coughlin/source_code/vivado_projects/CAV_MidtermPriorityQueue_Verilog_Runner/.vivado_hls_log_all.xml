@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="@W [RTGEN-101] Global array 'random_priorities' will not be exposed as RTL port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.163-0700" type="Warning"/>
+        <logs message="@W [RTGEN-101] Port 'total' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.159-0700" type="Warning"/>
+        <logs message="@W [RTGEN-101] Port 'currentIteration' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.149-0700" type="Warning"/>
+        <logs message="@W [RTGEN-101] Port 'fullOut' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.144-0700" type="Warning"/>
+        <logs message="@W [RTGEN-101] Port 'cmdOut_V' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.134-0700" type="Warning"/>
+        <logs message="@W [RTGEN-101] Port 'priorityOut_V' with mode 'ap_none' may require an associated data valid signal to correctly communicate with other blocks or a test bench; automatic C/RTL co-simulation may not be able to verify such a port." projectName="CAV_MidtermPriorityQueue_Verilog_Runner" solutionName="solution1" date="2015-12-06T03:29:02.124-0700" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
